@@ -1,9 +1,17 @@
+<!-- Copyright (c) 2026 Chinaready. All rights reserved. -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Google Sign-In — Stack Break Lab</title>
+  <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../public/assets/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
+  <meta name="theme-color" content="#0C1E3E" />
+  <link rel="stylesheet" href="../public/assets/chinaready.css" />
   <link rel="stylesheet" href="../public/assets/lab.css" />
   <!-- The single dependency under test: Google Identity Services client from accounts.google.com. -->
   <script id="dep" src="https://accounts.google.com/gsi/client" async defer
@@ -13,7 +21,11 @@
       data-symptom="The 'Continue with Google' button does not render or does nothing when clicked because the Google Identity script is blocked.">
   <header class="site-header">
     <div class="wrap">
-      <div class="brand">Chinaready Stack Break Lab</div>
+      <a class="brand" href="./index.html">
+        <img class="brand__logo" src="../public/assets/brand/logo-horizontal.svg" alt="Chinaready" width="140" height="28" />
+        <span class="brand__sep" aria-hidden="true"></span>
+        <span class="brand__lab">Stack Break Lab</span>
+      </a>
       <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
     </div>
   </header>
@@ -40,8 +52,9 @@
 
   <footer class="site-footer">
     <div class="wrap">
+      <img class="site-footer__logo" src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="130" height="26" />
       <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
-      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+      <p class="site-footer__links"><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
     </div>
   </footer>
   <script src="../public/assets/demo.js"></script>
