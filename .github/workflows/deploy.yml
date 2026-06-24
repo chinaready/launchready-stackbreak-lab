@@ -1,8 +1,9 @@
 name: deploy
 
-# Rebuilds and restarts the static site on the launchready.cn Docker host whenever
-# demo/site content changes on main. Runs on the self-hosted mainland runner because
-# that host is where the site lives. No untrusted event input is used in run steps.
+# Redeploys the static site on the launchready.cn Docker host when site content changes
+# on main. Runs on the self-hosted mainland runner and operates on the deployment checkout
+# at /opt/launchready-stackbreak-lab, integrating with the existing Traefik via
+# docker-compose.prod.yml. No untrusted event input is used in run steps.
 
 on:
   push:
@@ -11,7 +12,7 @@ on:
       - 'demos/**'
       - 'public/**'
       - 'Dockerfile'
-      - 'docker-compose.yml'
+      - 'docker-compose.prod.yml'
       - 'deploy/nginx.conf'
   workflow_dispatch:
 
@@ -19,22 +20,25 @@ concurrency:
   group: deploy
   cancel-in-progress: true
 
+env:
+  DEPLOY_PATH: /opt/launchready-stackbreak-lab
+
 jobs:
   deploy:
     runs-on: [self-hosted, linux, mainland-china]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build and (re)start container
-        run: docker compose up -d --build
-
-      - name: Smoke test
+      - name: Pull and (re)build at deploy path
         run: |
-          for i in $(seq 1 10); do
-            code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/demos/ || true)
+          cd "$DEPLOY_PATH"
+          git pull --ff-only origin main
+          docker compose -f docker-compose.prod.yml up -d --build
+
+      - name: Smoke test (live URL)
+        run: |
+          for i in $(seq 1 15); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://stackbreak.launchready.cn/demos/ || true)
             if [ "$code" = "200" ]; then echo "demos OK"; break; fi
-            echo "waiting for site ($code)..."; sleep 2
+            echo "waiting for site ($code)..."; sleep 3
           done
-          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/demos/fonts-google.html)" = "200"
-          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/results/latest.json)" = "200"
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://stackbreak.launchready.cn/demos/fonts-google.html)" = "200"
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://stackbreak.launchready.cn/results/latest.json)" = "200"
