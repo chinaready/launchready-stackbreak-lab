@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Chinaready. All rights reserved. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,19 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stack Break Lab — demos</title>
   <meta name="description" content="Single-dependency demo pages measuring which foreign web-stack services break first in mainland China." />
+  <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../public/assets/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
+  <meta name="theme-color" content="#0C1E3E" />
+  <link rel="stylesheet" href="../public/assets/chinaready.css" />
   <link rel="stylesheet" href="../public/assets/lab.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <div class="brand">Chinaready Stack Break Lab</div>
+      <a class="brand" href="./index.html">
+        <img class="brand__logo" src="../public/assets/brand/logo-horizontal.svg" alt="Chinaready" width="140" height="28" />
+        <span class="brand__sep" aria-hidden="true"></span>
+        <span class="brand__lab">Stack Break Lab</span>
+      </a>
       <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
     </div>
   </header>
 
   <main class="wrap">
     <p class="eyebrow">Demos</p>
-    <h1>One dependency per page</h1>
+    <h1>One dependency per page<span class="period">.</span></h1>
     <p class="lede">
       Each page loads exactly one third-party integration the way a normal product would, then
       reports whether it actually arrived. Open these from mainland China and watch which ones
@@ -54,11 +66,12 @@
 
   <footer class="site-footer">
     <div class="wrap">
+      <img class="site-footer__logo" src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="130" height="26" />
       <p class="disclaimer">
         Results change with carrier, region, and time. Each run is a single-node snapshot, not a
         legal or compliance conclusion.
       </p>
-      <p>
+      <p class="site-footer__links">
         <a href="https://chinaready.co/insights/which-parts-of-your-stack-break-first/">Read the article</a>
         &middot;
         <a href="https://github.com/chinaready/launchready-stackbreak-lab">Source on GitHub</a>
