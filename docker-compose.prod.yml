@@ -6,7 +6,12 @@
 
 services:
   stackbreak:
-    build: .
+    build:
+      context: .
+      args:
+        # Docker Hub is blocked from the mainland host; pull the base image via the same
+        # mirror the existing stacks use.
+        NGINX_IMAGE: harbor.aicproxy.cn/dockerhub/library/nginx:alpine
     image: launchready-stackbreak-lab:latest
     container_name: stackbreak-lab
     restart: unless-stopped

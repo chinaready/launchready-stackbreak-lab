@@ -1,7 +1,10 @@
 # Stack Break Lab — static site image.
 # Serves the repo root (demos, public, results) via nginx so all relative and
 # root-absolute paths resolve the same way locally and in production.
-FROM nginx:alpine
+# NGINX_IMAGE defaults to Docker Hub for local builds; the mainland host overrides it
+# to a reachable mirror (Docker Hub is blocked there) via the prod compose build arg.
+ARG NGINX_IMAGE=nginx:alpine
+FROM ${NGINX_IMAGE}
 
 # Site content. results/ is also bind-mounted in docker-compose so the evidence
 # workflow can refresh it without rebuilding the image.
