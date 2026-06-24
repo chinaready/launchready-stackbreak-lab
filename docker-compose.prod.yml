@@ -1,0 +1,30 @@
+# Stack Break Lab — production compose for the launchready.cn host.
+# Integrates with the EXISTING Traefik (external `lunchready` network), publishes NO host
+# ports (Traefik reaches the container over the shared network), and reuses the existing
+# `cloudflare` ACME cert resolver. Deploy with:
+#   docker compose -f docker-compose.prod.yml up -d --build
+
+services:
+  stackbreak:
+    build: .
+    image: launchready-stackbreak-lab:latest
+    container_name: stackbreak-lab
+    restart: unless-stopped
+    networks:
+      - lunchready
+    volumes:
+      # Evidence runs update results/ in this repo checkout; mount read-only so the live
+      # site reflects the latest snapshot without an image rebuild.
+      - ./results:/usr/share/nginx/html/results:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=lunchready"
+      - "traefik.http.routers.stackbreak.entrypoints=websecure"
+      - "traefik.http.routers.stackbreak.rule=Host(`stackbreak.launchready.cn`)"
+      - "traefik.http.routers.stackbreak.tls=true"
+      - "traefik.http.routers.stackbreak.tls.certresolver=cloudflare"
+      - "traefik.http.services.stackbreak.loadbalancer.server.port=80"
+
+networks:
+  lunchready:
+    external: true

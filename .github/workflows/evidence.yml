@@ -1,9 +1,9 @@
 name: evidence
 
-# Collects mainland China reachability evidence: a curl/dig probe plus Playwright
-# browser checks against the live demos, then commits the results. Runs on the
-# self-hosted mainland runner so the network vantage point is inside China.
-# Only repo-defined env/vars are used in run steps; no untrusted event input.
+# Collects mainland China reachability evidence: a curl/dig probe plus Playwright browser
+# checks against the LIVE demos, commits the results, then refreshes the deployed site so
+# the results volume reflects the new snapshot. Runs on the self-hosted mainland runner so
+# the network vantage point is inside China. Only repo-defined env/vars are used in run steps.
 
 on:
   schedule:
@@ -23,6 +23,7 @@ env:
   CLOUD_REGION: ${{ vars.CLOUD_REGION }}
   RUNNER_HOST: launchready.cn
   EXPECT_BLOCKED: '1'
+  DEPLOY_PATH: /opt/launchready-stackbreak-lab
 
 jobs:
   collect:
@@ -52,5 +53,8 @@ jobs:
             git push
           fi
 
-      - name: Refresh live results volume
-        run: docker compose up -d
+      - name: Refresh deployed site
+        run: |
+          cd "$DEPLOY_PATH"
+          git pull --ff-only origin main
+          docker compose -f docker-compose.prod.yml up -d
