@@ -1,0 +1,19 @@
+# Secrets
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/.cache/
+.last-run.json
+
+# OS
+.DS_Store
+
+# Local probe scratch output (committed evidence lives under results/<date>/ and results/latest.json)
+/tmp-probe/

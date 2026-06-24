@@ -1,0 +1,40 @@
+name: deploy
+
+# Rebuilds and restarts the static site on the launchready.cn Docker host whenever
+# demo/site content changes on main. Runs on the self-hosted mainland runner because
+# that host is where the site lives. No untrusted event input is used in run steps.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'demos/**'
+      - 'public/**'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - 'deploy/nginx.conf'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, mainland-china]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and (re)start container
+        run: docker compose up -d --build
+
+      - name: Smoke test
+        run: |
+          for i in $(seq 1 10); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/demos/ || true)
+            if [ "$code" = "200" ]; then echo "demos OK"; break; fi
+            echo "waiting for site ($code)..."; sleep 2
+          done
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/demos/fonts-google.html)" = "200"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/results/latest.json)" = "200"

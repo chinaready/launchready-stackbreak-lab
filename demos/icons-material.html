@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Material Symbols — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <!-- The single dependency under test: Google Material Symbols icon font. -->
+  <link id="dep" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')" />
+  <style>
+    .icons { font-size: 3rem; display:flex; gap:18px; }
+    .material-symbols-outlined { font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; }
+  </style>
+</head>
+<body data-service="Material Symbols" data-domain="fonts.googleapis.com"
+      data-symptom="Icon glyphs render as empty boxes or raw ligature text (e.g. the word 'search') because the icon font never loads.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Fonts and icons</p>
+    <h1>Material Symbols</h1>
+    <p class="lede">This page loads Google's Material Symbols icon font and renders a few icons via ligatures.</p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <div class="icons">
+        <span class="material-symbols-outlined">search</span>
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="material-symbols-outlined">settings</span>
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </div>
+      <p><small>If the icon font is blocked, you see the words instead of glyphs.</small></p>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

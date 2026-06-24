@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google Tag Manager — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <!-- The single dependency under test: Google Tag Manager container.
+       GTM is typically loaded high in <head>; when blocked it can delay everything below it.
+       Replace GTM-XXXXXXX with your own test container (GTM_TEST_CONTAINER_ID) if you have one. -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s);
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+      j.onload = function () { window.LabStatus && LabStatus.set('loaded'); };
+      j.onerror = function () { window.LabStatus && LabStatus.set('failed'); };
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');
+  </script>
+</head>
+<body data-service="Google Tag Manager" data-domain="www.googletagmanager.com"
+      data-symptom="A render-blocking tag in the head stalls, so time-to-first-byte and first paint drag for every visitor — even though nothing visible 'broke'.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Analytics and tags</p>
+    <h1>Google Tag Manager</h1>
+    <p class="lede">Loads a GTM container from <code>www.googletagmanager.com</code>, the way most sites wire analytics and marketing tags.</p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <p>Page content below the tag. When GTM stalls in China, this content can be delayed or the page feels slow to become interactive.</p>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

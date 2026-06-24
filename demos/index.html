@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stack Break Lab — demos</title>
+  <meta name="description" content="Single-dependency demo pages measuring which foreign web-stack services break first in mainland China." />
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Demos</p>
+    <h1>One dependency per page</h1>
+    <p class="lede">
+      Each page loads exactly one third-party integration the way a normal product would, then
+      reports whether it actually arrived. Open these from mainland China and watch which ones
+      stall. The authoritative verdicts live at <a href="../public/results/index.html">/results/</a>.
+    </p>
+
+    <h2>Fonts and icons</h2>
+    <div class="cat-grid">
+      <a href="./fonts-google.html">Google Fonts<span>fonts.googleapis.com / fonts.gstatic.com</span></a>
+      <a href="./icons-material.html">Material Symbols<span>fonts.googleapis.com</span></a>
+      <a href="./fonts-typekit.html">Adobe Fonts (Typekit)<span>use.typekit.net</span></a>
+    </div>
+
+    <h2>Auth and identity</h2>
+    <div class="cat-grid">
+      <a href="./recaptcha.html">Google reCAPTCHA<span>www.google.com/recaptcha</span></a>
+      <a href="./auth0-lock.html">Auth0<span>cdn.auth0.com</span></a>
+      <a href="./google-signin.html">Google Sign-In<span>accounts.google.com</span></a>
+    </div>
+
+    <h2>Analytics and tags</h2>
+    <div class="cat-grid">
+      <a href="./gtm.html">Google Tag Manager<span>www.googletagmanager.com</span></a>
+      <a href="./ga4.html">Google Analytics 4<span>www.googletagmanager.com / google-analytics.com</span></a>
+    </div>
+
+    <h2>Maps, media, embeds</h2>
+    <div class="cat-grid">
+      <a href="./youtube-embed.html">YouTube embed<span>www.youtube.com / i.ytimg.com</span></a>
+      <a href="./google-maps.html">Google Maps<span>maps.googleapis.com</span></a>
+      <a href="./vimeo-embed.html">Vimeo embed<span>player.vimeo.com</span></a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">
+        Results change with carrier, region, and time. Each run is a single-node snapshot, not a
+        legal or compliance conclusion.
+      </p>
+      <p>
+        <a href="https://chinaready.co/insights/which-parts-of-your-stack-break-first/">Read the article</a>
+        &middot;
+        <a href="https://github.com/chinaready/launchready-stackbreak-lab">Source on GitHub</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
