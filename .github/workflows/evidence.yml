@@ -41,20 +41,31 @@ jobs:
           npx playwright install chromium
           npx playwright test || echo "browser checks reported failures (recorded in results)"
 
-      - name: Commit results
+      - name: Refresh deployed site (local, no GitHub round-trip)
+        run: |
+          # Live container bind-mounts $DEPLOY_PATH/results read-only, so copying the freshly
+          # generated results there updates stackbreak.launchready.cn/results/ immediately.
+          # Done BEFORE the GitHub push so the live site stays current even when mainland
+          # egress to github.com is throttled.
+          mkdir -p "$DEPLOY_PATH/results"
+          cp -a "$GITHUB_WORKSPACE/results/." "$DEPLOY_PATH/results/"
+
+      - name: Publish results to GitHub (SSH over 443)
         run: |
           git config user.name "stackbreak-bot"
           git config user.email "bot@launchready.cn"
           git add results/
           if git diff --cached --quiet; then
-            echo "no result changes"
-          else
-            git commit -m "[evidence] $(date +%F) mainland snapshot"
-            git push
+            echo "no result changes"; exit 0
           fi
-
-      - name: Refresh deployed site
-        run: |
-          cd "$DEPLOY_PATH"
-          git pull --ff-only origin main
-          docker compose -f docker-compose.prod.yml up -d
+          git commit -m "[evidence] $(date +%F) mainland snapshot"
+          # Mainland HTTPS to github.com uses GnuTLS and is reset by the GFW on larger pushes;
+          # push over SSH-443 (ssh.github.com:443) via the runner deploy key, with retries.
+          remote="git@github.com:chinaready/launchready-stackbreak-lab.git"
+          n=0
+          until [ "$n" -ge 5 ]; do
+            if git push "$remote" HEAD:main; then echo "pushed to GitHub"; exit 0; fi
+            n=$((n+1)); echo "push attempt $n failed; retrying in 10s"; sleep 10
+          done
+          echo "::error::git push to GitHub failed after 5 attempts (live site already refreshed)"
+          exit 1
