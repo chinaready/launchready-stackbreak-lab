@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google Fonts — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <!-- The single dependency under test: Google Fonts stylesheet. -->
+  <link id="dep" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+        onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')" />
+  <style>
+    .sample { font-family: "Inter", system-ui, sans-serif; font-size: 1.8rem; font-weight: 700; }
+    .sample small { display:block; font-weight:400; font-size:0.95rem; color:var(--muted); }
+  </style>
+</head>
+<body data-service="Google Fonts" data-domain="fonts.googleapis.com"
+      data-symptom="Fallback typeface, wrong weights, and layout shift while the page waits for fonts that never arrive.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Fonts and icons</p>
+    <h1 data-fill="service">Google Fonts</h1>
+    <p class="lede">This page loads one webfont stylesheet from Google Fonts and renders text with it.</p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <div class="sample">The quick brown fox jumps over the lazy dog
+        <small>Rendered in Inter from fonts.googleapis.com. If Google Fonts is blocked, this falls back to a system font.</small>
+      </div>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google Analytics 4 — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <!-- The single dependency under test: GA4 gtag.js from www.googletagmanager.com.
+       Replace G-XXXXXXXXXX with your own test measurement id (GA4_TEST_MEASUREMENT_ID) if you have one. -->
+  <script id="dep" async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body data-service="Google Analytics 4" data-domain="www.googletagmanager.com"
+      data-symptom="Analytics silently fails — China traffic disappears from reports, and if loaded synchronously it can also slow the page.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Analytics and tags</p>
+    <h1>Google Analytics 4</h1>
+    <p class="lede">Loads the GA4 <code>gtag.js</code> library. When it cannot reach Google, your China visitors are invisible in analytics.</p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <p>This page fires a GA4 page_view. From China the request to Google's analytics endpoints typically never completes.</p>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

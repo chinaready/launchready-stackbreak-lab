@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Latest results — Stack Break Lab</title>
+  <meta name="description" content="Latest mainland China reachability verdicts for common foreign web-stack dependencies." />
+  <link rel="stylesheet" href="../assets/lab.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Results</p>
+    <h1>Latest mainland China snapshot</h1>
+    <p class="lede">
+      Network probe (<code>curl</code> + <code>dig</code>) and browser checks (Playwright) run from a
+      mainland China node. Verdicts: <strong class="verdict Reachable">Reachable</strong>,
+      <strong class="verdict Degraded">Degraded</strong>, <strong class="verdict Blocked">Blocked</strong>.
+    </p>
+
+    <p id="sample-banner" class="status" data-state="checking" hidden></p>
+
+    <dl class="meta" id="env"></dl>
+
+    <div id="results-root"></div>
+
+    <h2>Browser findings</h2>
+    <div id="browser-root"></div>
+
+    <p style="margin-top:24px"><a href="/demos/">Browse the demo pages</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">
+        Single-node snapshot. Results vary by carrier, region, and time, and do not constitute a
+        legal or compliance conclusion.
+      </p>
+      <p>
+        <a href="https://chinaready.co/insights/which-parts-of-your-stack-break-first/">Read the article</a>
+        &middot;
+        <a href="https://github.com/chinaready/launchready-stackbreak-lab">Source on GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var CATEGORY_LABELS = {
+        fonts: 'Fonts and icons',
+        auth: 'Auth and identity',
+        analytics: 'Analytics and tags',
+        embeds: 'Maps, media, embeds'
+      };
+
+      function el(tag, text, className) {
+        var n = document.createElement(tag);
+        if (text != null) n.textContent = text;
+        if (className) n.className = className;
+        return n;
+      }
+
+      function fmtDate(iso) {
+        try { return new Date(iso).toISOString().replace('T', ' ').replace('.000Z', ' UTC'); }
+        catch (e) { return iso || 'unknown'; }
+      }
+
+      function renderEnv(data) {
+        var env = data.environment || {};
+        var dl = document.getElementById('env');
+        var rows = [
+          ['Generated', fmtDate(data.generatedAt)],
+          ['Cloud', (env.cloudProvider || 'unknown') + ' / ' + (env.cloudRegion || 'unknown')],
+          ['Host', env.runnerHost || 'unknown'],
+          ['DNS', env.dnsServer || 'unknown']
+        ];
+        rows.forEach(function (r) {
+          dl.appendChild(el('dt', r[0]));
+          dl.appendChild(el('dd', r[1]));
+        });
+      }
+
+      function renderServices(data) {
+        var root = document.getElementById('results-root');
+        var services = data.services || [];
+        var byCat = {};
+        services.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
+
+        Object.keys(CATEGORY_LABELS).forEach(function (cat) {
+          var list = byCat[cat];
+          if (!list || !list.length) return;
+          root.appendChild(el('h2', CATEGORY_LABELS[cat]));
+          var table = el('table'); table.className = 'results';
+          var thead = el('thead');
+          var htr = el('tr');
+          ['Service', 'Verdict', 'HTTP', 'Total (s)', 'DNS', 'Demo'].forEach(function (h) {
+            htr.appendChild(el('th', h));
+          });
+          thead.appendChild(htr); table.appendChild(thead);
+          var tbody = el('tbody');
+          list.forEach(function (s) {
+            var tr = el('tr');
+            tr.appendChild(el('td', s.name));
+            tr.appendChild(el('td', s.verdict, 'verdict ' + s.verdict));
+            tr.appendChild(el('td', s.httpCode));
+            tr.appendChild(el('td', String(s.totalSec)));
+            tr.appendChild(el('td', s.dnsResolved ? 'yes' : 'no'));
+            var demoTd = el('td');
+            if (s.demoPath) {
+              var a = el('a', 'open'); a.href = s.demoPath; demoTd.appendChild(a);
+            }
+            tr.appendChild(demoTd);
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+          root.appendChild(table);
+        });
+      }
+
+      function renderBrowser(data) {
+        var root = document.getElementById('browser-root');
+        var browser = data.browser || [];
+        if (!browser.length) {
+          root.appendChild(el('p', 'No browser findings in this run yet.'));
+          return;
+        }
+        var table = el('table'); table.className = 'results';
+        var thead = el('thead'); var htr = el('tr');
+        ['Demo', 'Verdict', 'Failed requests', 'Screenshot'].forEach(function (h) { htr.appendChild(el('th', h)); });
+        thead.appendChild(htr); table.appendChild(thead);
+        var tbody = el('tbody');
+        browser.forEach(function (b) {
+          var tr = el('tr');
+          var demoTd = el('td');
+          var a = el('a', b.demoPath); a.href = b.demoPath; demoTd.appendChild(a);
+          tr.appendChild(demoTd);
+          tr.appendChild(el('td', b.verdict, 'verdict ' + b.verdict));
+          tr.appendChild(el('td', (b.failedRequests || []).join(', ') || '—'));
+          var shotTd = el('td');
+          if (b.screenshotPath) { var sa = el('a', 'view'); sa.href = b.screenshotPath; shotTd.appendChild(sa); }
+          else { shotTd.appendChild(document.createTextNode('—')); }
+          tr.appendChild(shotTd);
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        root.appendChild(table);
+      }
+
+      function showSampleBanner() {
+        var b = document.getElementById('sample-banner');
+        b.hidden = false;
+        b.setAttribute('data-state', 'failed');
+        b.textContent = 'Sample data — not a real measurement. The first mainland run will replace this.';
+      }
+
+      fetch('/results/latest.json', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (data) {
+          if (data.sample) showSampleBanner();
+          renderEnv(data);
+          renderServices(data);
+          renderBrowser(data);
+        })
+        .catch(function (err) {
+          document.getElementById('results-root').appendChild(
+            el('p', 'Could not load results/latest.json: ' + err.message)
+          );
+        });
+    })();
+  </script>
+</body>
+</html>

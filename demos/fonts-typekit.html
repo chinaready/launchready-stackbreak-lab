@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adobe Fonts (Typekit) — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <!-- The single dependency under test: Adobe Fonts (Typekit) stylesheet.
+       Replace the kit id in data-kit with your own (TYPEKIT_KIT_ID) if you have one.
+       The placeholder still triggers a request to use.typekit.net, which is what we measure. -->
+  <link id="dep" rel="stylesheet"
+        href="https://use.typekit.net/abcdefg.css"
+        onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')" />
+  <style>
+    .sample { font-family: "adobe-clean", "freight-text-pro", Georgia, serif; font-size: 1.7rem; }
+  </style>
+</head>
+<body data-service="Adobe Fonts (Typekit)" data-domain="use.typekit.net"
+      data-symptom="Brand typefaces silently fall back across the whole site; the kit CSS from use.typekit.net stalls or fails.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Fonts and icons</p>
+    <h1>Adobe Fonts (Typekit)</h1>
+    <p class="lede">
+      This page loads a Typekit kit stylesheet from <code>use.typekit.net</code>. The kit id is a
+      placeholder; the network request to Typekit is what determines reachability.
+    </p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <p class="sample">Brand voice rendered in an Adobe Fonts typeface.</p>
+      <p><small>If Typekit is unreachable, this falls back to a system serif.</small></p>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

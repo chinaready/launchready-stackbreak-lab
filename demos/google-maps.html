@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google Maps — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <style>
+    #map { width: 100%; height: 320px; border-radius: 10px; background: #e9eef5; }
+  </style>
+  <!-- The single dependency under test: Google Maps JavaScript API from maps.googleapis.com.
+       The key is a placeholder; the request to maps.googleapis.com is what we measure.
+       With no valid key the script still loads but the map shows Google's error overlay. -->
+  <script id="dep" async
+          src="https://maps.googleapis.com/maps/api/js?key=PLACEHOLDER_KEY&callback=initMap"
+          onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')"></script>
+  <script>
+    function initMap() {
+      if (window.google && google.maps) {
+        new google.maps.Map(document.getElementById('map'), {
+          center: { lat: 31.2304, lng: 121.4737 }, zoom: 11
+        });
+      }
+    }
+  </script>
+</head>
+<body data-service="Google Maps" data-domain="maps.googleapis.com"
+      data-symptom="The map is a grey box that never tiles, or an infinite loading spinner, because the Maps JS API is unreachable.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Maps, media, embeds</p>
+    <h1>Google Maps</h1>
+    <p class="lede">Loads the Google Maps JavaScript API from <code>maps.googleapis.com</code> and tries to render a map of Shanghai.</p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <div id="map"></div>
+      <p><small>If Maps is blocked, the box above stays grey and never tiles.</small></p>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

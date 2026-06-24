@@ -1,0 +1,11 @@
+.git
+node_modules
+test-results
+playwright-report
+blob-report
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+tests

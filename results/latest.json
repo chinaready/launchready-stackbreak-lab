@@ -1,0 +1,28 @@
+{
+  "sample": true,
+  "note": "Placeholder sample so the viewer renders before the first mainland run. Verdicts here are illustrative, NOT measured. The evidence workflow on the launchready.cn runner overwrites this with real data.",
+  "generatedAt": "2026-01-01T00:00:00Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-hangzhou",
+    "runnerHost": "launchready.cn",
+    "dnsServer": "223.5.5.5"
+  },
+  "services": [
+    { "id": "google-fonts", "name": "Google Fonts", "category": "fonts", "domain": "fonts.googleapis.com", "demoPath": "/demos/fonts-google.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "material-symbols", "name": "Material Symbols", "category": "fonts", "domain": "fonts.googleapis.com", "demoPath": "/demos/icons-material.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "adobe-typekit", "name": "Adobe Fonts (Typekit)", "category": "fonts", "domain": "use.typekit.net", "demoPath": "/demos/fonts-typekit.html", "httpCode": "200", "totalSec": 6.4, "dnsResolved": true, "verdict": "Degraded" },
+    { "id": "recaptcha", "name": "Google reCAPTCHA", "category": "auth", "domain": "www.google.com", "demoPath": "/demos/recaptcha.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "auth0", "name": "Auth0", "category": "auth", "domain": "cdn.auth0.com", "demoPath": "/demos/auth0-lock.html", "httpCode": "200", "totalSec": 7.1, "dnsResolved": true, "verdict": "Degraded" },
+    { "id": "google-signin", "name": "Google Sign-In", "category": "auth", "domain": "accounts.google.com", "demoPath": "/demos/google-signin.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "gtm", "name": "Google Tag Manager", "category": "analytics", "domain": "www.googletagmanager.com", "demoPath": "/demos/gtm.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "ga4", "name": "Google Analytics 4", "category": "analytics", "domain": "www.googletagmanager.com", "demoPath": "/demos/ga4.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "youtube", "name": "YouTube embed", "category": "embeds", "domain": "www.youtube.com", "demoPath": "/demos/youtube-embed.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "google-maps", "name": "Google Maps", "category": "embeds", "domain": "maps.googleapis.com", "demoPath": "/demos/google-maps.html", "httpCode": "000", "totalSec": 15, "dnsResolved": true, "verdict": "Blocked" },
+    { "id": "vimeo", "name": "Vimeo embed", "category": "embeds", "domain": "player.vimeo.com", "demoPath": "/demos/vimeo-embed.html", "httpCode": "200", "totalSec": 8.3, "dnsResolved": true, "verdict": "Degraded" }
+  ],
+  "browser": [
+    { "id": "google-fonts", "demoPath": "/demos/fonts-google.html", "failedRequests": ["https://fonts.googleapis.com/css2"], "verdict": "Blocked", "screenshotPath": null },
+    { "id": "recaptcha", "demoPath": "/demos/recaptcha.html", "failedRequests": ["https://www.google.com/recaptcha/api.js"], "verdict": "Blocked", "screenshotPath": null }
+  ]
+}

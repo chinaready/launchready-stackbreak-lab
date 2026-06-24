@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google reCAPTCHA — Stack Break Lab</title>
+  <link rel="stylesheet" href="../public/assets/lab.css" />
+  <!-- The single dependency under test: Google reCAPTCHA v2.
+       Uses Google's public v2 test site key (renders, never needs a real backend). -->
+  <script id="dep" src="https://www.google.com/recaptcha/api.js" async defer
+          onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')"></script>
+</head>
+<body data-service="Google reCAPTCHA" data-domain="www.google.com/recaptcha"
+      data-symptom="The login or signup button spins forever; the captcha widget never renders because the reCAPTCHA script is blocked.">
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">Chinaready Stack Break Lab</div>
+      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Auth and identity</p>
+    <h1>Google reCAPTCHA</h1>
+    <p class="lede">A typical signup form protected by reCAPTCHA v2. If the widget cannot load, the form cannot be submitted.</p>
+
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
+
+    <div class="demo-stage">
+      <form onsubmit="return false">
+        <p><input type="email" placeholder="you@example.com" style="padding:10px;width:280px;max-width:100%;border:1px solid var(--line);border-radius:8px" /></p>
+        <!-- Google public test site key for reCAPTCHA v2. -->
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+        <p><button type="submit" style="margin-top:12px;padding:10px 18px;border:0;border-radius:8px;background:var(--accent);color:#fff;font-weight:600">Create account</button></p>
+      </form>
+      <p><small>If reCAPTCHA is blocked, the checkbox above never appears.</small></p>
+    </div>
+
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
+      <p><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+    </div>
+  </footer>
+  <script src="../public/assets/demo.js"></script>
+</body>
+</html>

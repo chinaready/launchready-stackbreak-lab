@@ -1,0 +1,19 @@
+# Stack Break Lab — local + production compose.
+# Local:      docker compose up --build   ->  http://localhost:8080/
+# Production: behind the launchready.cn reverse proxy (Traefik / Caddy / host nginx).
+#             See deploy/server-bootstrap.md for wiring stackbreak.launchready.cn.
+
+services:
+  stackbreak:
+    build: .
+    image: launchready-stackbreak-lab:latest
+    container_name: stackbreak-lab
+    restart: unless-stopped
+    ports:
+      # host:container — change the host port if 8080 is taken. The reverse proxy
+      # on the production host can target this port (or the container directly).
+      - "8080:80"
+    volumes:
+      # Evidence runs update results/ on the host; mount read-only so the live site
+      # reflects the latest snapshot without an image rebuild.
+      - ./results:/usr/share/nginx/html/results:ro

@@ -1,0 +1,56 @@
+name: evidence
+
+# Collects mainland China reachability evidence: a curl/dig probe plus Playwright
+# browser checks against the live demos, then commits the results. Runs on the
+# self-hosted mainland runner so the network vantage point is inside China.
+# Only repo-defined env/vars are used in run steps; no untrusted event input.
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'   # Mondays 06:00 Asia/Shanghai (22:00 UTC Sunday)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: evidence
+  cancel-in-progress: false
+
+env:
+  PLAYWRIGHT_BASE_URL: https://stackbreak.launchready.cn
+  CLOUD_PROVIDER: Alibaba Cloud
+  CLOUD_REGION: ${{ vars.CLOUD_REGION }}
+  RUNNER_HOST: launchready.cn
+  EXPECT_BLOCKED: '1'
+
+jobs:
+  collect:
+    runs-on: [self-hosted, linux, mainland-china]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Network probe (curl + dig)
+        run: ./probe/china-dependency-probe.sh
+
+      - name: Install deps and browser checks
+        run: |
+          npm ci
+          npx playwright install chromium
+          npx playwright test || echo "browser checks reported failures (recorded in results)"
+
+      - name: Commit results
+        run: |
+          git config user.name "stackbreak-bot"
+          git config user.email "bot@launchready.cn"
+          git add results/
+          if git diff --cached --quiet; then
+            echo "no result changes"
+          else
+            git commit -m "[evidence] $(date +%F) mainland snapshot"
+            git push
+          fi
+
+      - name: Refresh live results volume
+        run: docker compose up -d

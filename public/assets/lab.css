@@ -1,0 +1,168 @@
+/* Stack Break Lab — shared styles for demo pages and the results viewer. */
+
+:root {
+  --ink: #0f1b2d;
+  --muted: #5a6b82;
+  --line: #e2e8f0;
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --ok: #0f7b46;
+  --ok-bg: #e6f6ed;
+  --bad: #b42318;
+  --bad-bg: #fbeae8;
+  --warn: #9a6700;
+  --warn-bg: #fff6e5;
+  --accent: #1a4fed;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(15, 27, 45, 0.06), 0 8px 24px rgba(15, 27, 45, 0.06);
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+a { color: var(--accent); }
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+.site-header .wrap { padding-top: 20px; padding-bottom: 20px; }
+.site-header .brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+}
+.site-header .tagline {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+
+h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.02em; }
+h2 { font-size: 1.15rem; margin: 28px 0 10px; }
+
+.lede { color: var(--muted); font-size: 1.02rem; margin: 0 0 20px; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+.status::before {
+  content: "";
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.status[data-state="checking"] { color: var(--warn); background: var(--warn-bg); border-color: transparent; }
+.status[data-state="checking"]::before { background: var(--warn); animation: pulse 1s infinite; }
+.status[data-state="loaded"] { color: var(--ok); background: var(--ok-bg); border-color: transparent; }
+.status[data-state="loaded"]::before { background: var(--ok); }
+.status[data-state="failed"] { color: var(--bad); background: var(--bad-bg); border-color: transparent; }
+.status[data-state="failed"]::before { background: var(--bad); }
+
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  margin: 18px 0;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 6px 16px;
+  font-size: 0.92rem;
+  margin: 14px 0 0;
+}
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; font-weight: 600; }
+
+.demo-stage {
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: #fbfdff;
+  min-height: 120px;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 10px 0 26px;
+}
+.cat-grid a {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.cat-grid a:hover { border-color: var(--accent); transform: translateY(-1px); }
+.cat-grid a span { display: block; font-weight: 400; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+
+table.results {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+table.results th, table.results td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+table.results th { color: var(--muted); font-weight: 600; }
+.verdict { font-weight: 700; }
+.verdict.Blocked { color: var(--bad); }
+.verdict.Degraded { color: var(--warn); }
+.verdict.Reachable { color: var(--ok); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.site-footer .wrap { padding-top: 22px; padding-bottom: 40px; }
+.disclaimer { margin: 0 0 8px; }
