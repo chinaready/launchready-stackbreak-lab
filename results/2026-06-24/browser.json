@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-24T14:45:29.081Z",
+  "browser": [
+    {
+      "id": "ga4",
+      "name": "Google Analytics 4",
+      "category": "analytics",
+      "demoPath": "/demos/ga4.html",
+      "domain": "www.googletagmanager.com",
+      "failedRequests": [],
+      "okRequests": [
+        "https://www.googletagmanager.com/gtag/js?id=G-P6BVQ3VWTC"
+      ],
+      "slowestMs": 0,
+      "verdict": "Reachable",
+      "screenshotPath": "/results/2026-06-24/screenshots/ga4.png"
+    }
+  ]
+}
