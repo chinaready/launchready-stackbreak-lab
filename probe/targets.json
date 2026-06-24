@@ -55,7 +55,7 @@
       "name": "Google Tag Manager",
       "category": "analytics",
       "domain": "www.googletagmanager.com",
-      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-XXXXXXX",
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MR8ZL58Z",
       "demoPath": "/demos/gtm.html"
     },
     {
@@ -63,7 +63,7 @@
       "name": "Google Analytics 4",
       "category": "analytics",
       "domain": "www.googletagmanager.com",
-      "url": "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX",
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-P6BVQ3VWTC",
       "demoPath": "/demos/ga4.html"
     },
     {
@@ -79,7 +79,7 @@
       "name": "Google Maps",
       "category": "embeds",
       "domain": "maps.googleapis.com",
-      "url": "https://maps.googleapis.com/maps/api/js?key=PLACEHOLDER_KEY",
+      "url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuuJCtomC1Qv_49urQwPmnpeTdj1twyhI",
       "demoPath": "/demos/google-maps.html"
     },
     {
