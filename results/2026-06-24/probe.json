@@ -17,7 +17,7 @@
       "httpCode": "200",
       "connectSec": 0.064338,
       "sslSec": 0.345413,
-      "totalSec": 0.41606,
+      "totalSec": 0.416060,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -60,8 +60,8 @@
       "url": "https://www.google.com/recaptcha/api.js",
       "demoPath": "/demos/recaptcha.html",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.001919,
       "curlExit": 28,
       "dnsResolved": true,
@@ -90,8 +90,8 @@
       "url": "https://accounts.google.com/gsi/client",
       "demoPath": "/demos/google-signin.html",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.001984,
       "curlExit": 28,
       "dnsResolved": true,
@@ -135,8 +135,8 @@
       "url": "https://www.youtube.com/embed/aqz-KE-bpKQ",
       "demoPath": "/demos/youtube-embed.html",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.000496,
       "curlExit": 28,
       "dnsResolved": true,
@@ -150,8 +150,8 @@
       "url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuuJCtomC1Qv_49urQwPmnpeTdj1twyhI",
       "demoPath": "/demos/google-maps.html",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.001223,
       "curlExit": 28,
       "dnsResolved": true,
@@ -165,21 +165,12 @@
       "url": "https://player.vimeo.com/video/76979871",
       "demoPath": "/demos/vimeo-embed.html",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.001742,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
-    }
-  ],
-  "browser": [
-    {
-      "id": "ga4",
-      "demoPath": "/demos/ga4.html",
-      "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-06-24/screenshots/ga4.png"
     }
   ]
 }
