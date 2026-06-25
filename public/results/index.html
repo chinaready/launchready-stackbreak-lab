@@ -13,7 +13,7 @@
   <link rel="manifest" href="../assets/brand/site.webmanifest" />
   <meta name="theme-color" content="#0C1E3E" />
   <link rel="stylesheet" href="../assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="../assets/lab.css?v=20260624a" />
+  <link rel="stylesheet" href="../assets/lab.css?v=20260625b" />
 </head>
 <body>
   <header class="site-header">
@@ -97,6 +97,47 @@
         catch (e) { return iso || 'unknown'; }
       }
 
+      var VERDICT_ORDER = ['Blocked', 'Degraded', 'Reachable'];
+
+      // A <td> holding the verdict status chip (chip must live on an inline element).
+      function verdictCell(verdict) {
+        var td = el('td');
+        td.appendChild(el('span', verdict, 'verdict ' + verdict));
+        return td;
+      }
+
+      // A <td> with the seconds value and a log-scaled, verdict-colored latency bar.
+      function latencyCell(totalSec, maxSec, verdict) {
+        var td = el('td'); td.className = 'lat';
+        var n = Number(totalSec) || 0;
+        td.appendChild(el('span', n.toFixed(3).replace(/\.?0+$/, '') || '0', 'lat__val'));
+        var pct = n > 0 && maxSec > 0
+          ? Math.max(4, Math.min(100, Math.round(Math.log(1 + n) / Math.log(1 + maxSec) * 100)))
+          : 0;
+        var track = el('span', null, 'lat__track');
+        var fill = el('span', null, 'lat__fill ' + verdict);
+        fill.style.width = pct + '%';
+        track.appendChild(fill); td.appendChild(track);
+        return td;
+      }
+
+      // Conclusion-first totals: one stat card per verdict that occurs.
+      function summaryBand(items) {
+        var counts = {};
+        items.forEach(function (s) { counts[s.verdict] = (counts[s.verdict] || 0) + 1; });
+        var band = el('div', null, 'verdict-summary');
+        band.setAttribute('role', 'group');
+        band.setAttribute('aria-label', 'Verdict totals');
+        VERDICT_ORDER.forEach(function (v) {
+          if (!counts[v]) return;
+          var item = el('div', null, 'vs-item');
+          item.appendChild(el('span', String(counts[v]), 'vs-count'));
+          item.appendChild(el('span', v, 'verdict ' + v));
+          band.appendChild(item);
+        });
+        return band;
+      }
+
       function renderEnv(data) {
         var env = data.environment || {};
         var dl = document.getElementById('env');
@@ -115,6 +156,8 @@
       function renderServices(data) {
         var root = document.getElementById('results-root');
         var services = data.services || [];
+        if (services.length) root.appendChild(summaryBand(services));
+        var maxSec = services.reduce(function (m, s) { return Math.max(m, Number(s.totalSec) || 0); }, 0);
         var byCat = {};
         services.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
 
@@ -133,9 +176,9 @@
           list.forEach(function (s) {
             var tr = el('tr');
             tr.appendChild(el('td', s.name));
-            tr.appendChild(el('td', s.verdict, 'verdict ' + s.verdict));
+            tr.appendChild(verdictCell(s.verdict));
             tr.appendChild(el('td', s.httpCode));
-            tr.appendChild(el('td', String(s.totalSec)));
+            tr.appendChild(latencyCell(s.totalSec, maxSec, s.verdict));
             tr.appendChild(el('td', s.dnsResolved ? 'yes' : 'no'));
             var demoTd = el('td');
             if (s.demoPath) {
@@ -166,7 +209,7 @@
           var demoTd = el('td');
           var a = el('a', b.demoPath); a.href = b.demoPath; demoTd.appendChild(a);
           tr.appendChild(demoTd);
-          tr.appendChild(el('td', b.verdict, 'verdict ' + b.verdict));
+          tr.appendChild(verdictCell(b.verdict));
           tr.appendChild(el('td', (b.failedRequests || []).join(', ') || '—'));
           var shotTd = el('td');
           if (b.screenshotPath) { var sa = el('a', 'view'); sa.href = b.screenshotPath; shotTd.appendChild(sa); }
@@ -200,6 +243,6 @@
         });
     })();
   </script>
-  <script src="../assets/firebase-results.js?v=20260625a"></script>
+  <script src="../assets/firebase-results.js?v=20260625b"></script>
 </body>
 </html>
