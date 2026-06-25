@@ -1,0 +1,219 @@
+{
+  "generatedAt": "2026-06-25T03:18:12Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-beijing-h",
+    "runnerHost": "launchready.cn"
+  },
+  "probes": [
+    {
+      "id": "auth-anon",
+      "name": "Auth anonymous sign-up",
+      "product": "Authentication",
+      "path": "frontend",
+      "endpoint": "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDHYF1TObRUYcE39MPKdwJ9utDFIwt79Og",
+      "httpCode": "000",
+      "totalSec": 10.001131,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "auth-signin",
+      "name": "Auth email sign-in",
+      "product": "Authentication",
+      "path": "frontend",
+      "endpoint": "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDHYF1TObRUYcE39MPKdwJ9utDFIwt79Og",
+      "httpCode": "000",
+      "totalSec": 10.000289,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "firestore-read",
+      "name": "Firestore read (unauth)",
+      "product": "Cloud Firestore",
+      "path": "frontend",
+      "endpoint": "https://firestore.googleapis.com/v1/projects/stackbreak/databases/(default)/documents/reports/report-001",
+      "httpCode": "000",
+      "totalSec": 10.001453,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "storage-download",
+      "name": "Storage download",
+      "product": "Cloud Storage",
+      "path": "frontend",
+      "endpoint": "https://firebasestorage.googleapis.com/v0/b/stackbreak.firebasestorage.app/o/probes%2Ffield-report-sample.jpg?alt=media",
+      "httpCode": "000",
+      "totalSec": 10.000308,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "functions-http",
+      "name": "Functions helloProbe",
+      "product": "Cloud Functions",
+      "path": "frontend",
+      "endpoint": "https://us-central1-stackbreak.cloudfunctions.net/helloProbe",
+      "httpCode": "000",
+      "totalSec": 10.002442,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "vision",
+      "name": "Cloud Vision API",
+      "product": "Firebase ML / Vision",
+      "path": "transport",
+      "endpoint": "https://vision.googleapis.com/",
+      "httpCode": "000",
+      "totalSec": 10.000807,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "ai-logic",
+      "name": "Gemini / AI Logic",
+      "product": "Firebase AI Logic",
+      "path": "transport",
+      "endpoint": "https://generativelanguage.googleapis.com/",
+      "httpCode": "000",
+      "totalSec": 10.000704,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "analytics",
+      "name": "Firebase Analytics",
+      "product": "Google Analytics",
+      "path": "transport",
+      "endpoint": "https://app-measurement.com/",
+      "httpCode": "404",
+      "totalSec": 0.201748,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "crashlytics",
+      "name": "Crashlytics settings",
+      "product": "Crashlytics",
+      "path": "transport",
+      "endpoint": "https://firebase-settings.crashlytics.com/",
+      "httpCode": "404",
+      "totalSec": 0.272317,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "perf",
+      "name": "Performance logging",
+      "product": "Performance Monitoring",
+      "path": "transport",
+      "endpoint": "https://firebaselogging.googleapis.com/",
+      "httpCode": "000",
+      "totalSec": 10.000791,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "remoteconfig",
+      "name": "Remote Config fetch",
+      "product": "Remote Config",
+      "path": "transport",
+      "endpoint": "https://firebaseremoteconfig.googleapis.com/",
+      "httpCode": "000",
+      "totalSec": 10.000633,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "installations",
+      "name": "Installations / FCM token",
+      "product": "Cloud Messaging (FCM)",
+      "path": "transport",
+      "endpoint": "https://firebaseinstallations.googleapis.com/",
+      "httpCode": "000",
+      "totalSec": 10.000962,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "fcm-host",
+      "name": "FCM send host",
+      "product": "Cloud Messaging (FCM)",
+      "path": "transport",
+      "endpoint": "https://fcm.googleapis.com/",
+      "httpCode": "000",
+      "totalSec": 10.000424,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "recaptcha",
+      "name": "reCAPTCHA loader",
+      "product": "App Check",
+      "path": "transport",
+      "endpoint": "https://www.google.com/recaptcha/api.js",
+      "httpCode": "000",
+      "totalSec": 10.000822,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "appdist",
+      "name": "App Distribution",
+      "product": "App Distribution",
+      "path": "transport",
+      "endpoint": "https://appdistribution.firebase.google.com/",
+      "httpCode": "000",
+      "totalSec": 10.000900,
+      "curlExit": 28,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "fcm-mtalk",
+      "name": "FCM device channel",
+      "product": "Cloud Messaging (FCM)",
+      "path": "transport",
+      "endpoint": "mtalk.google.com:5228",
+      "httpCode": "tcp",
+      "totalSec": 0.204770,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "hosting",
+      "name": "Firebase Hosting",
+      "product": "Hosting",
+      "path": "transport",
+      "endpoint": "https://stackbreak.web.app/",
+      "httpCode": "404",
+      "totalSec": 0.890187,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "rtdb",
+      "name": "Realtime Database",
+      "product": "Realtime Database",
+      "path": "transport",
+      "endpoint": "https://stackbreak-default-rtdb.firebaseio.com/.json",
+      "httpCode": "401",
+      "totalSec": 6.016429,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "rtdb-authed",
+      "name": "RTDB authed write",
+      "product": "Realtime Database",
+      "path": "backend",
+      "endpoint": "stackbreak-default-rtdb.firebaseio.com",
+      "httpCode": "200",
+      "totalSec": 0.918415,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    }
+  ]
+}
