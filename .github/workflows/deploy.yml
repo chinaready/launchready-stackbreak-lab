@@ -35,7 +35,21 @@ jobs:
           # at paths the repo later tracks, which makes `git pull --ff-only` abort.
           # reset --hard reconciles tracked paths to the remote and overwrites those
           # stale artifacts; gitignored files (.env, service-account creds) are untouched.
-          git fetch --prune origin main
+          #
+          # Mainland egress to github.com is GFW-throttled and the HTTPS fetch can hang
+          # or reset (see STATUS.md), so retry with a low-speed abort so a stalled
+          # connect fails in ~30s instead of timing out after minutes.
+          n=0
+          until [ "$n" -ge 5 ]; do
+            if git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=30 fetch --prune origin main; then
+              break
+            fi
+            n=$((n+1)); echo "fetch attempt $n failed; retrying in 10s"; sleep 10
+          done
+          if [ "$n" -ge 5 ]; then
+            echo "::error::git fetch from GitHub failed after 5 attempts (mainland egress throttled)"
+            exit 1
+          fi
           git reset --hard origin/main
           docker compose -f docker-compose.prod.yml up -d --build
 
