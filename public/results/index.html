@@ -52,6 +52,7 @@
         A separate probe kit measures the Firebase stack from the same node, across the two
         connection origins a real product has — the user's browser (<strong>frontend</strong>) and
         the app's server (<strong>backend</strong>) — plus raw host reachability (<strong>transport</strong>).
+        See the dedicated <a href="./firebase.html">Firebase results page</a>.
       </p>
       <dl class="meta" id="firebase-env"></dl>
       <div id="firebase-root"></div>
@@ -177,70 +178,6 @@
         root.appendChild(table);
       }
 
-      var FIREBASE_PATHS = [
-        ['frontend', 'Frontend — browser / client SDK'],
-        ['backend', 'Backend — Admin SDK on a server'],
-        ['transport', 'Transport — raw host reachability']
-      ];
-
-      function renderFirebaseEnv(data) {
-        var env = data.environment || {};
-        var dl = document.getElementById('firebase-env');
-        [
-          ['Generated', fmtDate(data.generatedAt)],
-          ['Cloud', (env.cloudProvider || 'unknown') + ' / ' + (env.cloudRegion || 'unknown')],
-          ['Host', env.runnerHost || 'unknown']
-        ].forEach(function (r) {
-          dl.appendChild(el('dt', r[0]));
-          dl.appendChild(el('dd', r[1]));
-        });
-      }
-
-      function renderFirebase(data) {
-        var root = document.getElementById('firebase-root');
-        var probes = data.probes || [];
-        if (!probes.length) return false;
-        var byPath = {};
-        probes.forEach(function (p) { (byPath[p.path] = byPath[p.path] || []).push(p); });
-
-        FIREBASE_PATHS.forEach(function (pair) {
-          var list = byPath[pair[0]];
-          if (!list || !list.length) return;
-          root.appendChild(el('h3', pair[1]));
-          var table = el('table'); table.className = 'results';
-          var thead = el('thead'); var htr = el('tr');
-          ['Product', 'Probe', 'HTTP', 'Total (s)', 'Verdict'].forEach(function (h) {
-            htr.appendChild(el('th', h));
-          });
-          thead.appendChild(htr); table.appendChild(thead);
-          var tbody = el('tbody');
-          list.forEach(function (p) {
-            var tr = el('tr');
-            tr.appendChild(el('td', p.product));
-            tr.appendChild(el('td', p.name));
-            tr.appendChild(el('td', p.httpCode));
-            tr.appendChild(el('td', String(p.totalSec)));
-            tr.appendChild(el('td', p.verdict, 'verdict ' + p.verdict));
-            tbody.appendChild(tr);
-          });
-          table.appendChild(tbody);
-          root.appendChild(table);
-        });
-        return true;
-      }
-
-      function loadFirebase() {
-        fetch('/results/firebase-latest.json', { cache: 'no-store' })
-          .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-          .then(function (data) {
-            if (renderFirebase(data)) {
-              renderFirebaseEnv(data);
-              document.getElementById('firebase').hidden = false;
-            }
-          })
-          .catch(function () { /* No Firebase snapshot yet — leave the section hidden. */ });
-      }
-
       function showSampleBanner() {
         var b = document.getElementById('sample-banner');
         b.hidden = false;
@@ -261,9 +198,8 @@
             el('p', 'Could not load results/latest.json: ' + err.message)
           );
         });
-
-      loadFirebase();
     })();
   </script>
+  <script src="../assets/firebase-results.js?v=20260625a"></script>
 </body>
 </html>
