@@ -46,6 +46,9 @@ code {
    Header — vendored Chinaready logo + Stack Break Lab wordmark, light surface
    -------------------------------------------------------------------------- */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--cr-z-sticky);
   background: var(--cr-background);
   border-bottom: 1px solid var(--cr-border);
 }
@@ -194,9 +197,10 @@ h2 {
   border-radius: var(--cr-radius-card);
   padding: var(--cr-card-p);
   margin: var(--cr-space-4) 0;
-  transition: box-shadow var(--cr-dur-base) var(--cr-ease-standard);
+  transition: box-shadow var(--cr-dur-base) var(--cr-ease-standard),
+              transform var(--cr-dur-base) var(--cr-ease-standard);
 }
-.card:hover { box-shadow: var(--cr-shadow-card); }
+.card:hover { box-shadow: var(--cr-shadow-card); transform: translateY(-2px); }
 
 .meta {
   display: grid;
@@ -270,11 +274,13 @@ h2 {
   color: var(--cr-text-primary);
   font-weight: var(--cr-fw-semibold);
   transition: border-color var(--cr-dur-base) var(--cr-ease-standard),
-              box-shadow var(--cr-dur-base) var(--cr-ease-standard);
+              box-shadow var(--cr-dur-base) var(--cr-ease-standard),
+              transform var(--cr-dur-base) var(--cr-ease-standard);
 }
 .cat-grid a:hover {
   border-color: var(--cr-brand-blue);
   box-shadow: var(--cr-shadow-card);
+  transform: translateY(-2px);
 }
 .cat-grid a span {
   display: block;
@@ -308,10 +314,90 @@ table.results th {
   letter-spacing: var(--cr-tracking-wide);
   font-size: var(--cr-fs-caption);
 }
-.verdict { font-weight: var(--cr-fw-bold); }
-.verdict.Blocked { color: var(--cr-error-text); }
-.verdict.Degraded { color: var(--cr-warning-text); }
-.verdict.Reachable { color: var(--cr-success-text); }
+table.results tbody tr {
+  transition: background-color var(--cr-dur-fast) var(--cr-ease-standard);
+}
+table.results tbody tr:hover { background: var(--cr-surface); }
+
+/* Verdict status chip — semantic tint + leading dot, instantly scannable.
+   Always rendered on an inline element (span/strong), never on a <td>. */
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cr-space-2);
+  padding: 3px 10px;
+  border-radius: var(--cr-radius-button);
+  font-weight: var(--cr-fw-semibold);
+  font-size: var(--cr-fs-caption);
+  line-height: 1.4;
+  letter-spacing: var(--cr-tracking-normal);
+  text-transform: none;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.verdict::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.verdict.Blocked   { background: var(--cr-error-bg);   color: var(--cr-error-text); }
+.verdict.Degraded  { background: var(--cr-warning-bg); color: var(--cr-warning-text); }
+.verdict.Reachable { background: var(--cr-success-bg); color: var(--cr-success-text); }
+
+/* Latency micro-bar — quantitative read of "how slow" beside the seconds value.
+   Log-scaled width is set inline; verdict-colored fill. */
+.lat__val { font-variant-numeric: tabular-nums; }
+.lat__track {
+  display: block;
+  height: 6px;
+  width: 100px;
+  max-width: 100%;
+  margin-top: var(--cr-space-2);
+  background: var(--cr-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.lat__fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  transform-origin: left center;
+}
+.lat__fill.Blocked   { background: var(--cr-error); }
+.lat__fill.Degraded  { background: var(--cr-warning); }
+.lat__fill.Reachable { background: var(--cr-success); }
+
+/* Verdict summary — conclusion-first totals above the detail tables. */
+.verdict-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cr-space-3);
+  margin: var(--cr-space-4) 0 var(--cr-space-6);
+}
+.vs-item {
+  display: flex;
+  align-items: center;
+  gap: var(--cr-space-3);
+  padding: var(--cr-space-3) var(--cr-space-4);
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-card);
+  background: var(--cr-background);
+  transition: box-shadow var(--cr-dur-base) var(--cr-ease-standard),
+              transform var(--cr-dur-base) var(--cr-ease-standard);
+}
+.vs-item:hover { box-shadow: var(--cr-shadow-card); transform: translateY(-2px); }
+.vs-count {
+  font-family: var(--cr-font-display);
+  font-weight: 800;
+  font-size: var(--cr-fs-h2);
+  line-height: 1;
+  letter-spacing: var(--cr-tracking-h2);
+  color: var(--cr-text-primary);
+  font-variant-numeric: tabular-nums;
+}
 
 /* --------------------------------------------------------------------------
    Footer — navy closer with reversed (white) logo
@@ -347,4 +433,39 @@ table.results th {
   margin: 0;
   font-size: var(--cr-fs-small);
   color: var(--cr-on-dark-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   Motion — one orchestrated, once-on-load entrance (DS: opacity + 8px Y,
+   320ms, standard easing). Only runs when motion is welcome; reduced-motion
+   users get the final state with no animation. Transforms/opacity only.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes cr-rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cr-bar {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* Hero content rises in with a short stagger. Data blocks added later by JS
+     animate the moment they are inserted (they match the same selectors). */
+  main.wrap > *,
+  #results-root > *,
+  #browser-root > *,
+  #firebase-root > * {
+    animation: cr-rise var(--cr-dur-slow) var(--cr-ease-standard) both;
+  }
+  main.wrap > *:nth-child(2) { animation-delay: 40ms; }
+  main.wrap > *:nth-child(3) { animation-delay: 80ms; }
+  main.wrap > *:nth-child(4) { animation-delay: 120ms; }
+  main.wrap > *:nth-child(5) { animation-delay: 160ms; }
+  main.wrap > *:nth-child(n+6) { animation-delay: 200ms; }
+
+  #firebase-root > section:nth-of-type(2) { animation-delay: 60ms; }
+  #firebase-root > section:nth-of-type(3) { animation-delay: 120ms; }
+
+  .lat__fill { animation: cr-bar var(--cr-dur-slow) var(--cr-ease-standard) both; }
 }
