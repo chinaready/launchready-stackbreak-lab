@@ -36,6 +36,16 @@ function emit(o) {
   );
 }
 
+// Admin SDK could not even fetch an OAuth2 access token — the token endpoint
+// (oauth2.googleapis.com) is unreachable. This is a transport block, not an
+// app-level "reached the API" error, so it must verdict as Blocked.
+function isCredentialFailure(err) {
+  const code = String(err?.code ?? "");
+  const msg = String(err?.message ?? "");
+  return code === "app/invalid-credential" ||
+    /OAuth2 access token|oauth2\.googleapis\.com\/token/i.test(msg);
+}
+
 // A Google service error (reached the API) vs a transport error (could not).
 function isServiceError(err) {
   const code = String(err?.code ?? "");
@@ -58,6 +68,8 @@ async function timed(id, name, product, endpoint, fn) {
     const total = (performance.now() - start) / 1000;
     if (err.message === "probe-timeout") {
       verdict = "Blocked"; httpCode = "timeout";
+    } else if (isCredentialFailure(err)) {
+      verdict = "Blocked"; httpCode = "auth-token-blocked";
     } else if (isServiceError(err)) {
       // Reached the API; it answered with an app-level error.
       verdict = total > SLOW ? "Degraded" : "Reachable";

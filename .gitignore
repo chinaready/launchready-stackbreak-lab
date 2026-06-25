@@ -1,5 +1,9 @@
 # Secrets
 .env
+# Firebase service-account credentials (never commit)
+firebase-demo/service-account.json
+firebase-demo/stackbreak-*.json
+**/*-firebase-adminsdk-*.json
 
 # Node
 node_modules/

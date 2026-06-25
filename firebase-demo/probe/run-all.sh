@@ -8,6 +8,7 @@
 # Output:
 #   results/<YYYY-MM-DD>/firebase.json   structured run { generatedAt, environment, probes }
 #   results/<YYYY-MM-DD>/firebase.md     human-readable table
+#   results/firebase-latest.json         copy of the dated json the live viewer reads
 #
 # Dependencies: bash, curl, nc, jq, node (+ firebase-admin installed).
 
@@ -63,6 +64,11 @@ run_doc="$(jq -n \
 
 echo "$run_doc" > "$OUT_DIR/firebase.json"
 
+# Stable pointer the live results viewer fetches (parallel to results/latest.json,
+# which the curl/dig probe owns). Kept separate so the two probes never clobber
+# each other's snapshot.
+echo "$run_doc" > "$ROOT_DIR/results/firebase-latest.json"
+
 {
   echo "# Firebase mainland China probe — $DATE"
   echo
@@ -78,3 +84,4 @@ echo
 echo "Wrote:"
 echo "  $OUT_DIR/firebase.json"
 echo "  $OUT_DIR/firebase.md"
+echo "  $ROOT_DIR/results/firebase-latest.json"

@@ -123,7 +123,7 @@
       "path": "transport",
       "endpoint": "https://vision.googleapis.com/",
       "httpCode": "000",
-      "totalSec": 10.001270,
+      "totalSec": 10.00127,
       "curlExit": 28,
       "verdict": "Blocked"
     },
@@ -178,7 +178,7 @@
       "path": "transport",
       "endpoint": "https://firebaseremoteconfig.googleapis.com/",
       "httpCode": "000",
-      "totalSec": 10.000650,
+      "totalSec": 10.00065,
       "curlExit": 28,
       "verdict": "Blocked"
     },
