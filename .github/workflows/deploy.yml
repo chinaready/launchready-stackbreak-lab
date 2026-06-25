@@ -30,7 +30,13 @@ jobs:
       - name: Pull and (re)build at deploy path
         run: |
           cd "$DEPLOY_PATH"
-          git pull --ff-only origin main
+          # Hard-sync to origin/main rather than ff-merge: probes are sometimes run
+          # in place on this host (e.g. the Firebase kit), leaving untracked artifacts
+          # at paths the repo later tracks, which makes `git pull --ff-only` abort.
+          # reset --hard reconciles tracked paths to the remote and overwrites those
+          # stale artifacts; gitignored files (.env, service-account creds) are untouched.
+          git fetch --prune origin main
+          git reset --hard origin/main
           docker compose -f docker-compose.prod.yml up -d --build
 
       - name: Smoke test (live URL)
