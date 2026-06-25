@@ -1,0 +1,36 @@
+# Copyright (c) 2026 Chinaready. All rights reserved.
+#
+# Netlify build + feature wiring for the field-reports demo. Every block below
+# maps to one Netlify product the mainland-China probe kit measures.
+
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Redirects + rewrites (probe: frontend "redirect" + "rewrite").
+[[redirects]]
+  from = "/old-report"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/api/hello"
+  to = "/.netlify/functions/hello"
+  status = 200
+
+# Custom response headers (probe: frontend "headers" inspects X-Stackbreak-Probe).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Stackbreak-Probe = "netlify-china"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Edge Function route (probe: frontend "edge"). Served at /banner from the edge.
+[[edge_functions]]
+  path = "/banner"
+  function = "banner"

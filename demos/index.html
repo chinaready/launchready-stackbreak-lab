@@ -171,6 +171,46 @@
       </div>
     </section>
 
+    <!-- ===================== NETLIFY DEEP DIVE ===================== -->
+    <section class="block block--surface" id="netlify">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Deep dive</p>
+        <h2 class="block__title reveal" data-delay="1">The Netlify stack, end to end<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          A real Netlify site (hosting, Functions, Edge Functions, Forms, Identity, Blobs, Image CDN)
+          is deployed and probed from the same node —
+          <strong><span data-count="nl-blocked">—</span> of <span data-count="nl-total">—</span></strong>
+          probes are currently blocked. Each card opens the matching section of the
+          <a href="../public/results/netlify.html">Netlify results</a>.
+        </p>
+        <div class="dep-grid">
+          <a class="dep-card" data-nlpath="frontend" href="../public/results/netlify.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser on the site</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlpath="backend" href="../public/results/netlify.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">Server &rarr; Netlify API</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlpath="transport" href="../public/results/netlify.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NETLIFY LATENCY / EDGE POP ===================== -->
+    <section class="block" id="netlify-latency">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Latency</p>
+        <h2 class="block__title reveal" data-delay="1">Where China lands on Netlify<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          From the same node, the Netlify edge serving these requests reports
+          <strong><span data-count-text="nlres-region">—</span></strong>.
+          <strong><span data-count="nlres-total">—</span></strong> page resources measured;
+          heaviest load <strong><span data-count-text="nlres-worst">—</span></strong>.
+          See the <a href="../public/results/netlify.html#netlify-latency">latency results</a>.
+        </p>
+        <div class="dep-grid">
+          <a class="dep-card" data-nlrkind="endpoint" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlrkind="image-cdn" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Image CDN</span><span class="dep-card__host">resized / transcoded</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlrkind="raw" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== CLOSING CTA ===================== -->
     <section class="block block--cta">
       <div class="home-wrap">
@@ -204,6 +244,6 @@
     </div>
   </footer>
 
-  <script src="../public/assets/home.js?v=20260625c"></script>
+  <script src="../public/assets/home.js?v=20260625e"></script>
 </body>
 </html>

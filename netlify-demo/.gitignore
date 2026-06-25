@@ -1,0 +1,9 @@
+# Netlify CLI build output / local cache
+.netlify/
+deno.lock
+
+# Dependencies
+node_modules/
+
+# Local secrets
+.env

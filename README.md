@@ -84,14 +84,27 @@ service's own "no key" error state, which is itself useful evidence.
 ## Repository layout
 
 ```text
-demos/        one HTML page per third-party dependency + index hub
-probe/        targets.json (canonical URL list) + china-dependency-probe.sh
-tests/        Playwright specs that assert China failure symptoms
-results/      published evidence (latest.json + dated snapshots)
-public/       /results/ viewer + shared CSS
-deploy/       Docker host + self-hosted runner runbooks
-.github/      deploy + evidence workflows, PR template
+demos/         one HTML page per third-party dependency + index hub
+probe/         targets.json (canonical URL list) + china-dependency-probe.sh
+firebase-demo/ Firebase field-reports demo + frontend/backend/transport probe kit
+netlify-demo/  Netlify field-reports demo site + frontend/backend/transport probe kit
+tests/         Playwright specs that assert China failure symptoms
+results/       published evidence (latest.json + dated snapshots, per-stack *-latest.json)
+public/        /results/ viewer + shared CSS
+deploy/        Docker host + self-hosted runner runbooks
+.github/       deploy + evidence workflows, PR template
 ```
+
+## Whole-stack deep dives
+
+Beyond the single-dependency demos, two kits deploy and probe an entire managed
+backend end to end from the same mainland node:
+
+- [`firebase-demo/`](firebase-demo/) — the Firebase stack (Auth, Firestore, Storage,
+  Functions, FCM, Remote Config). Results: `/results/firebase.html`.
+- [`netlify-demo/`](netlify-demo/) — a real Netlify site exercising Hosting/CDN, Image
+  CDN, Functions, Edge Functions, Background/Scheduled Functions, Forms, Identity, and
+  Blobs. Results: `/results/netlify.html`.
 
 ## Contributing
 

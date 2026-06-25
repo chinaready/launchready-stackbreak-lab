@@ -1,0 +1,5 @@
+# Copyright (c) 2026 Chinaready. All rights reserved.
+# File-based custom headers (complements netlify.toml [[headers]]).
+/photo.png
+  X-Stackbreak-Asset: image-cdn-source
+  Cache-Control: public, max-age=3600

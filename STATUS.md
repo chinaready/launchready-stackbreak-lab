@@ -28,8 +28,10 @@ launchready.cn mainland host, and a self-hosted runner re-measures every depende
 | DNS / TLS | Done | `stackbreak.launchready.cn` → Cloudflare → Traefik origin |
 | Self-hosted runner | Done | `launchready-cn-runner`, labels `self-hosted,linux,x64,mainland-china` |
 | CI: deploy | Done | `.github/workflows/deploy.yml` rebuilds only the `stackbreak` service on push to main |
-| CI: evidence | Done | `.github/workflows/evidence.yml` weekly + manual |
+| CI: evidence | Done | `.github/workflows/evidence.yml` weekly + manual; now also runs the Netlify probe |
 | First real run | Done | Published to live site and committed to `results/` (see below) |
+| Firebase deep dive | Done | `firebase-demo/` kit + `/results/firebase.html`; snapshot in `results/firebase-latest.json` |
+| Netlify deep dive | Code done; deploy + first run pending | `netlify-demo/` site + probe kit + `/results/netlify.html`. Needs `NETLIFY_AUTH_TOKEN` to deploy and a mainland run to populate `results/netlify-latest.json` |
 
 ## Latest measured snapshot
 
@@ -72,6 +74,9 @@ pushes over **SSH-443** via a repo deploy key (`~/.ssh/github_deploy` on the hos
   *secret* key in particular stays out of the repo (client site keys are fine in demos).
 - **base image**: pulled via `harbor.aicproxy.cn/dockerhub/library/nginx:alpine` because Docker Hub is
   blocked from the host.
+- **Netlify probe in CI**: the `evidence.yml` Netlify step reads `NETLIFY_AUTH_TOKEN` (Actions secret)
+  and `NETLIFY_SITE_ID` / `NETLIFY_SITE_URL` (Actions variables). It skips cleanly until
+  `NETLIFY_SITE_URL` is set, so wire those after the first deploy.
 
 ## Next-iteration backlog
 

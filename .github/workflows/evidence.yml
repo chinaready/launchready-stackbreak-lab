@@ -41,6 +41,22 @@ jobs:
           npx playwright install chromium
           npx playwright test || echo "browser checks reported failures (recorded in results)"
 
+      - name: Netlify probe (deployed site + API)
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_URL: ${{ vars.NETLIFY_SITE_URL }}
+        run: |
+          # Probes the real Netlify demo site from this mainland runner and writes
+          # results/<date>/netlify.{json,md} + results/netlify-latest.json. Skips
+          # cleanly until the site coordinates are configured as repo variables.
+          if [ -z "$NETLIFY_SITE_URL" ]; then
+            echo "NETLIFY_SITE_URL not set; skipping Netlify probe"; exit 0
+          fi
+          cd netlify-demo
+          npm ci
+          npm run probe:all || echo "netlify probe reported issues (recorded in results)"
+
       - name: Refresh deployed site (local, no GitHub round-trip)
         run: |
           # Live container bind-mounts $DEPLOY_PATH/results read-only, so copying the freshly
