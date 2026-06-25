@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "china_banner": {
+      "defaultValue": {
+        "value": "{\"show\":false,\"text\":\"\"}"
+      },
+      "description": "Field-reports in-app banner. Fetched at app start; used to prove Remote Config delivery from mainland China.",
+      "valueType": "JSON"
+    }
+  },
+  "parameterGroups": {},
+  "conditions": []
+}
