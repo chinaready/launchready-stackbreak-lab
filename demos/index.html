@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stack Break Lab — demos</title>
-  <meta name="description" content="Single-dependency demo pages measuring which foreign web-stack services break first in mainland China." />
+  <title>Stack Break Lab — which parts of your stack break first in China</title>
+  <meta name="description" content="Stack Break Lab loads every third-party web dependency from a mainland China node and reports what arrives, what stalls, and what's blocked. Live verdicts, one dependency per page." />
   <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
   <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
@@ -13,13 +13,14 @@
   <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
   <meta name="theme-color" content="#0C1E3E" />
   <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="../public/assets/lab.css?v=20260625b" />
+  <link rel="stylesheet" href="../public/assets/lab.css?v=20260625c" />
+  <link rel="stylesheet" href="../public/assets/home.css?v=20260625c" />
 </head>
-<body>
+<body class="home">
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="./index.html">
-        <img class="brand__logo" src="../public/assets/brand/logo-horizontal.svg" alt="Chinaready" width="140" height="28" />
+        <img class="brand__logo" src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="140" height="28" />
         <span class="brand__sep" aria-hidden="true"></span>
         <span class="brand__lab">Stack Break Lab</span>
       </a>
@@ -27,53 +28,165 @@
     </div>
   </header>
 
-  <main class="wrap">
-    <p class="eyebrow">Demos</p>
-    <h1>One dependency per page<span class="period">.</span></h1>
-    <p class="lede">
-      Each page loads exactly one third-party integration the way a normal product would, then
-      reports whether it actually arrived. Open these from mainland China and watch which ones
-      stall. The authoritative verdicts live at <a href="../public/results/index.html">/results/</a>.
-    </p>
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__grid"></div>
+        <div class="hero__glow"></div>
+        <div class="hero__scan"></div>
+      </div>
+      <div class="home-wrap">
+        <p class="hero__badge reveal"><span class="live-dot" aria-hidden="true"></span>Live &middot; Beijing node &middot; refreshed weekly</p>
+        <h1 class="hero__title reveal" data-delay="1">Which parts of your stack break first in China<span class="period">.</span></h1>
+        <p class="hero__lede reveal" data-delay="2">
+          Stack Break Lab loads every third-party dependency the way your product does — from a
+          <strong>mainland China</strong> node — then reports what arrives, what stalls, and what's
+          blocked outright.
+        </p>
+        <div class="hero__cta reveal" data-delay="3">
+          <a class="btn btn--primary" href="../public/results/index.html">See live verdicts</a>
+          <a class="btn btn--ghost" href="#how">How the lab works</a>
+        </div>
+        <div class="hero__stats reveal" data-delay="4">
+          <div class="stat"><span class="stat__num" data-count="total">—</span><span class="stat__label">dependencies probed</span></div>
+          <div class="stat"><span class="stat__num" data-count="blocked">—</span><span class="stat__label">blocked from Beijing</span></div>
+          <div class="stat"><span class="stat__num" data-count="reachable">—</span><span class="stat__label">still reachable</span></div>
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true"><div class="ticker__track"></div></div>
+    </section>
 
-    <h2>Fonts and icons</h2>
-    <div class="cat-grid">
-      <a href="./fonts-google.html">Google Fonts<span>fonts.googleapis.com / fonts.gstatic.com</span></a>
-      <a href="./icons-material.html">Material Symbols<span>fonts.googleapis.com</span></a>
-      <a href="./fonts-typekit.html">Adobe Fonts (Typekit)<span>use.typekit.net</span></a>
-    </div>
+    <!-- ===================== THE PROBLEM ===================== -->
+    <section class="block block--light" id="why">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">The problem</p>
+        <h2 class="block__title reveal" data-delay="1">Your app assumes the open internet. China doesn't<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          The moment a request leaves for Google, Auth0, or YouTube, the Great Firewall decides
+          whether it returns. Some calls stall for ten seconds; some never resolve. Your users just
+          see a page that won't finish loading — and you never find out from outside China.
+        </p>
+        <div class="fail-grid">
+          <div class="fail-card reveal"><h3>Fonts &amp; icons</h3><p>Text renders invisible or jumps as web fonts time out behind the firewall.</p></div>
+          <div class="fail-card reveal" data-delay="1"><h3>Auth &amp; identity</h3><p>Sign-in widgets and CAPTCHAs hang, locking real users out of your product.</p></div>
+          <div class="fail-card reveal" data-delay="2"><h3>Analytics &amp; tags</h3><p>Tag loaders block the main thread while they wait on hosts that never answer.</p></div>
+          <div class="fail-card reveal" data-delay="3"><h3>Maps, media, embeds</h3><p>Maps, video, and embeds collapse into empty boxes with no fallback.</p></div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Auth and identity</h2>
-    <div class="cat-grid">
-      <a href="./recaptcha.html">Google reCAPTCHA<span>www.google.com/recaptcha</span></a>
-      <a href="./auth0-lock.html">Auth0<span>cdn.auth0.com</span></a>
-      <a href="./google-signin.html">Google Sign-In<span>accounts.google.com</span></a>
-    </div>
+    <!-- ===================== THE METHOD ===================== -->
+    <section class="block block--surface" id="how">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">The method</p>
+        <h2 class="block__title reveal" data-delay="1">One method, run from the inside<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          Every verdict on this site comes from the same pipeline, executed on real mainland China
+          infrastructure — not a VPN, not a guess.
+        </p>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step__n">01</div><div class="step__rule"></div>
+            <h3>Probe</h3>
+            <p><code>curl</code> and <code>dig</code> hit every dependency from an Alibaba Cloud Beijing node, recording DNS, connect, and total time.</p>
+          </div>
+          <div class="step reveal" data-delay="1">
+            <div class="step__n">02</div><div class="step__rule"></div>
+            <h3>Browser</h3>
+            <p>Playwright loads each single-dependency demo page and records what actually fails in a real browser.</p>
+          </div>
+          <div class="step reveal" data-delay="2">
+            <div class="step__n">03</div><div class="step__rule"></div>
+            <h3>Publish</h3>
+            <p>Verdicts land at <a href="../public/results/index.html">/results/</a>, refresh weekly, and the code stays public.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Analytics and tags</h2>
-    <div class="cat-grid">
-      <a href="./gtm.html">Google Tag Manager<span>www.googletagmanager.com</span></a>
-      <a href="./ga4.html">Google Analytics 4<span>www.googletagmanager.com / google-analytics.com</span></a>
-    </div>
+    <!-- ===================== LIVE CATALOG ===================== -->
+    <section class="block block--light" id="catalog">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Live verdicts</p>
+        <h2 class="block__title reveal" data-delay="1">One dependency per page<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          Each page loads exactly one integration the way a normal product would. The chips below
+          show the latest verdict straight from the most recent run.
+        </p>
 
-    <h2>Maps, media, embeds</h2>
-    <div class="cat-grid">
-      <a href="./youtube-embed.html">YouTube embed<span>www.youtube.com / i.ytimg.com</span></a>
-      <a href="./google-maps.html">Google Maps<span>maps.googleapis.com</span></a>
-      <a href="./vimeo-embed.html">Vimeo embed<span>player.vimeo.com</span></a>
-    </div>
+        <div class="cat-block reveal">
+          <h3 class="cat-block__label">Fonts &amp; icons <small>3 dependencies</small></h3>
+          <div class="dep-grid">
+            <a class="dep-card" data-sid="google-fonts" href="./fonts-google.html"><span class="dep-card__name">Google Fonts</span><span class="dep-card__host">fonts.googleapis.com</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="material-symbols" href="./icons-material.html"><span class="dep-card__name">Material Symbols</span><span class="dep-card__host">fonts.googleapis.com</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="adobe-typekit" href="./fonts-typekit.html"><span class="dep-card__name">Adobe Fonts (Typekit)</span><span class="dep-card__host">use.typekit.net</span><span class="dep-card__foot"></span></a>
+          </div>
+        </div>
 
-    <h2>Firebase</h2>
-    <p class="lede">
-      A separate probe kit measures the whole Firebase stack from the same node, across the three
-      paths a real product uses. Each card opens the matching section of the
-      <a href="../public/results/firebase.html">Firebase results</a>.
-    </p>
-    <div class="cat-grid">
-      <a href="../public/results/firebase.html#frontend">Frontend<span>Browser / client SDK</span></a>
-      <a href="../public/results/firebase.html#backend">Backend<span>Admin SDK on a server</span></a>
-      <a href="../public/results/firebase.html#transport">Transport<span>Raw host reachability</span></a>
-    </div>
+        <div class="cat-block reveal">
+          <h3 class="cat-block__label">Auth &amp; identity <small>3 dependencies</small></h3>
+          <div class="dep-grid">
+            <a class="dep-card" data-sid="recaptcha" href="./recaptcha.html"><span class="dep-card__name">Google reCAPTCHA</span><span class="dep-card__host">www.google.com/recaptcha</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="auth0" href="./auth0-lock.html"><span class="dep-card__name">Auth0</span><span class="dep-card__host">cdn.auth0.com</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="google-signin" href="./google-signin.html"><span class="dep-card__name">Google Sign-In</span><span class="dep-card__host">accounts.google.com</span><span class="dep-card__foot"></span></a>
+          </div>
+        </div>
+
+        <div class="cat-block reveal">
+          <h3 class="cat-block__label">Analytics &amp; tags <small>2 dependencies</small></h3>
+          <div class="dep-grid">
+            <a class="dep-card" data-sid="gtm" href="./gtm.html"><span class="dep-card__name">Google Tag Manager</span><span class="dep-card__host">www.googletagmanager.com</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="ga4" href="./ga4.html"><span class="dep-card__name">Google Analytics 4</span><span class="dep-card__host">www.googletagmanager.com</span><span class="dep-card__foot"></span></a>
+          </div>
+        </div>
+
+        <div class="cat-block reveal">
+          <h3 class="cat-block__label">Maps, media, embeds <small>3 dependencies</small></h3>
+          <div class="dep-grid">
+            <a class="dep-card" data-sid="youtube" href="./youtube-embed.html"><span class="dep-card__name">YouTube embed</span><span class="dep-card__host">www.youtube.com</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="google-maps" href="./google-maps.html"><span class="dep-card__name">Google Maps</span><span class="dep-card__host">maps.googleapis.com</span><span class="dep-card__foot"></span></a>
+            <a class="dep-card" data-sid="vimeo" href="./vimeo-embed.html"><span class="dep-card__name">Vimeo embed</span><span class="dep-card__host">player.vimeo.com</span><span class="dep-card__foot"></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FIREBASE DEEP DIVE ===================== -->
+    <section class="block block--surface" id="firebase">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Deep dive</p>
+        <h2 class="block__title reveal" data-delay="1">The Firebase stack, end to end<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          A separate probe kit measures the whole Firebase stack from the same node —
+          <strong><span data-count="fb-blocked">—</span> of <span data-count="fb-total">—</span></strong>
+          probes are currently blocked. Each card opens the matching section of the
+          <a href="../public/results/firebase.html">Firebase results</a>.
+        </p>
+        <div class="dep-grid">
+          <a class="dep-card" data-fbpath="frontend" href="../public/results/firebase.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser / client SDK</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-fbpath="backend" href="../public/results/firebase.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">Admin SDK on a server</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-fbpath="transport" href="../public/results/firebase.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CLOSING CTA ===================== -->
+    <section class="block block--cta">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Before you ship</p>
+        <h2 class="block__title reveal" data-delay="1">Test your stack before your users do<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          See the full table of verdicts, read the write-up, or run the probes yourself from your own
+          China node — every script is open source.
+        </p>
+        <div class="cta-actions reveal" data-delay="3">
+          <a class="btn btn--primary" href="../public/results/index.html">See full results</a>
+          <a class="btn btn--ghost" href="https://chinaready.co/insights/which-parts-of-your-stack-break-first/">Read the article</a>
+          <a class="btn btn--ghost" href="https://github.com/chinaready/launchready-stackbreak-lab">Source on GitHub</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -90,5 +203,7 @@
       </p>
     </div>
   </footer>
+
+  <script src="../public/assets/home.js?v=20260625c"></script>
 </body>
 </html>
