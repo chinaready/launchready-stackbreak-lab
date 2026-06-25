@@ -1,0 +1,21 @@
+{
+  "name": "netlify-china-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Field-reports demo site on Netlify + mainland-China probe kit for the Netlify availability article.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "deploy": "npx --yes netlify-cli@latest deploy --build --prod",
+    "probe:frontend": "bash probe/frontend.sh",
+    "probe:backend": "node probe/backend.mjs",
+    "probe:transport": "bash probe/transport.sh",
+    "probe:resources": "bash probe/resources.sh",
+    "probe:all": "bash probe/run-all.sh"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  }
+}

@@ -1,0 +1,4 @@
+# Copyright (c) 2026 Chinaready. All rights reserved.
+# File-based redirects (complements netlify.toml [[redirects]]).
+# A simple health alias the transport probe can hit without touching a function.
+/healthz   /   200
