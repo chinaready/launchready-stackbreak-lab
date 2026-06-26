@@ -84,8 +84,60 @@
     ev.appendChild(dl);
 
     if (s.symptom) ev.appendChild(el('p', s.symptom, 'bv-card__symptom'));
+    var btn = el('button', 'Compare with my browser', 'bv-card__compare');
+    btn.type = 'button';
+    btn.addEventListener('click', function () { toggleCompare(card, s, btn); });
+    ev.appendChild(btn);
     card.appendChild(ev);
     return card;
+  }
+
+  function loadLive(s, box) {
+    var done = false, TIMEOUT = 8000;
+    function settle(ok) {
+      if (done) return; done = true;
+      clear(box);
+      box.appendChild(el('span', ok ? '\u2713 loaded in YOUR browser' : '\u2717 failed in YOUR browser',
+        ok ? 'bv-live-ok' : 'bv-live-fail'));
+    }
+    clear(box);
+    box.appendChild(el('span', 'loading\u2026', 'bv-live-pending'));
+
+    var isFrame = s.category === 'embeds';
+    var isStyle = s.category === 'fonts' || /\.css(\?|$)/.test(s.url || '');
+    if (isFrame) {
+      var ifr = document.createElement('iframe');
+      ifr.src = s.url; ifr.title = 'live ' + s.name;
+      ifr.style.cssText = 'width:100%;height:120px;border:0;background:#000';
+      ifr.onload = function () { settle(true); };
+      ifr.onerror = function () { settle(false); };
+      clear(box); box.appendChild(ifr);
+    } else if (isStyle) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet'; link.href = s.url;
+      link.onload = function () { settle(true); };
+      link.onerror = function () { settle(false); };
+      document.head.appendChild(link);
+    } else {
+      var sc = document.createElement('script');
+      sc.src = s.url; sc.async = true;
+      sc.onload = function () { settle(true); };
+      sc.onerror = function () { settle(false); };
+      document.head.appendChild(sc);
+    }
+    setTimeout(function () { settle(false); }, TIMEOUT);
+  }
+
+  function toggleCompare(card, s, btn) {
+    var open = card.querySelector('.bv-card__live');
+    if (open) { open.parentNode.removeChild(open); btn.textContent = 'Compare with my browser'; return; }
+    btn.textContent = 'Hide my-browser comparison';
+    var live = el('div', null, 'bv-card__live');
+    live.appendChild(el('p', 'Your browser, loading ' + s.domain + ' live:', 'bv-card__live-label'));
+    var box = el('div', null, 'bv-card__live-box');
+    live.appendChild(box);
+    card.appendChild(live);
+    loadLive(s, box);
   }
 
   function render(data) {

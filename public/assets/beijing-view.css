@@ -55,3 +55,20 @@
 .bv-card__symptom { font-size: 0.85rem; color: var(--cr-text-secondary); margin: var(--cr-space-2) 0 0; }
 
 @media (max-width: 560px) { .bv-card { grid-template-columns: 1fr; } }
+
+.bv-card__compare {
+  margin-top: var(--cr-space-3); align-self: flex-start;
+  font: inherit; font-size: 0.8rem; cursor: pointer;
+  padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--cr-border, #cbd5e1);
+  background: transparent; color: var(--cr-text-primary);
+}
+.bv-card__compare:hover { background: var(--cr-surface-subtle, #f1f5f9); }
+.bv-card__live { grid-column: 1 / -1; padding: var(--cr-space-4); border-top: 1px solid var(--cr-border, #e2e8f0); }
+.bv-card__live-label { margin: 0 0 var(--cr-space-2); font-size: 0.8rem; color: var(--cr-text-secondary); }
+.bv-live-ok { color: var(--cr-success-text, #137a4b); font-weight: 600; }
+.bv-live-fail { color: var(--cr-error-text, #b42318); font-weight: 600; }
+.bv-live-pending { color: var(--cr-text-secondary); }
+
+/* Heartbeat status dot (base style; the DS only styles .live-dot inside .hero__badge). */
+.bv-hb__node .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cr-success, #2bb673); flex: none; display: inline-block; }
