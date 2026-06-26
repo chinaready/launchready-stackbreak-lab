@@ -1,0 +1,26 @@
+/* Stack Break Lab — Beijing View page. Builds on chinaready.css + lab.css tokens. */
+
+.bv-hero {
+  background: var(--cr-primary);
+  color: #fff;
+  padding: var(--cr-space-9) 0 var(--cr-space-7);
+}
+.bv-hero .eyebrow { color: var(--cr-accent, #7CF5C6); }
+.bv-hero h1 { color: #fff; margin: var(--cr-space-3) 0; }
+.bv-hero .lede { color: rgba(255,255,255,0.82); max-width: 60ch; }
+
+/* Heartbeat strip */
+.bv-hb {
+  display: flex; flex-wrap: wrap; gap: var(--cr-space-4);
+  align-items: center; justify-content: space-between;
+  margin-top: var(--cr-space-6);
+  padding: var(--cr-space-4) var(--cr-space-5);
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--cr-radius-card, 12px);
+  font-size: 0.95rem;
+}
+.bv-hb__node { display: inline-flex; align-items: center; gap: var(--cr-space-2); color: rgba(255,255,255,0.9); }
+.bv-hb__counts { display: inline-flex; gap: var(--cr-space-4); }
+.bv-hb__count { display: inline-flex; align-items: center; gap: var(--cr-space-2); }
+.bv-hb__num { font-weight: var(--cr-fw-bold, 700); }
