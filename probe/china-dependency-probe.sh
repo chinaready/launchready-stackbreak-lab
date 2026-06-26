@@ -54,6 +54,7 @@ while IFS= read -r row; do
   domain="$(echo "$row" | jq -r '.domain')"
   url="$(echo "$row" | jq -r '.url')"
   demo="$(echo "$row" | jq -r '.demoPath')"
+  symptom="$(echo "$row" | jq -r '.symptom // ""')"
 
   # DNS resolution.
   dns_answer="$(dig +short +time=5 +tries=1 "@$DNS_SERVER" "$domain" 2>/dev/null | head -n1 || true)"
@@ -90,11 +91,11 @@ while IFS= read -r row; do
 
   service_obj="$(jq -n \
     --arg id "$id" --arg name "$name" --arg category "$category" --arg domain "$domain" \
-    --arg url "$url" --arg demoPath "$demo" \
+    --arg url "$url" --arg demoPath "$demo" --arg symptom "$symptom" \
     --arg httpCode "$http_code" --argjson connectSec "${connect_s:-0}" --argjson sslSec "${ssl_s:-0}" \
     --argjson totalSec "${total_s:-0}" --argjson curlExit "$curl_exit" \
     --argjson dnsResolved "$dns_resolved" --arg verdict "$verdict" \
-    '{id:$id,name:$name,category:$category,domain:$domain,url:$url,demoPath:$demoPath,
+    '{id:$id,name:$name,category:$category,domain:$domain,url:$url,demoPath:$demoPath,symptom:$symptom,
       httpCode:$httpCode,connectSec:$connectSec,sslSec:$sslSec,totalSec:$totalSec,
       curlExit:$curlExit,dnsResolved:$dnsResolved,verdict:$verdict}')"
 
