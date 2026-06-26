@@ -22,3 +22,6 @@ npm-debug.log*
 # Local probe scratch output (committed evidence lives under results/<date>/ and results/latest.json)
 /tmp-probe/
 .superpowers/
+
+# Intermediate per-service browser findings (merged into browser.json / latest.json)
+results/*/findings/
