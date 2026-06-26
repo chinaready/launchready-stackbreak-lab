@@ -13,6 +13,7 @@ Each entry in `services[]`:
 | `domain` | yes | The host whose reachability defines the verdict (e.g. `fonts.googleapis.com`). |
 | `url` | yes | A concrete URL the probe requests with `curl`. |
 | `demoPath` | yes | Path to the matching demo page (e.g. `/demos/fonts-google.html`). |
+| `symptom` | yes | One-line description of what a user in mainland China sees when this dependency fails. Surfaced on the Beijing View page. |
 
 ## Verdict definitions
 

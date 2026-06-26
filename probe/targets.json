@@ -8,7 +8,8 @@
       "category": "fonts",
       "domain": "fonts.googleapis.com",
       "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap",
-      "demoPath": "/demos/fonts-google.html"
+      "demoPath": "/demos/fonts-google.html",
+      "symptom": "Fallback typeface and layout shift while the page waits for fonts that never arrive."
     },
     {
       "id": "material-symbols",
@@ -16,7 +17,8 @@
       "category": "fonts",
       "domain": "fonts.googleapis.com",
       "url": "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined",
-      "demoPath": "/demos/icons-material.html"
+      "demoPath": "/demos/icons-material.html",
+      "symptom": "Icon glyphs render as empty boxes or raw ligature text when the icon font never loads."
     },
     {
       "id": "adobe-typekit",
@@ -24,7 +26,8 @@
       "category": "fonts",
       "domain": "use.typekit.net",
       "url": "https://use.typekit.net/abcdefg.css",
-      "demoPath": "/demos/fonts-typekit.html"
+      "demoPath": "/demos/fonts-typekit.html",
+      "symptom": "Text falls back to system fonts; branded type and weights never apply."
     },
     {
       "id": "recaptcha",
@@ -32,7 +35,8 @@
       "category": "auth",
       "domain": "www.google.com",
       "url": "https://www.google.com/recaptcha/api.js",
-      "demoPath": "/demos/recaptcha.html"
+      "demoPath": "/demos/recaptcha.html",
+      "symptom": "The CAPTCHA widget never renders, so forms and sign-up cannot be submitted."
     },
     {
       "id": "auth0",
@@ -40,7 +44,8 @@
       "category": "auth",
       "domain": "cdn.auth0.com",
       "url": "https://cdn.auth0.com/js/lock/11.34/lock.min.js",
-      "demoPath": "/demos/auth0-lock.html"
+      "demoPath": "/demos/auth0-lock.html",
+      "symptom": "The login widget stalls or loads slowly, delaying or blocking sign-in."
     },
     {
       "id": "google-signin",
@@ -48,7 +53,8 @@
       "category": "auth",
       "domain": "accounts.google.com",
       "url": "https://accounts.google.com/gsi/client",
-      "demoPath": "/demos/google-signin.html"
+      "demoPath": "/demos/google-signin.html",
+      "symptom": "The Google sign-in button never appears, locking out that login path."
     },
     {
       "id": "gtm",
@@ -56,7 +62,8 @@
       "category": "analytics",
       "domain": "www.googletagmanager.com",
       "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MR8ZL58Z",
-      "demoPath": "/demos/gtm.html"
+      "demoPath": "/demos/gtm.html",
+      "symptom": "Tag Manager fails to load, so downstream tags and events never fire."
     },
     {
       "id": "ga4",
@@ -64,7 +71,8 @@
       "category": "analytics",
       "domain": "www.googletagmanager.com",
       "url": "https://www.googletagmanager.com/gtag/js?id=G-P6BVQ3VWTC",
-      "demoPath": "/demos/ga4.html"
+      "demoPath": "/demos/ga4.html",
+      "symptom": "Analytics never initializes; pageviews and events go uncollected."
     },
     {
       "id": "youtube",
@@ -72,7 +80,8 @@
       "category": "embeds",
       "domain": "www.youtube.com",
       "url": "https://www.youtube.com/embed/aqz-KE-bpKQ",
-      "demoPath": "/demos/youtube-embed.html"
+      "demoPath": "/demos/youtube-embed.html",
+      "symptom": "The video area stays blank/black — player chrome and thumbnail never load."
     },
     {
       "id": "google-maps",
@@ -80,7 +89,8 @@
       "category": "embeds",
       "domain": "maps.googleapis.com",
       "url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuuJCtomC1Qv_49urQwPmnpeTdj1twyhI",
-      "demoPath": "/demos/google-maps.html"
+      "demoPath": "/demos/google-maps.html",
+      "symptom": "The map collapses into an empty grey box with no tiles or controls."
     },
     {
       "id": "vimeo",
@@ -88,7 +98,8 @@
       "category": "embeds",
       "domain": "player.vimeo.com",
       "url": "https://player.vimeo.com/video/76979871",
-      "demoPath": "/demos/vimeo-embed.html"
+      "demoPath": "/demos/vimeo-embed.html",
+      "symptom": "The Vimeo player stays blank — the embed iframe never finishes loading."
     }
   ]
 }
