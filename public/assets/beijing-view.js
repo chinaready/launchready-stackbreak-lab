@@ -92,10 +92,14 @@
     return card;
   }
 
+  // Loads the third-party resource live in the visitor's browser. Returns the node it
+  // injects into document.head (the <link> or <script>) so the caller can remove it on
+  // toggle-off; returns null for the iframe path since that lives inside `box`.
   function loadLive(s, box) {
-    var done = false, TIMEOUT = 8000;
+    var done = false, TIMEOUT = 8000, timer = null;
     function settle(ok) {
       if (done) return; done = true;
+      if (timer) { clearTimeout(timer); timer = null; }
       clear(box);
       box.appendChild(el('span', ok ? '\u2713 loaded in YOUR browser' : '\u2717 failed in YOUR browser',
         ok ? 'bv-live-ok' : 'bv-live-fail'));
@@ -103,6 +107,7 @@
     clear(box);
     box.appendChild(el('span', 'loading\u2026', 'bv-live-pending'));
 
+    var injected = null;
     var isFrame = s.category === 'embeds';
     var isStyle = s.category === 'fonts' || /\.css(\?|$)/.test(s.url || '');
     if (isFrame) {
@@ -118,26 +123,35 @@
       link.onload = function () { settle(true); };
       link.onerror = function () { settle(false); };
       document.head.appendChild(link);
+      injected = link;
     } else {
       var sc = document.createElement('script');
       sc.src = s.url; sc.async = true;
       sc.onload = function () { settle(true); };
       sc.onerror = function () { settle(false); };
       document.head.appendChild(sc);
+      injected = sc;
     }
-    setTimeout(function () { settle(false); }, TIMEOUT);
+    timer = setTimeout(function () { settle(false); }, TIMEOUT);
+    return injected;
   }
 
   function toggleCompare(card, s, btn) {
     var open = card.querySelector('.bv-card__live');
-    if (open) { open.parentNode.removeChild(open); btn.textContent = 'Compare with my browser'; return; }
+    if (open) {
+      if (open._injected && open._injected.parentNode) open._injected.parentNode.removeChild(open._injected);
+      open._injected = null;
+      open.parentNode.removeChild(open);
+      btn.textContent = 'Compare with my browser';
+      return;
+    }
     btn.textContent = 'Hide my-browser comparison';
     var live = el('div', null, 'bv-card__live');
     live.appendChild(el('p', 'Your browser, loading ' + s.domain + ' live:', 'bv-card__live-label'));
     var box = el('div', null, 'bv-card__live-box');
     live.appendChild(box);
     card.appendChild(live);
-    loadLive(s, box);
+    live._injected = loadLive(s, box);
   }
 
   function render(data) {

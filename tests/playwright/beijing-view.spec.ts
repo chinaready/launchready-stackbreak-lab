@@ -78,7 +78,11 @@ test('compare button reveals a my-browser result and toggles off', async ({ page
   await btn.click();
   // External requests are aborted in the fixture, so the live load resolves to a failure state.
   await expect(card.locator('.bv-card__live')).toBeVisible();
+  // The Google Fonts card injects a <link> into <head> to load the resource live.
+  await expect(page.locator('head link[href*="fonts.googleapis.com"]')).toHaveCount(1);
   await expect(card.locator('.bv-card__live .bv-live-fail')).toBeVisible({ timeout: 12000 });
   await btn.click();
   await expect(card.locator('.bv-card__live')).toHaveCount(0);
+  // Toggle-off must remove the injected node so re-opening does not accumulate duplicates.
+  await expect(page.locator('head link[href*="fonts.googleapis.com"]')).toHaveCount(0);
 });
