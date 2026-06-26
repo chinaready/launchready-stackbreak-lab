@@ -69,3 +69,16 @@ test('a blocked card shows its verdict chip and screenshot', async ({ page }) =>
   await expect(card.locator('.verdict.Blocked')).toBeVisible();
   await expect(card.locator('.bv-card__shot img')).toHaveAttribute('src', /screenshots/);
 });
+
+test('compare button reveals a my-browser result and toggles off', async ({ page }) => {
+  await mountWithFixture(page);
+  const card = page.locator('.bv-card', { hasText: 'Google Fonts' });
+  const btn = card.locator('.bv-card__compare');
+  await expect(btn).toHaveText(/Compare with my browser/i);
+  await btn.click();
+  // External requests are aborted in the fixture, so the live load resolves to a failure state.
+  await expect(card.locator('.bv-card__live')).toBeVisible();
+  await expect(card.locator('.bv-card__live .bv-live-fail')).toBeVisible({ timeout: 12000 });
+  await btn.click();
+  await expect(card.locator('.bv-card__live')).toHaveCount(0);
+});
