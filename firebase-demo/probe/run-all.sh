@@ -19,9 +19,11 @@ DEMO_DIR="$(cd "$PROBE_DIR/.." && pwd)"
 ROOT_DIR="$(cd "$DEMO_DIR/.." && pwd)"
 
 # Load env: prefer repo-root .env, fall back to firebase-demo/.env.
+# shellcheck source=../deploy/load-env.sh
+source "$ROOT_DIR/deploy/load-env.sh"
 for envfile in "$ROOT_DIR/.env" "$DEMO_DIR/.env"; do
   if [ -f "$envfile" ]; then
-    set -a; . "$envfile"; set +a
+    load_env_file "$envfile"
     echo "Loaded env: $envfile"
     break
   fi

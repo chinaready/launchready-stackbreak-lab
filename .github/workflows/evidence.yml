@@ -91,9 +91,9 @@ jobs:
           # lives in $DEPLOY_PATH/.env on the self-hosted host (see deploy/env.example).
           # DEMO_USER_PASSWORD may also be set as a GitHub Actions secret to override .env.
           _demo_pw="${DEMO_USER_PASSWORD:-}"
-          if [ -f "$DEPLOY_PATH/.env" ]; then
-            set -a; . "$DEPLOY_PATH/.env"; set +a
-          fi
+          # shellcheck source=deploy/load-env.sh
+          source deploy/load-env.sh
+          load_env_file "$DEPLOY_PATH/.env"
           [ -n "$_demo_pw" ] && export DEMO_USER_PASSWORD="$_demo_pw"
           if [ -z "${FIREBASE_PROJECT_ID:-}" ]; then
             echo "FIREBASE_PROJECT_ID not set; skipping Firebase probe"; exit 0
