@@ -31,7 +31,8 @@
 .bv-cat__label { display: flex; align-items: baseline; gap: var(--cr-space-3); }
 .bv-cat__label small { color: var(--cr-text-secondary); font-weight: var(--cr-fw-regular, 400); font-size: 0.85rem; }
 
-.bv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--cr-space-5); }
+/* One card per row: each screenshot gets the full width. */
+.bv-grid { display: grid; grid-template-columns: 1fr; gap: var(--cr-space-5); }
 
 .bv-card {
   display: grid; grid-template-columns: 1.2fr 1fr;
@@ -42,7 +43,7 @@
 .bv-card.Blocked  { border-color: var(--cr-error, #d64545); }
 .bv-card.Degraded { border-color: var(--cr-warning, #d99e00); }
 
-.bv-card__shot { background: var(--cr-primary); min-height: 140px; display: flex; }
+.bv-card__shot { background: var(--cr-primary); min-height: 240px; display: flex; }
 .bv-card__shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .bv-card__shot-missing { margin: auto; color: rgba(255,255,255,0.7); font-size: 0.85rem; }
 
