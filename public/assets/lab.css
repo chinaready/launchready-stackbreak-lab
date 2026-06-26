@@ -251,9 +251,28 @@ h2 {
   font-size: var(--cr-fs-body);
   line-height: 1;
   cursor: pointer;
+  text-decoration: none;
   transition: background-color var(--cr-dur-fast) var(--cr-ease-standard);
 }
 .demo-btn:hover { background: var(--cr-brand-blue-hover); }
+
+/* Secondary navigation CTA: links a single demo to the aggregated Beijing View. */
+.demo-cta {
+  margin-top: var(--cr-space-6);
+  padding-top: var(--cr-space-5);
+  border-top: 1px solid var(--cr-border);
+}
+.demo-btn--ghost {
+  margin-top: 0;
+  background: transparent;
+  color: var(--cr-brand-blue);
+  border: 1px solid var(--cr-border);
+}
+.demo-btn--ghost:hover {
+  background: var(--cr-surface-subtle, #f1f5f9);
+  border-color: var(--cr-brand-blue);
+  color: var(--cr-brand-blue);
+}
 
 /* --------------------------------------------------------------------------
    Hub category grid
