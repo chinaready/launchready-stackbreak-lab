@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Scheduled Function. Netlify invokes it on the cron in `config.schedule`; it is
 // not meant to be called by end users. The probe only checks that the function

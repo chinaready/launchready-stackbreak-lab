@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Netlify build + feature wiring for the field-reports demo. Every block below
 # maps to one Netlify product the mainland-China probe kit measures.

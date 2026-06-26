@@ -1,9 +1,8 @@
 name: deploy
 
 # Redeploys the static site on the launchready.cn Docker host when site content changes
-# on main. Runs on the self-hosted mainland runner and operates on the deployment checkout
-# at /opt/launchready-stackbreak-lab, integrating with the existing Traefik via
-# docker-compose.prod.yml. No untrusted event input is used in run steps.
+# on main. Runs on the self-hosted mainland runner at $DEPLOY_PATH. Git fetch uses SSH
+# over port 443 — not HTTPS (unreliable from mainland China).
 
 on:
   push:
@@ -22,6 +21,7 @@ concurrency:
 
 env:
   DEPLOY_PATH: /opt/launchready-stackbreak-lab
+  GIT_REMOTE: git@github.com:chinaready/launchready-stackbreak-lab.git
 
 jobs:
   deploy:
@@ -29,25 +29,25 @@ jobs:
     steps:
       - name: Pull and (re)build at deploy path
         run: |
+          set -euo pipefail
           cd "$DEPLOY_PATH"
-          # Hard-sync to origin/main rather than ff-merge: probes are sometimes run
-          # in place on this host (e.g. the Firebase kit), leaving untracked artifacts
-          # at paths the repo later tracks, which makes `git pull --ff-only` abort.
-          # reset --hard reconciles tracked paths to the remote and overwrites those
-          # stale artifacts; gitignored files (.env, service-account creds) are untouched.
-          #
-          # Mainland egress to github.com is GFW-throttled and the HTTPS fetch can hang
-          # or reset (see STATUS.md), so retry with a low-speed abort so a stalled
-          # connect fails in ~30s instead of timing out after minutes.
+          deploy_key="${HOME}/.ssh/github_deploy"
+          if [ -f "$deploy_key" ]; then
+            export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
+          else
+            export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
+          fi
+          git remote set-url origin "$GIT_REMOTE"
+          # Hard-sync to origin/main: probes sometimes leave stale tracked artifacts on this
+          # host; reset --hard reconciles them. Gitignored files (.env, service-account creds)
+          # are untouched.
           n=0
           until [ "$n" -ge 5 ]; do
-            if git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=30 fetch --prune origin main; then
-              break
-            fi
+            if git fetch --prune origin main; then break; fi
             n=$((n+1)); echo "fetch attempt $n failed; retrying in 10s"; sleep 10
           done
           if [ "$n" -ge 5 ]; then
-            echo "::error::git fetch from GitHub failed after 5 attempts (mainland egress throttled)"
+            echo "::error::git fetch from GitHub failed after 5 attempts (SSH-443)"
             exit 1
           fi
           git reset --hard origin/main

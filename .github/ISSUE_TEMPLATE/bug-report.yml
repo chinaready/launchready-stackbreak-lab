@@ -1,0 +1,46 @@
+name: Bug report
+description: Something in the lab repo or live site is broken
+title: "[bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: URLs, commands, browser — the more specific the better
+    validations:
+      required: true
+
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did you see this?
+      options:
+        - Live site (stackbreak.launchready.cn)
+        - Local docker compose
+        - CI / GitHub Actions
+        - Documentation only
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser, Node version — if relevant
+      placeholder: macOS 15, Chrome 137, Node 20

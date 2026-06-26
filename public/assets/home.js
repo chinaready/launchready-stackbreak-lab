@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Stack Break Lab — landing page behavior. Pulls the real, latest snapshot from
 // /results/ so the hero counters, the per-dependency cards, and the status ticker

@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Renders the Netlify mainland-China probe snapshot (results/netlify-latest.json)
 // into the page. Shared by the main results viewer and the dedicated Netlify

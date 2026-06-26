@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Diagnostic Edge Function: echoes the Netlify edge runtime region that served
 // the request, plus geo/ip/requestId. `serverRegion` (e.g. "aws-sin") is the

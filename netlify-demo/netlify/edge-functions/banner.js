@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Edge Function (Deno runtime, runs at the CDN edge). Served at /banner via the
 // [[edge_functions]] route in netlify.toml. Parallels the Firebase demo's

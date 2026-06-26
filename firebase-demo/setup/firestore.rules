@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Field-reports demo security rules.
 // Reports are readable by any signed-in user (incl. anonymous, matching the

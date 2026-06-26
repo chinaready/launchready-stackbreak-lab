@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Seed the `reports` collection with a few field-report documents so the
 // frontend and backend probes read real data. Idempotent: fixed doc IDs.

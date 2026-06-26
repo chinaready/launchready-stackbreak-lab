@@ -3,11 +3,22 @@
 Thanks for helping make this lab more useful. The goal is a growing, trustworthy catalog of
 third-party dependencies and how they behave for real users in mainland China.
 
-**The rule of thumb: one dependency per pull request.**
+## Before you code
+
+1. **Open an issue** describing the dependency you want measured — service name, domain, category,
+   and why it matters to your stack.
+2. Wait for a maintainer to confirm scope (one dependency, category, slug). We may suggest changes
+   before you invest in a PR.
+3. **Pull requests without a linked, maintainer-approved issue will not be reviewed.**
+
+## One dependency per pull request
+
+Keep each PR focused on a single third-party service. Do not bundle multiple dependencies, unrelated
+fixes, or drive-by refactors in the same change.
 
 ## Add a dependency demo
 
-Want a service you rely on measured from mainland China? Open a PR with these four pieces.
+Once your issue is approved, open a PR with these four pieces.
 
 ### 1. Demo page — `demos/<slug>.html`
 
@@ -24,7 +35,7 @@ Want a service you rely on measured from mainland China? Open a PR with these fo
 
 ### 2. Probe target — `probe/targets.json`
 
-Add one object to the `services` array:
+Add one object to the `services` array (see [`probe/targets.schema.md`](probe/targets.schema.md)):
 
 ```json
 {
@@ -33,12 +44,13 @@ Add one object to the `services` array:
   "category": "auth",
   "domain": "js.stripe.com",
   "url": "https://js.stripe.com/v3/",
-  "demoPath": "/demos/stripe-js.html"
+  "demoPath": "/demos/stripe-js.html",
+  "symptom": "Checkout button stays disabled while the payment SDK never loads."
 }
 ```
 
-`category` must be one of: `fonts`, `auth`, `analytics`, `embeds`. Need a new category? Open an
-issue first.
+`category` must be one of: `fonts`, `auth`, `analytics`, `embeds`. Need a new category? Discuss in
+your issue first.
 
 ### 3. Playwright test — `tests/playwright/stack-break.spec.ts`
 
@@ -52,6 +64,7 @@ Add a card/link under the matching category so people can find your demo.
 
 ## What maintainers will check
 
+- Linked issue with maintainer approval.
 - Single dependency only — no pages that load several unrelated trackers.
 - No secrets, no customer domains, no personal data, no screenshots containing PII.
 - Category maps to an existing group.
@@ -68,7 +81,13 @@ npm install && npm test         # Playwright (demos should load locally)
 ./probe/china-dependency-probe.sh
 ```
 
+## License
+
+By contributing, you agree that your contributions will be licensed under the
+[Apache License, Version 2.0](LICENSE).
+
 ## Code of conduct
 
-Be respectful and constructive. This is a public, vendor-neutral diagnostic resource — keep
-claims factual and reproducible.
+This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md). Please be respectful and
+constructive. This is a public, vendor-neutral diagnostic resource — keep claims factual and
+reproducible.

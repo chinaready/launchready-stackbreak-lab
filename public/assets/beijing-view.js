@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Beijing View — renders the recorded Beijing snapshot (results/latest.json) so every
 // visitor, anywhere, sees what a browser in Beijing sees. Cards are built purely from

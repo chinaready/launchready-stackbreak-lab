@@ -1,0 +1,70 @@
+name: Dependency request
+description: Propose a third-party service to measure from mainland China (required before opening a PR)
+title: "[dependency] "
+labels:
+  - dependency
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a new dependency. Maintainers will confirm scope before you open a pull request.
+        See [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: input
+    id: service-name
+    attributes:
+      label: Service name
+      description: Human-readable name, e.g. Stripe.js
+      placeholder: Stripe.js
+    validations:
+      required: true
+
+  - type: input
+    id: domain
+    attributes:
+      label: Domain it loads from
+      description: The host whose reachability defines the verdict
+      placeholder: js.stripe.com
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - fonts
+        - auth
+        - analytics
+        - embeds
+        - other (explain below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters to your stack
+      description: What breaks for users in mainland China when this dependency fails?
+    validations:
+      required: true
+
+  - type: textarea
+    id: integration
+    attributes:
+      label: How a normal product loads it
+      description: Script tag, link, iframe, SDK import — link to vendor docs if helpful
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I will open a PR only after a maintainer approves this issue
+          required: true
+        - label: I will use a single dependency per PR (no bundling)
+          required: true
+        - label: I will not include production secrets or customer domains
+          required: true

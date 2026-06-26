@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Stack Break Lab — network probe.
 # Runs DNS + HTTP checks against every target in targets.json and writes a verdict per service.

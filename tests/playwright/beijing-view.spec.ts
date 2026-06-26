@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 import { test, expect } from '@playwright/test';
 
 test('beijing-view shell renders hero, heartbeat and gallery containers', async ({ page }) => {

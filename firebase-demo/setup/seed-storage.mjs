@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Upload a small public sample object so the Storage frontend probe can fetch
 // real bytes over the download path. Writes probes/field-report-sample.jpg.

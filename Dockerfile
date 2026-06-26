@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 # Stack Break Lab — static site image.
 # Serves the repo root (demos, public, results) via nginx so all relative and
 # root-absolute paths resolve the same way locally and in production.

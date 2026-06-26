@@ -1,32 +1,20 @@
 # Self-hosted GitHub Actions runner (mainland China)
 
-The evidence and deploy workflows must run **on the launchready.cn host inside mainland China**,
-not on GitHub-hosted runners (which sit outside China and would report everything as reachable).
+Evidence and deploy workflows run **on the launchready.cn host inside mainland China**, not on
+GitHub-hosted runners (which sit outside China and would report everything as reachable).
 
-## Why self-hosted
-
-`results/` verdicts are only trustworthy when the probe and browser checks egress from a mainland
-network. This runner provides that vantage point.
-
-## Prerequisites on the host
+## Prerequisites
 
 ```bash
-# Docker + compose (already present if the site is running)
 docker --version && docker compose version
-
-# Tooling for probe + browser checks
-sudo apt-get update
-sudo apt-get install -y curl dnsutils jq git
-
-# Node 20 (for Playwright)
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo apt-get update && sudo apt-get install -y curl dnsutils jq git
+# Node 20 for Playwright — install via nodesource or nvm
 ```
 
-## Register the runner
+## Register
 
-1. In GitHub: **Settings -> Actions -> Runners -> New self-hosted runner** for
-   `chinaready/launchready-stackbreak-lab` and copy the token.
+1. GitHub → **Settings → Actions → Runners → New self-hosted runner** for
+   `chinaready/launchready-stackbreak-lab`; copy the token.
 2. On the host:
 
 ```bash
@@ -37,25 +25,31 @@ tar xzf runner.tar.gz
   --token <RUNNER_TOKEN> \
   --labels self-hosted,linux,x64,mainland-china \
   --name launchready-cn-runner --unattended
+sudo ./svc.sh install && sudo ./svc.sh start
 ```
 
-3. Install as a service so it survives reboots:
+3. Add the runner user to the `docker` group (`sudo usermod -aG docker "$USER"`).
+4. Configure **GitHub SSH over port 443** (HTTPS to github.com is unreliable from mainland China):
 
 ```bash
-sudo ./svc.sh install
-sudo ./svc.sh start
-sudo ./svc.sh status
+# Deploy key with write access to this repo (Settings -> Deploy keys, or a user key).
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+# Save the private key as ~/.ssh/github_deploy (chmod 600)
+
+cat >> ~/.ssh/config <<'EOF'
+Host github.com
+  HostName ssh.github.com
+  Port 443
+  User git
+  IdentityFile ~/.ssh/github_deploy
+  IdentitiesOnly yes
+EOF
+chmod 600 ~/.ssh/config
+
+ssh -T git@github.com   # expect: "Hi chinaready/launchready-stackbreak-lab! ..."
 ```
 
-## Permissions
-
-- The runner user must be in the `docker` group so `deploy.yml` can run `docker compose`:
-
-```bash
-sudo usermod -aG docker "$USER"   # re-login afterwards
-```
-
-- Install Playwright's Chromium once (CI also runs this, but pre-installing speeds first run):
+5. Pre-install Playwright Chromium once:
 
 ```bash
 cd /opt/launchready-stackbreak-lab && npm ci && npx playwright install --with-deps chromium
@@ -63,14 +57,14 @@ cd /opt/launchready-stackbreak-lab && npm ci && npx playwright install --with-de
 
 ## Verify
 
-Trigger the evidence workflow manually:
-
-- GitHub -> **Actions -> evidence -> Run workflow** (`workflow_dispatch`), or push a commit.
-- Confirm a new `results/<date>/` folder and updated `results/latest.json` are committed by the bot.
+GitHub → **Actions → evidence → Run workflow**. Confirm a new `results/<date>/` folder and updated
+`results/latest.json` are committed.
 
 ## Secrets
 
-- No secrets belong in the repo. If a deploy step ever needs a token, add it under
-  **Settings -> Secrets and variables -> Actions** and reference it as `${{ secrets.NAME }}`.
-- Optional vendor test keys (`GTM_TEST_CONTAINER_ID`, etc.) can be added as Actions **variables**
-  and injected into the evidence run; demos work without them.
+Vendor test keys and deploy tokens live in **Settings → Secrets and variables → Actions**, never in
+the repo. Optional: `DEMO_USER_PASSWORD` secret overrides the host `.env` for Firebase probes.
+
+The evidence workflow reads Firebase coordinates from `$DEPLOY_PATH/.env` on the self-hosted host
+(see [`env.example`](env.example)). Ensure `FIREBASE_PROJECT_ID` and the service-account JSON path
+exist before expecting `/results/firebase.html` to refresh weekly.

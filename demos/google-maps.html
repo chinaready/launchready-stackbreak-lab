@@ -1,4 +1,4 @@
-<!-- Copyright (c) 2026 Chinaready. All rights reserved. -->
+<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
        The key is a placeholder; the request to maps.googleapis.com is what we measure.
        With no valid key the script still loads but the map shows Google's error overlay. -->
   <script id="dep" async
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuuJCtomC1Qv_49urQwPmnpeTdj1twyhI&callback=initMap"
+          src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"
           onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')"></script>
   <script>
     function initMap() {

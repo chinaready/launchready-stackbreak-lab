@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Chinaready. All rights reserved. */
+/* Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 */
 /* Stack Break Lab — shared styles for demo pages and the results viewer.
    Sits on top of the vendored Chinaready Design System tokens (chinaready.css),
    which must be loaded first. Only --cr-* tokens are used for color, spacing,

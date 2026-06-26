@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Demo Cloud Functions for the field-reports app.
 //   helloProbe  — public HTTP endpoint; the frontend path curls it directly.

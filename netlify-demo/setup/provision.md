@@ -1,5 +1,3 @@
-<!-- Copyright (c) 2026 Chinaready. All rights reserved. -->
-
 # Provisioning the field-reports demo on Netlify
 
 One-time setup before running the probes. The site must be **deployed** for the

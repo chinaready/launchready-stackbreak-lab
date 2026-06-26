@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 // Stack Break Lab — shared demo behavior.
 // Each demo page loads exactly one third-party dependency and reports whether it arrived.
 // The status pill is a best-effort human signal; the authoritative evidence is the network

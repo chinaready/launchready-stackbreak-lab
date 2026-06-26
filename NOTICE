@@ -1,0 +1,13 @@
+Stack Break Lab
+Copyright 2026 Chinaready
+
+This product includes software developed by Chinaready (https://chinaready.co).
+
+The Chinaready Design System styles in public/assets/chinaready.css are
+Copyright 2026 Chinaready and licensed under the Apache License, Version 2.0.
+
+Demo pages in this repository load third-party services for diagnostic purposes
+only. All third-party names and trademarks belong to their respective owners.
+
+Published probe results may reference domain-restricted vendor test keys used
+only for reachability measurement. Do not commit production secrets.

@@ -1,5 +1,3 @@
-<!-- Copyright (c) 2026 Chinaready. All rights reserved. -->
-
 # Provisioning the field-reports demo
 
 One-time setup before running the probes. Steps marked **console** are manual
