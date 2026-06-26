@@ -116,27 +116,48 @@ jobs:
           test -f results/latest.json
           echo "results/latest.json present ($(wc -c < results/latest.json) bytes)"
 
-      - name: Publish results to GitHub (SSH over 443)
+      - name: Publish results to GitHub
+        env:
+          EVIDENCE_PUSH_TOKEN: ${{ secrets.EVIDENCE_PUSH_TOKEN }}
         run: |
           set -euo pipefail
+          git config user.name "stackbreak-bot"
+          git config user.email "bot@launchready.cn"
+          git add results/
+          if git diff --cached --quiet; then
+            echo "no result changes"; exit 0
+          fi
+          git commit -m "[evidence] $(date +%F) mainland snapshot"
+
+          try_push() {
+            local label="$1"; shift
+            local n=0
+            until [ "$n" -ge 5 ]; do
+              if "$@"; then echo "pushed to GitHub via ${label}"; return 0; fi
+              n=$((n+1)); echo "${label} push attempt ${n} failed; retrying in 10s"; sleep 10
+            done
+            return 1
+          }
+
+          # Prefer a fine-grained PAT when org policy disables deploy keys (chinaready).
+          if [ -n "${EVIDENCE_PUSH_TOKEN:-}" ]; then
+            auth_remote="https://x-access-token:${EVIDENCE_PUSH_TOKEN}@github.com/chinaready/launchready-stackbreak-lab.git"
+            if try_push "HTTPS+PAT" git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=30 push "$auth_remote" HEAD:main; then
+              exit 0
+            fi
+          fi
+
+          # Fallback: SSH deploy key or user key over port 443.
           deploy_key="${HOME}/.ssh/github_deploy"
           if [ -f "$deploy_key" ]; then
             export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
           else
             export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
           fi
-          git config user.name "stackbreak-bot"
-          git config user.email "bot@launchready.cn"
           git remote set-url origin "$GIT_REMOTE"
-          git add results/
-          if git diff --cached --quiet; then
-            echo "no result changes"; exit 0
+          if try_push "SSH-443" git push origin HEAD:main; then
+            exit 0
           fi
-          git commit -m "[evidence] $(date +%F) mainland snapshot"
-          n=0
-          until [ "$n" -ge 5 ]; do
-            if git push origin HEAD:main; then echo "pushed to GitHub"; exit 0; fi
-            n=$((n+1)); echo "push attempt $n failed; retrying in 10s"; sleep 10
-          done
-          echo "::error::git push to GitHub failed after 5 attempts (live site already has fresh results/)"
+
+          echo "::error::git push failed. If deploy keys show Disabled by org policy, add an Actions secret EVIDENCE_PUSH_TOKEN (fine-grained PAT with Contents: Write on this repo). Live site already has fresh results/."
           exit 1

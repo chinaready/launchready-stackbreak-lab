@@ -29,12 +29,11 @@ sudo ./svc.sh install && sudo ./svc.sh start
 ```
 
 3. Add the runner user to the `docker` group (`sudo usermod -aG docker "$USER"`).
-4. Configure **GitHub SSH over port 443** (HTTPS to github.com is unreliable from mainland China):
+4. Configure **GitHub SSH over port 443** for fetch (HTTPS to github.com is unreliable from mainland China):
 
 ```bash
-# Deploy key with write access to this repo (Settings -> Deploy keys, or a user key).
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
-# Save the private key as ~/.ssh/github_deploy (chmod 600)
+# Read-only deploy key OR any key that can git fetch — save as ~/.ssh/github_deploy (chmod 600)
 
 cat >> ~/.ssh/config <<'EOF'
 Host github.com
@@ -46,10 +45,14 @@ Host github.com
 EOF
 chmod 600 ~/.ssh/config
 
-ssh -T git@github.com   # expect: "Hi chinaready/launchready-stackbreak-lab! ..."
+ssh -T git@github.com   # expect: Hi chinaready/launchready-stackbreak-lab! ...
 ```
 
-5. Pre-install Playwright Chromium once:
+5. Configure **results push** (write access). If **Deploy keys** is disabled by org policy, skip
+   deploy keys and add a fine-grained PAT as the `EVIDENCE_PUSH_TOKEN` Actions secret instead
+   (see Secrets below).
+
+6. Pre-install Playwright Chromium once:
 
 ```bash
 cd /opt/launchready-stackbreak-lab && npm ci && npx playwright install --with-deps chromium
@@ -63,7 +66,26 @@ GitHub → **Actions → evidence → Run workflow**. Confirm a new `results/<da
 ## Secrets
 
 Vendor test keys and deploy tokens live in **Settings → Secrets and variables → Actions**, never in
-the repo. Optional: `DEMO_USER_PASSWORD` secret overrides the host `.env` for Firebase probes.
+the repo.
+
+| Secret | Purpose |
+|---|---|
+| `EVIDENCE_PUSH_TOKEN` | **Required for push** if org policy disables deploy keys. Fine-grained PAT with **Contents: Read and write** on this repo. |
+| `DEMO_USER_PASSWORD` | Optional override for Firebase probe demo user password |
+| `NETLIFY_AUTH_TOKEN` | Netlify whole-stack probe |
+
+### Push auth when deploy keys are org-disabled
+
+If **Settings → Deploy keys** shows **Disabled by chinaready**, SSH fetch may still work but **push
+is denied** (`Permission denied to deploy key`). Fix one of:
+
+1. **Recommended:** Org admin re-enables deploy keys, or allows them for this repo.
+2. **Workaround:** Create a fine-grained PAT (machine/bot account) scoped to
+   `chinaready/launchready-stackbreak-lab` with **Contents: Read and write**, add it as the
+   `EVIDENCE_PUSH_TOKEN` Actions secret. The evidence workflow tries PAT push before SSH.
+
+SSH fetch for sync still uses `~/.ssh/github_deploy` over port 443; only the results push needs
+write credentials.
 
 The evidence workflow reads Firebase coordinates from `$DEPLOY_PATH/.env` on the self-hosted host
 (see [`env.example`](env.example)). Ensure `FIREBASE_PROJECT_ID` and the service-account JSON path
