@@ -5,7 +5,8 @@
   color: #fff;
   padding: var(--cr-space-9) 0 var(--cr-space-7);
 }
-.bv-hero .eyebrow { color: var(--cr-accent, #7CF5C6); }
+.bv-hero .eyebrow { color: var(--sbl-accent, #7CF5C6); }
+.bv-hero .period { color: var(--sbl-accent, #7CF5C6); }
 .bv-hero h1 { color: #fff; margin: var(--cr-space-3) 0; }
 .bv-hero .lede { color: rgba(255,255,255,0.82); max-width: 60ch; }
 
