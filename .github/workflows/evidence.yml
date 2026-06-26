@@ -1,9 +1,8 @@
 name: evidence
 
-# Collects mainland China reachability evidence: a curl/dig probe plus Playwright browser
-# checks against the LIVE demos, commits the results, then refreshes the deployed site so
-# the results volume reflects the new snapshot. Runs on the self-hosted mainland runner so
-# the network vantage point is inside China. Only repo-defined env/vars are used in run steps.
+# Collects mainland China reachability evidence: curl/dig probe, Playwright browser checks,
+# Netlify + Firebase whole-stack probes, then commits results and refreshes the deployed site.
+# Runs on the self-hosted mainland runner. Git sync/push uses SSH over port 443 — not HTTPS.
 
 on:
   schedule:
@@ -24,13 +23,39 @@ env:
   RUNNER_HOST: launchready.cn
   EXPECT_BLOCKED: '1'
   DEPLOY_PATH: /opt/launchready-stackbreak-lab
+  GIT_REMOTE: git@github.com:chinaready/launchready-stackbreak-lab.git
 
 jobs:
   collect:
     runs-on: [self-hosted, linux, mainland-china]
+    defaults:
+      run:
+        working-directory: /opt/launchready-stackbreak-lab
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Sync repository (SSH over 443)
+        run: |
+          # actions/checkout uses HTTPS, which is throttled/blocked from mainland China.
+          # Operate on the long-lived deploy clone instead; fetch/push via ssh.github.com:443.
+          set -euo pipefail
+          cd "$DEPLOY_PATH"
+          deploy_key="${HOME}/.ssh/github_deploy"
+          if [ -f "$deploy_key" ]; then
+            export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
+          else
+            export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
+          fi
+          git remote set-url origin "$GIT_REMOTE"
+          n=0
+          until [ "$n" -ge 5 ]; do
+            if git fetch --prune origin main; then break; fi
+            n=$((n+1)); echo "fetch attempt $n failed; retrying in 10s"; sleep 10
+          done
+          if [ "$n" -ge 5 ]; then
+            echo "::error::git fetch from GitHub failed after 5 attempts (SSH-443)"
+            exit 1
+          fi
+          git reset --hard origin/main
+          git clean -fd -e .env -e 'firebase-demo/service-account.json' -e 'firebase-demo/stackbreak-*.json' -e '**/*-firebase-adminsdk-*.json'
 
       - name: Network probe (curl + dig)
         run: ./probe/china-dependency-probe.sh
@@ -57,31 +82,61 @@ jobs:
           npm ci
           npm run probe:all || echo "netlify probe reported issues (recorded in results)"
 
-      - name: Refresh deployed site (local, no GitHub round-trip)
+      - name: Firebase probe (deployed project + Admin SDK)
+        env:
+          DEMO_USER_PASSWORD: ${{ secrets.DEMO_USER_PASSWORD }}
         run: |
-          # Live container bind-mounts $DEPLOY_PATH/results read-only, so copying the freshly
-          # generated results there updates stackbreak.launchready.cn/results/ immediately.
-          # Done BEFORE the GitHub push so the live site stays current even when mainland
-          # egress to github.com is throttled.
-          mkdir -p "$DEPLOY_PATH/results"
-          cp -a "$GITHUB_WORKSPACE/results/." "$DEPLOY_PATH/results/"
+          # Probes the provisioned Firebase demo project from this mainland runner and writes
+          # results/<date>/firebase.{json,md} + results/firebase-latest.json. Configuration
+          # lives in $DEPLOY_PATH/.env on the self-hosted host (see deploy/env.example).
+          # DEMO_USER_PASSWORD may also be set as a GitHub Actions secret to override .env.
+          _demo_pw="${DEMO_USER_PASSWORD:-}"
+          if [ -f "$DEPLOY_PATH/.env" ]; then
+            set -a; . "$DEPLOY_PATH/.env"; set +a
+          fi
+          [ -n "$_demo_pw" ] && export DEMO_USER_PASSWORD="$_demo_pw"
+          if [ -z "${FIREBASE_PROJECT_ID:-}" ]; then
+            echo "FIREBASE_PROJECT_ID not set; skipping Firebase probe"; exit 0
+          fi
+          if [ -z "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]; then
+            GOOGLE_APPLICATION_CREDENTIALS="$DEPLOY_PATH/firebase-demo/service-account.json"
+          fi
+          export GOOGLE_APPLICATION_CREDENTIALS
+          if [ ! -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
+            echo "Service account not found at $GOOGLE_APPLICATION_CREDENTIALS; skipping Firebase probe"; exit 0
+          fi
+          cd firebase-demo
+          npm ci
+          npm run probe:all || echo "firebase probe reported issues (recorded in results)"
+
+      - name: Verify live results bind mount
+        run: |
+          # Probes write directly into results/ here; the stackbreak container bind-mounts
+          # this directory read-only, so the live site picks up changes without a copy step.
+          test -f results/latest.json
+          echo "results/latest.json present ($(wc -c < results/latest.json) bytes)"
 
       - name: Publish results to GitHub (SSH over 443)
         run: |
+          set -euo pipefail
+          deploy_key="${HOME}/.ssh/github_deploy"
+          if [ -f "$deploy_key" ]; then
+            export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
+          else
+            export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
+          fi
           git config user.name "stackbreak-bot"
           git config user.email "bot@launchready.cn"
+          git remote set-url origin "$GIT_REMOTE"
           git add results/
           if git diff --cached --quiet; then
             echo "no result changes"; exit 0
           fi
           git commit -m "[evidence] $(date +%F) mainland snapshot"
-          # Mainland HTTPS to github.com uses GnuTLS and is reset by the GFW on larger pushes;
-          # push over SSH-443 (ssh.github.com:443) via the runner deploy key, with retries.
-          remote="git@github.com:chinaready/launchready-stackbreak-lab.git"
           n=0
           until [ "$n" -ge 5 ]; do
-            if git push "$remote" HEAD:main; then echo "pushed to GitHub"; exit 0; fi
+            if git push origin HEAD:main; then echo "pushed to GitHub"; exit 0; fi
             n=$((n+1)); echo "push attempt $n failed; retrying in 10s"; sleep 10
           done
-          echo "::error::git push to GitHub failed after 5 attempts (live site already refreshed)"
+          echo "::error::git push to GitHub failed after 5 attempts (live site already has fresh results/)"
           exit 1

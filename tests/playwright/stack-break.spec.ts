@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 import { test, expect, type Page } from '@playwright/test';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';

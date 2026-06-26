@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Functions + Blobs: writes a report record into a Netlify Blobs store and reads
 // it back, proving the Blobs data path works from a mainland request. Reachable

@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Background Function. The "-background" suffix tells Netlify to run this
 // asynchronously and answer the HTTP request with 202 Accepted immediately.

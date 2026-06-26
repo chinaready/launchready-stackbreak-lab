@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Frontend-path probes: what the user's browser / client SDK in mainland China
 # calls directly. Pure curl + Web API key + a real ID token (minted by signing

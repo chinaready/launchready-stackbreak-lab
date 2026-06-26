@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 # File-based custom headers (complements netlify.toml [[headers]]).
 /photo.png
   X-Stackbreak-Asset: image-cdn-source

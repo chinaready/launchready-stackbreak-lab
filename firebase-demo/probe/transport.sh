@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Transport-reachability probes for Firebase products we do not provision.
 # Proves only whether the host answers from mainland China — enough to verdict

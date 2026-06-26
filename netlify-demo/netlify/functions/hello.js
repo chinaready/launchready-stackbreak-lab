@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Plain HTTP Function (Netlify Functions v2). Reachable at
 // /.netlify/functions/hello and via the /api/hello rewrite. Returns the edge

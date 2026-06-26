@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Backend-path probes: what the app's server in mainland China does against the
 // Netlify control plane (api.netlify.com) with a personal access token, plus a

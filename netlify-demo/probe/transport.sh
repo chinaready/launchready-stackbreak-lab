@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Transport-reachability probes for Netlify platform hosts — the dashboard, REST
 # API, marketing/CDN, the Identity widget CDN, the deployed site edge, and DNS

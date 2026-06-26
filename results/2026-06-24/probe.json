@@ -147,7 +147,7 @@
       "name": "Google Maps",
       "category": "embeds",
       "domain": "maps.googleapis.com",
-      "url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuuJCtomC1Qv_49urQwPmnpeTdj1twyhI",
+      "url": "https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY",
       "demoPath": "/demos/google-maps.html",
       "httpCode": "000",
       "connectSec": 0.000000,

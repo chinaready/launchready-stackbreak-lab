@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 import { defineConfig, devices } from '@playwright/test';
 
 // Where the demos are served.

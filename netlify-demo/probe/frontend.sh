@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Frontend-path probes: what the user's browser in mainland China calls directly
 # on the deployed Netlify site. Pure curl against the live *.netlify.app URL.

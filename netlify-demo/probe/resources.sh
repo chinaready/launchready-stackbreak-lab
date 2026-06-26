@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 Chinaready. All rights reserved.
+# Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 #
 # Page-resource latency probe: measures the weight and load latency of the
 # demo site's static assets, Image CDN transforms, and key dynamic endpoints

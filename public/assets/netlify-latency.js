@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Chinaready. All rights reserved.
+// Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0
 //
 // Renders the Netlify page-resource latency snapshot (results/netlify-resources-latest.json)
 // into the page. Shared by the dedicated Netlify results page and the full results
