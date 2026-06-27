@@ -203,10 +203,10 @@
   letter-spacing: var(--cr-tracking-h2);
   color: var(--cr-text-primary);
   margin: 0;
-  max-width: 20ch;
-  text-wrap: balance;
+  max-width: min(100%, 22em);
+  text-wrap: pretty;
 }
-.block--cta .block__title { color: #fff; max-width: 24ch; }
+.block--cta .block__title { color: #fff; }
 .block__intro {
   color: var(--cr-text-secondary);
   font-size: var(--cr-fs-body-lg);
