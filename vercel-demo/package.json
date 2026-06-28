@@ -1,0 +1,23 @@
+{
+  "name": "vercel-china-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Field-reports demo site on Vercel + mainland-China probe kit for the Vercel availability article.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "deploy": "npx --yes vercel@latest deploy --prod",
+    "probe:frontend": "bash probe/frontend.sh",
+    "probe:backend": "node probe/backend.mjs",
+    "probe:transport": "bash probe/transport.sh",
+    "probe:resources": "bash probe/resources.sh",
+    "probe:all": "bash probe/run-all.sh"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.5.0",
+    "@vercel/kv": "^3.0.0"
+  }
+}

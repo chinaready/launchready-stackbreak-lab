@@ -60,6 +60,7 @@ on a mainland self-hosted runner and refreshes:
 
 - `results/latest.json` — 11 single-dependency probes + Playwright screenshots
 - `results/netlify-latest.json` — when Netlify site variables are configured
+- `results/vercel-latest.json` — when Vercel site variables are configured
 - `results/firebase-latest.json` — when Firebase is configured on the host (see [`deploy/env.example`](deploy/env.example))
 
 You can also trigger a run manually from GitHub Actions → **evidence** → **Run workflow**.
@@ -92,6 +93,7 @@ demos/         one HTML page per dependency + hub + Beijing view
 probe/         targets.json + china-dependency-probe.sh
 firebase-demo/ Firebase stack probe kit
 netlify-demo/  Netlify stack probe kit
+vercel-demo/   Vercel stack probe kit
 tests/         Playwright specs
 results/       published evidence (latest.json + dated snapshots)
 public/        /results/ viewer + shared assets
@@ -106,6 +108,8 @@ Two kits deploy and probe an entire managed backend from the same mainland node:
   Results: `/results/firebase.html`.
 - [`netlify-demo/`](netlify-demo/) — Hosting/CDN, Image CDN, Functions, Edge Functions, Forms,
   Identity, Blobs. Results: `/results/netlify.html`.
+- [`vercel-demo/`](vercel-demo/) — Hosting/CDN, Functions, Edge Middleware, Cron, Blob, KV.
+  Results: `/results/vercel.html`.
 
 ## Contributing
 

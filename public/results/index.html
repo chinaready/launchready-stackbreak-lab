@@ -82,6 +82,30 @@
       <div id="netlify-latency-root"></div>
     </section>
 
+    <section id="vercel" hidden>
+      <p class="eyebrow">Vercel</p>
+      <h2 style="margin-top:4px">Vercel stack from mainland China<span class="period">.</span></h2>
+      <p class="lede">
+        A real Vercel site is deployed and probed from the same node across the browser
+        (<strong>frontend</strong>), server-to-API (<strong>backend</strong>), and host
+        (<strong>transport</strong>) paths. See the dedicated
+        <a href="./vercel.html">Vercel results page</a>.
+      </p>
+      <dl class="meta" id="vercel-env"></dl>
+      <div id="vercel-root"></div>
+    </section>
+
+    <section id="vercel-latency" hidden>
+      <p class="eyebrow">Vercel latency</p>
+      <h2 style="margin-top:4px">Vercel page-resource latency &amp; edge region<span class="period">.</span></h2>
+      <p class="lede">
+        Weight and load latency of the demo site's assets and endpoints, plus the Vercel edge
+        region (<code>serverRegion</code>) that served the request.
+      </p>
+      <dl class="meta" id="vercel-edge"></dl>
+      <div id="vercel-latency-root"></div>
+    </section>
+
     <p style="margin-top:24px"><a href="/demos/">Browse the demo pages</a></p>
   </main>
 
@@ -270,5 +294,7 @@
   <script src="../assets/firebase-results.js?v=20260625b"></script>
   <script src="../assets/netlify-results.js?v=20260625b"></script>
   <script src="../assets/netlify-latency.js?v=20260625b"></script>
+  <script src="../assets/vercel-results.js?v=20260628b"></script>
+  <script src="../assets/vercel-latency.js?v=20260628b"></script>
 </body>
 </html>

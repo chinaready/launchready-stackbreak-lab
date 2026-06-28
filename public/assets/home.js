@@ -136,6 +136,63 @@
     return probes.map(function (p) { return { name: p.product, verdict: p.verdict }; });
   }
 
+  function applyVercel(data) {
+    var probes = (data && data.probes) || [];
+    var byPath = {};
+    probes.forEach(function (p) {
+      var g = byPath[p.path] = byPath[p.path] || { total: 0, blocked: 0 };
+      g.total += 1;
+      if (p.verdict === 'Blocked') g.blocked += 1;
+    });
+
+    $all('.dep-card[data-vcpath]').forEach(function (card) {
+      var foot = $('.dep-card__foot', card);
+      var g = byPath[card.getAttribute('data-vcpath')];
+      if (!foot || !g) return;
+      var verdict = g.blocked === g.total ? 'Blocked' : (g.blocked > 0 ? 'Degraded' : 'Reachable');
+      clear(foot);
+      foot.appendChild(verdictChip(verdict, g.blocked + ' / ' + g.total + ' blocked'));
+    });
+
+    var blocked = probes.filter(function (p) { return p.verdict === 'Blocked'; }).length;
+    animateCount(document.querySelector('[data-count="vc-blocked"]'), blocked);
+    animateCount(document.querySelector('[data-count="vc-total"]'), probes.length);
+
+    return probes.map(function (p) { return { name: p.product, verdict: p.verdict }; });
+  }
+
+  function applyVercelLatency(data) {
+    var resources = (data && data.resources) || [];
+    if (!resources.length) return [];
+
+    var edge = (data && data.edge) || {};
+    setText('vcres-region', edge.serverRegion || 'unknown');
+    animateCount(document.querySelector('[data-count="vcres-total"]'), resources.length);
+
+    var worst = resources.reduce(function (m, r) { return Math.max(m, Number(r.totalSec) || 0); }, 0);
+    setText('vcres-worst', worst.toFixed(2) + 's');
+
+    var byKind = {};
+    resources.forEach(function (r) {
+      var g = byKind[r.kind] = byKind[r.kind] || { worst: 0, blocked: 0, degraded: 0, total: 0 };
+      g.total += 1;
+      g.worst = Math.max(g.worst, Number(r.totalSec) || 0);
+      if (r.verdict === 'Blocked') g.blocked += 1;
+      else if (r.verdict === 'Degraded') g.degraded += 1;
+    });
+
+    $all('.dep-card[data-vlrkind]').forEach(function (card) {
+      var foot = $('.dep-card__foot', card);
+      var g = byKind[card.getAttribute('data-vlrkind')];
+      if (!foot || !g) return;
+      var verdict = g.blocked === g.total ? 'Blocked' : (g.blocked || g.degraded ? 'Degraded' : 'Reachable');
+      clear(foot);
+      foot.appendChild(verdictChip(verdict, g.worst.toFixed(2) + 's \u00b7 ' + g.total));
+    });
+
+    return resources.map(function (r) { return { name: 'Vercel ' + r.name, verdict: r.verdict }; });
+  }
+
   function setText(key, value) {
     var el = document.querySelector('[data-count-text="' + key + '"]');
     if (el) el.textContent = value;
@@ -228,6 +285,16 @@
     jobs.push(fetch('/results/netlify-resources-latest.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) { if (d) rows = rows.concat(applyNetlifyLatency(d)); })
+      .catch(function () {}));
+
+    jobs.push(fetch('/results/vercel-latest.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d) rows = rows.concat(applyVercel(d)); })
+      .catch(function () {}));
+
+    jobs.push(fetch('/results/vercel-resources-latest.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d) rows = rows.concat(applyVercelLatency(d)); })
       .catch(function () {}));
 
     Promise.all(jobs).then(function () { buildTicker(rows); });

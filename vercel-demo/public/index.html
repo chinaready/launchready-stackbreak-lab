@@ -1,0 +1,178 @@
+<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Field Reports — Vercel China demo</title>
+  <meta name="description" content="A Vercel demo app (hosting, Functions, Edge Middleware, Blob, KV, Cron) with a latency lab, used to measure Vercel availability and load latency from mainland China." />
+  <style>
+    :root {
+      --cr-brand-blue:#005BAC; --cr-brand-blue-hover:#004A8F;
+      --cr-text-primary:#0D1B2A; --cr-text-secondary:#5A6A80; --cr-text-tertiary:#5E6B7B;
+      --cr-border:#DDE3EE; --cr-border-subtle:#EEF1F6;
+      --cr-surface:#F4F6FA; --cr-bg-raised:#FFFFFF; --cr-bg-sunken:#EEF1F6;
+      --cr-dark-surface:#0C1E3E;
+      --cr-radius-card:8px; --cr-radius-button:4px;
+      --cr-space-2:8px; --cr-space-3:12px; --cr-space-4:16px; --cr-space-5:24px;
+      --cr-space-6:32px; --cr-space-7:48px;
+      --cr-font:Inter,"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    }
+    * { box-sizing:border-box; }
+    [hidden] { display:none !important; }
+    body { margin:0; font:16px/1.6 var(--cr-font); color:var(--cr-text-primary); background:var(--cr-surface); -webkit-font-smoothing:antialiased; }
+    a { color:var(--cr-brand-blue); }
+    .site-header { background:var(--cr-dark-surface); color:#fff; }
+    .site-header .bar { max-width:880px; margin:0 auto; padding:var(--cr-space-4) var(--cr-space-5); display:flex; align-items:center; gap:var(--cr-space-3); }
+    .brand { font-weight:700; letter-spacing:.01em; }
+    .brand .sep { color:rgba(255,255,255,.32); margin:0 10px; }
+    .brand .lab { font-weight:500; color:#B7C2D6; }
+    .pop { margin-left:auto; display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#fff;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:4px 11px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:nowrap; }
+    .pop .dot { width:7px; height:7px; border-radius:50%; background:#9DC2EA; }
+    .pop .label { color:#B7C2D6; font-family:var(--cr-font); }
+    .pop b { font-weight:600; }
+    .wrap { max-width:880px; margin:0 auto; padding:var(--cr-space-7) var(--cr-space-5) var(--cr-space-7); }
+    .eyebrow { text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--cr-brand-blue); font-weight:700; margin:0 0 var(--cr-space-3); }
+    h1 { font-size:30px; line-height:1.2; margin:0 0 var(--cr-space-3); }
+    .lede { color:var(--cr-text-secondary); max-width:62ch; margin:0 0 var(--cr-space-6); }
+    .card { background:var(--cr-bg-raised); border:1px solid var(--cr-border); border-radius:var(--cr-radius-card); padding:var(--cr-space-5); margin:var(--cr-space-4) 0; }
+    .card > h2 { font-size:17px; margin:0 0 var(--cr-space-2); }
+    .feat { font-size:13px; color:var(--cr-text-tertiary); margin:0 0 var(--cr-space-3); }
+    .btn { display:inline-block; background:var(--cr-brand-blue); color:#fff; border:1px solid var(--cr-brand-blue); border-radius:var(--cr-radius-button); padding:10px 18px; font:inherit; font-weight:600; cursor:pointer; text-decoration:none; }
+    .btn:hover { background:var(--cr-brand-blue-hover); border-color:var(--cr-brand-blue-hover); }
+    .pill { display:inline-block; font-size:12px; background:var(--cr-bg-sunken); color:var(--cr-text-secondary); border-radius:999px; padding:4px 11px; margin:3px 5px 3px 0; }
+    code { background:var(--cr-bg-sunken); padding:1px 6px; border-radius:4px; font-size:13px; }
+    pre.out { background:var(--cr-bg-sunken); border-radius:6px; padding:12px; font-size:12px; overflow:auto; margin:var(--cr-space-3) 0 0; }
+    .gallery { display:grid; gap:var(--cr-space-4); grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); margin-top:var(--cr-space-3); }
+    figure.shot { margin:0; border:1px solid var(--cr-border); border-radius:var(--cr-radius-card); overflow:hidden; background:#fff; }
+    figure.shot img { display:block; width:100%; height:150px; object-fit:cover; background:var(--cr-bg-sunken); }
+    figure.shot figcaption { padding:10px 12px; border-top:1px solid var(--cr-border-subtle); }
+    figure.shot .spec { font-weight:600; font-size:13px; }
+    figure.shot .meta { font-size:11px; color:var(--cr-text-tertiary); word-break:break-all; }
+    .subhead { font-size:13px; font-weight:700; color:var(--cr-text-secondary); margin:var(--cr-space-5) 0 0; text-transform:uppercase; letter-spacing:.08em; }
+    .site-footer { background:var(--cr-dark-surface); color:#B7C2D6; }
+    .site-footer .inner { max-width:880px; margin:0 auto; padding:var(--cr-space-6) var(--cr-space-5); font-size:13px; }
+    .site-footer a { color:#9DC2EA; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <span class="brand">Chinaready<span class="sep" aria-hidden="true">|</span><span class="lab">Stack Break Lab</span></span>
+      <span class="pop" id="edge-pop" title="Vercel edge serverRegion (from /__where)">
+        <span class="dot" aria-hidden="true"></span><span class="label">edge</span> <b id="edge-pop-val">…</b>
+      </span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Stack Break Lab &middot; Vercel</p>
+    <h1>Field Reports</h1>
+    <p class="lede">A small app that exercises the Vercel platform end to end and ships deliberately
+    heavy image assets, so you can measure both feature reachability and load latency from mainland China.</p>
+
+    <div class="card">
+      <h2>Platform features wired into this site</h2>
+      <p class="feat">Each maps to a probe in <code>vercel-demo/probe/</code>.</p>
+      <p>
+        <span class="pill">Static hosting / CDN</span>
+        <span class="pill">Redirects &amp; rewrites</span>
+        <span class="pill">Custom headers</span>
+        <span class="pill">Functions</span>
+        <span class="pill">Edge Middleware</span>
+        <span class="pill">Cron Jobs</span>
+        <span class="pill">Blob</span>
+        <span class="pill">KV</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Latency lab</h2>
+      <p class="feat">Raw static assets at different weights for manual latency testing (DevTools &rarr; Network,
+      hard-reload to bypass cache).</p>
+      <div class="gallery">
+        <figure class="shot">
+          <img src="/assets/weight-1mb.png" alt="Raw asset ~1 MB" width="640" height="520" loading="eager" decoding="async" />
+          <figcaption><span class="spec">640&times;520 &middot; ~0.95 MB</span><br /><span class="meta">/assets/weight-1mb.png</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/assets/weight-3mb.png" alt="Raw asset ~3 MB" width="1024" height="1000" loading="eager" decoding="async" />
+          <figcaption><span class="spec">1024&times;1000 &middot; ~2.9 MB</span><br /><span class="meta">/assets/weight-3mb.png</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/assets/weight-6mb.png" alt="Raw asset ~6 MB" width="1414" height="1414" loading="eager" decoding="async" />
+          <figcaption><span class="spec">1414&times;1414 &middot; ~5.7 MB</span><br /><span class="meta">/assets/weight-6mb.png</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/assets/scene-2400.png" alt="Raw source 2400 wide" width="2400" height="1600" loading="eager" decoding="async" />
+          <figcaption><span class="spec">2400&times;1600 &middot; ~2.5 MB (source)</span><br /><span class="meta">/assets/scene-2400.png</span></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Stamp a report (Functions + Blob)</h2>
+      <p class="feat">POSTs to <code>/api/stamp-report</code>, which writes and reads back a record in Vercel Blob.</p>
+      <button class="btn" id="stamp-blob" type="button">Stamp via Blob</button>
+      <pre id="stamp-blob-out" class="out" hidden></pre>
+    </div>
+
+    <div class="card">
+      <h2>Ping KV (Functions + KV)</h2>
+      <p class="feat">GETs <code>/api/kv-ping</code>, which sets and reads back the <code>china-probe</code> key.</p>
+      <button class="btn" id="stamp-kv" type="button">Ping KV</button>
+      <pre id="stamp-kv-out" class="out" hidden></pre>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      Single-purpose diagnostic app for <a href="https://chinaready.co">Chinaready</a> &middot;
+      Stack Break Lab. Trademarks belong to their owners.
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var popVal = document.getElementById("edge-pop-val");
+      var popWrap = document.getElementById("edge-pop");
+      fetch("/__where?t=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!popVal) return;
+          var region = d.serverRegion || "unknown";
+          popVal.textContent = region;
+          if (popWrap && d.geo && d.geo.city) {
+            popWrap.title = "Vercel edge serverRegion: " + region + " · geo: " + d.geo.city;
+          }
+        })
+        .catch(function () { if (popVal) popVal.textContent = "n/a"; });
+
+      function wire(btnId, outId, url, opts) {
+        var btn = document.getElementById(btnId);
+        if (!btn) return;
+        btn.addEventListener("click", async function () {
+          var out = document.getElementById(outId);
+          out.hidden = false;
+          out.textContent = "working…";
+          try {
+            var r = await fetch(url, opts || {});
+            out.textContent = JSON.stringify(await r.json(), null, 2);
+          } catch (e) {
+            out.textContent = "error: " + e.message;
+          }
+        });
+      }
+
+      wire("stamp-blob", "stamp-blob-out", "/api/stamp-report", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ text: "sample report from the browser" })
+      });
+      wire("stamp-kv", "stamp-kv-out", "/api/kv-ping");
+    })();
+  </script>
+</body>
+</html>

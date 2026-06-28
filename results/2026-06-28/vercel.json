@@ -1,0 +1,246 @@
+{
+  "generatedAt": "2026-06-28T09:17:41Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-beijing-h",
+    "runnerHost": "launchready.cn"
+  },
+  "demoSiteUrl": "https://project-silk-eta-17.vercel.app",
+  "storage": {
+    "blobRegion": "Hong Kong",
+    "redisRegion": "Singapore"
+  },
+  "probes": [
+    {
+      "id": "cdn",
+      "name": "Static hosting (CDN)",
+      "product": "Hosting / CDN",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/",
+      "httpCode": "200",
+      "totalSec": 1.114291,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "redirect",
+      "name": "Redirect rule (301)",
+      "product": "Redirects & rewrites",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/old-report",
+      "httpCode": "308",
+      "totalSec": 1.110662,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "rewrite",
+      "name": "Rewrite to function (200)",
+      "product": "Redirects & rewrites",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/probe-hello",
+      "httpCode": "200",
+      "totalSec": 1.759052,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-hello",
+      "name": "Function helloProbe",
+      "product": "Functions",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/api/hello",
+      "httpCode": "200",
+      "totalSec": 0.741074,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-blob",
+      "name": "Function + Blob stamp",
+      "product": "Blob",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/api/stamp-report",
+      "httpCode": "200",
+      "totalSec": 3.616721,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-kv",
+      "name": "Function + KV ping",
+      "product": "KV",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/api/kv-ping",
+      "httpCode": "200",
+      "totalSec": 2.083923,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "edge-banner",
+      "name": "Edge Middleware banner",
+      "product": "Edge Middleware",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/banner",
+      "httpCode": "200",
+      "totalSec": 1.091415,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "cron",
+      "name": "Cron endpoint",
+      "product": "Cron Jobs",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/api/cron-ping",
+      "httpCode": "200",
+      "totalSec": 1.624123,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "headers",
+      "name": "Custom response header",
+      "product": "Headers",
+      "path": "frontend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/",
+      "httpCode": "200",
+      "totalSec": 0,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "api-user",
+      "name": "API current user",
+      "product": "Vercel API",
+      "path": "backend",
+      "endpoint": "https://api.vercel.com/v2/user",
+      "httpCode": "200",
+      "totalSec": 0.903719,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "api-project",
+      "name": "API project lookup",
+      "product": "Vercel API",
+      "path": "backend",
+      "endpoint": "https://api.vercel.com/v9/projects/prj_JueDt2oQPpZDWjpRDxzD5OkQUjmY?teamId=team_Lrb3Pxs9YnuhXL7GHR7YliHw",
+      "httpCode": "200",
+      "totalSec": 1.049076,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "api-deploys",
+      "name": "API deployments list",
+      "product": "Deploys",
+      "path": "backend",
+      "endpoint": "https://api.vercel.com/v6/deployments?projectId=prj_JueDt2oQPpZDWjpRDxzD5OkQUjmY&limit=1&teamId=team_Lrb3Pxs9YnuhXL7GHR7YliHw",
+      "httpCode": "200",
+      "totalSec": 0.324659,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "kv-rest",
+      "name": "KV REST get",
+      "product": "KV",
+      "path": "backend",
+      "endpoint": "https://usable-dogfish-69708.upstash.io/get/china-probe",
+      "httpCode": "200",
+      "totalSec": 0.392881,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "blob-rest",
+      "name": "Blob REST list",
+      "product": "Blob",
+      "path": "backend",
+      "endpoint": "https://blob.vercel-storage.com?prefix=field-reports%2F&limit=1",
+      "httpCode": "200",
+      "totalSec": 1.746795,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "server-invoke",
+      "name": "Server -> Function invoke",
+      "product": "Functions",
+      "path": "backend",
+      "endpoint": "https://project-silk-eta-17.vercel.app/api/hello",
+      "httpCode": "200",
+      "totalSec": 0.671375,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "www",
+      "name": "Marketing site",
+      "product": "Dashboard",
+      "path": "transport",
+      "endpoint": "https://vercel.com/",
+      "httpCode": "200",
+      "totalSec": 1.03886,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "api",
+      "name": "REST API",
+      "product": "Vercel API",
+      "path": "transport",
+      "endpoint": "https://api.vercel.com/",
+      "httpCode": "308",
+      "totalSec": 1.020383,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "vitals",
+      "name": "Analytics infra",
+      "product": "Analytics",
+      "path": "transport",
+      "endpoint": "https://vitals.vercel-insights.com/",
+      "httpCode": "302",
+      "totalSec": 1.290029,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "dns-vercel",
+      "name": "DNS vercel.app",
+      "product": "DNS",
+      "path": "transport",
+      "endpoint": "dns:vercel.app",
+      "httpCode": "dns",
+      "totalSec": 0.008867,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "site-edge",
+      "name": "Deployed site edge",
+      "product": "Hosting / CDN",
+      "path": "transport",
+      "endpoint": "https://project-silk-eta-17.vercel.app/",
+      "httpCode": "200",
+      "totalSec": 0.492794,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "dns-site",
+      "name": "DNS site host",
+      "product": "DNS",
+      "path": "transport",
+      "endpoint": "dns:project-silk-eta-17.vercel.app",
+      "httpCode": "dns",
+      "totalSec": 0.008556,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    }
+  ]
+}

@@ -82,6 +82,33 @@ jobs:
           npm ci
           npm run probe:all || echo "netlify probe reported issues (recorded in results)"
 
+      - name: Vercel probe (deployed site + Storage REST)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_SITE_URL: ${{ vars.VERCEL_SITE_URL }}
+          BLOB_REGION: ${{ vars.BLOB_REGION }}
+          REDIS_REGION: ${{ vars.REDIS_REGION }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
+          BLOB_STORE_ID: ${{ vars.BLOB_STORE_ID }}
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+          pub_READ_WRITE_TOKEN: ${{ secrets.pub_READ_WRITE_TOKEN }}
+          pub_STORE_ID: ${{ secrets.pub_STORE_ID }}
+        run: |
+          # Probes the real Vercel demo site from this mainland runner and writes
+          # results/<date>/vercel.{json,md} + results/vercel-latest.json. Skips
+          # cleanly until the site coordinates are configured as repo variables.
+          if [ -z "$VERCEL_SITE_URL" ]; then
+            echo "VERCEL_SITE_URL not set; skipping Vercel probe"; exit 0
+          fi
+          cd vercel-demo
+          npm ci
+          npm run probe:all || echo "vercel probe reported issues (recorded in results)"
+
       - name: Firebase probe (deployed project + Admin SDK)
         env:
           DEMO_USER_PASSWORD: ${{ secrets.DEMO_USER_PASSWORD }}

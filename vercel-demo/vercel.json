@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "",
+  "redirects": [
+    {
+      "source": "/old-report",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/probe-hello",
+      "destination": "/api/hello"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Stackbreak-Probe",
+          "value": "vercel-china"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron-ping",
+      "schedule": "0 5 * * *"
+    }
+  ]
+}

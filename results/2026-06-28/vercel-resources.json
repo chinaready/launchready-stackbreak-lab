@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-06-28T09:18:04Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-beijing-h",
+    "runnerHost": "launchready.cn"
+  },
+  "demoSiteUrl": "https://project-silk-eta-17.vercel.app",
+  "storage": {
+    "blobRegion": "Hong Kong",
+    "redisRegion": "Singapore"
+  },
+  "edge": {
+    "serverRegion": "sin1",
+    "geo": {}
+  },
+  "resources": [
+    {
+      "id": "doc",
+      "name": "HTML document",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/",
+      "httpCode": "200",
+      "bytes": 10160,
+      "ttfbSec": 0.607726,
+      "totalSec": 0.701119,
+      "throughputMbps": 0.116,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "where",
+      "name": "Edge region (/__where)",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/__where?t=1782638285",
+      "httpCode": "200",
+      "bytes": 188,
+      "ttfbSec": 0.521761,
+      "totalSec": 0.521877,
+      "throughputMbps": 0.003,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-hello",
+      "name": "Function (hello)",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/api/hello",
+      "httpCode": "200",
+      "bytes": 81,
+      "ttfbSec": 0.698281,
+      "totalSec": 0.698412,
+      "throughputMbps": 0.001,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "edge",
+      "name": "Edge Middleware (banner)",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/banner",
+      "httpCode": "200",
+      "bytes": 120,
+      "ttfbSec": 0.591703,
+      "totalSec": 0.591772,
+      "throughputMbps": 0.002,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-kv",
+      "name": "Function + KV",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/api/kv-ping",
+      "httpCode": "200",
+      "bytes": 101,
+      "ttfbSec": 1.201201,
+      "totalSec": 1.20132,
+      "throughputMbps": 0.001,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "raw-1mb",
+      "name": "Raw asset ~1 MB",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/weight-1mb.png",
+      "httpCode": "200",
+      "bytes": 999063,
+      "ttfbSec": 1.160785,
+      "totalSec": 1.762145,
+      "throughputMbps": 4.536,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "raw-3mb",
+      "name": "Raw asset ~3 MB",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/weight-3mb.png",
+      "httpCode": "200",
+      "bytes": 3073303,
+      "ttfbSec": 1.133737,
+      "totalSec": 1.964184,
+      "throughputMbps": 12.517,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "raw-6mb",
+      "name": "Raw asset ~6 MB",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/weight-6mb.png",
+      "httpCode": "200",
+      "bytes": 6000130,
+      "ttfbSec": 1.409698,
+      "totalSec": 3.443117,
+      "throughputMbps": 13.941,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "raw-source",
+      "name": "Raw source 2400",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/scene-2400.png",
+      "httpCode": "200",
+      "bytes": 2663877,
+      "ttfbSec": 1.551542,
+      "totalSec": 2.478279,
+      "throughputMbps": 8.599,
+      "verdict": "Reachable"
+    }
+  ]
+}

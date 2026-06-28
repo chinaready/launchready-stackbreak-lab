@@ -194,6 +194,47 @@
       </div>
     </section>
 
+    <!-- ===================== VERCEL DEEP DIVE ===================== -->
+    <section class="block block--surface" id="vercel">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Deep dive</p>
+        <h2 class="block__title reveal" data-delay="1">The Vercel stack, end to end<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          A real Vercel site &mdash;
+          <a href="https://project-silk-eta-17.vercel.app/" target="_blank" rel="noopener">project-silk-eta-17.vercel.app</a>
+          (Hosting, Functions, Edge Middleware, Cron, Blob, KV) &mdash; is probed from the same node.
+          <strong><span data-count="vc-blocked">—</span> of <span data-count="vc-total">—</span></strong>
+          probes are currently blocked. Blob store: <strong>Hong Kong</strong>; Redis: <strong>Singapore</strong>.
+          Open the <a href="../public/results/vercel.html">Vercel results</a>.
+        </p>
+        <div class="dep-grid">
+          <a class="dep-card" data-vcpath="frontend" href="../public/results/vercel.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser on *.vercel.app</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vcpath="backend" href="../public/results/vercel.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">API + Storage REST</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vcpath="transport" href="../public/results/vercel.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VERCEL LATENCY / EDGE ===================== -->
+    <section class="block block--light" id="vercel-latency">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Latency</p>
+        <h2 class="block__title reveal" data-delay="1">Where China lands on Vercel<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          The same demo site is measured for page-resource weight and load latency.
+          The Vercel edge serving these requests reports
+          <strong><span data-count-text="vcres-region">—</span></strong>.
+          <strong><span data-count="vcres-total">—</span></strong> resources measured;
+          heaviest load <strong><span data-count-text="vcres-worst">—</span></strong>.
+          See the <a href="../public/results/vercel.html#vercel-latency">latency results</a>.
+        </p>
+        <div class="dep-grid">
+          <a class="dep-card" data-vlrkind="endpoint" href="../public/results/vercel.html#vercel-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vlrkind="raw" href="../public/results/vercel.html#vercel-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== CLOSING CTA ===================== -->
     <section class="block block--cta">
       <div class="home-wrap">
@@ -227,6 +268,6 @@
     </div>
   </footer>
 
-  <script src="../public/assets/home.js?v=20260625e"></script>
+  <script src="../public/assets/home.js?v=20260628b"></script>
 </body>
 </html>
