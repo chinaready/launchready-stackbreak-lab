@@ -1,0 +1,41 @@
+# Stack Break Lab
+
+> Open lab that measures which foreign web-stack dependencies break first in mainland China — live, reproducible verdicts from real Beijing infrastructure.
+
+Stack Break Lab loads each third-party dependency the way a product would, from a mainland China node on launchready.cn, then reports Blocked, Degraded, or Reachable. Maintained by Chinaready.
+
+## Key pages
+
+- [Home](https://stackbreak.launchready.cn/demos/): Lab overview and live verdict summary
+- [Beijing View](https://stackbreak.launchready.cn/demos/beijing-view.html): Mainland-recorded snapshots of each dependency
+- [Latest results](https://stackbreak.launchready.cn/public/results/): Machine-readable verdict index
+- [Firebase results](https://stackbreak.launchready.cn/public/results/firebase.html)
+- [Netlify results](https://stackbreak.launchready.cn/public/results/netlify.html)
+- [Vercel results](https://stackbreak.launchready.cn/public/results/vercel.html)
+
+## Single-dependency demos
+
+- [Google Fonts](https://stackbreak.launchready.cn/demos/fonts-google.html)
+- [Material Symbols](https://stackbreak.launchready.cn/demos/icons-material.html)
+- [Adobe Fonts (Typekit)](https://stackbreak.launchready.cn/demos/fonts-typekit.html)
+- [Google reCAPTCHA](https://stackbreak.launchready.cn/demos/recaptcha.html)
+- [Auth0](https://stackbreak.launchready.cn/demos/auth0-lock.html)
+- [Google Sign-In](https://stackbreak.launchready.cn/demos/google-signin.html)
+- [Google Tag Manager](https://stackbreak.launchready.cn/demos/gtm.html)
+- [Google Analytics 4](https://stackbreak.launchready.cn/demos/ga4.html)
+- [YouTube embed](https://stackbreak.launchready.cn/demos/youtube-embed.html)
+- [Google Maps](https://stackbreak.launchready.cn/demos/google-maps.html)
+- [Vimeo embed](https://stackbreak.launchready.cn/demos/vimeo-embed.html)
+
+## Related
+
+- [Chinaready](https://chinaready.co): China market-entry partner for global software companies
+- [Chinaready Landscape](https://landscape.chinaready.co/): China-market developer services landscape
+- [Companion article](https://chinaready.co/insights/which-parts-of-your-stack-break-first/)
+- [Source on GitHub](https://github.com/chinaready/launchready-stackbreak-lab)
+
+## Notes for assistants
+
+- Evidence is a single-node mainland snapshot; results vary by carrier, region, and time.
+- Do not treat a run as a legal or compliance conclusion.
+- Canonical host: https://stackbreak.launchready.cn

@@ -5,6 +5,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Google Maps — Stack Break Lab</title>
+  <meta name="description" content="Single-dependency demo: load the Google Maps JavaScript API from mainland China and try to render a map of Shanghai." />
+  <link rel="canonical" href="https://stackbreak.launchready.cn/demos/google-maps.html" />
+  <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stackbreak.launchready.cn/demos/google-maps.html" />
+  <meta property="og:site_name" content="Stack Break Lab" />
+  <meta property="og:title" content="Google Maps — Stack Break Lab" />
+  <meta property="og:description" content="Single-dependency demo: load the Google Maps JavaScript API from mainland China and try to render a map of Shanghai." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Google Maps — Stack Break Lab" />
+  <meta name="twitter:description" content="Single-dependency demo: load the Google Maps JavaScript API from mainland China and try to render a map of Shanghai." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Google Maps — Stack Break Lab",
+      "description": "Single-dependency demo: load the Google Maps JavaScript API from mainland China and try to render a map of Shanghai.",
+      "url": "https://stackbreak.launchready.cn/demos/google-maps.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Stack Break Lab",
+        "url": "https://stackbreak.launchready.cn/demos/"
+      }
+    }
+  </script>
   <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
   <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
@@ -12,7 +37,7 @@
   <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
   <meta name="theme-color" content="#0C1E3E" />
   <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="../public/assets/lab.css?v=20260626a" />
+  <link rel="stylesheet" href="../public/assets/lab.css?v=20260717a" />
   <style>
     #map { width: 100%; height: 320px; border-radius: var(--cr-radius-card); background: var(--cr-surface); }
   </style>
@@ -68,11 +93,36 @@
     </p>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <img class="site-footer__logo" src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="130" height="26" />
-      <p class="disclaimer">Single-node snapshot. Results vary by carrier, region, and time.</p>
-      <p class="site-footer__links"><a href="./index.html">All demos</a> &middot; <a href="../public/results/index.html">Latest results</a> &middot; <a href="https://github.com/chinaready/launchready-stackbreak-lab">GitHub</a></p>
+  <footer class="site-footer" role="contentinfo">
+    <div class="cr-footer-inner">
+      <div class="cr-footer-grid">
+        <section class="cr-footer-brand">
+          <a href="https://chinaready.co" class="cr-footer-logo-link" aria-label="Chinaready home">
+            <img src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="180" height="36" />
+          </a>
+          <p class="cr-footer-description">Stack Break Lab measures which foreign web-stack dependencies break from mainland China — live verdicts from launchready.cn.</p>
+        </section>
+        <section class="cr-footer-column">
+          <h2 class="cr-footer-heading">Chinaready</h2>
+          <ul class="cr-footer-list">
+            <li><a href="https://chinaready.co/intake" class="cr-footer-link" target="_blank" rel="noreferrer">Start Assessment</a></li>
+            <li><a href="https://chinaready.co/book-call" class="cr-footer-link" target="_blank" rel="noreferrer">Book a Call</a></li>
+            <li><a href="https://chinaready.co/services/" class="cr-footer-link" target="_blank" rel="noreferrer">All Services</a></li>
+          </ul>
+        </section>
+        <section class="cr-footer-column">
+          <h2 class="cr-footer-heading">Landscape</h2>
+          <ul class="cr-footer-list">
+            <li><a href="https://landscape.chinaready.co/" class="cr-footer-link" target="_blank" rel="noreferrer">Explore</a></li>
+            <li><a href="https://landscape.chinaready.co/guide" class="cr-footer-link" target="_blank" rel="noreferrer">Guide</a></li>
+            <li><a href="https://github.com/chinaready/chinaready-landscape" class="cr-footer-link" target="_blank" rel="noreferrer">GitHub</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="cr-footer-bottom">
+        <p class="cr-footer-disclaimer">Results change with carrier, region, and time. Each run is a single-node snapshot, not a legal or compliance conclusion.</p>
+        <p class="cr-footer-powered"><a href="https://github.com/chinaready/launchready-stackbreak-lab" target="_blank" rel="noopener noreferrer">Source on GitHub</a></p>
+      </div>
     </div>
   </footer>
   <script src="../public/assets/demo.js"></script>

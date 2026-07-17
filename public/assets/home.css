@@ -16,8 +16,8 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 /* Align the shared header/footer container with the wider landing sections. */
-.home .site-header .wrap,
-.home .site-footer .wrap { max-width: 1180px; }
+.home .site-header .wrap { max-width: 1180px; }
+.home .cr-footer-inner { max-width: 1180px; }
 .home .brand__lab { color: #fff; }
 .home .brand__sep { background: rgba(255, 255, 255, 0.22); }
 .home .tagline { color: var(--cr-on-dark-secondary); }

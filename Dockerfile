@@ -12,6 +12,7 @@ FROM ${NGINX_IMAGE}
 COPY demos/   /usr/share/nginx/html/demos/
 COPY public/  /usr/share/nginx/html/public/
 COPY results/ /usr/share/nginx/html/results/
+COPY robots.txt sitemap.xml llms.txt /usr/share/nginx/html/
 
 # Server config (redirects + no-store for JSON).
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
