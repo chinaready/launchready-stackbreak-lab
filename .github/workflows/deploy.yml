@@ -13,6 +13,9 @@ on:
       - 'Dockerfile'
       - 'docker-compose.prod.yml'
       - 'deploy/nginx.conf'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'llms.txt'
   workflow_dispatch:
 
 concurrency:
