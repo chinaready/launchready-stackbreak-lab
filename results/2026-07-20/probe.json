@@ -64,8 +64,8 @@
       "demoPath": "/demos/recaptcha.html",
       "symptom": "The CAPTCHA widget never renders, so forms and sign-up cannot be submitted.",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.001137,
       "curlExit": 28,
       "dnsResolved": true,
@@ -81,7 +81,7 @@
       "symptom": "The login widget stalls or loads slowly, delaying or blocking sign-in.",
       "httpCode": "200",
       "connectSec": 0.378209,
-      "sslSec": 0.50882,
+      "sslSec": 0.508820,
       "totalSec": 1.976928,
       "curlExit": 0,
       "dnsResolved": true,
@@ -96,8 +96,8 @@
       "demoPath": "/demos/google-signin.html",
       "symptom": "The Google sign-in button never appears, locking out that login path.",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.002079,
       "curlExit": 28,
       "dnsResolved": true,
@@ -130,7 +130,7 @@
       "httpCode": "200",
       "connectSec": 0.003371,
       "sslSec": 0.143515,
-      "totalSec": 1.53373,
+      "totalSec": 1.533730,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -144,8 +144,8 @@
       "demoPath": "/demos/youtube-embed.html",
       "symptom": "The video area stays blank/black — player chrome and thumbnail never load.",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.002324,
       "curlExit": 28,
       "dnsResolved": true,
@@ -160,9 +160,9 @@
       "demoPath": "/demos/google-maps.html",
       "symptom": "The map collapses into an empty grey box with no tiles or controls.",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
-      "totalSec": 10.00255,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
+      "totalSec": 10.002550,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -176,93 +176,12 @@
       "demoPath": "/demos/vimeo-embed.html",
       "symptom": "The Vimeo player stays blank — the embed iframe never finishes loading.",
       "httpCode": "000",
-      "connectSec": 0,
-      "sslSec": 0,
+      "connectSec": 0.000000,
+      "sslSec": 0.000000,
       "totalSec": 10.002753,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
-    }
-  ],
-  "browser": [
-    {
-      "id": "google-fonts",
-      "demoPath": "/demos/fonts-google.html",
-      "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-07-19/screenshots/google-fonts.png"
-    },
-    {
-      "id": "material-symbols",
-      "demoPath": "/demos/icons-material.html",
-      "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-07-19/screenshots/material-symbols.png"
-    },
-    {
-      "id": "adobe-typekit",
-      "demoPath": "/demos/fonts-typekit.html",
-      "failedRequests": [
-        "https://use.typekit.net/abcdefg.css"
-      ],
-      "verdict": "Degraded",
-      "screenshotPath": "/results/2026-07-19/screenshots/adobe-typekit.png"
-    },
-    {
-      "id": "recaptcha",
-      "demoPath": "/demos/recaptcha.html",
-      "failedRequests": [],
-      "verdict": "Blocked",
-      "screenshotPath": "/results/2026-07-19/screenshots/recaptcha.png"
-    },
-    {
-      "id": "auth0",
-      "demoPath": "/demos/auth0-lock.html",
-      "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-07-19/screenshots/auth0.png"
-    },
-    {
-      "id": "google-signin",
-      "demoPath": "/demos/google-signin.html",
-      "failedRequests": [],
-      "verdict": "Blocked",
-      "screenshotPath": "/results/2026-07-19/screenshots/google-signin.png"
-    },
-    {
-      "id": "gtm",
-      "demoPath": "/demos/gtm.html",
-      "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-07-19/screenshots/gtm.png"
-    },
-    {
-      "id": "ga4",
-      "demoPath": "/demos/ga4.html",
-      "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-07-19/screenshots/ga4.png"
-    },
-    {
-      "id": "youtube",
-      "demoPath": "/demos/youtube-embed.html",
-      "failedRequests": [],
-      "verdict": "Blocked",
-      "screenshotPath": "/results/2026-07-19/screenshots/youtube.png"
-    },
-    {
-      "id": "google-maps",
-      "demoPath": "/demos/google-maps.html",
-      "failedRequests": [],
-      "verdict": "Blocked",
-      "screenshotPath": "/results/2026-07-19/screenshots/google-maps.png"
-    },
-    {
-      "id": "vimeo",
-      "demoPath": "/demos/vimeo-embed.html",
-      "failedRequests": [],
-      "verdict": "Blocked",
-      "screenshotPath": "/results/2026-07-19/screenshots/vimeo.png"
     }
   ]
 }
