@@ -20,6 +20,6 @@
     "serve": "docker compose up --build"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.0"
+    "@playwright/test": "^1.62.0"
   }
 }
