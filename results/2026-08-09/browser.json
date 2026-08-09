@@ -1,0 +1,151 @@
+{
+  "generatedAt": "2026-08-09T22:40:33.950Z",
+  "browser": [
+    {
+      "id": "google-fonts",
+      "name": "Google Fonts",
+      "category": "fonts",
+      "demoPath": "/demos/fonts-google.html",
+      "domain": "fonts.googleapis.com",
+      "failedRequests": [],
+      "okRequests": [
+        "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      ],
+      "slowestMs": 0,
+      "verdict": "Reachable",
+      "screenshotPath": "/results/2026-08-09/screenshots/google-fonts.png"
+    },
+    {
+      "id": "material-symbols",
+      "name": "Material Symbols",
+      "category": "fonts",
+      "demoPath": "/demos/icons-material.html",
+      "domain": "fonts.googleapis.com",
+      "failedRequests": [],
+      "okRequests": [
+        "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      ],
+      "slowestMs": 0,
+      "verdict": "Reachable",
+      "screenshotPath": "/results/2026-08-09/screenshots/material-symbols.png"
+    },
+    {
+      "id": "adobe-typekit",
+      "name": "Adobe Fonts (Typekit)",
+      "category": "fonts",
+      "demoPath": "/demos/fonts-typekit.html",
+      "domain": "use.typekit.net",
+      "failedRequests": [
+        "https://use.typekit.net/abcdefg.css"
+      ],
+      "okRequests": [
+        "https://use.typekit.net/abcdefg.css"
+      ],
+      "slowestMs": 0,
+      "verdict": "Degraded",
+      "screenshotPath": "/results/2026-08-09/screenshots/adobe-typekit.png"
+    },
+    {
+      "id": "recaptcha",
+      "name": "Google reCAPTCHA",
+      "category": "auth",
+      "demoPath": "/demos/recaptcha.html",
+      "domain": "www.google.com",
+      "failedRequests": [],
+      "okRequests": [],
+      "slowestMs": 0,
+      "verdict": "Blocked",
+      "screenshotPath": "/results/2026-08-09/screenshots/recaptcha.png"
+    },
+    {
+      "id": "auth0",
+      "name": "Auth0",
+      "category": "auth",
+      "demoPath": "/demos/auth0-lock.html",
+      "domain": "cdn.auth0.com",
+      "failedRequests": [],
+      "okRequests": [
+        "https://cdn.auth0.com/js/lock/11.34/lock.min.js"
+      ],
+      "slowestMs": 0,
+      "verdict": "Reachable",
+      "screenshotPath": "/results/2026-08-09/screenshots/auth0.png"
+    },
+    {
+      "id": "google-signin",
+      "name": "Google Sign-In",
+      "category": "auth",
+      "demoPath": "/demos/google-signin.html",
+      "domain": "accounts.google.com",
+      "failedRequests": [],
+      "okRequests": [],
+      "slowestMs": 0,
+      "verdict": "Blocked",
+      "screenshotPath": "/results/2026-08-09/screenshots/google-signin.png"
+    },
+    {
+      "id": "gtm",
+      "name": "Google Tag Manager",
+      "category": "analytics",
+      "demoPath": "/demos/gtm.html",
+      "domain": "www.googletagmanager.com",
+      "failedRequests": [],
+      "okRequests": [
+        "https://www.googletagmanager.com/gtm.js?id=GTM-MR8ZL58Z"
+      ],
+      "slowestMs": 0,
+      "verdict": "Reachable",
+      "screenshotPath": "/results/2026-08-09/screenshots/gtm.png"
+    },
+    {
+      "id": "ga4",
+      "name": "Google Analytics 4",
+      "category": "analytics",
+      "demoPath": "/demos/ga4.html",
+      "domain": "www.googletagmanager.com",
+      "failedRequests": [],
+      "okRequests": [
+        "https://www.googletagmanager.com/gtag/js?id=G-P6BVQ3VWTC"
+      ],
+      "slowestMs": 0,
+      "verdict": "Reachable",
+      "screenshotPath": "/results/2026-08-09/screenshots/ga4.png"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube embed",
+      "category": "embeds",
+      "demoPath": "/demos/youtube-embed.html",
+      "domain": "www.youtube.com",
+      "failedRequests": [],
+      "okRequests": [],
+      "slowestMs": 0,
+      "verdict": "Blocked",
+      "screenshotPath": "/results/2026-08-09/screenshots/youtube.png"
+    },
+    {
+      "id": "google-maps",
+      "name": "Google Maps",
+      "category": "embeds",
+      "demoPath": "/demos/google-maps.html",
+      "domain": "maps.googleapis.com",
+      "failedRequests": [],
+      "okRequests": [],
+      "slowestMs": 0,
+      "verdict": "Blocked",
+      "screenshotPath": "/results/2026-08-09/screenshots/google-maps.png"
+    },
+    {
+      "id": "vimeo",
+      "name": "Vimeo embed",
+      "category": "embeds",
+      "demoPath": "/demos/vimeo-embed.html",
+      "domain": "player.vimeo.com",
+      "failedRequests": [],
+      "okRequests": [],
+      "slowestMs": 0,
+      "verdict": "Blocked",
+      "screenshotPath": "/results/2026-08-09/screenshots/vimeo.png"
+    }
+  ]
+}
