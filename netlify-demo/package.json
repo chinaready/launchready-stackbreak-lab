@@ -17,6 +17,6 @@
     "probe:all": "bash probe/run-all.sh"
   },
   "dependencies": {
-    "@netlify/blobs": "^8.2.0"
+    "@netlify/blobs": "^11.0.0"
   }
 }
