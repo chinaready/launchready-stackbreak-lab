@@ -419,26 +419,28 @@ table.results tbody tr:hover { background: var(--cr-surface); }
 }
 
 /* --------------------------------------------------------------------------
-   Footer — Landscape-aligned three-column navy closer (cr-footer-*)
+   Footer — utility-landing four-column navy closer + ICP/PSB filing
+   (aligned with gfonts / fd-cdn / wp-cdn; see utility-landing-footer IA)
    -------------------------------------------------------------------------- */
 .site-footer {
   background: var(--cr-primary);
   color: var(--cr-on-dark-secondary);
   margin-top: auto;
+  padding: 56px 0 28px;
 }
 .cr-footer-inner {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 14px 24px 28px;
+  padding: 0 24px;
 }
 .cr-footer-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(28px, 5vw, 88px);
+  grid-template-columns: minmax(220px, 1.2fr) repeat(3, minmax(140px, 1fr));
+  gap: clamp(32px, 4vw, 52px);
   align-items: start;
-  padding: 18px 0 34px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 .cr-footer-brand,
 .cr-footer-column {
@@ -447,89 +449,116 @@ table.results tbody tr:hover { background: var(--cr-surface); }
 .cr-footer-logo-link {
   display: inline-flex;
   align-items: center;
-  margin: 0 0 22px;
+  margin: 0;
   border-bottom: 0;
+  text-decoration: none;
 }
 .cr-footer-logo {
   display: block;
-  height: 36px;
+  height: 28px;
   width: auto;
 }
 .cr-footer-description {
-  max-width: 330px;
-  margin: 0;
+  max-width: 320px;
+  margin: 16px 0 0;
+  color: var(--cr-on-dark-tertiary, #7f95b8);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cr-footer-description a {
   color: var(--cr-on-dark-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-bottom: 0;
+}
+.cr-footer-description a:hover {
+  color: #fff;
+}
+.cr-footer-meta {
+  margin: 16px 0 0;
+  color: var(--cr-on-dark-tertiary, #7f95b8);
   font-size: 13px;
-  line-height: 1.55;
+  line-height: 1.5;
+}
+.cr-footer-meta .mono {
+  font-family: var(--cr-font-mono, ui-monospace, monospace);
+  font-size: 0.95em;
 }
 .cr-footer-heading {
   margin: 0 0 18px;
-  color: var(--cr-on-dark-primary);
+  color: #fff;
   font-size: 14px;
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 .cr-footer-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .cr-footer-link {
   display: inline-flex;
-  color: var(--cr-on-dark-secondary);
+  color: #b7c2d6;
   font-size: 13px;
   line-height: 1.4;
   text-decoration: none;
   border-bottom: 0;
+  transition: color var(--cr-dur-fast) var(--cr-ease-standard);
 }
 .cr-footer-link:hover {
   color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
-.cr-footer-bottom {
+.cr-footer-filing {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  padding: 20px 0 0;
-}
-.cr-footer-disclaimer {
-  margin: 0;
-  max-width: 52rem;
-  color: var(--cr-on-dark-secondary);
+  gap: 8px;
+  margin: 24px 0 0;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: var(--cr-on-dark-tertiary, #7f95b8);
+  text-align: center;
 }
-.cr-footer-powered {
-  margin: 0;
-  color: var(--cr-on-dark-secondary);
-  font-size: 12px;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-.cr-footer-powered a {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.cr-footer-filing a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
   border-bottom: 0;
 }
-.cr-footer-powered a:hover {
-  color: #fff;
+.cr-footer-filing a:hover {
+  color: inherit;
+  text-decoration: none;
 }
-@media (max-width: 720px) {
+.cr-footer-filing img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+@media (max-width: 900px) {
+  .cr-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+@media (max-width: 600px) {
   .cr-footer-inner {
-    padding: 6px 18px 20px;
+    padding: 0 18px;
   }
   .cr-footer-grid {
-    grid-template-columns: 1fr;
-    gap: 26px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
   }
-  .cr-footer-powered {
-    white-space: normal;
+}
+@media (max-width: 480px) {
+  .cr-footer-grid {
+    grid-template-columns: 1fr;
   }
 }
 
