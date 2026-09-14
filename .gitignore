@@ -25,3 +25,6 @@ npm-debug.log*
 
 # Intermediate per-service browser findings (merged into browser.json / latest.json)
 results/*/findings/
+
+# Local Cursor IDE
+.cursor/
