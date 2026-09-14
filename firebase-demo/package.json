@@ -17,6 +17,6 @@
     "probe:all": "bash probe/run-all.sh"
   },
   "dependencies": {
-    "firebase-admin": "^13.0.0"
+    "firebase-admin": "^14.3.0"
   }
 }
