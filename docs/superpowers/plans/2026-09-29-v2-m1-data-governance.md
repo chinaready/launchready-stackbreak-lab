@@ -544,7 +544,7 @@ In `package.json` `scripts`, after `"probe"`:
 
 ```json
     "validate:targets": "node scripts/validate-targets.mjs",
-    "test:unit": "node --test tests/unit/",
+    "test:unit": "node --test tests/unit/*.test.mjs",
 ```
 
 - [ ] **Step 2: Create the workflow**
