@@ -1,0 +1,5 @@
+{
+  "$schema": "./targets.schema.json",
+  "description": "Community-submitted probe targets. Network-only (curl + dig, no Playwright, no demo page). Merged into the weekly mainland probe automatically after CI validation.",
+  "services": []
+}
