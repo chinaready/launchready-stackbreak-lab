@@ -280,7 +280,7 @@ body.home .btn--primary, .btn--primary {
 .lat__fill.Blocked { background: var(--v-blocked); }
 .lat__fill.Degraded { background: var(--v-degraded); }
 .lat__fill.Reachable { background: var(--v-reachable); }
-.bv-card, .bv-gallery > *, #bv-gallery > * {
+.bv-card {
   background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
@@ -492,7 +492,6 @@ main.wrap code, main.wrap .mono {
 .bv-card { border-radius: var(--radius-card); box-shadow: var(--shadow-card); border: 1px solid var(--cr-border); }
 .bv-card.Blocked  { border-left: 4px solid var(--v-blocked); }
 .bv-card.Degraded { border-left: 4px solid var(--v-degraded); }
-main.wrap .bv-card__shot img { border: none; border-radius: 0; }
 .bv-card__shot { background: var(--cr-surface); }
 .bv-card__evidence { padding: 20px; gap: 8px; }
 .bv-card__head h3 { font-size: 18px; font-weight: 600; color: var(--cr-navy); }
@@ -511,7 +510,6 @@ main.wrap .bv-card__shot img { border: none; border-radius: 0; }
 /* Live-comparison strip inside the card: mist band, square media. */
 .bv-card__live { padding: 16px 20px 20px; background: var(--cr-surface); }
 main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 1px solid var(--cr-border); background: #fff; }
-
 /* ===== v2.3.5 beijing-view — structural fixes (2026-10-01) =====
    The snapshot IS the content: cards flip to full-width media on top with
    the evidence column beneath (the old 1.2fr/1fr split cropped 1280px-wide
@@ -520,11 +518,7 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 
 /* Cards: media on top at natural ratio, evidence below. */
 .bv-card { display: grid; grid-template-columns: 1fr; }
-.bv-card__shot { min-height: 0; background: var(--cr-surface); }
-main.wrap .bv-card__shot img {
-  height: auto; object-fit: initial; object-position: initial;
-  border: none; border-radius: 0; display: block; width: 100%;
-}
+.bv-card__shot { min-height: 0; }
 .bv-card__shot-missing { padding: 48px 20px; }
 
 /* Evidence column: title row, then a roomier metrics grid. */
@@ -549,3 +543,31 @@ main.wrap .bv-card__shot img {
 @media (max-width: 720px) {
   .bv-card__metrics { grid-template-columns: auto auto; }
 }
+
+/* ===== v2.3.6 beijing-view — solid color bands per section, inset square media (2026-10-01) =====
+   Each category is a full-bleed solid band (alternating white / soft mist,
+   per the spec's section rhythm) with generous vertical breathing; the
+   label and cards re-center inside the 1200px column. Snapshots are inset
+   with padding, square-cornered, hairline-framed — never full-width. */
+
+.bv-cat {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 56px 24px 64px;
+}
+.bv-cat:nth-of-type(odd)  { background: var(--cr-surface); }
+.bv-cat:nth-of-type(even) { background: #ffffff; }
+.bv-cat > * { max-width: var(--page-max); margin-left: auto; margin-right: auto; }
+.bv-cat__label { margin: 0 auto 20px; }
+
+/* Snapshots: inset, square, framed — not full-width, no radius.
+   Single consolidated rule (higher specificity; the legacy duplicates it
+   replaced kept fighting each other in the cascade). */
+.bv-card__shot { padding: 20px 20px 0; background: #fff; }
+.bv-card .bv-card__shot img {
+  width: 100%; max-width: 920px; margin: 0 auto; height: auto;
+  object-fit: initial; object-position: initial;
+  border-radius: 0; border: 1px solid var(--cr-border); display: block;
+}
+.bv-card__shot-missing { padding: 40px 20px; }
+.bv-card__evidence { padding: 20px 24px 24px; }
