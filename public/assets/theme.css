@@ -368,3 +368,84 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 
 /* Beijing view: gallery cards spacing */
 .bv-card { padding: 16px; }
+
+/* ===== v2.3.3 secondary pages rebuild: beijing-view, results, platform kits, demos (2026-10-01) ===== */
+
+/* --- Unified page-header pattern (eyebrow pill + h1 + lede) on every
+       non-dashboard page --- */
+main.wrap { max-width: var(--page-max); margin: 0 auto; padding: 56px 24px 96px; }
+main.wrap > .eyebrow, .bv-hero .eyebrow {
+  display: inline-block;
+  background: rgba(0, 91, 172, 0.10); color: var(--cr-blue);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: var(--radius-tag); margin: 0 0 16px;
+}
+main.wrap > h1 {
+  font-size: clamp(28px, 3.4vw, 32px); line-height: 1.25; font-weight: 700;
+  color: var(--cr-navy); letter-spacing: -0.015em; margin: 0 0 12px;
+}
+main.wrap > h1 .period, main.wrap .period { color: var(--cr-blue); }
+main.wrap > .lede { font-size: 17px; line-height: 1.6; color: var(--cr-text2); max-width: 720px; margin: 0 0 40px; }
+main.wrap h2 {
+  font-size: 20px; font-weight: 600; color: var(--cr-navy);
+  margin: 56px 0 16px; letter-spacing: -0.01em;
+}
+/* Sticky-header offset for anchored sections (#frontend, #backend, ...) */
+main [id] { scroll-margin-top: 96px; }
+
+/* --- Beijing view: light hero band, card heartbeat, gallery rhythm --- */
+.bv-hero {
+  background: #fff; color: var(--cr-text); padding: 0 0 8px;
+}
+.bv-hero .lede { margin-bottom: 24px; }
+.bv-hb {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px 24px; margin: 24px 0 8px;
+  color: var(--cr-text); display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center;
+}
+.bv-cat { margin: 32px 0; }
+.bv-cat h2 { margin: 24px 0 12px; }
+.bv-grid { gap: 16px; }
+.bv-card {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); overflow: hidden; margin: 0;
+}
+.bv-card img { display: block; width: 100%; }
+.bv-card .mono, .bv-card code { font-size: 12.5px; color: var(--cr-text2); }
+.bv-live-ok { color: var(--v-reachable) !important; }
+.bv-live-fail { color: var(--v-blocked) !important; }
+
+/* --- Results viewer: summary band as stat tiles, section rhythm --- */
+.verdict-summary {
+  background: var(--cr-surface); border-radius: var(--radius-container);
+  padding: 24px; margin: 24px 0 40px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;
+}
+.verdict-summary dt { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--cr-text2); margin: 0 0 4px; }
+.verdict-summary dd { margin: 0; font-size: 28px; font-weight: 800; color: var(--cr-navy); font-variant-numeric: tabular-nums; }
+main.wrap .results { margin-top: 8px; }
+main.wrap code, main.wrap .mono {
+  background: var(--cr-surface); border: 1px solid var(--cr-border);
+  border-radius: var(--radius-tag); padding: 1px 6px; font-size: 13px; color: var(--cr-text);
+}
+#browser-root .results { margin-top: 16px; }
+#browser-root img, main.wrap img[alt] {
+  border: 1px solid var(--cr-border); border-radius: var(--radius-btn);
+}
+
+/* --- Platform kit pages (firebase / netlify / vercel) --- */
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 16px 0 32px; }
+.cat-grid > * {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px;
+}
+
+/* --- Demo detail pages --- */
+.demo-stage, .demo-panel {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 28px; margin: 24px 0;
+}
+.demo-cta { margin: 32px 0 0; display: flex; gap: 12px; flex-wrap: wrap; }
+.status { display: inline-flex; align-items: center; gap: 8px; border-radius: var(--radius-tag); padding: 6px 12px; font-size: 13px; font-weight: 600; }
+.meta { color: var(--cr-text2); font-size: 13.5px; }
+.sample { background: var(--cr-surface); border: 1px solid var(--cr-border); border-radius: var(--radius-btn); padding: 16px 20px; }
