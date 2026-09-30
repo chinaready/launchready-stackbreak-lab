@@ -69,7 +69,18 @@ body.home .hero, .hero {
   background: #fff; color: var(--cr-text);
   min-height: 0; padding: 88px 0 0;
 }
-.hero__bg, .hero__grid, .hero__glow, .hero__scan { display: none !important; }
+.hero__bg {
+  display: block !important; position: absolute; inset: 0; pointer-events: none;
+  background-repeat: no-repeat; background-position: right 4% center;
+  background-size: min(620px, 48vw);
+}
+.hero--bg-radar .hero__bg    { background-image: url("../assets/hero-bg-radar.svg"); }
+.hero--bg-circuits .hero__bg { background-image: url("../assets/hero-bg-circuits.svg"); }
+.hero--bg-pulse .hero__bg    { background-image: url("../assets/hero-bg-pulse.svg"); }
+.hero__grid, .hero__glow, .hero__scan { display: none !important; }
+@media (max-width: 980px) {
+  .hero__bg { opacity: 0.5; background-size: min(440px, 70vw); background-position: right 0 top 12%; }
+}
 .home-wrap { padding: 0 24px; }
 .hero__badge, .hero .hero__badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -293,3 +304,50 @@ body.home .btn--primary, .btn--primary {
   .board-tiles { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr; }
 }
+
+/* ===== v2.3.1 stack rhythm + spec polish (2026-10-01) ===== */
+
+/* Stack page: restore paragraph feel — the catalog sits on a mist band so the
+   white cards read as grouped sections with breathing room between them. */
+#catalog { background: var(--cr-surface); padding-top: 72px; padding-bottom: 88px; }
+#catalog .cat-block { margin: 0 0 48px; }
+#catalog .cat-block:last-of-type { margin-bottom: 0; }
+#catalog .cat-block__label {
+  display: flex; align-items: baseline; gap: 8px;
+  padding-bottom: 12px; margin: 0 0 16px;
+  border-bottom: 1px solid var(--cr-border);
+}
+#catalog .cat-block__label small { margin-left: 0; }
+#catalog .catalog-submit { margin-top: 56px; }
+
+/* Ghost link pairing per spec: inside a hero CTA row, the ghost becomes a
+   borderless text link with a trailing arrow — action + alternative. */
+.hero__cta .btn--ghost {
+  background: transparent; border-color: transparent; color: var(--cr-text); padding-left: 8px; padding-right: 8px;
+}
+.hero__cta .btn--ghost::after { content: '\2192'; margin-left: 6px; color: var(--cr-blue); transition: transform .15s ease; }
+.hero__cta .btn--ghost:hover { color: var(--cr-blue); background: transparent; border-color: transparent; transform: none; }
+.hero__cta .btn--ghost:hover::after { transform: translateX(3px); }
+
+/* Focus + selection states (keyboard-visible, brand-tinted) */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--cr-blue); outline-offset: 2px; border-radius: var(--radius-btn);
+}
+::selection { background: rgba(0, 91, 172, 0.16); }
+
+/* Table rhythm: row hover tint, tabular numerals */
+.reports tbody tr, .results tbody tr { transition: background .12s ease; }
+.reports tbody tr:hover, .results tbody tr:hover { background: var(--cr-surface); }
+.reports td, .results td { font-variant-numeric: tabular-nums; }
+
+/* Card micro-interactions stay subtle; typography rhythm tightens */
+.dep-card, .board-tile, .board-cats__item, .step { transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+.board-tile:hover { transform: translateY(-2px); }
+.block__title { max-width: 760px; }
+.block__eyebrow { margin-bottom: 14px; }
+
+/* Demo pages: stage panel breathing */
+.demo-stage, .demo-panel { padding: 24px; }
+
+/* Beijing view: gallery cards spacing */
+.bv-card { padding: 16px; }
