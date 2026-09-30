@@ -1,0 +1,705 @@
+{
+  "schema_version": "mimosa-task-review/v2",
+  "run_id": "20260930T053106646Z-60241-bd0d0292df8c",
+  "run_status": "inconclusive",
+  "errors": [
+    {
+      "stage": "baseline-read",
+      "target": ".github/workflows/validate-targets.yml",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    }
+  ],
+  "coverage": {
+    "schema_version": "mimosa-hook-coverage/v1",
+    "status": "partial",
+    "scope": "hook_observed_diff",
+    "baseline": {
+      "complete": true,
+      "captured_files": 51,
+      "candidate_limit": 5000,
+      "truncated": false,
+      "enumeration_error_count": 0,
+      "snapshot_error_count": 0,
+      "compensated_target_count": 10
+    },
+    "change_tracking": {
+      "touched_observed": 3,
+      "touched_retained": 3,
+      "truncated": false,
+      "bash_mutation": true,
+      "bash_discovered": 11,
+      "bash_discovery_limit": 80,
+      "bash_discovery_truncated": false
+    },
+    "candidates": {
+      "eligible_files": 11,
+      "selected_files": 11,
+      "limit": 20,
+      "truncated": false
+    },
+    "scanning": {
+      "required_files": 5,
+      "scanned_files": 5,
+      "skipped_files": 0,
+      "failed_files": 0,
+      "project_checks_required": 2,
+      "project_checks_completed": 2
+    },
+    "notification": {
+      "eligible_findings": 2,
+      "detailed_findings": 0,
+      "detail_limit": 3,
+      "truncated": true
+    },
+    "reason_counts": {
+      "baseline_snapshot_unreadable": 1,
+      "project_check_failed": 1
+    },
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": ".github/workflows/validate-targets.yml",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": ".github/workflows/validate-targets.yml",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      }
+    ],
+    "reasons_truncated": false
+  },
+  "generated_at": "2026-09-30T05:31:06.646Z",
+  "session_id": "sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656",
+  "target": ".",
+  "revision": "90062cdfb817fcd79c98e948c199a2ebad84db55",
+  "rules_version": "unavailable",
+  "diff_hash": "c305f1ae5054040ff9941e1eeb282e8d30df6b377d16a5414dc47b8d9bc2147c",
+  "diff": {
+    "algorithm": "sha256",
+    "changed_file_count": 11,
+    "changed_files": [
+      {
+        "file": ".github/workflows/validate-targets.yml",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 35
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "e9adae96e3c998bb2b36f5606219efff828f1b69806c354314365e6873c9fed6"
+      },
+      {
+        "file": "firebase-demo/package-lock.json",
+        "ranges": [
+          {
+            "start": 12,
+            "end": 12
+          },
+          {
+            "start": 129,
+            "end": 131
+          },
+          {
+            "start": 135,
+            "end": 135
+          },
+          {
+            "start": 139,
+            "end": 139
+          },
+          {
+            "start": 142,
+            "end": 273
+          },
+          {
+            "start": 279,
+            "end": 281
+          },
+          {
+            "start": 288,
+            "end": 288
+          },
+          {
+            "start": 292,
+            "end": 294
+          },
+          {
+            "start": 298,
+            "end": 298
+          },
+          {
+            "start": 302,
+            "end": 304
+          },
+          {
+            "start": 308,
+            "end": 308
+          },
+          {
+            "start": 312,
+            "end": 314
+          },
+          {
+            "start": 318,
+            "end": 320
+          },
+          {
+            "start": 330,
+            "end": 331
+          },
+          {
+            "start": 334,
+            "end": 334
+          },
+          {
+            "start": 380,
+            "end": 393
+          },
+          {
+            "start": 445,
+            "end": 529
+          },
+          {
+            "start": 688,
+            "end": 690
+          },
+          {
+            "start": 694,
+            "end": 694
+          },
+          {
+            "start": 698,
+            "end": 700
+          },
+          {
+            "start": 703,
+            "end": 705
+          },
+          {
+            "start": 707,
+            "end": 707
+          },
+          {
+            "start": 755,
+            "end": 761
+          },
+          {
+            "start": 763,
+            "end": 766
+          },
+          {
+            "start": 769,
+            "end": 769
+          },
+          {
+            "start": 772,
+            "end": 775
+          },
+          {
+            "start": 779,
+            "end": 779
+          },
+          {
+            "start": 782,
+            "end": 792
+          },
+          {
+            "start": 795,
+            "end": 797
+          },
+          {
+            "start": 800,
+            "end": 800
+          },
+          {
+            "start": 894,
+            "end": 896
+          },
+          {
+            "start": 960,
+            "end": 962
+          },
+          {
+            "start": 1019,
+            "end": 1021
+          },
+          {
+            "start": 1036,
+            "end": 1037
+          },
+          {
+            "start": 1221,
+            "end": 1223
+          },
+          {
+            "start": 1229,
+            "end": 1229
+          },
+          {
+            "start": 1231,
+            "end": 1232
+          },
+          {
+            "start": 1235,
+            "end": 1235
+          },
+          {
+            "start": 1237,
+            "end": 1237
+          },
+          {
+            "start": 1240,
+            "end": 1240
+          },
+          {
+            "start": 1258,
+            "end": 1261
+          },
+          {
+            "start": 1265,
+            "end": 1267
+          },
+          {
+            "start": 1270,
+            "end": 1270
+          },
+          {
+            "start": 1273,
+            "end": 1277
+          },
+          {
+            "start": 1280,
+            "end": 1284
+          },
+          {
+            "start": 1288,
+            "end": 1288
+          },
+          {
+            "start": 1291,
+            "end": 1295
+          },
+          {
+            "start": 1298,
+            "end": 1298
+          },
+          {
+            "start": 1330,
+            "end": 1332
+          },
+          {
+            "start": 1336,
+            "end": 1336
+          },
+          {
+            "start": 1340,
+            "end": 1340
+          },
+          {
+            "start": 1343,
+            "end": 1347
+          },
+          {
+            "start": 1350,
+            "end": 1352
+          },
+          {
+            "start": 1355,
+            "end": 1355
+          },
+          {
+            "start": 1358,
+            "end": 1361
+          },
+          {
+            "start": 1365,
+            "end": 1367
+          },
+          {
+            "start": 1370,
+            "end": 1374
+          },
+          {
+            "start": 1401,
+            "end": 1403
+          },
+          {
+            "start": 1407,
+            "end": 1408
+          },
+          {
+            "start": 1411,
+            "end": 1411
+          },
+          {
+            "start": 1837,
+            "end": 1839
+          },
+          {
+            "start": 1843,
+            "end": 1843
+          },
+          {
+            "start": 1846,
+            "end": 1846
+          },
+          {
+            "start": 1850,
+            "end": 1852
+          },
+          {
+            "start": 1909,
+            "end": 1911
+          },
+          {
+            "start": 1916,
+            "end": 1916
+          },
+          {
+            "start": 1919,
+            "end": 1919
+          },
+          {
+            "start": 2034,
+            "end": 2036
+          },
+          {
+            "start": 2040,
+            "end": 2042
+          },
+          {
+            "start": 2045,
+            "end": 2045
+          },
+          {
+            "start": 2064,
+            "end": 2064
+          },
+          {
+            "start": 2115,
+            "end": 2117
+          },
+          {
+            "start": 2121,
+            "end": 2124
+          },
+          {
+            "start": 2127,
+            "end": 2127
+          },
+          {
+            "start": 2130,
+            "end": 2133
+          },
+          {
+            "start": 2137,
+            "end": 2139
+          },
+          {
+            "start": 2142,
+            "end": 2142
+          },
+          {
+            "start": 2144,
+            "end": 2146
+          },
+          {
+            "start": 2257,
+            "end": 2259
+          },
+          {
+            "start": 2263,
+            "end": 2265
+          },
+          {
+            "start": 2268,
+            "end": 2268
+          }
+        ],
+        "before_hash": "a0e9d5ac3c14081124b3b8bda742c0d968be77379a522c876e4778d76eb489fe",
+        "after_hash": "449e7d7b4c8c95fdc751dc93790b02c1b396bb9bc89ff1fa4c06ff03096da207"
+      },
+      {
+        "file": "firebase-demo/package.json",
+        "ranges": [
+          {
+            "start": 20,
+            "end": 20
+          }
+        ],
+        "before_hash": "7ae4ca81e84ac032e6c676530104dbe44bccf39104b6b2efc5196d61672d95cc",
+        "after_hash": "c9d5790fb978866d544a84bb63084f4aa5a6988d02f688501b3cb790a836ed29"
+      },
+      {
+        "file": "netlify-demo/package-lock.json",
+        "ranges": [
+          {
+            "start": 12,
+            "end": 12
+          },
+          {
+            "start": 38,
+            "end": 40
+          },
+          {
+            "start": 566,
+            "end": 568
+          }
+        ],
+        "before_hash": "83c7d3a489d3b9acad2cc93fabd274cd406f7241b130254638a31d2396ad4c70",
+        "after_hash": "9fc6913afc4ac761f10cc79b30ee833f22a4eeb76351ef9fe61885386fba65d6"
+      },
+      {
+        "file": "netlify-demo/package.json",
+        "ranges": [
+          {
+            "start": 20,
+            "end": 20
+          }
+        ],
+        "before_hash": "21d7f95a85edc91ea04e7feaf4cd74d99c532259e4f5d9045d46ea811d60b2a6",
+        "after_hash": "fe3534f195e7b91df0f7c6283f87f89e8ec5815dddc3aa2cb8cb55556039ca4a"
+      },
+      {
+        "file": "package.json",
+        "ranges": [
+          {
+            "start": 20,
+            "end": 21
+          }
+        ],
+        "before_hash": "b6b2472956c655422e345f5971cd473151e51ae31d4d923bccb8d1e727f6906c",
+        "after_hash": "5fc282c656ea676914cd5558781bd38fbf4f6b1fb194f2a5eb3513fb28a6e396"
+      },
+      {
+        "file": "probe/china-dependency-probe.sh",
+        "ranges": [
+          {
+            "start": 20,
+            "end": 20
+          },
+          {
+            "start": 52,
+            "end": 57
+          },
+          {
+            "start": 66,
+            "end": 67
+          },
+          {
+            "start": 105,
+            "end": 105
+          },
+          {
+            "start": 110,
+            "end": 110
+          },
+          {
+            "start": 115,
+            "end": 115
+          },
+          {
+            "start": 137,
+            "end": 139
+          }
+        ],
+        "before_hash": "44090308fbbf7210fcecad35db14d986737eadc5d6531f12cfa725ab0805ebf5",
+        "after_hash": "9a02ec9249423e802916013fca922cb5c8ee00f4dbb29f40d868b5fd4db74a8b"
+      },
+      {
+        "file": "public/assets/catalog.js",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 157
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "7de1318a347a42f417341c5728ff318570e5eb589a3f32383b276286c40e9b23"
+      },
+      {
+        "file": "public/assets/matrix.js",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 113
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "43923af69c9a9aa0859409d129b570ae74c6aca6325957903d1e78d5a21dcc4f"
+      },
+      {
+        "file": "tests/playwright/catalog.spec.ts",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 70
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "01284e23f3758ef241a17c3b51e1e66bba80ba54b2ad173d2cae1633ce049d0f"
+      },
+      {
+        "file": "tests/playwright/stack-break.spec.ts",
+        "ranges": [
+          {
+            "start": 59,
+            "end": 60
+          }
+        ],
+        "before_hash": "7577150736b51ee44f659baeae7aff6b34e45b37b855f703ed331f9d54b0702d",
+        "after_hash": "f772c0015413b31f69e131c83702574f1ddaf0b5e8029dc8fe9e07f3bc5e6d51"
+      }
+    ]
+  },
+  "timing": {
+    "started_at": "2026-09-30T05:31:05.395Z",
+    "completed_at": "2026-09-30T05:31:06.646Z",
+    "duration_ms": 1251,
+    "measurement": "hook_wall_clock"
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "model_calls": 0,
+    "measurement": "known-zero"
+  },
+  "telemetry": {
+    "schemaVersion": "mimosa-gate-telemetry/v1",
+    "profile": "gate",
+    "operation": "Stop",
+    "outcome": "partial/INCONCLUSIVE",
+    "latencyMs": 1251,
+    "peakMemoryBytes": 195264512,
+    "memoryMeasurement": "max-observed-process-rss",
+    "scannedFiles": 5,
+    "cache": {
+      "hits": 0,
+      "misses": 0,
+      "measurement": "not-applicable"
+    },
+    "denyCount": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "total": 0,
+      "modelCalls": 0,
+      "measurement": "known-zero"
+    }
+  },
+  "finding_count": 2,
+  "rewake_finding_count": 0,
+  "evidence_boundary": {
+    "scan": "candidate",
+    "static_fix_verification": "observed_static_only",
+    "runtime_verification": "not_performed"
+  },
+  "finding_events": [
+    {
+      "finding_id": "mimosa-5c1894347eb2b0d77629f1af",
+      "file": "netlify-demo/package.json",
+      "line": 20,
+      "rule_id": "mimosa.supply.version-range",
+      "severity": "low",
+      "category": "manifest",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-09-30T05:31:06.646Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "3409f14d7cfb77e820b85947d7d7c42492c30d0012399251a8018f3642af4cf6",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-7db38084d90e19fb62ee2a76",
+      "file": "firebase-demo/package.json",
+      "line": 20,
+      "rule_id": "mimosa.supply.version-range",
+      "severity": "low",
+      "category": "manifest",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-09-30T05:31:06.646Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "245f304cc4e3ed7f0e40b1d331ba1e16c59095bca95e8ebb0b8f661471cc5519",
+        "runtime_oracle": false
+      }
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "mimosa-5c1894347eb2b0d77629f1af",
+      "file": "netlify-demo/package.json",
+      "line": 20,
+      "end_line": 20,
+      "rule_id": "mimosa.supply.version-range",
+      "severity": "low",
+      "category": "manifest",
+      "kind": "semgrep",
+      "advisory": false,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "netlify-demo/package.json",
+          "line": 20,
+          "evidence_hash": "3409f14d7cfb77e820b85947d7d7c42492c30d0012399251a8018f3642af4cf6",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-7db38084d90e19fb62ee2a76",
+      "file": "firebase-demo/package.json",
+      "line": 20,
+      "end_line": 20,
+      "rule_id": "mimosa.supply.version-range",
+      "severity": "low",
+      "category": "manifest",
+      "kind": "semgrep",
+      "advisory": false,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "firebase-demo/package.json",
+          "line": 20,
+          "evidence_hash": "245f304cc4e3ed7f0e40b1d331ba1e16c59095bca95e8ebb0b8f661471cc5519",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    }
+  ],
+  "artifacts": {
+    "immutable_report": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656-20260930T053106646Z-60241-bd0d0292df8c.json",
+    "latest_report": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656.json",
+    "history_summary": ".mimosa/history/run-20260930T053106646Z-60241-bd0d0292df8c.json"
+  }
+}

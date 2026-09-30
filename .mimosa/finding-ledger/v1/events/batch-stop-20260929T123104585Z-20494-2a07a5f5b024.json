@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260929T123104585Z-20494-2a07a5f5b024",
+  "runId": "20260929T123104585Z-20494-2a07a5f5b024",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "d06f2c326c5e7a0c329827bac4ec2474eec6bedf",
+  "diffHash": "727d925e815d77fbb4ab6cbe9255005665b2dbaf287b940d2d5e252444196fba",
+  "rulesVersion": "unavailable",
+  "sessionHash": "430b74ed666afcceec3258b9c78b31f467ab6b32720bae0198c8cbed3ecad176",
+  "reportRef": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656-20260929T123104585Z-20494-2a07a5f5b024.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "probe/china-dependency-probe.sh",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "tests/playwright/stack-break.spec.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-29T12:31:04.863Z"
+}

@@ -1,0 +1,190 @@
+name: evidence
+
+# Collects mainland China reachability evidence: curl/dig probe, Playwright browser checks,
+# Netlify + Firebase whole-stack probes, then commits results and refreshes the deployed site.
+# Runs on the self-hosted mainland runner. Git sync/push uses SSH over port 443 — not HTTPS.
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'   # Mondays 06:00 Asia/Shanghai (22:00 UTC Sunday)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: evidence
+  cancel-in-progress: false
+
+env:
+  PLAYWRIGHT_BASE_URL: https://stackbreak.launchready.cn
+  CLOUD_PROVIDER: Alibaba Cloud
+  CLOUD_REGION: ${{ vars.CLOUD_REGION }}
+  RUNNER_HOST: launchready.cn
+  EXPECT_BLOCKED: '1'
+  DEPLOY_PATH: /opt/launchready-stackbreak-lab
+  GIT_REMOTE: git@github.com:chinaready/launchready-stackbreak-lab.git
+
+jobs:
+  collect:
+    runs-on: [self-hosted, linux, mainland-china]
+    defaults:
+      run:
+        working-directory: /opt/launchready-stackbreak-lab
+    steps:
+      - name: Sync repository (SSH over 443)
+        run: |
+          # actions/checkout uses HTTPS, which is throttled/blocked from mainland China.
+          # Operate on the long-lived deploy clone instead; fetch/push via ssh.github.com:443.
+          set -euo pipefail
+          cd "$DEPLOY_PATH"
+          deploy_key="${HOME}/.ssh/github_deploy"
+          if [ -f "$deploy_key" ]; then
+            export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
+          else
+            export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
+          fi
+          git remote set-url origin "$GIT_REMOTE"
+          n=0
+          until [ "$n" -ge 5 ]; do
+            if git fetch --prune origin main; then break; fi
+            n=$((n+1)); echo "fetch attempt $n failed; retrying in 10s"; sleep 10
+          done
+          if [ "$n" -ge 5 ]; then
+            echo "::error::git fetch from GitHub failed after 5 attempts (SSH-443)"
+            exit 1
+          fi
+          git reset --hard origin/main
+          git clean -fd -e .env -e 'firebase-demo/service-account.json' -e 'firebase-demo/stackbreak-*.json' -e '**/*-firebase-adminsdk-*.json'
+
+      - name: Network probe (curl + dig)
+        run: ./probe/china-dependency-probe.sh
+
+      - name: Install deps and browser checks
+        run: |
+          npm ci
+          npx playwright install chromium
+          npx playwright test || echo "browser checks reported failures (recorded in results)"
+
+      - name: Netlify probe (deployed site + API)
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_URL: ${{ vars.NETLIFY_SITE_URL }}
+        run: |
+          # Probes the real Netlify demo site from this mainland runner and writes
+          # results/<date>/netlify.{json,md} + results/netlify-latest.json. Skips
+          # cleanly until the site coordinates are configured as repo variables.
+          if [ -z "$NETLIFY_SITE_URL" ]; then
+            echo "NETLIFY_SITE_URL not set; skipping Netlify probe"; exit 0
+          fi
+          cd netlify-demo
+          npm ci
+          npm run probe:all || echo "netlify probe reported issues (recorded in results)"
+
+      - name: Vercel probe (deployed site + Storage REST)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_SITE_URL: ${{ vars.VERCEL_SITE_URL }}
+          BLOB_REGION: ${{ vars.BLOB_REGION }}
+          REDIS_REGION: ${{ vars.REDIS_REGION }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
+          BLOB_STORE_ID: ${{ vars.BLOB_STORE_ID }}
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+          pub_READ_WRITE_TOKEN: ${{ secrets.pub_READ_WRITE_TOKEN }}
+          pub_STORE_ID: ${{ secrets.pub_STORE_ID }}
+        run: |
+          # Probes the real Vercel demo site from this mainland runner and writes
+          # results/<date>/vercel.{json,md} + results/vercel-latest.json. Skips
+          # cleanly until the site coordinates are configured as repo variables.
+          if [ -z "$VERCEL_SITE_URL" ]; then
+            echo "VERCEL_SITE_URL not set; skipping Vercel probe"; exit 0
+          fi
+          cd vercel-demo
+          npm ci
+          npm run probe:all || echo "vercel probe reported issues (recorded in results)"
+
+      - name: Firebase probe (deployed project + Admin SDK)
+        env:
+          DEMO_USER_PASSWORD: ${{ secrets.DEMO_USER_PASSWORD }}
+        run: |
+          # Probes the provisioned Firebase demo project from this mainland runner and writes
+          # results/<date>/firebase.{json,md} + results/firebase-latest.json. Configuration
+          # lives in $DEPLOY_PATH/.env on the self-hosted host (see deploy/env.example).
+          # DEMO_USER_PASSWORD may also be set as a GitHub Actions secret to override .env.
+          _demo_pw="${DEMO_USER_PASSWORD:-}"
+          # shellcheck source=deploy/load-env.sh
+          source deploy/load-env.sh
+          load_env_file "$DEPLOY_PATH/.env"
+          [ -n "$_demo_pw" ] && export DEMO_USER_PASSWORD="$_demo_pw"
+          if [ -z "${FIREBASE_PROJECT_ID:-}" ]; then
+            echo "FIREBASE_PROJECT_ID not set; skipping Firebase probe"; exit 0
+          fi
+          if [ -z "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]; then
+            GOOGLE_APPLICATION_CREDENTIALS="$DEPLOY_PATH/firebase-demo/service-account.json"
+          fi
+          export GOOGLE_APPLICATION_CREDENTIALS
+          if [ ! -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
+            echo "Service account not found at $GOOGLE_APPLICATION_CREDENTIALS; skipping Firebase probe"; exit 0
+          fi
+          cd firebase-demo
+          npm ci
+          npm run probe:all || echo "firebase probe reported issues (recorded in results)"
+
+      - name: Verify live results bind mount
+        run: |
+          # Probes write directly into results/ here; the stackbreak container bind-mounts
+          # this directory read-only, so the live site picks up changes without a copy step.
+          test -f results/latest.json
+          echo "results/latest.json present ($(wc -c < results/latest.json) bytes)"
+
+      - name: Publish results to GitHub
+        env:
+          EVIDENCE_PUSH_TOKEN: ${{ secrets.EVIDENCE_PUSH_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "stackbreak-bot"
+          git config user.email "bot@launchready.cn"
+          git add results/
+          if git diff --cached --quiet; then
+            echo "no result changes"; exit 0
+          fi
+          git commit -m "[evidence] $(date +%F) mainland snapshot"
+
+          try_push() {
+            local label="$1"; shift
+            local n=0
+            until [ "$n" -ge 5 ]; do
+              if "$@"; then echo "pushed to GitHub via ${label}"; return 0; fi
+              n=$((n+1)); echo "${label} push attempt ${n} failed; retrying in 10s"; sleep 10
+            done
+            return 1
+          }
+
+          # Prefer a fine-grained PAT when org policy disables deploy keys (chinaready).
+          if [ -n "${EVIDENCE_PUSH_TOKEN:-}" ]; then
+            auth_remote="https://x-access-token:${EVIDENCE_PUSH_TOKEN}@github.com/chinaready/launchready-stackbreak-lab.git"
+            if try_push "HTTPS+PAT" git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=30 push "$auth_remote" HEAD:main; then
+              exit 0
+            fi
+          fi
+
+          # Fallback: SSH deploy key or user key over port 443.
+          deploy_key="${HOME}/.ssh/github_deploy"
+          if [ -f "$deploy_key" ]; then
+            export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
+          else
+            export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
+          fi
+          git remote set-url origin "$GIT_REMOTE"
+          if try_push "SSH-443" git push origin HEAD:main; then
+            exit 0
+          fi
+
+          echo "::error::git push failed. If deploy keys show Disabled by org policy, add an Actions secret EVIDENCE_PUSH_TOKEN (fine-grained PAT with Contents: Write on this repo). Live site already has fresh results/."
+          exit 1

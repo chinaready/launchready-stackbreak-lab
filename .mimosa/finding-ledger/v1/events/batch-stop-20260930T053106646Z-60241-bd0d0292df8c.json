@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260930T053106646Z-60241-bd0d0292df8c",
+  "runId": "20260930T053106646Z-60241-bd0d0292df8c",
+  "runStatus": "inconclusive",
+  "coverage": {
+    "status": "partial",
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": ".github/workflows/validate-targets.yml",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": ".github/workflows/validate-targets.yml",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      }
+    ]
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "90062cdfb817fcd79c98e948c199a2ebad84db55",
+  "diffHash": "c305f1ae5054040ff9941e1eeb282e8d30df6b377d16a5414dc47b8d9bc2147c",
+  "rulesVersion": "unavailable",
+  "sessionHash": "430b74ed666afcceec3258b9c78b31f467ab6b32720bae0198c8cbed3ecad176",
+  "reportRef": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656-20260930T053106646Z-60241-bd0d0292df8c.json",
+  "events": [
+    {
+      "eventId": "hook-e54502ece542b5b4f9aebe87a6872ae0",
+      "findingId": "mimosa-5c1894347eb2b0d77629f1af",
+      "type": "finding_observed",
+      "at": "2026-09-30T05:31:06.646Z",
+      "identity": {
+        "projectRelativeFile": "netlify-demo/package.json",
+        "ruleId": "mimosa.supply.version-range",
+        "codeEvidenceHash": "3409f14d7cfb77e820b85947d7d7c42492c30d0012399251a8018f3642af4cf6",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 20,
+      "endLine": 20,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "3409f14d7cfb77e820b85947d7d7c42492c30d0012399251a8018f3642af4cf6"
+      },
+      "sequence": 0
+    },
+    {
+      "eventId": "hook-eaf1199d52b539af89175f67f3d330d1",
+      "findingId": "mimosa-7db38084d90e19fb62ee2a76",
+      "type": "finding_observed",
+      "at": "2026-09-30T05:31:06.646Z",
+      "identity": {
+        "projectRelativeFile": "firebase-demo/package.json",
+        "ruleId": "mimosa.supply.version-range",
+        "codeEvidenceHash": "245f304cc4e3ed7f0e40b1d331ba1e16c59095bca95e8ebb0b8f661471cc5519",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 20,
+      "endLine": 20,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "245f304cc4e3ed7f0e40b1d331ba1e16c59095bca95e8ebb0b8f661471cc5519"
+      },
+      "sequence": 1
+    }
+  ],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "tests/playwright/catalog.spec.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "public/assets/catalog.js",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "public/assets/matrix.js",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "tests/playwright/stack-break.spec.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "probe/china-dependency-probe.sh",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-30T05:31:06.930Z"
+}

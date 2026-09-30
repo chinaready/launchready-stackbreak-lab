@@ -9,6 +9,7 @@ FROM ${NGINX_IMAGE}
 
 # Site content. results/ is also bind-mounted in docker-compose so the evidence
 # workflow can refresh it without rebuilding the image.
+COPY index.html product.html /usr/share/nginx/html/
 COPY demos/   /usr/share/nginx/html/demos/
 COPY public/  /usr/share/nginx/html/public/
 COPY results/ /usr/share/nginx/html/results/

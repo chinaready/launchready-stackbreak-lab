@@ -26,7 +26,7 @@
       "isPartOf": {
         "@type": "WebSite",
         "name": "Stack Break Lab",
-        "url": "https://stackbreak.launchready.cn/demos/"
+        "url": "https://stackbreak.launchready.cn/"
       }
     }
   </script>
@@ -39,6 +39,12 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
+          "item": "https://stackbreak.launchready.cn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Stack",
           "item": "https://stackbreak.launchready.cn/demos/"
         }
       ]
@@ -51,24 +57,28 @@
   <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
   <meta name="theme-color" content="#0C1E3E" />
   <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="../public/assets/lab.css?v=20260717a" />
-  <link rel="stylesheet" href="../public/assets/home.css?v=20260717a" />
+  <link rel="stylesheet" href="../public/assets/lab.css?v=20260930b" />
+  <link rel="stylesheet" href="../public/assets/home.css?v=20260930b" />
 </head>
 <body class="home">
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="./index.html">
+      <a class="brand" href="/">
         <img class="brand__logo" src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="140" height="28" />
         <span class="brand__sep" aria-hidden="true"></span>
         <span class="brand__lab">Stack Break Lab</span>
       </a>
-      <p class="tagline">Executed on launchready.cn mainland China infrastructure</p>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/" class="main-nav__link">Home</a>
+        <a href="/demos/" class="main-nav__link" aria-current="page">Stack</a>
+        <a href="/product.html" class="main-nav__link">Product</a>
+      </nav>
     </div>
   </header>
 
   <main>
     <!-- ===================== HERO ===================== -->
-    <section class="hero">
+    <section class="hero hero--short">
       <div class="hero__bg" aria-hidden="true">
         <div class="hero__grid"></div>
         <div class="hero__glow"></div>
@@ -76,71 +86,20 @@
       </div>
       <div class="home-wrap">
         <p class="hero__badge reveal"><span class="live-dot" aria-hidden="true"></span>Live &middot; Beijing node &middot; refreshed weekly</p>
-        <h1 class="hero__title reveal" data-delay="1">Which parts of your stack break first in China<span class="period">.</span></h1>
+        <h1 class="hero__title reveal" data-delay="1">The stack, category by category<span class="period">.</span></h1>
         <p class="hero__lede reveal" data-delay="2">
-          Stack Break Lab loads every third-party dependency the way your product does — from a
-          <strong>mainland China</strong> node — then reports what arrives, what stalls, and what's
-          blocked outright.
+          Each page loads <strong>exactly one</strong> third-party integration the way a normal
+          product would — so when it fails, you know precisely which layer of your stack broke.
         </p>
         <div class="hero__cta reveal" data-delay="3">
           <a class="btn btn--primary" href="../public/results/index.html">See live verdicts</a>
           <a class="btn btn--ghost" href="./beijing-view.html">See the Beijing view</a>
-          <a class="btn btn--ghost" href="./matrix.html">Matrix view</a>
-          <a class="btn btn--ghost" href="#how">How the lab works</a>
+          <a class="btn btn--ghost" href="/product.html">Whole-stack products</a>
         </div>
         <div class="hero__stats reveal" data-delay="4">
           <div class="stat"><span class="stat__num" data-count="total">—</span><span class="stat__label">dependencies probed</span></div>
           <div class="stat"><span class="stat__num" data-count="blocked">—</span><span class="stat__label">blocked from Beijing</span></div>
           <div class="stat"><span class="stat__num" data-count="reachable">—</span><span class="stat__label">still reachable</span></div>
-        </div>
-      </div>
-      <div class="ticker" aria-hidden="true"><div class="ticker__track"></div></div>
-    </section>
-
-    <!-- ===================== THE PROBLEM ===================== -->
-    <section class="block block--light" id="why">
-      <div class="home-wrap">
-        <p class="block__eyebrow reveal">The problem</p>
-        <h2 class="block__title reveal" data-delay="1">Your app assumes the open internet. China doesn't<span class="period">.</span></h2>
-        <p class="block__intro reveal" data-delay="2">
-          The moment a request leaves for Google, Auth0, or YouTube, the Great Firewall decides
-          whether it returns. Some calls stall for ten seconds; some never resolve. Your users just
-          see a page that won't finish loading — and you never find out from outside China.
-        </p>
-        <div class="fail-grid">
-          <div class="fail-card reveal"><h3>Fonts &amp; icons</h3><p>Text renders invisible or jumps as web fonts time out behind the firewall.</p></div>
-          <div class="fail-card reveal" data-delay="1"><h3>Auth &amp; identity</h3><p>Sign-in widgets and CAPTCHAs hang, locking real users out of your product.</p></div>
-          <div class="fail-card reveal" data-delay="2"><h3>Analytics &amp; tags</h3><p>Tag loaders block the main thread while they wait on hosts that never answer.</p></div>
-          <div class="fail-card reveal" data-delay="3"><h3>Maps, media, embeds</h3><p>Maps, video, and embeds collapse into empty boxes with no fallback.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== THE METHOD ===================== -->
-    <section class="block block--surface" id="how">
-      <div class="home-wrap">
-        <p class="block__eyebrow reveal">The method</p>
-        <h2 class="block__title reveal" data-delay="1">One method, run from the inside<span class="period">.</span></h2>
-        <p class="block__intro reveal" data-delay="2">
-          Every verdict on this site comes from the same pipeline, executed on real mainland China
-          infrastructure — not a VPN, not a guess.
-        </p>
-        <div class="steps">
-          <div class="step reveal">
-            <div class="step__n">01</div><div class="step__rule"></div>
-            <h3>Probe</h3>
-            <p><code>curl</code> and <code>dig</code> hit every dependency from an Alibaba Cloud Beijing node, recording DNS, connect, and total time.</p>
-          </div>
-          <div class="step reveal" data-delay="1">
-            <div class="step__n">02</div><div class="step__rule"></div>
-            <h3>Browser</h3>
-            <p>Playwright loads each single-dependency demo page and records what actually fails in a real browser.</p>
-          </div>
-          <div class="step reveal" data-delay="2">
-            <div class="step__n">03</div><div class="step__rule"></div>
-            <h3>Publish</h3>
-            <p>Verdicts land at <a href="../public/results/index.html">/results/</a>, refresh weekly, and the code stays public.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -151,18 +110,9 @@
         <p class="block__eyebrow reveal">Live verdicts</p>
         <h2 class="block__title reveal" data-delay="1">One dependency per page<span class="period">.</span></h2>
         <p class="block__intro reveal" data-delay="2">
-          Each page loads exactly one integration the way a normal product would. The chips below
-          show the latest verdict straight from the most recent run.
+          The chips below show the latest verdict straight from the most recent run.
+          Community-submitted targets are probed over the network and marked with a badge.
         </p>
-
-        <div class="catalog-tabs reveal" role="tablist" aria-label="Browse targets">
-          <button class="catalog-tab" data-catalog-tab="category" id="tab-category" role="tab"
-                  aria-selected="true" aria-controls="panel-category" type="button">By category</button>
-          <button class="catalog-tab" data-catalog-tab="service" id="tab-service" role="tab"
-                  aria-selected="false" aria-controls="panel-service" type="button">By service</button>
-        </div>
-
-        <div id="panel-category" role="tabpanel" aria-labelledby="tab-category">
 
         <div class="cat-block reveal">
           <h3 class="cat-block__label">Fonts &amp; icons <small>3 dependencies</small></h3>
@@ -199,13 +149,6 @@
           </div>
         </div>
 
-        </div>
-
-        <div id="panel-service" role="tabpanel" aria-labelledby="tab-service" hidden>
-          <noscript><p class="catalog-fallback">The by-service view needs JavaScript.
-            <a href="../public/results/index.html">See the full verdict table instead.</a></p></noscript>
-        </div>
-
         <p class="catalog-submit reveal">
           Missing a dependency you ship? <a class="btn btn--ghost" target="_blank" rel="noopener"
             href="https://github.com/chinaready/launchready-stackbreak-lab/issues/new?template=dependency-request.yml">Submit a target</a>
@@ -215,99 +158,17 @@
       </div>
     </section>
 
-    <!-- ===================== FIREBASE DEEP DIVE ===================== -->
-    <section class="block block--surface" id="firebase">
-      <div class="home-wrap">
-        <p class="block__eyebrow reveal">Deep dive</p>
-        <h2 class="block__title reveal" data-delay="1">The Firebase stack, end to end<span class="period">.</span></h2>
-        <p class="block__intro reveal" data-delay="2">
-          A separate probe kit measures the whole Firebase stack from the same node —
-          <strong><span data-count="fb-blocked">—</span> of <span data-count="fb-total">—</span></strong>
-          probes are currently blocked. Each card opens the matching section of the
-          <a href="../public/results/firebase.html">Firebase results</a>.
-        </p>
-        <div class="dep-grid">
-          <a class="dep-card" data-fbpath="frontend" href="../public/results/firebase.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser / client SDK</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-fbpath="backend" href="../public/results/firebase.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">Admin SDK on a server</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-fbpath="transport" href="../public/results/firebase.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== NETLIFY LATENCY / EDGE POP ===================== -->
-    <section class="block block--light" id="netlify-latency">
-      <div class="home-wrap">
-        <p class="block__eyebrow reveal">Latency</p>
-        <h2 class="block__title reveal" data-delay="1">Where China lands on Netlify<span class="period">.</span></h2>
-        <p class="block__intro reveal" data-delay="2">
-          A real Netlify site &mdash; <a href="https://steady-marshmallow-cb991f.netlify.app/" target="_blank" rel="noopener">steady-marshmallow-cb991f.netlify.app</a>
-          (hosting, Functions, Edge Functions, Forms, Identity, Blobs, Image CDN) &mdash; is probed from the same node.
-          The Netlify edge serving these requests reports
-          <strong><span data-count-text="nlres-region">—</span></strong>.
-          <strong><span data-count="nlres-total">—</span></strong> page resources measured;
-          heaviest load <strong><span data-count-text="nlres-worst">—</span></strong>.
-          See the <a href="../public/results/netlify.html#netlify-latency">latency results</a>.
-        </p>
-        <div class="dep-grid">
-          <a class="dep-card" data-nlrkind="endpoint" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-nlrkind="image-cdn" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Image CDN</span><span class="dep-card__host">resized / transcoded</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-nlrkind="raw" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== VERCEL DEEP DIVE ===================== -->
-    <section class="block block--surface" id="vercel">
-      <div class="home-wrap">
-        <p class="block__eyebrow reveal">Deep dive</p>
-        <h2 class="block__title reveal" data-delay="1">The Vercel stack, end to end<span class="period">.</span></h2>
-        <p class="block__intro reveal" data-delay="2">
-          A real Vercel site &mdash;
-          <a href="https://project-silk-eta-17.vercel.app/" target="_blank" rel="noopener">project-silk-eta-17.vercel.app</a>
-          (Hosting, Functions, Edge Middleware, Cron, Blob, KV) &mdash; is probed from the same node.
-          <strong><span data-count="vc-blocked">—</span> of <span data-count="vc-total">—</span></strong>
-          probes are currently blocked. Blob store: <strong>Hong Kong</strong>; Redis: <strong>Singapore</strong>.
-          Open the <a href="../public/results/vercel.html">Vercel results</a>.
-        </p>
-        <div class="dep-grid">
-          <a class="dep-card" data-vcpath="frontend" href="../public/results/vercel.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser on *.vercel.app</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-vcpath="backend" href="../public/results/vercel.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">API + Storage REST</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-vcpath="transport" href="../public/results/vercel.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== VERCEL LATENCY / EDGE ===================== -->
-    <section class="block block--light" id="vercel-latency">
-      <div class="home-wrap">
-        <p class="block__eyebrow reveal">Latency</p>
-        <h2 class="block__title reveal" data-delay="1">Where China lands on Vercel<span class="period">.</span></h2>
-        <p class="block__intro reveal" data-delay="2">
-          The same demo site is measured for page-resource weight and load latency.
-          The Vercel edge serving these requests reports
-          <strong><span data-count-text="vcres-region">—</span></strong>.
-          <strong><span data-count="vcres-total">—</span></strong> resources measured;
-          heaviest load <strong><span data-count-text="vcres-worst">—</span></strong>.
-          See the <a href="../public/results/vercel.html#vercel-latency">latency results</a>.
-        </p>
-        <div class="dep-grid">
-          <a class="dep-card" data-vlrkind="endpoint" href="../public/results/vercel.html#vercel-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-vlrkind="raw" href="../public/results/vercel.html#vercel-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
-        </div>
-      </div>
-    </section>
-
     <!-- ===================== CLOSING CTA ===================== -->
     <section class="block block--cta">
       <div class="home-wrap">
-        <p class="block__eyebrow reveal">Before you ship</p>
-        <h2 class="block__title reveal" data-delay="1">Test your stack before your users do<span class="period">.</span></h2>
+        <p class="block__eyebrow reveal">Go deeper</p>
+        <h2 class="block__title reveal" data-delay="1">See what whole platforms cost you<span class="period">.</span></h2>
         <p class="block__intro reveal" data-delay="2">
-          See the full table of verdicts, read the write-up, or run the probes yourself from your own
-          China node — every script is open source.
+          Firebase, Netlify, and Vercel — deployed for real and probed end to end from the same
+          Beijing node. Or run the probes yourself; every script is open source.
         </p>
         <div class="cta-actions reveal" data-delay="3">
-          <a class="btn btn--primary" href="../public/results/index.html">See full results</a>
+          <a class="btn btn--primary" href="/product.html">Whole-stack products</a>
           <a class="btn btn--ghost" href="https://chinaready.co/insights/which-parts-of-your-stack-break-first/">Read the article</a>
           <a class="btn btn--ghost" href="https://github.com/chinaready/launchready-stackbreak-lab">Source on GitHub</a>
         </div>
@@ -334,8 +195,7 @@
         <nav class="cr-footer-column" aria-label="Learn">
           <h2 class="cr-footer-heading">Learn</h2>
           <ul class="cr-footer-list">
-            <li><a href="/demos/matrix.html" class="cr-footer-link">Matrix overview</a></li>
-                        <li><a href="https://landscape.chinaready.co/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Landscape</a></li>
+            <li><a href="https://landscape.chinaready.co/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Landscape</a></li>
             <li><a href="https://chinaready.co/insights/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Insights</a></li>
             <li><a href="https://chinaready.co/blog/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Blog</a></li>
           </ul>
@@ -375,6 +235,6 @@
   </footer>
 
   <script src="../public/assets/home.js?v=20260628b"></script>
-  <script src="../public/assets/catalog.js?v=20260930a"></script>
+  <script src="../public/assets/catalog.js?v=20260930b"></script>
 </body>
 </html>

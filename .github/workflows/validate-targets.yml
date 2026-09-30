@@ -8,7 +8,7 @@ on:
       - 'probe/targets-community.json'
       - 'probe/targets.schema.json'
       - 'probe/targets.schema.md'
-      - 'scripts/validate-targets.mjs'
+      - 'scripts/*.mjs'
       - 'tests/unit/**'
       - '.github/workflows/validate-targets.yml'
   pull_request:
@@ -17,7 +17,7 @@ on:
       - 'probe/targets-community.json'
       - 'probe/targets.schema.json'
       - 'probe/targets.schema.md'
-      - 'scripts/validate-targets.mjs'
+      - 'scripts/*.mjs'
       - 'tests/unit/**'
       - '.github/workflows/validate-targets.yml'
 
