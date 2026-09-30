@@ -449,3 +449,9 @@ main.wrap code, main.wrap .mono {
 .status { display: inline-flex; align-items: center; gap: 8px; border-radius: var(--radius-tag); padding: 6px 12px; font-size: 13px; font-weight: 600; }
 .meta { color: var(--cr-text2); font-size: 13.5px; }
 .sample { background: var(--cr-surface); border: 1px solid var(--cr-border); border-radius: var(--radius-btn); padding: 16px 20px; }
+
+/* Beijing view: its own sheet paints the hero dark with white text —
+   neutralize the inherited white headings/lede explicitly. */
+.bv-hero h1, .bv-hero h2 { color: var(--cr-navy); }
+.bv-hero .lede, .bv-hero p { color: var(--cr-text2); }
+.bv-hero .mono, .bv-hero code { color: var(--cr-text2); }
