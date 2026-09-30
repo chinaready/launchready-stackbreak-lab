@@ -60,6 +60,9 @@ jobs:
       - name: Network probe (curl + dig)
         run: ./probe/china-dependency-probe.sh
 
+      - name: Update run history index
+        run: node scripts/update-history.mjs
+
       - name: Install deps and browser checks
         run: |
           npm ci

@@ -1,14 +1,14 @@
 {
   "schemaVersion": "mimosa-hook-status/v1",
-  "recordedAt": "2026-09-30T06:13:21.627Z",
+  "recordedAt": "2026-09-30T09:11:37.462Z",
   "sessionId": "sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656",
   "event": "PostToolUse",
-  "toolName": "Edit",
-  "file": "Dockerfile",
+  "toolName": "Write",
+  "file": "public/assets/hero-bg-circuits.svg",
   "outcome": "clear",
   "coverage": "complete",
   "findingCount": 0,
-  "durationMs": 11,
+  "durationMs": 3,
   "hostState": "hook_complete",
   "reportHint": ".mimosa/reports/"
 }

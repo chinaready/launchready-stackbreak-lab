@@ -330,7 +330,7 @@
 
   /* Seamless status ticker (track holds two copies of the list). */
   @keyframes sbl-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .ticker__track { animation: sbl-ticker 48s linear infinite; }
+  .ticker__track { animation: sbl-ticker 96s linear infinite; }
   .ticker:hover .ticker__track { animation-play-state: paused; }
 
   /* Bars/rules grow from the left when their block reveals. */

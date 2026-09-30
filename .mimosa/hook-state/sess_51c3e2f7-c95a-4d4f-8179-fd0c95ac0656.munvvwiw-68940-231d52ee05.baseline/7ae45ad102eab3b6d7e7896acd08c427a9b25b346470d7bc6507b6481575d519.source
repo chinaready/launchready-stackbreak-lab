@@ -18,6 +18,7 @@
     "test:report": "playwright show-report",
     "probe": "./probe/china-dependency-probe.sh",
     "validate:targets": "node scripts/validate-targets.mjs",
+    "history:update": "node scripts/update-history.mjs",
     "test:unit": "node --test tests/unit/*.test.mjs",
     "serve": "docker compose up --build"
   },
