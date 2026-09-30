@@ -1,7 +1,10 @@
 <!doctype html>
 <!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
-<!-- Print template for the weekly PDF report. Self-contained: inline styles,
-     local assets only, renders under file://. Structural slots are __TOKEN__. -->
+<!-- Print template for the weekly PDF report, following the Chinaready DS
+     document standard (cf. Chinaready-Services-Overview-v1.1): logo masthead,
+     eyebrow / title+period / subtitle cover block, label-value info grid,
+     running header + footer via Chromium PDF templates, TOC with anchors
+     (page numbers omitted by maintainer's dispensation). Self-contained. -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -13,31 +16,42 @@
       --line: rgba(12, 30, 62, 0.14);
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, "PingFang SC", "Noto Sans SC", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 11pt; line-height: 1.5; }
-    @page { size: A4; margin: 16mm 14mm; }
-    .page-break { page-break-before: always; }
-    .avoid-break { page-break-inside: avoid; }
+    body { margin: 0; font-family: Inter, "PingFang SC", "Noto Sans SC", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 11pt; line-height: 1.55; }
+    @page { size: A4; }
 
-    /* Cover */
-    .cover { border-top: 10mm solid var(--navy); padding-top: 14mm; }
-    .cover__logo { height: 9mm; }
-    .cover__eyebrow { margin-top: 16mm; font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
-    .cover__title { font-size: 30pt; font-weight: 800; color: var(--navy); margin: 4mm 0 3mm; }
+    /* --- Cover (DS standard) --- */
+    .cover { padding-top: 6mm; }
+    .cover__logo { height: 8mm; }
+    .cover__rule { border: none; border-top: 1px solid var(--line); margin: 10mm 0 0; }
+    .cover__eyebrow { margin-top: 22mm; font-size: 9.5pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .cover__title { font-size: 34pt; font-weight: 800; color: var(--navy); margin: 5mm 0 4mm; letter-spacing: -0.01em; }
     .cover__period { color: var(--accent); }
-    .cover__subtitle { font-size: 13pt; color: var(--muted); max-width: 130mm; }
-    .cover__meta { margin-top: 12mm; font-size: 10pt; color: var(--muted); }
-    .cover__meta strong { color: var(--ink); }
-    .tiles { display: flex; gap: 5mm; margin-top: 10mm; }
+    .cover__subtitle { font-size: 13pt; color: var(--muted); max-width: 125mm; margin: 0; }
+    .cover__info { display: grid; grid-template-columns: 34mm 1fr 34mm 1fr; gap: 3mm 6mm; margin-top: 18mm; font-size: 10pt; }
+    .cover__info dt { color: var(--muted); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.1em; align-self: center; }
+    .cover__info dd { margin: 0; font-weight: 600; }
+    .tiles { display: flex; gap: 5mm; margin-top: 14mm; }
     .tile { flex: 1; border: 1px solid var(--line); border-radius: 4mm; padding: 6mm 7mm; }
     .tile__num { font-size: 26pt; font-weight: 800; }
     .tile__label { font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
     .tile--blocked .tile__num { color: var(--blocked); }
     .tile--degraded .tile__num { color: var(--degraded); }
     .tile--reachable .tile__num { color: var(--reachable); }
-    .cover__foot { position: absolute; bottom: 12mm; left: 14mm; right: 14mm; font-size: 8.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 3mm; }
 
-    h2 { font-size: 15pt; color: var(--navy); margin: 10mm 0 4mm; }
-    h2:first-of-type { margin-top: 0; }
+    /* --- TOC --- */
+    .toc { page-break-before: always; }
+    .toc h2 { font-size: 15pt; color: var(--navy); margin: 0 0 8mm; }
+    .toc ol { list-style: none; margin: 0; padding: 0; }
+    .toc li { border-bottom: 1px solid var(--line); padding: 4mm 0; }
+    .toc a { text-decoration: none; color: var(--ink); display: flex; align-items: baseline; gap: 5mm; }
+    .toc__n { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-weight: 700; font-size: 10pt; }
+    .toc__t { font-weight: 600; font-size: 12pt; }
+    .toc__d { color: var(--muted); font-size: 9.5pt; margin-left: auto; text-align: right; }
+
+    /* --- Chapters (continuous flow; no forced breaks except CN page) --- */
+    h2.chap { font-size: 15pt; color: var(--navy); margin: 12mm 0 4mm; display: flex; align-items: baseline; gap: 4mm; page-break-after: avoid; }
+    h2.chap:first-of-type { margin-top: 0; }
+    h2.chap .n { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-size: 11pt; font-weight: 700; }
     p { margin: 2mm 0; }
     .changes p { margin: 1mm 0; }
     .list-blocked { color: var(--blocked); font-weight: 600; }
@@ -54,55 +68,56 @@
     .tier-badge { font-size: 7.5pt; color: #5B21B6; border: 1px solid rgba(109,40,217,.4); border-radius: 3mm; padding: 0 2mm; }
 
     figure { margin: 5mm 0; page-break-inside: avoid; }
-    figure img { width: 108mm; border: 1px solid var(--line); border-radius: 2mm; }
+    figure img { width: 104mm; border: 1px solid var(--line); border-radius: 2mm; }
     figcaption { font-size: 8.5pt; color: var(--muted); margin-top: 1.5mm; }
     .shots { display: flex; flex-wrap: wrap; gap: 6mm; }
 
-    /* Chinese summary page */
+    /* --- Chinese summary keeps its own page --- */
+    .cn { page-break-before: always; }
     .cn h2 { font-size: 17pt; }
     .cn p { font-size: 11.5pt; margin: 3mm 0; }
     .cn__disclaimer { font-size: 9.5pt; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 4mm; margin-top: 8mm; }
-    .foot { margin-top: 8mm; font-size: 8.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 2mm; }
   </style>
 </head>
 <body>
   <section class="cover">
     <img class="cover__logo" src="__LOGO__" alt="" />
+    <hr class="cover__rule" />
     <p class="cover__eyebrow">__EYEBROW__</p>
     <h1 class="cover__title">__TITLE_BEFORE_PERIOD__<span class="cover__period">.</span></h1>
     <p class="cover__subtitle">__SUBTITLE__</p>
-    <p class="cover__meta">__RUN_META__</p>
+    <dl class="cover__info">__COVER_INFO__</dl>
     <div class="tiles">
       <div class="tile tile--blocked"><div class="tile__num">__BLOCKED__</div><div class="tile__label">Blocked</div></div>
       <div class="tile tile--degraded"><div class="tile__num">__DEGRADED__</div><div class="tile__label">Degraded</div></div>
       <div class="tile tile--reachable"><div class="tile__num">__REACHABLE__</div><div class="tile__label">Reachable</div></div>
     </div>
-    <p class="cover__foot">__COVER_FOOT__</p>
   </section>
 
-  <section class="page-break">
-    <h2>__SUMMARY_HEADING__</h2>
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>__TOC_ENTRIES__</ol>
+  </nav>
+
+  <main>
+    <h2 class="chap" id="summary"><span class="n">01</span>__SUMMARY_HEADING__</h2>
     <div class="changes">__SUMMARY_LINES__</div>
-  </section>
 
-  <section class="page-break">
-    <h2>__SERVICES_HEADING__</h2>
+    <h2 class="chap" id="verdicts"><span class="n">02</span>__SERVICES_HEADING__</h2>
     <table>
       <thead><tr>__SERVICE_HEAD__</tr></thead>
       <tbody>__SERVICE_ROWS__</tbody>
     </table>
-  </section>
 
-  __BROWSER_SECTION__
+    __BROWSER_SECTION__
 
-  __SHOTS_SECTION__
+    __SHOTS_SECTION__
 
-  <section class="page-break cn">
-    <h2>__CN_HEADING__</h2>
-    __CN_BODY__
-    <p class="cn__disclaimer">__CN_DISCLAIMER__</p>
-  </section>
-
-  <p class="foot">__FOOT__</p>
+    <section class="cn">
+      <h2 class="chap" id="cn"><span class="n">__CN_NUM__</span>__CN_HEADING__</h2>
+      __CN_BODY__
+      <p class="cn__disclaimer">__CN_DISCLAIMER__</p>
+    </section>
+  </main>
 </body>
 </html>

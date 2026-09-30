@@ -54,19 +54,17 @@ function summaryLines(model, copy) {
   return lines.join('\n');
 }
 
-function browserSection(model, copy) {
+function browserSection(model, copy, n) {
   if (!model.browserFindings.length) return '';
   const rows = model.browserFindings.map(f => `<tr>
       <td>${escapeHtml(f.name)}</td><td>${chip(f.verdict)}</td>
       <td class="num">${f.failedCount}</td></tr>`).join('\n');
-  return `<section class="page-break">
-    <h2>${escapeHtml(copy.sections.browserHeading)}</h2>
+  return `<h2 class="chap" id="browser"><span class="n">${n}</span>${escapeHtml(copy.sections.browserHeading)}</h2>
     <table><thead><tr><th>Dependency</th><th>Browser verdict</th><th class="num">${escapeHtml(copy.labels.failedRequests)}</th></tr></thead>
-    <tbody>${rows}</tbody></table>
-  </section>`;
+    <tbody>${rows}</tbody></table>`;
 }
 
-function shotsSection(date, model, copy) {
+function shotsSection(date, model, copy, n) {
   const shotDir = join(RESULTS, date, 'screenshots');
   if (!existsSync(shotDir)) return '';
   const blockedIds = new Set(model.services.filter(s => s.verdict === 'Blocked').map(s => s.id));
@@ -74,10 +72,8 @@ function shotsSection(date, model, copy) {
     .map(f => `<figure><img src="${'file://' + join(shotDir, f)}" alt="" /><figcaption>${escapeHtml(f.replace(/\.png$/, ''))} — as recorded by the Beijing browser run</figcaption></figure>`)
     .join('\n');
   if (!figs) return '';
-  return `<section class="page-break">
-    <h2>${escapeHtml(copy.sections.shotsHeading)}</h2>
-    <div class="shots">${figs}</div>
-  </section>`;
+  return `<h2 class="chap" id="shots"><span class="n">${n}</span>${escapeHtml(copy.sections.shotsHeading)}</h2>
+    <div class="shots">${figs}</div>`;
 }
 
 function cnBody(model, copy) {
@@ -94,33 +90,63 @@ export function renderHtml(date) {
   const prev = prevDate ? JSON.parse(readFileSync(join(RESULTS, prevDate, 'probe.json'), 'utf8')) : null;
   const model = buildReportModel({ probe, browser, prev });
 
-  let html = readFileSync(join(ROOT, 'scripts', 'report-template.html'), 'utf8');
   const day = (probe.generatedAt || date).slice(0, 10);
-  const meta = `${copy_label('runDate')} <strong>${escapeHtml(day)}</strong> · ${copy_label('node')} <strong>${escapeHtml((probe.environment || {}).cloudProvider || 'unknown')} ${escapeHtml((probe.environment || {}).cloudRegion || '')} / ${escapeHtml((probe.environment || {}).runnerHost || '')}</strong> · ${copy_label('dns')} <strong>${escapeHtml((probe.environment || {}).dnsServer || '—')}</strong>`;
-  function copy_label(k) { return escapeHtml(COPY.labels[k]); }
+  const env = probe.environment || {};
 
+  // Chapter numbering: fixed 01/02, then optional browser/shots, CN summary last.
+  const hasBrowser = model.browserFindings.length > 0;
+  const hasShots = (() => {
+    const shotDir = join(RESULTS, date, 'screenshots');
+    if (!existsSync(shotDir)) return false;
+    const blockedIds = new Set(model.services.filter(s => s.verdict === 'Blocked').map(s => s.id));
+    return readdirSync(shotDir).some(f => f.endsWith('.png') && blockedIds.has(f.replace(/\.png$/, '')));
+  })();
+  const nBrowser = '03';
+  const nShots = hasBrowser ? '04' : '03';
+  const nCn = String(3 + (hasBrowser ? 1 : 0) + (hasShots ? 1 : 0)).padStart(2, '0');
+
+  const toc = [
+    { n: '01', href: '#summary', t: COPY.sections.summaryHeading, d: 'Changes against the previous archived run' },
+    { n: '02', href: '#verdicts', t: COPY.sections.servicesHeading, d: `All ${model.totals.total} dependencies, blocked first` },
+  ];
+  if (hasBrowser) toc.push({ n: nBrowser, href: '#browser', t: COPY.sections.browserHeading, d: 'What a real browser saw' });
+  if (hasShots) toc.push({ n: nShots, href: '#shots', t: COPY.sections.shotsHeading, d: 'Screenshots of blocked demos' });
+  toc.push({ n: nCn, href: '#cn', t: COPY.sections.cnHeading, d: 'Chinese summary' });
+  const tocEntries = toc.map(e => `<li><a href="${e.href}"><span class="toc__n">${e.n}</span><span class="toc__t">${escapeHtml(e.t)}</span><span class="toc__d">${escapeHtml(e.d)}</span></a></li>`).join('\n');
+
+  const info = [
+    ['Document type', 'Weekly evidence report'],
+    ['Run date', day],
+    ['Node', `${env.cloudProvider || 'unknown'} ${env.cloudRegion || ''} · ${env.runnerHost || ''}`.trim()],
+    ['DNS', env.dnsServer || '—'],
+    ['Targets', String(model.totals.total)],
+    ['Site', COPY.cover.site],
+  ];
+  const coverInfo = info.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`).join('\n');
+
+  let html = readFileSync(join(ROOT, 'scripts', 'report-template.html'), 'utf8');
   html = html
     .replace('__TITLE__', `Stack Break Weekly — ${day}`)
     .replace('__LOGO__', 'file://' + join(ROOT, 'public/assets/brand/logo-horizontal.svg'))
     .replace('__EYEBROW__', escapeHtml(COPY.cover.eyebrow))
     .replace('__TITLE_BEFORE_PERIOD__', escapeHtml(COPY.cover.titleBeforePeriod))
     .replace('__SUBTITLE__', escapeHtml(COPY.cover.subtitle))
-    .replace('__RUN_META__', meta)
+    .replace('__COVER_INFO__', coverInfo)
     .replace('__BLOCKED__', String(model.totals.blocked))
     .replace('__DEGRADED__', String(model.totals.degraded))
     .replace('__REACHABLE__', String(model.totals.reachable))
-    .replace('__COVER_FOOT__', escapeHtml(`${COPY.cover.site} · ${COPY.cover.operatedBy}`))
+    .replace('__TOC_ENTRIES__', tocEntries)
     .replace('__SUMMARY_HEADING__', escapeHtml(COPY.sections.summaryHeading))
     .replace('__SUMMARY_LINES__', summaryLines(model, COPY))
     .replace('__SERVICES_HEADING__', escapeHtml(COPY.sections.servicesHeading))
     .replace('__SERVICE_HEAD__', ['service', 'category', 'vendor', 'domain', 'http', 'total', 'dnsCol'].map(k => `<th${k === 'total' || k === 'http' ? ' class="num"' : ''}>${escapeHtml(COPY.labels[k])}</th>`).join('') + '<th></th>')
     .replace('__SERVICE_ROWS__', serviceRows(model))
-    .replace('__BROWSER_SECTION__', browserSection(model, COPY))
-    .replace('__SHOTS_SECTION__', shotsSection(date, model, COPY))
+    .replace('__BROWSER_SECTION__', browserSection(model, COPY, nBrowser))
+    .replace('__SHOTS_SECTION__', shotsSection(date, model, COPY, nShots))
+    .replace('__CN_NUM__', nCn)
     .replace('__CN_HEADING__', escapeHtml(COPY.sections.cnHeading))
     .replace('__CN_BODY__', cnBody(model, COPY))
-    .replace('__CN_DISCLAIMER__', escapeHtml(COPY.cn.disclaimer))
-    .replace('__FOOT__', escapeHtml(COPY.disclaimer));
+    .replace('__CN_DISCLAIMER__', escapeHtml(COPY.cn.disclaimer));
   return html;
 }
 
@@ -137,7 +163,20 @@ export async function generateReport(date) {
   try {
     const page = await browser.newPage();
     await page.goto('file://' + tmpHtml, { waitUntil: 'load' });
-    await page.pdf({ path: outPath, format: 'A4', printBackground: true });
+    const day = date;
+    const muted = 'color:#5A6B85;font-size:7pt;font-family:Inter,Arial,sans-serif;';
+    await page.pdf({
+      path: outPath,
+      format: 'A4',
+      printBackground: true,
+      displayHeaderFooter: true,
+      margin: { top: '18mm', bottom: '16mm', left: '14mm', right: '14mm' },
+      headerTemplate: `<div style="${muted}width:100%;padding:0 14mm;display:flex;justify-content:space-between;">
+        <span>Stack Break Weekly — ${escapeHtml(day)}</span><span>${escapeHtml(COPY.cover.site)}</span></div>`,
+      footerTemplate: `<div style="${muted}width:100%;padding:0 14mm;display:flex;justify-content:space-between;">
+        <span>Chinaready · Stack Break Lab — single-node snapshot, not a compliance conclusion</span>
+        <span>Page <span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
+    });
   } finally {
     await browser.close();
   }
