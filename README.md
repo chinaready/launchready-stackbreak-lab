@@ -114,7 +114,8 @@ Two kits deploy and probe an entire managed backend from the same mainland node:
 ## Contributing
 
 **Open an issue first** to propose a dependency; maintainers confirm scope before you open a PR.
-See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Community-tier targets (URL probe only, no code required) are the fast path — see
+[`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Community
 

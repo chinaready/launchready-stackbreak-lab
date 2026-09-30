@@ -8,6 +8,8 @@ body:
     attributes:
       value: |
         Thanks for proposing a new dependency. Maintainers will confirm scope before you open a pull request.
+        Community-tier requests (URL probe only) need no PR — a maintainer adds roughly ten lines to
+        `probe/targets-community.json` and the next Monday run picks them up.
         See [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
 
   - type: input
@@ -37,7 +39,28 @@ body:
         - auth
         - analytics
         - embeds
+        - payments
         - other (explain below)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Tier
+      description: Community = network probe only (fastest, no code needed). Curated = full single-dependency demo page.
+      options:
+        - community (URL probe only — no demo page needed)
+        - curated (full single-dependency demo page)
+    validations:
+      required: true
+
+  - type: input
+    id: vendor
+    attributes:
+      label: SaaS vendor
+      description: The product family it belongs to (e.g. Stripe, Sentry, Algolia) — used for the "by service" browsing dimension
+      placeholder: Stripe
     validations:
       required: true
 

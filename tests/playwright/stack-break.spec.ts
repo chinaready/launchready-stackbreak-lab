@@ -56,7 +56,8 @@ async function settleStatus(page: Page): Promise<string> {
   return (await status.getAttribute('data-state')) || 'unknown';
 }
 
-for (const t of targets.services as Array<any>) {
+// Community/URL-only targets have no demo page; only demoPath-bearing services get browser checks.
+for (const t of (targets.services as Array<any>).filter((s) => s.demoPath)) {
   test(`${t.name} (${t.id}) — demo loads and reports a verdict`, async ({ page }) => {
     const failed: string[] = [];
     const ok: string[] = [];

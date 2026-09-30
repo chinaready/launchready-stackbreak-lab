@@ -3,13 +3,43 @@
 Thanks for helping make this lab more useful. The goal is a growing, trustworthy catalog of
 third-party dependencies and how they behave for real users in mainland China.
 
-## Before you code
+## Two ways to add a target
 
-1. **Open an issue** describing the dependency you want measured — service name, domain, category,
-   and why it matters to your stack.
-2. Wait for a maintainer to confirm scope (one dependency, category, slug). We may suggest changes
-   before you invest in a PR.
-3. **Pull requests without a linked, maintainer-approved issue will not be reviewed.**
+**Pull requests without a linked, maintainer-approved issue will not be reviewed** — either tier
+starts with an issue.
+
+### Community tier — fastest (no code)
+
+1. Open a [Dependency request](https://github.com/chinaready/launchready-stackbreak-lab/issues/new?template=dependency-request.yml)
+   issue and pick tier **community**. Wait for maintainer approval.
+2. On approval, either you or a maintainer adds roughly ten lines to
+   [`probe/targets-community.json`](probe/targets-community.json) (new vendors must also be
+   declared in `meta.vendors` of `probe/targets.json`):
+
+   ```json
+   {
+     "id": "stripe-js",
+     "name": "Stripe.js",
+     "category": "payments",
+     "categories": ["payments"],
+     "vendor": "stripe",
+     "tier": "community",
+     "domain": "js.stripe.com",
+     "url": "https://js.stripe.com/v3/",
+     "submittedBy": "your-github-handle",
+     "addedAt": "2026-09-29"
+   }
+   ```
+
+3. Community targets are network-probe only — `curl` + `dig`, no demo page, no Playwright.
+4. After merge, the **next Monday run** picks them up and they appear in `/results/` flagged as
+   community.
+
+### Curated tier — full demo page
+
+The original flow: approved issue → PR with a demo page + `probe/targets.json` entry (+ a
+bespoke Playwright test only if needed) + hub link. Every curated target keeps its own
+single-dependency page under [`demos/`](demos/). See the guides below.
 
 ## One dependency per pull request
 
@@ -41,7 +71,10 @@ Add one object to the `services` array (see [`probe/targets.schema.md`](probe/ta
 {
   "id": "stripe-js",
   "name": "Stripe.js",
-  "category": "auth",
+  "category": "payments",
+  "categories": ["payments"],
+  "vendor": "stripe",
+  "tier": "curated",
   "domain": "js.stripe.com",
   "url": "https://js.stripe.com/v3/",
   "demoPath": "/demos/stripe-js.html",
@@ -49,8 +82,8 @@ Add one object to the `services` array (see [`probe/targets.schema.md`](probe/ta
 }
 ```
 
-`category` must be one of: `fonts`, `auth`, `analytics`, `embeds`. Need a new category? Discuss in
-your issue first.
+`category` must be one of: `fonts`, `auth`, `analytics`, `embeds`, `payments`. Need a new category?
+Discuss in your issue first.
 
 ### 3. Playwright test — `tests/playwright/stack-break.spec.ts`
 
@@ -76,9 +109,11 @@ run and your dependency shows up at https://stackbreak.launchready.cn/results/.
 ## Local check before you push
 
 ```bash
-docker compose up --build       # visit http://localhost:8080/demos/
-npm install && npm test         # Playwright (demos should load locally)
-./probe/china-dependency-probe.sh
+npm run validate:targets   # registry schema + cross-file rules
+npm run test:unit          # validator unit tests
+docker compose up --build  # visit http://localhost:8080/demos/
+npm install && npm test    # Playwright (demos should load locally)
+./probe/china-dependency-probe.sh   # format check only outside mainland China — never commit local runs
 ```
 
 ## License

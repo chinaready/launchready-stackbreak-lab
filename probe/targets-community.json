@@ -1,0 +1,30 @@
+{
+  "$schema": "./targets.schema.json",
+  "description": "Community-submitted probe targets. Network-only (curl + dig, no Playwright, no demo page). Merged into the weekly mainland probe automatically after CI validation.",
+  "services": [
+    {
+      "id": "stripe-js",
+      "name": "Stripe.js",
+      "category": "payments",
+      "categories": ["payments"],
+      "vendor": "stripe",
+      "tier": "community",
+      "domain": "js.stripe.com",
+      "url": "https://js.stripe.com/v3/",
+      "submittedBy": "chinaready",
+      "addedAt": "2026-09-30"
+    },
+    {
+      "id": "sentry-browser",
+      "name": "Sentry Browser SDK",
+      "category": "analytics",
+      "categories": ["analytics"],
+      "vendor": "sentry",
+      "tier": "community",
+      "domain": "browser.sentry-cdn.com",
+      "url": "https://browser.sentry-cdn.com/8/autoload.js",
+      "submittedBy": "chinaready",
+      "addedAt": "2026-09-30"
+    }
+  ]
+}

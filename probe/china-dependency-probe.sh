@@ -17,6 +17,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 TARGETS="$SCRIPT_DIR/targets.json"
+COMMUNITY_TARGETS="$SCRIPT_DIR/targets-community.json"
 
 # Slow threshold (seconds): connected but slower than this is "Degraded".
 SLOW_THRESHOLD="${SLOW_THRESHOLD:-5}"
@@ -48,6 +49,12 @@ echo
 
 services_json="[]"
 
+if [ -f "$COMMUNITY_TARGETS" ]; then
+  target_stream="$(jq -s '.[0].services + .[1].services' "$TARGETS" "$COMMUNITY_TARGETS")"
+else
+  target_stream="$(jq -c '.services' "$TARGETS")"
+fi
+
 while IFS= read -r row; do
   id="$(echo "$row" | jq -r '.id')"
   name="$(echo "$row" | jq -r '.name')"
@@ -56,6 +63,8 @@ while IFS= read -r row; do
   url="$(echo "$row" | jq -r '.url')"
   demo="$(echo "$row" | jq -r '.demoPath')"
   symptom="$(echo "$row" | jq -r '.symptom // ""')"
+  tier="$(echo "$row" | jq -r '.tier // "curated"')"
+  vendor="$(echo "$row" | jq -r '.vendor // ""')"
 
   # DNS resolution.
   dns_answer="$(dig +short +time=5 +tries=1 "@$DNS_SERVER" "$domain" 2>/dev/null | head -n1 || true)"
@@ -93,15 +102,17 @@ while IFS= read -r row; do
   service_obj="$(jq -n \
     --arg id "$id" --arg name "$name" --arg category "$category" --arg domain "$domain" \
     --arg url "$url" --arg demoPath "$demo" --arg symptom "$symptom" \
+    --arg tier "$tier" --arg vendor "$vendor" \
     --arg httpCode "$http_code" --argjson connectSec "${connect_s:-0}" --argjson sslSec "${ssl_s:-0}" \
     --argjson totalSec "${total_s:-0}" --argjson curlExit "$curl_exit" \
     --argjson dnsResolved "$dns_resolved" --arg verdict "$verdict" \
     '{id:$id,name:$name,category:$category,domain:$domain,url:$url,demoPath:$demoPath,symptom:$symptom,
+      tier:$tier,vendor:$vendor,
       httpCode:$httpCode,connectSec:$connectSec,sslSec:$sslSec,totalSec:$totalSec,
       curlExit:$curlExit,dnsResolved:$dnsResolved,verdict:$verdict}')"
 
   services_json="$(jq -c --argjson o "$service_obj" '. + [$o]' <<<"$services_json")"
-done < <(jq -c '.services[]' "$TARGETS")
+done < <(jq -c '.[]' <<<"$target_stream")
 
 # Assemble run document.
 run_doc="$(jq -n \
@@ -123,9 +134,9 @@ echo "$run_doc" > "$OUT_DIR/probe.json"
   echo "- Environment: $CLOUD_PROVIDER / $CLOUD_REGION / $RUNNER_HOST"
   echo "- DNS: $DNS_SERVER"
   echo
-  echo "| Service | Category | Verdict | HTTP | Total (s) | DNS |"
-  echo "|---|---|---|---|---|---|"
-  echo "$services_json" | jq -r '.[] | "| \(.name) | \(.category) | \(.verdict) | \(.httpCode) | \(.totalSec) | \(if .dnsResolved then "yes" else "no" end) |"'
+  echo "| Service | Tier | Category | Verdict | HTTP | Total (s) | DNS |"
+  echo "|---|---|---|---|---|---|---|"
+  echo "$services_json" | jq -r '.[] | "| \(.name) | \(.tier) | \(.category) | \(.verdict) | \(.httpCode) | \(.totalSec) | \(if .dnsResolved then "yes" else "no" end) |"'
 } > "$OUT_DIR/probe.md"
 
 # Update latest.json: keep any existing browser[] block, replace probe-owned fields.

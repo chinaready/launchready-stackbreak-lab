@@ -1,0 +1,47 @@
+name: SaaS stack deep-dive request
+description: Propose a whole platform to probe end-to-end from mainland China (like the Firebase / Netlify / Vercel kits)
+title: "[saas-stack] "
+labels:
+  - saas-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Whole-stack kits are a heavy lift: a deployed demo project plus probe scripts, maintained by the team.
+        Use this form to make the case; community voting in Discussions helps prioritization.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform name
+      placeholder: Supabase
+    validations:
+      required: true
+  - type: input
+    id: site
+    attributes:
+      label: Vendor site
+      placeholder: https://supabase.com
+    validations:
+      required: true
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: Which capabilities matter
+      description: e.g. auth, database, storage, functions, realtime, CDN
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this platform for China-bound products
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I understand kit acceptance and timeline are at maintainer discretion
+          required: true
+        - label: I will not include production secrets or customer domains
+          required: true
