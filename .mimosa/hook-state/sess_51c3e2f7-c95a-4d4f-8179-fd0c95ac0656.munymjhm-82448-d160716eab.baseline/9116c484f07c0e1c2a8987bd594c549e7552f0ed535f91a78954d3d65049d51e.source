@@ -38,7 +38,8 @@ test('product (/product/) hero mirrors the stack hero structure with its own cop
   await expect(page.locator('.hero__cta .btn')).toHaveCount(3);
   await expect(page.locator('.hero__stats .stat')).toHaveCount(3);
   await expect(page.locator('.hero__stats [data-count="plat-probes"]')).not.toHaveText('—');
-  for (const id of ['#firebase', '#netlify-latency', '#vercel', '#vercel-latency']) {
+  await expect(page.locator('.platform-logo')).toHaveCount(3);
+  for (const id of ['#firebase', '#netlify', '#vercel']) {
     await expect(page.locator(id)).toBeVisible();
   }
 });

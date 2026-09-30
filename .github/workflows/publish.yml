@@ -1,0 +1,95 @@
+name: publish
+
+# Syncs the static site to the Alibaba Cloud OSS bucket (CDN origin) when site
+# content changes on main. Replaces the old docker rebuild deploy — no container,
+# no image registry. Runs on the self-hosted mainland runner so the OSS transfer
+# stays on the Alibaba network. Skips cleanly until OSS credentials are configured.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'stack/**'
+      - 'product/**'
+      - 'demos/**'
+      - 'public/**'
+      - 'probe/**'
+      - 'results/**'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'llms.txt'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: true
+
+env:
+  DEPLOY_PATH: /opt/launchready-stackbreak-lab
+  GIT_REMOTE: git@github.com:chinaready/launchready-stackbreak-lab.git
+  OSSUTIL_URL: https://gosspublic.alicdn.com/ossutil/1.7.19/ossutil64
+
+jobs:
+  publish:
+    runs-on: [self-hosted, linux, mainland-china]
+    env:
+      OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+      OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+      OSS_BUCKET: ${{ vars.OSS_BUCKET }}
+      OSS_ENDPOINT: ${{ vars.OSS_ENDPOINT }}
+    steps:
+      - name: Sync repository (SSH over 443)
+        run: |
+          set -euo pipefail
+          cd "$DEPLOY_PATH"
+          deploy_key="${HOME}/.ssh/github_deploy"
+          if [ -f "$deploy_key" ]; then
+            export GIT_SSH_COMMAND="ssh -i ${deploy_key} -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes"
+          else
+            export GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443 -o StrictHostKeyChecking=accept-new"
+          fi
+          git remote set-url origin "$GIT_REMOTE"
+          n=0
+          until [ "$n" -ge 5 ]; do
+            if git fetch --prune origin main; then break; fi
+            n=$((n+1)); echo "fetch attempt $n failed; retrying in 10s"; sleep 10
+          done
+          if [ "$n" -ge 5 ]; then
+            echo "::error::git fetch from GitHub failed after 5 attempts (SSH-443)"
+            exit 1
+          fi
+          git reset --hard origin/main
+          git clean -fd -e .env -e 'firebase-demo/service-account.json' -e 'firebase-demo/stackbreak-*.json' -e '**/*-firebase-adminsdk-*.json'
+
+      - name: Install ossutil (mainland-reachable download)
+        run: |
+          set -euo pipefail
+          if [ -z "${OSS_ACCESS_KEY_ID:-}" ] || [ -z "${OSS_BUCKET:-}" ]; then
+            echo "OSS credentials not configured; skipping publish"; exit 0
+          fi
+          if ! command -v ossutil >/dev/null 2>&1 && [ ! -x "$HOME/bin/ossutil" ]; then
+            mkdir -p "$HOME/bin"
+            curl -sfL "$OSSUTIL_URL" -o "$HOME/bin/ossutil"
+            chmod +x "$HOME/bin/ossutil"
+          fi
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+
+      - name: Sync site to OSS
+        run: |
+          set -euo pipefail
+          if [ -z "${OSS_ACCESS_KEY_ID:-}" ] || [ -z "${OSS_BUCKET:-}" ]; then
+            echo "OSS credentials not configured; skipping publish"; exit 0
+          fi
+          cd "$DEPLOY_PATH"
+          OSS="ossutil -i $OSS_ACCESS_KEY_ID -k $OSS_ACCESS_KEY_SECRET -e $OSS_ENDPOINT"
+          for dir in stack product demos public probe results; do
+            $OSS sync "$dir/" "oss://$OSS_BUCKET/$dir/" --delete -f
+          done
+          # JSON must not sit on the CDN edge: serve it effectively fresh.
+          $OSS cp -rf --update --include "*.json" --meta "Cache-Control:no-cache" results/ "oss://$OSS_BUCKET/results/"
+          for f in index.html product.html robots.txt sitemap.xml llms.txt; do
+            $OSS cp -f --meta "Cache-Control:max-age=60" "$f" "oss://$OSS_BUCKET/$f"
+          done
+          echo "publish to oss://$OSS_BUCKET complete"

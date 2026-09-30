@@ -111,7 +111,7 @@ run and your dependency shows up at https://stackbreak.launchready.cn/results/.
 ```bash
 npm run validate:targets   # registry schema + cross-file rules
 npm run test:unit          # validator unit tests
-docker compose up --build  # visit http://localhost:8080/demos/
+npm run serve             # visit http://localhost:8080/
 npm install && npm test    # Playwright (demos should load locally)
 ./probe/china-dependency-probe.sh   # format check only outside mainland China — never commit local runs
 ```
