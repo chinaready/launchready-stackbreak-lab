@@ -266,6 +266,7 @@
 
     var rows = [];
     var jobs = [];
+    var platformDocs = {};
 
     jobs.push(fetch('/results/latest.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -274,12 +275,12 @@
 
     jobs.push(fetch('/results/firebase-latest.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) { if (d) rows = rows.concat(applyFirebase(d)); })
+      .then(function (d) { platformDocs.firebase = d; if (d) rows = rows.concat(applyFirebase(d)); })
       .catch(function () {}));
 
     jobs.push(fetch('/results/netlify-latest.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) { if (d) rows = rows.concat(applyNetlify(d)); })
+      .then(function (d) { platformDocs.netlify = d; if (d) rows = rows.concat(applyNetlify(d)); })
       .catch(function () {}));
 
     jobs.push(fetch('/results/netlify-resources-latest.json', { cache: 'no-store' })
@@ -289,7 +290,7 @@
 
     jobs.push(fetch('/results/vercel-latest.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) { if (d) rows = rows.concat(applyVercel(d)); })
+      .then(function (d) { platformDocs.vercel = d; if (d) rows = rows.concat(applyVercel(d)); })
       .catch(function () {}));
 
     jobs.push(fetch('/results/vercel-resources-latest.json', { cache: 'no-store' })
@@ -297,7 +298,24 @@
       .then(function (d) { if (d) rows = rows.concat(applyVercelLatency(d)); })
       .catch(function () {}));
 
-    Promise.all(jobs).then(function () { buildTicker(rows); });
+    Promise.all(jobs).then(function () {
+      buildTicker(rows);
+      // Product-page hero aggregates: totals across the whole-stack kits.
+      var probes = 0, blocked = 0;
+      ['firebase', 'netlify', 'vercel'].forEach(function (k) {
+        var list = (platformDocs[k] && platformDocs[k].probes) || [];
+        probes += list.length;
+        blocked += list.filter(function (p) { return p.verdict === 'Blocked'; }).length;
+      });
+      setAggregate('platforms', Object.keys(platformDocs).length);
+      setAggregate('plat-probes', probes);
+      setAggregate('plat-blocked', blocked);
+    });
+  }
+
+  function setAggregate(key, val) {
+    var el = document.querySelector('[data-count="' + key + '"]');
+    if (el && val > 0) animateCount(el, val);
   }
 
   if (document.readyState !== 'loading') boot();

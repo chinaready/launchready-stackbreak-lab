@@ -680,3 +680,6 @@ table.results tbody tr:hover { background: var(--cr-surface); }
 .hero--bg-circuits .hero__bg { background-image: url("../assets/hero-bg-circuits.svg"); }
 .hero--bg-radar .hero__grid, .hero--bg-radar .hero__glow,
 .hero--bg-circuits .hero__grid, .hero--bg-circuits .hero__glow { display: none; }
+
+/* ===== v2.1 platform logos in section titles (2026-09-30) ===== */
+.platform-logo { vertical-align: -3px; margin-right: 10px; }

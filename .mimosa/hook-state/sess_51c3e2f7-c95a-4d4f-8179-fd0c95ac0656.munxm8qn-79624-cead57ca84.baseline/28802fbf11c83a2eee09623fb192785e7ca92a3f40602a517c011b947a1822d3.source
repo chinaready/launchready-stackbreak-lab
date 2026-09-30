@@ -9,9 +9,11 @@ on:
     branches: [main]
     paths:
       - 'index.html'
-      - 'product.html'
+      - 'stack/**'
+      - 'product/**'
       - 'demos/**'
       - 'public/**'
+      - 'probe/**'
       - 'Dockerfile'
       - 'docker-compose.prod.yml'
       - 'deploy/nginx.conf'
