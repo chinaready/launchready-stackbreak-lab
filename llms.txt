@@ -7,8 +7,8 @@ Stack Break Lab loads each third-party dependency the way a product would, from 
 ## Key pages
 
 - [Home](https://stackbreak.launchready.cn/): Verdict traffic lights, weekly run reports, how the lab works
-- [Stack](https://stackbreak.launchready.cn/demos/): Single dependencies by category — live verdicts, one per page
-- [Product](https://stackbreak.launchready.cn/product.html): Whole platforms (Firebase, Netlify, Vercel) probed end to end
+- [Stack](https://stackbreak.launchready.cn/stack/): Single dependencies by category — live verdicts, one per page
+- [Product](https://stackbreak.launchready.cn/product/): Whole platforms (Firebase, Netlify, Vercel) probed end to end
 
 - [Beijing View](https://stackbreak.launchready.cn/demos/beijing-view.html): Mainland-recorded snapshots of each dependency
 - [Latest results](https://stackbreak.launchready.cn/public/results/): Machine-readable verdict index

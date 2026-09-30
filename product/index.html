@@ -4,25 +4,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Whole-stack products — Firebase, Netlify, Vercel probed end to end from Beijing — Stack Break Lab</title>
-  <meta name="description" content="Whole managed platforms — Firebase, Netlify, Vercel — deployed for real and probed end to end from a mainland China node: hosting, functions, auth, storage, edge, latency." />
-  <link rel="canonical" href="https://stackbreak.launchready.cn/product.html" />
+  <title>Product deep dives — Firebase, Netlify &amp; Vercel today, more on the way — Stack Break Lab</title>
+  <meta name="description" content="Our current deep-dive targets — Firebase, Netlify, and Vercel — deployed for real and probed end to end from a Beijing node. More platforms are being added; propose or vote for the next." />
+  <link rel="canonical" href="https://stackbreak.launchready.cn/product/" />
   <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://stackbreak.launchready.cn/product.html" />
+  <meta property="og:url" content="https://stackbreak.launchready.cn/product/" />
   <meta property="og:site_name" content="Stack Break Lab" />
-  <meta property="og:title" content="Whole-stack products, probed end to end from Beijing" />
-  <meta property="og:description" content="Firebase, Netlify, and Vercel deployed for real and probed end to end from a mainland China node." />
+  <meta property="og:title" content="Product deep dives — Firebase, Netlify &amp; Vercel today, more on the way" />
+  <meta property="og:description" content="Our current deep-dive targets, probed end to end from a Beijing node. More platforms are being added." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Whole-stack products, probed end to end from Beijing — Stack Break Lab" />
-  <meta name="twitter:description" content="Firebase, Netlify, and Vercel probed end to end from a mainland China node." />
+  <meta name="twitter:title" content="Product deep dives — Firebase, Netlify &amp; Vercel today — Stack Break Lab" />
+  <meta name="twitter:description" content="Our current deep-dive targets, probed end to end from a Beijing node. More coming." />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Whole-stack products — Stack Break Lab",
       "description": "Whole managed platforms probed end to end from a mainland China node.",
-      "url": "https://stackbreak.launchready.cn/product.html",
+      "url": "https://stackbreak.launchready.cn/product/",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Stack Break Lab",
@@ -30,28 +30,28 @@
       }
     }
   </script>
-  <link rel="icon" href="public/assets/brand/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="public/assets/brand/mark.svg" />
-  <link rel="icon" type="image/png" sizes="16x16" href="public/assets/brand/favicon-16x16.png" />
-  <link rel="apple-touch-icon" href="public/assets/brand/apple-touch-icon.png" />
-  <link rel="manifest" href="public/assets/brand/site.webmanifest" />
+  <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../public/assets/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
   <meta name="theme-color" content="#0C1E3E" />
-  <link rel="stylesheet" href="public/assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="public/assets/lab.css?v=20260930d" />
-  <link rel="stylesheet" href="public/assets/home.css?v=20260930d" />
+  <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
+  <link rel="stylesheet" href="../public/assets/lab.css?v=20260930d" />
+  <link rel="stylesheet" href="../public/assets/home.css?v=20260930d" />
 </head>
 <body class="home">
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="/">
-        <img class="brand__logo" src="public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="140" height="28" />
+        <img class="brand__logo" src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="140" height="28" />
         <span class="brand__sep" aria-hidden="true"></span>
         <span class="brand__lab">Stack Break Lab</span>
       </a>
       <nav class="main-nav" aria-label="Primary">
         <a href="/" class="main-nav__link">Home</a>
-        <a href="/demos/" class="main-nav__link">Stack</a>
-        <a href="/product.html" class="main-nav__link" aria-current="page">Product</a>
+        <a href="/stack/" class="main-nav__link">Stack</a>
+        <a href="/product/" class="main-nav__link" aria-current="page">Product</a>
       </nav>
     </div>
   </header>
@@ -65,15 +65,23 @@
         <div class="hero__scan"></div>
       </div>
       <div class="home-wrap">
-        <p class="hero__badge reveal"><span class="live-dot" aria-hidden="true"></span>Live &middot; Beijing node &middot; refreshed weekly</p>
-        <h1 class="hero__title reveal" data-delay="1">Whole products, probed end to end<span class="period">.</span></h1>
+        <p class="hero__badge reveal"><span class="live-dot" aria-hidden="true"></span>Deep dives &middot; 3 platforms &middot; more on the way</p>
+        <h1 class="hero__title reveal" data-delay="1">Firebase, Netlify &amp; Vercel, end to end<span class="period">.</span></h1>
         <p class="hero__lede reveal" data-delay="2">
-          Single dependencies tell you what breaks. Whole platforms tell you what it costs.
-          Each kit below is a real deployed site, measured from the same Beijing node.
+          These are the platforms we currently deep-dive: each deployed for real and probed
+          from our Beijing node. More research targets are being added — propose the next one
+          or vote on what's coming.
         </p>
         <div class="hero__cta reveal" data-delay="3">
-          <a class="btn btn--primary" href="public/results/index.html">See live verdicts</a>
-          <a class="btn btn--ghost" href="/demos/">Browse single dependencies</a>
+          <a class="btn btn--primary" href="../public/results/index.html">See live verdicts</a>
+          <a class="btn btn--ghost" href="/stack/">Explore the stack</a>
+          <a class="btn btn--ghost" target="_blank" rel="noopener"
+             href="https://github.com/chinaready/launchready-stackbreak-lab/issues/new?template=propose-saas-stack.yml">Propose a platform</a>
+        </div>
+        <div class="hero__stats reveal" data-delay="4">
+          <div class="stat"><span class="stat__num" data-count="platforms">—</span><span class="stat__label">platforms deep-dived</span></div>
+          <div class="stat"><span class="stat__num" data-count="plat-blocked">—</span><span class="stat__label">probes blocked</span></div>
+          <div class="stat"><span class="stat__num" data-count="plat-probes">—</span><span class="stat__label">probes measured</span></div>
         </div>
       </div>
     </section>
@@ -87,12 +95,12 @@
           A separate probe kit measures the whole Firebase stack from the same node —
           <strong><span data-count="fb-blocked">—</span> of <span data-count="fb-total">—</span></strong>
           probes are currently blocked. Each card opens the matching section of the
-          <a href="public/results/firebase.html">Firebase results</a>.
+          <a href="../public/results/firebase.html">Firebase results</a>.
         </p>
         <div class="dep-grid">
-          <a class="dep-card" data-fbpath="frontend" href="public/results/firebase.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser / client SDK</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-fbpath="backend" href="public/results/firebase.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">Admin SDK on a server</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-fbpath="transport" href="public/results/firebase.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-fbpath="frontend" href="../public/results/firebase.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser / client SDK</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-fbpath="backend" href="../public/results/firebase.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">Admin SDK on a server</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-fbpath="transport" href="../public/results/firebase.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
         </div>
       </div>
     </section>
@@ -109,12 +117,12 @@
           <strong><span data-count-text="nlres-region">—</span></strong>.
           <strong><span data-count="nlres-total">—</span></strong> page resources measured;
           heaviest load <strong><span data-count-text="nlres-worst">—</span></strong>.
-          See the <a href="public/results/netlify.html#netlify-latency">latency results</a>.
+          See the <a href="../public/results/netlify.html#netlify-latency">latency results</a>.
         </p>
         <div class="dep-grid">
-          <a class="dep-card" data-nlrkind="endpoint" href="public/results/netlify.html#netlify-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-nlrkind="image-cdn" href="public/results/netlify.html#netlify-latency"><span class="dep-card__name">Image CDN</span><span class="dep-card__host">resized / transcoded</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-nlrkind="raw" href="public/results/netlify.html#netlify-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlrkind="endpoint" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlrkind="image-cdn" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Image CDN</span><span class="dep-card__host">resized / transcoded</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-nlrkind="raw" href="../public/results/netlify.html#netlify-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
         </div>
       </div>
     </section>
@@ -130,12 +138,12 @@
           (Hosting, Functions, Edge Middleware, Cron, Blob, KV) &mdash; is probed from the same node.
           <strong><span data-count="vc-blocked">—</span> of <span data-count="vc-total">—</span></strong>
           probes are currently blocked. Blob store: <strong>Hong Kong</strong>; Redis: <strong>Singapore</strong>.
-          Open the <a href="public/results/vercel.html">Vercel results</a>.
+          Open the <a href="../public/results/vercel.html">Vercel results</a>.
         </p>
         <div class="dep-grid">
-          <a class="dep-card" data-vcpath="frontend" href="public/results/vercel.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser on *.vercel.app</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-vcpath="backend" href="public/results/vercel.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">API + Storage REST</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-vcpath="transport" href="public/results/vercel.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vcpath="frontend" href="../public/results/vercel.html#frontend"><span class="dep-card__name">Frontend</span><span class="dep-card__host">Browser on *.vercel.app</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vcpath="backend" href="../public/results/vercel.html#backend"><span class="dep-card__name">Backend</span><span class="dep-card__host">API + Storage REST</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vcpath="transport" href="../public/results/vercel.html#transport"><span class="dep-card__name">Transport</span><span class="dep-card__host">Raw host reachability</span><span class="dep-card__foot"></span></a>
         </div>
       </div>
     </section>
@@ -151,11 +159,11 @@
           <strong><span data-count-text="vcres-region">—</span></strong>.
           <strong><span data-count="vcres-total">—</span></strong> resources measured;
           heaviest load <strong><span data-count-text="vcres-worst">—</span></strong>.
-          See the <a href="public/results/vercel.html#vercel-latency">latency results</a>.
+          See the <a href="../public/results/vercel.html#vercel-latency">latency results</a>.
         </p>
         <div class="dep-grid">
-          <a class="dep-card" data-vlrkind="endpoint" href="public/results/vercel.html#vercel-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
-          <a class="dep-card" data-vlrkind="raw" href="public/results/vercel.html#vercel-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vlrkind="endpoint" href="../public/results/vercel.html#vercel-latency"><span class="dep-card__name">Endpoints</span><span class="dep-card__host">HTML, functions, edge</span><span class="dep-card__foot"></span></a>
+          <a class="dep-card" data-vlrkind="raw" href="../public/results/vercel.html#vercel-latency"><span class="dep-card__name">Raw assets</span><span class="dep-card__host">full-weight images</span><span class="dep-card__foot"></span></a>
         </div>
       </div>
     </section>
@@ -184,7 +192,7 @@
       <div class="cr-footer-grid">
         <section class="cr-footer-brand">
           <a href="https://chinaready.co/" class="cr-footer-logo-link" aria-label="Chinaready home">
-            <img src="public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="150" height="28" />
+            <img src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="150" height="28" />
           </a>
           <p class="cr-footer-description">
             <strong>Stack Break Lab</strong> — measures which foreign web-stack dependencies break from mainland China.
@@ -237,6 +245,6 @@
     </div>
   </footer>
 
-  <script src="public/assets/home.js?v=20260628b"></script>
+  <script src="../public/assets/home.js?v=20260628b"></script>
 </body>
 </html>
