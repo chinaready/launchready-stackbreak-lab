@@ -253,10 +253,13 @@ body.home .btn--primary, .btn--primary {
   border-radius: var(--radius-tag); padding: 4px 10px; color: #fff;
   font-variant-numeric: tabular-nums;
 }
-.verdict.Blocked { background: var(--v-blocked); }
-.verdict.Degraded { background: var(--v-degraded); }
-.verdict.Reachable { background: var(--v-reachable); }
-.verdict.is-pending { background: var(--cr-surface); color: var(--cr-text2); }
+/* Explicit white text per variant at matching specificity — the legacy
+   sheets style .verdict.<X> as tinted-background + dark text, which would
+   otherwise win the cascade and vanish on these solid fills. */
+.verdict.Blocked { background: var(--v-blocked); color: #fff; }
+.verdict.Degraded { background: var(--v-degraded); color: #fff; }
+.verdict.Reachable { background: var(--v-reachable); color: #fff; }
+.verdict.is-pending { background: var(--cr-surface); color: var(--cr-text2) !important; }
 .dep-card--badge {
   font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
   background: rgba(0, 91, 172, 0.10); color: var(--cr-blue);
