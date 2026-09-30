@@ -657,3 +657,9 @@ table.results tbody tr:hover { background: var(--cr-surface); }
 .hero--short { min-height: 0; padding-top: 72px; padding-bottom: 56px; }
 .hero--short .hero__title { font-size: clamp(30px, 4.2vw, 46px); }
 .hero--short .ticker { display: none; }
+
+/* ===== v2.1 ghost buttons on light blocks (2026-09-30 fix) ===== */
+.block--light .btn--ghost,
+.block--surface .btn--ghost { border-color: rgba(12, 30, 62, 0.32); color: #0C1E3E; }
+.block--light .btn--ghost:hover,
+.block--surface .btn--ghost:hover { border-color: #0C1E3E; color: #0C1E3E; background: rgba(12, 30, 62, 0.06); }
