@@ -217,7 +217,8 @@
         fonts: 'Fonts and icons',
         auth: 'Auth and identity',
         analytics: 'Analytics and tags',
-        embeds: 'Maps, media, embeds'
+        embeds: 'Maps, media, embeds',
+        payments: 'Payments and checkout'
       };
 
       function el(tag, text, className) {
@@ -310,7 +311,10 @@
           var tbody = el('tbody');
           list.forEach(function (s) {
             var tr = el('tr');
-            tr.appendChild(el('td', s.name));
+            var nameTd = el('td');
+            nameTd.appendChild(document.createTextNode(s.name));
+            if (s.tier === 'community') nameTd.appendChild(el('span', 'community', 'dep-card--badge'));
+            tr.appendChild(nameTd);
             tr.appendChild(verdictCell(s.verdict));
             tr.appendChild(el('td', s.httpCode));
             tr.appendChild(latencyCell(s.totalSec, maxSec, s.verdict));
