@@ -7,6 +7,7 @@ Stack Break Lab loads each third-party dependency the way a product would, from 
 ## Key pages
 
 - [Home](https://stackbreak.launchready.cn/demos/): Lab overview and live verdict summary
+- [Matrix overview](https://stackbreak.launchready.cn/demos/matrix.html): All dependencies × all SaaS vendors, latest verdicts
 - [Beijing View](https://stackbreak.launchready.cn/demos/beijing-view.html): Mainland-recorded snapshots of each dependency
 - [Latest results](https://stackbreak.launchready.cn/public/results/): Machine-readable verdict index
 - [Firebase results](https://stackbreak.launchready.cn/public/results/firebase.html)
