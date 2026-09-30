@@ -44,13 +44,16 @@ test('product (/product/) hero mirrors the stack hero structure with its own cop
   }
 });
 
-test('old hub URLs redirect to the new slugs', async ({ request }) => {
-  const resp = await request.get('/demos/', { maxRedirects: 0 });
-  expect(resp.status()).toBe(301);
-  expect(resp.headers()['location']).toBe('/stack/');
-  const resp2 = await request.get('/product.html', { maxRedirects: 0 });
-  expect(resp2.status()).toBe(301);
-  expect(resp2.headers()['location']).toBe('/product/');
+test('old hub URLs serve redirect stubs to the new slugs', async ({ request }) => {
+  const demos = await request.get('/demos/');
+  expect(demos.status()).toBe(200);
+  const demosBody = await demos.text();
+  expect(demosBody).toContain('rel="canonical" href="https://stackbreak.launchready.cn/stack/"');
+  expect(demosBody).toContain('href="/stack/"');
+  const product = await request.get('/product.html');
+  expect(await product.text()).toContain('href="/product/"');
+  const results = await request.get('/results/');
+  expect(await results.text()).toContain('href="/public/results/"');
 });
 
 test('removed v2 designs stay gone', async ({ page }) => {

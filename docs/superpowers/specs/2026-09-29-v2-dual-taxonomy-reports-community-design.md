@@ -210,3 +210,26 @@ The corrected information architecture, per maintainer:
 - New data asset `results/history.json` — `{ generatedAt, runs: [{ date, total, blocked, degraded, reachable }] }`, rebuilt from `results/<date>/probe.json` by `scripts/update-history.mjs` (dependency-free, idempotent full rescan) as a new evidence-workflow step. Home's reports list reads it; M3 swaps the row link to the PDF; M4's timeline supersedes it for per-target detail.
 - Removed artifacts: `demos/matrix.html`, `public/assets/matrix.js`, matrix styles/tests/sitemap/llms/footer entries, catalog dual-tab (panel-service + tab bar). `catalog.js` survives only as the Community-picks renderer into the Stack catalog.
 - Visual redesign is authorized within the Chinaready DS: reuse the existing hero/block/steps design language (`home.css`) across all three nav pages; new dashboard components (status tiles, reports table, main nav) live in `lab.css`.
+
+## v2.2 Static CDN hosting (2026-09-30, maintainer decision)
+
+The mainland deploy's private image mirror began rejecting pulls (`harbor.aicproxy.cn` → 401).
+Maintainer decision: **serve the site from Alibaba Cloud CDN backed by an OSS bucket; retire the
+container layer entirely.** The site content was already pure static files — the nginx container
+was only a file server.
+
+- **`publish.yml`** (replaces `deploy.yml`): on push to main touching site paths → sync site dirs
+  to OSS (`ossutil`, binary fetched from `gosspublic.alicdn.com`, mainland-reachable) → CDN picks
+  changes up per cache rules. No docker, no registry.
+- **`evidence.yml`** gains a tolerant publish step after its git push: `results/` increments to
+  OSS (skips cleanly when OSS secrets are absent).
+- **Old-URL redirects**: in-repo minimal stub pages (`demos/index.html`, `product.html`,
+  `results/index.html` — canonical + meta-refresh + `location.replace`, `noindex`) plus
+  recommended CDN URI rules (301) listed in `deploy/oss-cdn-checklist.md`; once the CDN rules are
+  configured the stubs are unreachable.
+- **Local dev**: zero-dependency `scripts/serve.mjs` (`npm run serve`); Dockerfile,
+  `docker-compose*.yml`, `deploy/nginx.conf`, and `deploy/server-bootstrap.md` are deleted.
+- **Cache strategy** (CDN console rules, see checklist): `*.json` ≈ 60s, `*.html` ≈ 60s, versioned
+  `/public/assets/*` 30d — replaces nginx's no-store.
+- Unchanged: the self-hosted mainland runner (evidence collection), the weekly schedule, git as
+  the source of truth; OSS is a distribution copy.

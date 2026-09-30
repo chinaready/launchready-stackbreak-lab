@@ -45,7 +45,10 @@ GitHub (this repo)  --push-->  self-hosted runner on launchready.cn (mainland Ch
                                   +-- Playwright  (Chromium, network capture + screenshots)
                                   |
                                   +-- writes results/<date>/ and results/latest.json
-                                  +-- serves demos + /results/ via Docker (nginx)
+                                  +-- commits evidence back to GitHub
+                                  +-- syncs results/ to the Alibaba OSS bucket (CDN origin)
+
+main branch  --push-->  publish workflow  --ossutil-->  OSS bucket  --CDN-->  visitors
 ```
 
 1. **Network probe** (`curl` + `dig`) — domain reachability and latency.
@@ -73,10 +76,9 @@ Outside China most demos succeed — that is the point of comparison with the ma
 git clone https://github.com/chinaready/launchready-stackbreak-lab.git
 cd launchready-stackbreak-lab
 
-docker compose up --build
-# http://localhost:8080/demos/  and  http://localhost:8080/results/
-
 npm install
+npm run serve
+# http://localhost:8080/
 npx playwright install --with-deps chromium
 npm test
 
@@ -97,7 +99,7 @@ vercel-demo/   Vercel stack probe kit
 tests/         Playwright specs
 results/       published evidence (latest.json + dated snapshots)
 public/        /results/ viewer + shared assets
-deploy/        host bootstrap + runner setup (maintainers)
+deploy/        runner setup + OSS/CDN cutover checklist (maintainers)
 ```
 
 ## Whole-stack deep dives
