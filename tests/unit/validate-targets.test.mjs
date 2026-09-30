@@ -53,11 +53,11 @@ test('unknown vendor fails (service and platform)', () => {
 
 test('http url, bad slug, bad category, category not in categories all fail', () => {
   const c = curatedBase();
-  Object.assign(c.services[0], { url: 'http://x', id: 'Bad_Slug', category: 'payments' });
+  Object.assign(c.services[0], { url: 'http://x', id: 'Bad_Slug', category: 'monitoring' });
   const errs = validateRegistries(c, communityBase());
   assert.ok(errs.some(e => e.includes('https://')));
   assert.ok(errs.some(e => e.includes('slug')));
-  assert.ok(errs.some(e => e.includes('category "payments"')));
+  assert.ok(errs.some(e => e.includes('category "monitoring"')));
 });
 
 test('empty meta.vendors fails; platform missing field fails; bad resultsPath fails', () => {

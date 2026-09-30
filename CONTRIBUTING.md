@@ -20,8 +20,8 @@ starts with an issue.
    {
      "id": "stripe-js",
      "name": "Stripe.js",
-     "category": "analytics",
-     "categories": ["analytics"],
+     "category": "payments",
+     "categories": ["payments"],
      "vendor": "stripe",
      "tier": "community",
      "domain": "js.stripe.com",
@@ -71,8 +71,8 @@ Add one object to the `services` array (see [`probe/targets.schema.md`](probe/ta
 {
   "id": "stripe-js",
   "name": "Stripe.js",
-  "category": "auth",
-  "categories": ["auth"],
+  "category": "payments",
+  "categories": ["payments"],
   "vendor": "stripe",
   "tier": "curated",
   "domain": "js.stripe.com",
@@ -82,8 +82,8 @@ Add one object to the `services` array (see [`probe/targets.schema.md`](probe/ta
 }
 ```
 
-`category` must be one of: `fonts`, `auth`, `analytics`, `embeds`. Need a new category? Discuss in
-your issue first.
+`category` must be one of: `fonts`, `auth`, `analytics`, `embeds`, `payments`. Need a new category?
+Discuss in your issue first.
 
 ### 3. Playwright test — `tests/playwright/stack-break.spec.ts`
 

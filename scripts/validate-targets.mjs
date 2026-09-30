@@ -11,7 +11,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-export const CATEGORIES = ['fonts', 'auth', 'analytics', 'embeds'];
+export const CATEGORIES = ['fonts', 'auth', 'analytics', 'embeds', 'payments'];
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const HTTPS = /^https:\/\//;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;

@@ -20,7 +20,7 @@ validator, which is the CI source of truth.
 |---|---|---|---|
 | `id` | required | required | Stable kebab-case slug (e.g. `google-fonts`). Key in results. |
 | `name` | required | required | Human-readable service name. |
-| `category` | required | required | One of `fonts`, `auth`, `analytics`, `embeds`. New categories are a deliberate schema+validator change — discuss in an issue first. |
+| `category` | required | required | One of `fonts`, `auth`, `analytics`, `embeds`, `payments`. New categories are a deliberate schema+validator change — discuss in an issue first. |
 | `categories` | optional | required | Non-empty array; `category` must be one of its members. Powers the "by category" browsing dimension. |
 | `vendor` | required | required | Key into `meta.vendors` in `targets.json`. Powers the "by service" browsing dimension. |
 | `tier` | required (`curated`) | required (`community`) | Which participation tier the target belongs to. |

@@ -39,6 +39,7 @@ body:
         - auth
         - analytics
         - embeds
+        - payments
         - other (explain below)
     validations:
       required: true

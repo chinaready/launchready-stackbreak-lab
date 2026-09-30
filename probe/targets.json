@@ -8,7 +8,9 @@
       "auth0": { "name": "Auth0", "url": "https://auth0.com" },
       "vimeo": { "name": "Vimeo", "url": "https://vimeo.com" },
       "netlify": { "name": "Netlify", "url": "https://www.netlify.com" },
-      "vercel": { "name": "Vercel", "url": "https://vercel.com" }
+      "vercel": { "name": "Vercel", "url": "https://vercel.com" },
+      "stripe": { "name": "Stripe", "url": "https://stripe.com" },
+      "sentry": { "name": "Sentry", "url": "https://sentry.io" }
     }
   },
   "platforms": [
