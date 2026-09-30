@@ -69,6 +69,13 @@ jobs:
           npx playwright install chromium
           npx playwright test || echo "browser checks reported failures (recorded in results)"
 
+      - name: Generate weekly PDF report
+        continue-on-error: true
+        run: |
+          # Deterministic per date; failure must never block the evidence commit.
+          node scripts/generate-report.mjs || echo "::warning::PDF generation failed; evidence still commits"
+          node scripts/update-history.mjs
+
       - name: Netlify probe (deployed site + API)
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
