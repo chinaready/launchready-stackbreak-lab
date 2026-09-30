@@ -17,8 +17,10 @@ test('home (/) shows the dashboard: nav, traffic lights, reports list', async ({
   await expect(page.locator('.board-tile--blocked .board-tile__num')).not.toHaveText('—');
   const rows = page.locator('#reports-table tbody tr');
   expect(await rows.count()).toBeGreaterThan(3);
-  await expect(rows.first().locator('td a')).toHaveAttribute('href', /\/results\/\d{4}-\d{2}-\d{2}\/probe\.md$/);
+  await expect(rows.first().locator('td a[href$="/probe.md"]')).toHaveAttribute('href', /\/results\/\d{4}-\d{2}-\d{2}\/probe\.md$/);
   await expect(page.locator('#board-cats .board-cats__item').first()).toBeVisible();
+  // Runs that have a report show the PDF download in the reports table.
+  await expect(page.locator('#reports-table a[href$="/report.pdf"]').first()).toBeVisible();
 });
 
 test('stack (/stack/) keeps the category catalog and community picks, no tabs', async ({ page }) => {
