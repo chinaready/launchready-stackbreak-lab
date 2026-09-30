@@ -154,6 +154,15 @@
           show the latest verdict straight from the most recent run.
         </p>
 
+        <div class="catalog-tabs reveal" role="tablist" aria-label="Browse targets">
+          <button class="catalog-tab" data-catalog-tab="category" id="tab-category" role="tab"
+                  aria-selected="true" aria-controls="panel-category" type="button">By category</button>
+          <button class="catalog-tab" data-catalog-tab="service" id="tab-service" role="tab"
+                  aria-selected="false" aria-controls="panel-service" type="button">By service</button>
+        </div>
+
+        <div id="panel-category" role="tabpanel" aria-labelledby="tab-category">
+
         <div class="cat-block reveal">
           <h3 class="cat-block__label">Fonts &amp; icons <small>3 dependencies</small></h3>
           <div class="dep-grid">
@@ -188,6 +197,20 @@
             <a class="dep-card" data-sid="vimeo" href="./vimeo-embed.html"><span class="dep-card__name">Vimeo embed</span><span class="dep-card__host">player.vimeo.com</span><span class="dep-card__foot"></span></a>
           </div>
         </div>
+
+        </div>
+
+        <div id="panel-service" role="tabpanel" aria-labelledby="tab-service" hidden>
+          <noscript><p class="catalog-fallback">The by-service view needs JavaScript.
+            <a href="../public/results/index.html">See the full verdict table instead.</a></p></noscript>
+        </div>
+
+        <p class="catalog-submit reveal">
+          Missing a dependency you ship? <a class="btn btn--ghost" target="_blank" rel="noopener"
+            href="https://github.com/chinaready/launchready-stackbreak-lab/issues/new?template=dependency-request.yml">Submit a target</a>
+          <a class="btn btn--ghost" target="_blank" rel="noopener"
+            href="https://github.com/chinaready/launchready-stackbreak-lab/discussions/20">Vote: which SaaS next?</a>
+        </p>
       </div>
     </section>
 
@@ -350,5 +373,6 @@
   </footer>
 
   <script src="../public/assets/home.js?v=20260628b"></script>
+  <script src="../public/assets/catalog.js?v=20260930a"></script>
 </body>
 </html>
