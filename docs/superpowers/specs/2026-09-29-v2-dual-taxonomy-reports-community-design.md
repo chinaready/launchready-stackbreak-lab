@@ -193,3 +193,20 @@ semantics defined first.
 - Automated quarterly/annual PDF generation (manual dispatch stub only until data accumulates).
 - Releases-based PDF archiving, bot-automated issue-to-PR flows.
 - Changes to the mainland probe methodology or the weekly schedule.
+
+## v2.1 IA correction (2026-09-30, maintainer review of M2)
+
+M2's dual-tab catalog and matrix overview were rejected at review ("错误的设计，都不要了").
+The corrected information architecture, per maintainer:
+
+| URL | Page | Contents |
+|---|---|---|
+| `/` | **Home** (new root `index.html`) | Dashboard only: verdict traffic-light summary (per-category + totals), last-3-months evidence list (dated snapshots now; PDF downloads once M3 lands), and the test → verify → produce positioning. Nothing else. |
+| `/demos/` | **Stack** (upgraded homepage, URL kept for SEO) | The five vertical category blocks + Community picks + submit CTA. Problem/method sections and all whole-stack deep-dives move out. |
+| `/product.html` | **Product** (new) | Whole-stack kits end to end: Firebase / Netlify / Vercel deep-dive sections moved verbatim from the old homepage + SaaS deep-dive proposal CTA. |
+
+- Main navigation on every page: **Home · Stack · Product** (`aria-current` static per page; styles in `lab.css`, not the Chinaready DS file).
+- nginx: `location = /` 302 removed; root `index.html` is the homepage.
+- New data asset `results/history.json` — `{ generatedAt, runs: [{ date, total, blocked, degraded, reachable }] }`, rebuilt from `results/<date>/probe.json` by `scripts/update-history.mjs` (dependency-free, idempotent full rescan) as a new evidence-workflow step. Home's reports list reads it; M3 swaps the row link to the PDF; M4's timeline supersedes it for per-target detail.
+- Removed artifacts: `demos/matrix.html`, `public/assets/matrix.js`, matrix styles/tests/sitemap/llms/footer entries, catalog dual-tab (panel-service + tab bar). `catalog.js` survives only as the Community-picks renderer into the Stack catalog.
+- Visual redesign is authorized within the Chinaready DS: reuse the existing hero/block/steps design language (`home.css`) across all three nav pages; new dashboard components (status tiles, reports table, main nav) live in `lab.css`.

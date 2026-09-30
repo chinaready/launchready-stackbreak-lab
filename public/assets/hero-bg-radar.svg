@@ -1,0 +1,55 @@
+<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
+<!-- Hero background variant A: "Radar" — probing rings + sweep + verdict blips. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 700" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4D9CE8" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#4D9CE8" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="blipGreen"><stop offset="0" stop-color="#17B26A"/><stop offset="1" stop-color="#17B26A" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blipRed"><stop offset="0" stop-color="#F04438"/><stop offset="1" stop-color="#F04438" stop-opacity="0"/></radialGradient>
+  </defs>
+
+  <!-- rings -->
+  <g transform="translate(1160 340)" fill="none" stroke="#4D9CE8">
+    <circle r="60"  stroke-opacity="0.20"/>
+    <circle r="120" stroke-opacity="0.16"/>
+    <circle r="180" stroke-opacity="0.13"/>
+    <circle r="240" stroke-opacity="0.10"/>
+    <circle r="300" stroke-opacity="0.08"/>
+    <circle r="360" stroke-opacity="0.06"/>
+    <line x1="-360" y1="0" x2="360" y2="0" stroke-opacity="0.10"/>
+    <line x1="0" y1="-360" x2="0" y2="360" stroke-opacity="0.10"/>
+    <line x1="-254" y1="-254" x2="254" y2="254" stroke-opacity="0.06"/>
+    <line x1="-254" y1="254" x2="254" y2="-254" stroke-opacity="0.06"/>
+    <!-- tick marks on the outer ring -->
+    <g stroke-opacity="0.14">
+      <line x1="0" y1="-360" x2="0" y2="-346"/><line x1="0" y1="360" x2="0" y2="346"/>
+      <line x1="-360" y1="0" x2="-346" y2="0"/><line x1="360" y1="0" x2="346" y2="0"/>
+      <line x1="180" y1="-311.8" x2="173" y2="-299.9"/><line x1="-180" y1="311.8" x2="-173" y2="299.9"/>
+      <line x1="311.8" y1="180" x2="299.9" y2="173"/><line x1="-311.8" y1="-180" x2="-299.9" y2="-173"/>
+    </g>
+    <!-- sweep beam -->
+    <path d="M0 0 L340 -176 A383 383 0 0 0 340 -176 Z" fill="url(#sweep)"/>
+    <line x1="0" y1="0" x2="340" y2="-176" stroke="#7FC0F2" stroke-opacity="0.35" stroke-width="1.5"/>
+    <!-- center node -->
+    <circle r="4" fill="#7FC0F2" fill-opacity="0.8"/>
+  </g>
+
+  <!-- verdict blips: reachable (green) / blocked (red) -->
+  <g>
+    <circle cx="1275" cy="228" r="5" fill="#17B26A"/><circle cx="1275" cy="228" r="12" fill="url(#blipGreen)" opacity="0.5"/>
+    <circle cx="1062" cy="300" r="4" fill="#17B26A" opacity="0.9"/>
+    <circle cx="1330" cy="415" r="4" fill="#17B26A" opacity="0.75"/>
+    <circle cx="1005" cy="432" r="5" fill="#F04438"/><circle cx="1005" cy="432" r="12" fill="url(#blipRed)" opacity="0.5"/>
+    <circle cx="1225" cy="540" r="4" fill="#F04438" opacity="0.85"/>
+    <circle cx="1385" cy="325" r="3.5" fill="#F04438" opacity="0.6"/>
+  </g>
+
+  <!-- faint dots grid on the left, keeps the empty side textured -->
+  <g fill="#4D9CE8" fill-opacity="0.10">
+    <circle cx="120" cy="140" r="1.6"/><circle cx="300" cy="90" r="1.6"/><circle cx="480" cy="170" r="1.6"/>
+    <circle cx="200" cy="330" r="1.6"/><circle cx="420" cy="420" r="1.6"/><circle cx="90" cy="520" r="1.6"/>
+    <circle cx="330" cy="590" r="1.6"/><circle cx="560" cy="60" r="1.6"/><circle cx="620" cy="560" r="1.6"/>
+  </g>
+</svg>

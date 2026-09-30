@@ -1,0 +1,226 @@
+<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stack Break Lab — which parts of your stack break first in China</title>
+  <meta name="description" content="Weekly evidence from a Beijing node: which foreign web-stack dependencies and whole platforms are blocked, degraded, or reachable in mainland China. Verdicts, screenshots, and downloadable run reports." />
+  <link rel="canonical" href="https://stackbreak.launchready.cn/" />
+  <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stackbreak.launchready.cn/" />
+  <meta property="og:site_name" content="Stack Break Lab" />
+  <meta property="og:title" content="Stack Break Lab — which parts of your stack break first in China" />
+  <meta property="og:description" content="Weekly evidence from a Beijing node: blocked, degraded, or reachable — measured, not guessed. Verdicts, screenshots, and downloadable run reports." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stack Break Lab — which parts of your stack break first in China" />
+  <meta name="twitter:description" content="Weekly evidence from a Beijing node: blocked, degraded, or reachable — measured, not guessed." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Stack Break Lab",
+      "url": "https://stackbreak.launchready.cn/",
+      "publisher": { "@type": "Organization", "name": "Chinaready", "url": "https://chinaready.co" }
+    }
+  </script>
+  <link rel="icon" href="public/assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="public/assets/brand/mark.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/assets/brand/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="public/assets/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="public/assets/brand/site.webmanifest" />
+  <meta name="theme-color" content="#0C1E3E" />
+  <link rel="stylesheet" href="public/assets/chinaready.css?v=20260624a" />
+  <link rel="stylesheet" href="public/assets/lab.css?v=20260930e" />
+  <link rel="stylesheet" href="public/assets/home.css?v=20260930e" />
+</head>
+<body class="home">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img class="brand__logo" src="public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" width="140" height="28" />
+        <span class="brand__sep" aria-hidden="true"></span>
+        <span class="brand__lab">Stack Break Lab</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/" class="main-nav__link" aria-current="page">Home</a>
+        <a href="/stack/" class="main-nav__link">Stack</a>
+        <a href="/product/" class="main-nav__link">Product</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero hero--bg-radar">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__grid"></div>
+        <div class="hero__glow"></div>
+        <div class="hero__scan"></div>
+      </div>
+      <div class="home-wrap">
+        <p class="hero__badge reveal"><span class="live-dot" aria-hidden="true"></span>Live &middot; Beijing node &middot; refreshed weekly</p>
+        <h1 class="hero__title reveal" data-delay="1">Which parts of your stack break first in China<span class="period">.</span></h1>
+        <p class="hero__lede reveal" data-delay="2">
+          An open lab that measures how foreign web-stack dependencies behave for real users in
+          <strong>mainland China</strong> — one dependency per page, whole platforms end to end,
+          every verdict reproduced from a Beijing node.
+        </p>
+        <div class="hero__cta reveal" data-delay="3">
+          <a class="btn btn--primary" href="/stack/">Explore the stack</a>
+          <a class="btn btn--ghost" href="/product/">Whole-stack products</a>
+          <a class="btn btn--ghost" href="public/results/index.html">See live verdicts</a>
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true"><div class="ticker__track"></div></div>
+    </section>
+
+    <!-- ===================== WHAT WE DO ===================== -->
+    <section class="block block--surface" id="method">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">What this lab does</p>
+        <h2 class="block__title reveal" data-delay="1">Test, verify, produce<span class="period">.</span></h2>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step__n">01</div><div class="step__rule"></div>
+            <h3>Test</h3>
+            <p>Single dependencies — fonts, auth, analytics, media, payments — each loaded the way a real product loads it, plus whole platforms like Firebase, Netlify, and Vercel.</p>
+          </div>
+          <div class="step reveal" data-delay="1">
+            <div class="step__n">02</div><div class="step__rule"></div>
+            <h3>Verify</h3>
+            <p>Every verdict comes from an Alibaba Cloud Beijing node: <code>curl</code> + <code>dig</code> for reachability, Playwright for what a real browser shows. Not a VPN. Not a guess.</p>
+          </div>
+          <div class="step reveal" data-delay="2">
+            <div class="step__n">03</div><div class="step__rule"></div>
+            <h3>Produce</h3>
+            <p>Weekly machine-readable evidence — verdicts, latency, screenshots, downloadable run reports — accumulated as an open data asset since June 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATUS BOARD ===================== -->
+    <section class="block block--light" id="status">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">This week's verdicts</p>
+        <h2 class="block__title reveal" data-delay="1">The traffic lights, at a glance<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2" id="board-meta">Latest mainland snapshot&hellip;</p>
+
+        <div class="board-tiles reveal">
+          <a class="board-tile board-tile--reachable" href="public/results/index.html">
+            <span class="board-tile__dot" aria-hidden="true"></span>
+            <span class="board-tile__num" data-count="reachable">—</span>
+            <span class="board-tile__label">Reachable</span>
+          </a>
+          <a class="board-tile board-tile--degraded" href="public/results/index.html">
+            <span class="board-tile__dot" aria-hidden="true"></span>
+            <span class="board-tile__num">0</span>
+            <span class="board-tile__label">Degraded</span>
+          </a>
+          <a class="board-tile board-tile--blocked" href="public/results/index.html">
+            <span class="board-tile__dot" aria-hidden="true"></span>
+            <span class="board-tile__num" data-count="blocked">—</span>
+            <span class="board-tile__label">Blocked</span>
+          </a>
+          <div class="board-tile board-tile--total">
+            <span class="board-tile__num" data-count="total">—</span>
+            <span class="board-tile__label">dependencies probed</span>
+          </div>
+        </div>
+
+        <ul class="board-cats reveal" id="board-cats"></ul>
+      </div>
+    </section>
+
+    <!-- ===================== REPORTS ===================== -->
+    <section class="block block--surface" id="reports">
+      <div class="home-wrap">
+        <p class="block__eyebrow reveal">Data assets</p>
+        <h2 class="block__title reveal" data-delay="1">Run reports<span class="period">.</span></h2>
+        <p class="block__intro reveal" data-delay="2">
+          Every weekly run is archived. Open a snapshot for its full verdict table, latency, and
+          screenshots — downloadable PDF reports arrive with the next milestone.
+        </p>
+        <div class="reports-wrap reveal">
+          <table class="reports" id="reports-table">
+            <thead>
+              <tr><th>Run date</th><th>Targets</th><th>Blocked</th><th>Degraded</th><th>Reachable</th><th>Open</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="catalog-submit reveal">
+          <a class="btn btn--ghost" href="demos/beijing-view.html">See the Beijing view</a>
+          <a class="btn btn--ghost" target="_blank" rel="noopener"
+             href="https://github.com/chinaready/launchready-stackbreak-lab/issues/new?template=dependency-request.yml">Submit a target</a>
+          <a class="btn btn--ghost" target="_blank" rel="noopener"
+             href="https://github.com/chinaready/launchready-stackbreak-lab">Source on GitHub</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="cr-footer-inner">
+      <div class="cr-footer-grid">
+        <section class="cr-footer-brand">
+          <a href="https://chinaready.co/" class="cr-footer-logo-link" aria-label="Chinaready home">
+            <img src="public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="150" height="28" />
+          </a>
+          <p class="cr-footer-description">
+            <strong>Stack Break Lab</strong> — measures which foreign web-stack dependencies break from mainland China.
+            Operated by <a href="https://chinaready.co/">Chinaready</a>.
+          </p>
+          <p class="cr-footer-meta">
+            Domain <span class="mono">stackbreak.launchready.cn</span><br>
+            Evidence from Alibaba Cloud mainland China
+          </p>
+        </section>
+        <nav class="cr-footer-column" aria-label="Learn">
+          <h2 class="cr-footer-heading">Learn</h2>
+          <ul class="cr-footer-list">
+            <li><a href="https://landscape.chinaready.co/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Landscape</a></li>
+            <li><a href="https://chinaready.co/insights/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Insights</a></li>
+            <li><a href="https://chinaready.co/blog/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Blog</a></li>
+          </ul>
+        </nav>
+        <nav class="cr-footer-column" aria-label="Chinaready">
+          <h2 class="cr-footer-heading">Chinaready</h2>
+          <ul class="cr-footer-list">
+            <li><a href="https://chinaready.co/contact/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Contact</a></li>
+            <li><a href="https://chinaready.co/intake" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Start Assessment</a></li>
+            <li><a href="https://chinaready.co/book-call" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Book a Call</a></li>
+            <li><a href="https://chinaready.co/services/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">All Services</a></li>
+          </ul>
+        </nav>
+        <nav class="cr-footer-column" aria-label="Related utilities">
+          <h2 class="cr-footer-heading">Utilities</h2>
+          <ul class="cr-footer-list">
+            <li><a href="https://gfonts.launchready.cn/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Google Fonts</a></li>
+            <li><a href="https://fd-cdn.launchready.cn/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Frontend CDN</a></li>
+            <li><a href="https://wp-cdn.launchready.cn/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">WordPress CDN</a></li>
+            <li><a href="https://docker-hub.chinaready.co/?lang=en" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Docker Hub Mirror</a></li>
+            <li><a href="https://chinaready.co/diagnose/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Network Diagnostics</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="cr-footer-filing" aria-label="Filing information">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+          <img src="https://store.launchready.cn/static/upload/images/common/2025/10/26/1761464256574312.png" alt="" width="14" height="14" loading="lazy" decoding="async">
+          <span>京ICP备2026030642号-1</span>
+        </a>
+        <span>|</span>
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11011502040161" target="_blank" rel="noopener noreferrer">
+          <img src="https://store.launchready.cn/static/upload/images/common/2025/10/26/1761464256998298.png" alt="" width="14" height="14" loading="lazy" decoding="async">
+          <span>京公网安备11011502040161号</span>
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="public/assets/home.js?v=20260628b"></script>
+  <script src="public/assets/dashboard.js?v=20260930a"></script>
+</body>
+</html>
