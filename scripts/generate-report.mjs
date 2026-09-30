@@ -15,6 +15,7 @@ import { tmpdir } from 'node:os';
 import { chromium } from '@playwright/test';
 import { buildReportModel } from './report-data.mjs';
 import { COPY, fillCnTemplate } from './report-copy.mjs';
+import { buildWeeklyDocx } from './report-document.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const RESULTS = join(ROOT, 'results');
@@ -114,30 +115,21 @@ export function renderHtml(date) {
   toc.push({ n: nCn, href: '#cn', t: COPY.sections.cnHeading, d: 'Chinese summary' });
   const tocEntries = toc.map(e => `<li><a href="${e.href}"><span class="toc__n">${e.n}</span><span class="toc__t">${escapeHtml(e.t)}</span><span class="toc__d">${escapeHtml(e.d)}</span></a></li>`).join('\n');
 
-  const info = [
-    ['Document type', 'Weekly evidence report'],
-    ['Run date', day],
-    ['Node', `${env.cloudProvider || 'unknown'} ${env.cloudRegion || ''} · ${env.runnerHost || ''}`.trim()],
-    ['DNS', env.dnsServer || '—'],
-    ['Targets', String(model.totals.total)],
-    ['Site', COPY.cover.site],
-  ];
-  const coverInfo = info.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`).join('\n');
-
   let html = readFileSync(join(ROOT, 'scripts', 'report-template.html'), 'utf8');
   html = html
     .replace('__TITLE__', `Stack Break Weekly — ${day}`)
-    .replace('__LOGO__', 'file://' + join(ROOT, 'public/assets/brand/logo-horizontal.svg'))
+    .replace('__LOGO__', 'file://' + join(ROOT, 'public/assets/brand/logo-horizontal-white.svg'))
     .replace('__EYEBROW__', escapeHtml(COPY.cover.eyebrow))
     .replace('__TITLE_BEFORE_PERIOD__', escapeHtml(COPY.cover.titleBeforePeriod))
     .replace('__SUBTITLE__', escapeHtml(COPY.cover.subtitle))
-    .replace('__COVER_INFO__', coverInfo)
-    .replace('__BLOCKED__', String(model.totals.blocked))
-    .replace('__DEGRADED__', String(model.totals.degraded))
-    .replace('__REACHABLE__', String(model.totals.reachable))
+    .replace('__RUN_DATE__', escapeHtml(day))
+    .replace('__NODE__', escapeHtml(`${env.cloudProvider || 'unknown'} ${env.cloudRegion || ''} · ${env.runnerHost || ''}`.trim()))
+    .replace('__TARGETS__', escapeHtml(`${model.totals.total} — ${model.totals.blocked} blocked / ${model.totals.degraded} degraded / ${model.totals.reachable} reachable`))
+    .replace('__SITE__', escapeHtml(COPY.cover.site))
     .replace('__TOC_ENTRIES__', tocEntries)
     .replace('__SUMMARY_HEADING__', escapeHtml(COPY.sections.summaryHeading))
     .replace('__SUMMARY_LINES__', summaryLines(model, COPY))
+    .replace('__DISCLAIMER__', escapeHtml(COPY.disclaimer))
     .replace('__SERVICES_HEADING__', escapeHtml(COPY.sections.servicesHeading))
     .replace('__SERVICE_HEAD__', ['service', 'category', 'vendor', 'domain', 'http', 'total', 'dnsCol'].map(k => `<th${k === 'total' || k === 'http' ? ' class="num"' : ''}>${escapeHtml(COPY.labels[k])}</th>`).join('') + '<th></th>')
     .replace('__SERVICE_ROWS__', serviceRows(model))
@@ -157,6 +149,23 @@ export async function generateReport(date) {
   const html = renderHtml(date);
   const tmpHtml = join(tmpdir(), `stackbreak-report-${date}.html`);
   writeFileSync(tmpHtml, html);
+
+  const model = (() => {
+    const probe = JSON.parse(readFileSync(join(RESULTS, date, 'probe.json'), 'utf8'));
+    const browserPath = join(RESULTS, date, 'browser.json');
+    const browserDoc = existsSync(browserPath) ? JSON.parse(readFileSync(browserPath, 'utf8')) : null;
+    const browser = Array.isArray(browserDoc) ? browserDoc : (browserDoc && browserDoc.browser) || [];
+    const prevDate = previousRunBefore(date);
+    const prev = prevDate ? JSON.parse(readFileSync(join(RESULTS, prevDate, 'probe.json'), 'utf8')) : null;
+    return buildReportModel({ probe, browser, prev });
+  })();
+
+  // DS-standard DOCX via the vendored Chinaready toolchain.
+  const brandDir = join(ROOT, 'public/assets/brand');
+  const docxBuffer = await buildWeeklyDocx({ model, copy: COPY, date, brandDir });
+  const docxPath = join(RESULTS, date, 'report.docx');
+  writeFileSync(docxPath, docxBuffer);
+
   const outPath = join(RESULTS, date, 'report.pdf');
   mkdirSync(dirname(outPath), { recursive: true });
   const browser = await chromium.launch();
@@ -180,7 +189,7 @@ export async function generateReport(date) {
   } finally {
     await browser.close();
   }
-  return outPath;
+  return { pdfPath: outPath, docxPath };
 }
 
 const ranDirectly = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
@@ -189,9 +198,9 @@ if (ranDirectly) {
   const date = i > -1 ? process.argv[i + 1] : listRunDates().at(-1);
   if (!date) { console.error('error: no dated evidence runs found under results/'); process.exit(1); }
   generateReport(date)
-    .then(p => {
-      const kb = Math.round(readFileSync(p).length / 1024);
-      console.log(`OK: ${p} (${kb} KB)`);
+    .then(({ pdfPath, docxPath }) => {
+      const kb = (f) => Math.round(readFileSync(f).length / 1024);
+      console.log(`OK: ${pdfPath} (${kb(pdfPath)} KB) · ${docxPath} (${kb(docxPath)} KB)`);
     })
     .catch(err => { console.error(`error: ${err.message}`); process.exit(1); });
 }

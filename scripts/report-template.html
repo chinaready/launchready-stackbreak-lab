@@ -1,97 +1,93 @@
 <!doctype html>
-<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
-<!-- Print template for the weekly PDF report, following the Chinaready DS
-     document standard (cf. Chinaready-Services-Overview-v1.1): logo masthead,
-     eyebrow / title+period / subtitle cover block, label-value info grid,
-     running header + footer via Chromium PDF templates, TOC with anchors
-     (page numbers omitted by maintainer's dispensation). Self-contained. -->
+<!-- Copyright (c) 2026 Chinaready. All rights reserved. -->
+<!-- Print template for the weekly PDF report. Mirrors the Chinaready standard
+     DOCX renderer (scripts/report-ooxml.mjs / report-document.mjs) token for
+     token: full-bleed navy cover with white logo and #005BAC period, running
+     header/footer via Chromium templates, TOC with anchors. Self-contained. -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>__TITLE__</title>
   <style>
+    /* Tokens copied verbatim from the DS renderer (report-ooxml.mjs C). */
     :root {
-      --navy: #0C1E3E; --accent: #4D9CE8; --ink: #16233B; --muted: #5A6B85;
+      --primary: #0C1E3E; --blue: #005BAC; --text: #0D1B2A; --text2: #5A6A80;
+      --border: #DDE3EE; --surface: #F4F6FA;
+      --onDark: #FFFFFF; --onDark2: #B7C2D6; --onDark3: #7F95B8;
       --blocked: #B42318; --degraded: #B54708; --reachable: #067647;
-      --line: rgba(12, 30, 62, 0.14);
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, "PingFang SC", "Noto Sans SC", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 11pt; line-height: 1.55; }
+    body { margin: 0; font-family: Calibri, Inter, "PingFang SC", "Noto Sans SC", -apple-system, "Segoe UI", sans-serif; color: var(--text); font-size: 11pt; line-height: 1.55; }
     @page { size: A4; }
+    @page :first { margin: 0; }
 
-    /* --- Cover (DS standard) --- */
-    .cover { padding-top: 6mm; }
-    .cover__logo { height: 8mm; }
-    .cover__rule { border: none; border-top: 1px solid var(--line); margin: 10mm 0 0; }
-    .cover__eyebrow { margin-top: 22mm; font-size: 9.5pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-    .cover__title { font-size: 34pt; font-weight: 800; color: var(--navy); margin: 5mm 0 4mm; letter-spacing: -0.01em; }
-    .cover__period { color: var(--accent); }
-    .cover__subtitle { font-size: 13pt; color: var(--muted); max-width: 125mm; margin: 0; }
-    .cover__info { display: grid; grid-template-columns: 34mm 1fr 34mm 1fr; gap: 3mm 6mm; margin-top: 18mm; font-size: 10pt; }
-    .cover__info dt { color: var(--muted); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.1em; align-self: center; }
-    .cover__info dd { margin: 0; font-weight: 600; }
-    .tiles { display: flex; gap: 5mm; margin-top: 14mm; }
-    .tile { flex: 1; border: 1px solid var(--line); border-radius: 4mm; padding: 6mm 7mm; }
-    .tile__num { font-size: 26pt; font-weight: 800; }
-    .tile__label { font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-    .tile--blocked .tile__num { color: var(--blocked); }
-    .tile--degraded .tile__num { color: var(--degraded); }
-    .tile--reachable .tile__num { color: var(--reachable); }
+    /* --- Cover: full-bleed navy, as in the DS DOCX renderer --- */
+    .cover { background: var(--primary); color: var(--onDark); min-height: 297mm; padding: 22mm 22mm 20mm; position: relative; }
+    .cover__logo { height: 11mm; }
+    .cover__eyebrow { margin-top: 34mm; font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--onDark3); font-weight: 700; }
+    .cover__title { font-size: 32pt; font-weight: 800; color: var(--onDark); margin: 5mm 0 4mm; letter-spacing: -0.01em; }
+    .cover__period { color: var(--blue); }
+    .cover__subtitle { font-size: 13pt; color: var(--onDark2); max-width: 130mm; margin: 0; }
+    .cover__meta { margin-top: 18mm; font-size: 10pt; }
+    .cover__meta p { margin: 2.5mm 0; }
+    .cover__meta .k { color: var(--onDark3); font-weight: 700; margin-right: 3mm; }
+    .cover__meta .v { color: var(--onDark); }
+    .cover__site { position: absolute; bottom: 20mm; left: 22mm; font-weight: 700; font-size: 10pt; color: var(--onDark); }
 
     /* --- TOC --- */
     .toc { page-break-before: always; }
-    .toc h2 { font-size: 15pt; color: var(--navy); margin: 0 0 8mm; }
+    .toc h2 { font-size: 23pt; color: var(--primary); margin: 0 0 8mm; }
     .toc ol { list-style: none; margin: 0; padding: 0; }
-    .toc li { border-bottom: 1px solid var(--line); padding: 4mm 0; }
-    .toc a { text-decoration: none; color: var(--ink); display: flex; align-items: baseline; gap: 5mm; }
-    .toc__n { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-weight: 700; font-size: 10pt; }
-    .toc__t { font-weight: 600; font-size: 12pt; }
-    .toc__d { color: var(--muted); font-size: 9.5pt; margin-left: auto; text-align: right; }
+    .toc li { border-bottom: 1px solid var(--border); padding: 4mm 0; }
+    .toc a { text-decoration: none; color: var(--text); display: flex; align-items: baseline; gap: 5mm; }
+    .toc__n { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--blue); font-weight: 700; font-size: 12pt; }
+    .toc__t { font-weight: 700; font-size: 12pt; }
+    .toc__d { color: var(--text2); font-size: 10pt; margin-left: auto; text-align: right; }
 
-    /* --- Chapters (continuous flow; no forced breaks except CN page) --- */
-    h2.chap { font-size: 15pt; color: var(--navy); margin: 12mm 0 4mm; display: flex; align-items: baseline; gap: 4mm; page-break-after: avoid; }
-    h2.chap:first-of-type { margin-top: 0; }
-    h2.chap .n { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-size: 11pt; font-weight: 700; }
+    /* --- Chapters --- */
+    h2.chap { font-size: 23pt; color: var(--primary); margin: 12mm 0 4mm; display: flex; align-items: baseline; gap: 5mm; page-break-after: avoid; }
+    main > h2.chap:first-of-type { margin-top: 0; }
+    h2.chap .n { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--blue); font-size: 12pt; font-weight: 700; }
     p { margin: 2mm 0; }
     .changes p { margin: 1mm 0; }
-    .list-blocked { color: var(--blocked); font-weight: 600; }
-    .list-recovered { color: var(--reachable); font-weight: 600; }
+    .list-blocked { color: var(--blocked); font-weight: 700; }
+    .list-recovered { color: var(--reachable); font-weight: 700; }
+    .fine { color: var(--text2); font-size: 9pt; font-style: italic; }
 
-    table { width: 100%; border-collapse: collapse; font-size: 9pt; }
-    th { text-align: left; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 1px solid var(--ink); padding: 2mm 2.5mm; }
-    td { border-bottom: 1px solid var(--line); padding: 2mm 2.5mm; vertical-align: top; }
-    .num { text-align: right; font-variant-numeric: tabular-nums; }
-    .chip { display: inline-block; font-size: 8pt; font-weight: 700; padding: 0.5mm 2.5mm; border-radius: 3mm; color: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+    th { text-align: left; font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); background: var(--surface); border: 1px solid var(--border); padding: 2mm 2.5mm; }
+    td { border: 1px solid var(--border); padding: 2mm 2.5mm; vertical-align: top; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--text2); }
+    .chip { display: inline-block; font-size: 8.5pt; font-weight: 700; padding: 0.5mm 2.5mm; border-radius: 3mm; color: #fff; }
     .chip.Blocked { background: var(--blocked); }
     .chip.Degraded { background: var(--degraded); }
     .chip.Reachable { background: var(--reachable); }
-    .tier-badge { font-size: 7.5pt; color: #5B21B6; border: 1px solid rgba(109,40,217,.4); border-radius: 3mm; padding: 0 2mm; }
+    .tier-badge { font-size: 8pt; color: #5B21B6; border: 1px solid rgba(109,40,217,.4); border-radius: 3mm; padding: 0 2mm; }
 
     figure { margin: 5mm 0; page-break-inside: avoid; }
-    figure img { width: 104mm; border: 1px solid var(--line); border-radius: 2mm; }
-    figcaption { font-size: 8.5pt; color: var(--muted); margin-top: 1.5mm; }
+    figure img { width: 104mm; border: 1px solid var(--border); border-radius: 2mm; }
+    figcaption { font-size: 8.5pt; color: var(--text2); margin-top: 1.5mm; }
     .shots { display: flex; flex-wrap: wrap; gap: 6mm; }
 
     /* --- Chinese summary keeps its own page --- */
     .cn { page-break-before: always; }
-    .cn h2 { font-size: 17pt; }
+    .cn h2 { font-size: 23pt; }
     .cn p { font-size: 11.5pt; margin: 3mm 0; }
-    .cn__disclaimer { font-size: 9.5pt; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 4mm; margin-top: 8mm; }
+    .cn__disclaimer { font-size: 9.5pt; color: var(--text2); border-left: 3px solid var(--blue); padding-left: 4mm; margin-top: 8mm; }
   </style>
 </head>
 <body>
   <section class="cover">
     <img class="cover__logo" src="__LOGO__" alt="" />
-    <hr class="cover__rule" />
     <p class="cover__eyebrow">__EYEBROW__</p>
     <h1 class="cover__title">__TITLE_BEFORE_PERIOD__<span class="cover__period">.</span></h1>
     <p class="cover__subtitle">__SUBTITLE__</p>
-    <dl class="cover__info">__COVER_INFO__</dl>
-    <div class="tiles">
-      <div class="tile tile--blocked"><div class="tile__num">__BLOCKED__</div><div class="tile__label">Blocked</div></div>
-      <div class="tile tile--degraded"><div class="tile__num">__DEGRADED__</div><div class="tile__label">Degraded</div></div>
-      <div class="tile tile--reachable"><div class="tile__num">__REACHABLE__</div><div class="tile__label">Reachable</div></div>
+    <div class="cover__meta">
+      <p><span class="k">Run date</span><span class="v">__RUN_DATE__</span></p>
+      <p><span class="k">Node</span><span class="v">__NODE__</span></p>
+      <p><span class="k">Targets</span><span class="v">__TARGETS__</span></p>
     </div>
+    <p class="cover__site">__SITE__</p>
   </section>
 
   <nav class="toc">
@@ -102,6 +98,7 @@
   <main>
     <h2 class="chap" id="summary"><span class="n">01</span>__SUMMARY_HEADING__</h2>
     <div class="changes">__SUMMARY_LINES__</div>
+    <p class="fine">__DISCLAIMER__</p>
 
     <h2 class="chap" id="verdicts"><span class="n">02</span>__SERVICES_HEADING__</h2>
     <table>
