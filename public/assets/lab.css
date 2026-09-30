@@ -683,3 +683,6 @@ table.results tbody tr:hover { background: var(--cr-surface); }
 
 /* ===== v2.1 platform logos in section titles (2026-09-30) ===== */
 .platform-logo { vertical-align: -3px; margin-right: 10px; }
+
+/* ===== v3 report links (2026-10-01) ===== */
+.reports td a.is-primary { font-weight: 800; }

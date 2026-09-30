@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-export function summarizeRun(date, probeDoc) {
+export function summarizeRun(date, probeDoc, resultsDir) {
   const services = (probeDoc && probeDoc.services) || [];
   const counts = { blocked: 0, degraded: 0, reachable: 0 };
   for (const s of services) {
@@ -19,7 +19,8 @@ export function summarizeRun(date, probeDoc) {
     else if (s.verdict === 'Degraded') counts.degraded += 1;
     else if (s.verdict === 'Reachable') counts.reachable += 1;
   }
-  return { date, total: services.length, ...counts };
+  const pdf = resultsDir ? existsSync(join(resultsDir, date, 'report.pdf')) : false;
+  return { date, total: services.length, ...counts, pdf };
 }
 
 export function buildHistory(resultsDir) {
@@ -29,7 +30,7 @@ export function buildHistory(resultsDir) {
     const probe = join(resultsDir, name, 'probe.json');
     if (!existsSync(probe)) continue;
     try {
-      runs.push(summarizeRun(name, JSON.parse(readFileSync(probe, 'utf8'))));
+      runs.push(summarizeRun(name, JSON.parse(readFileSync(probe, 'utf8')), resultsDir));
     } catch {
       // Skip unreadable snapshots rather than failing the whole rebuild.
     }
