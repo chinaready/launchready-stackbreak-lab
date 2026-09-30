@@ -50,3 +50,21 @@ test('community service cards link to the results viewer, curated cards to their
   await expect(page.locator('#panel-service .dep-card[data-sid="stripe-js"]')).toHaveAttribute('href', '/public/results/');
   await expect(page.locator('#panel-service .dep-card[data-sid="google-fonts"]')).toHaveAttribute('href', '/demos/fonts-google.html');
 });
+
+test('matrix page renders one row per vendor and chips link correctly', async ({ page }) => {
+  await page.goto('/demos/matrix.html', { waitUntil: 'domcontentloaded' });
+  for (const vendor of vendorsWithContent) {
+    await expect(page.locator(`#mx-table tr[data-vendor="${vendor}"]`)).toBeVisible();
+  }
+  await expect(page.locator('#mx-table td[data-cat="payments"] .mx-chip[data-sid="stripe-js"]')).toBeVisible();
+  await expect(page.locator('#mx-table td[data-cat="analytics"] .mx-chip[data-sid="gtm"]')).toHaveAttribute('href', '/demos/gtm.html');
+  await expect(page.locator('#mx-table td[data-cat="whole"] .mx-chip[data-sid="firebase"]')).toHaveAttribute('href', '/results/firebase.html');
+});
+
+test('matrix page fallback is present without JS', async ({ browser }) => {
+  const ctx = await browser.newContext({ javaScriptEnabled: false });
+  const page = await ctx.newPage();
+  await page.goto('/demos/matrix.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#mx-noscript')).toBeVisible();
+  await ctx.close();
+});

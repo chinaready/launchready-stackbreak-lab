@@ -612,3 +612,22 @@ table.results tbody tr:hover { background: var(--cr-surface); }
   text-transform: uppercase; padding: 2px 8px; border-radius: 999px;
   background: rgba(109, 40, 217, 0.12); color: #5B21B6; border: 1px solid rgba(109, 40, 217, 0.35);
 }
+
+/* ===== v2 matrix overview (2026-09-30) ===== */
+.mx-scroll { overflow-x: auto; border: 1px solid rgba(12, 30, 62, 0.14); border-radius: 12px; }
+.mx-table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 860px; }
+.mx-table th, .mx-table td { padding: 10px 12px; border-bottom: 1px solid rgba(12, 30, 62, 0.08); text-align: left; vertical-align: top; }
+.mx-table tr:last-child td { border-bottom: none; }
+.mx-th { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.75; }
+.mx-th--first, .mx-rowhead { position: sticky; left: 0; background: inherit; font-weight: 700; }
+.mx-rowhead { white-space: nowrap; }
+.mx-chip { display: inline-flex; flex-direction: column; gap: 2px; text-decoration: none;
+  padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(12, 30, 62, 0.12); margin: 2px 4px 2px 0; min-width: 92px; }
+.mx-chip:hover { border-color: rgba(12, 30, 62, 0.4); }
+.mx-chip .mx-chip__name { font-weight: 600; color: inherit; }
+.mx-chip .mx-chip__v { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.mx-chip.verdict.Blocked .mx-chip__v { color: #B42318; }
+.mx-chip.verdict.Degraded .mx-chip__v { color: #B54708; }
+.mx-chip.verdict.Reachable .mx-chip__v { color: #067647; }
+.mx-chip--community { border-style: dashed; }
+.mx-none { opacity: 0.3; }
