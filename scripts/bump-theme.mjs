@@ -7,7 +7,7 @@ import { globSync } from 'node:fs';
 const from = process.argv[2] || 'v=20261001a';
 const to = process.argv[3] || 'v=20261001b';
 let n = 0;
-for (const f of ['index.html', 'stack/index.html', 'product/index.html',
+for (const f of ['index.html', ...globSync('stack/*.html'), 'product/index.html',
                  ...globSync('demos/*.html'), ...globSync('public/results/*.html')]) {
   const src = readFileSync(f, 'utf8');
   if (src.includes(`theme.css?${from}`)) {

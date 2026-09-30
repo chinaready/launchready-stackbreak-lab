@@ -455,3 +455,59 @@ main.wrap code, main.wrap .mono {
 .bv-hero h1, .bv-hero h2 { color: var(--cr-navy); }
 .bv-hero .lede, .bv-hero p { color: var(--cr-text2); }
 .bv-hero .mono, .bv-hero code { color: var(--cr-text2); }
+
+/* ===== v2.3.4 beijing-view — strict spec application against its real DOM (2026-10-01) =====
+   Fixes the generic-pass violations: nested radii on card screenshots
+   (inner media stays square inside the 20px overflow-hidden card), white-on-
+   white heartbeat text inherited from the old dark hero, 999px pill button
+   (spec buttons are 8px), and 16px card padding (spec is 20px). */
+
+/* Hero flattens onto the canvas; unified page-header rhythm. */
+.bv-hero { background: #fff; padding: 0; }
+.bv-hero .wrap { padding-top: 56px; }
+.bv-hero .lede { margin-bottom: 0; }
+
+/* Heartbeat strip: white card, dark text (was white-on-white). */
+.bv-hb__node { color: var(--cr-text2); }
+.bv-hb__node .live-dot { background: #17B26A; }
+.bv-hb__count { color: var(--cr-text2); }
+.bv-hb__num { color: var(--cr-navy); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Category sections: same pill-badge + heading rhythm as the Stack catalog. */
+.bv-cat { margin: 40px 0; }
+.bv-cat__label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 20px; font-weight: 600; color: var(--cr-navy);
+  margin: 32px 0 14px; letter-spacing: -0.01em;
+}
+.bv-cat__label small {
+  font-size: 12px; font-weight: 600; color: var(--cr-text2);
+  background: var(--cr-surface); border-radius: var(--radius-tag); padding: 3px 8px;
+}
+.bv-grid { gap: 20px; }
+
+/* Cards: 20px radius once, media square inside (no nested radius/border),
+   20px evidence padding, verdict accent on the left edge instead of a full
+   border tint. */
+.bv-card { border-radius: var(--radius-card); box-shadow: var(--shadow-card); border: 1px solid var(--cr-border); }
+.bv-card.Blocked  { border-left: 4px solid var(--v-blocked); }
+.bv-card.Degraded { border-left: 4px solid var(--v-degraded); }
+main.wrap .bv-card__shot img { border: none; border-radius: 0; }
+.bv-card__shot { background: var(--cr-surface); }
+.bv-card__evidence { padding: 20px; gap: 8px; }
+.bv-card__head h3 { font-size: 18px; font-weight: 600; color: var(--cr-navy); }
+.bv-card__host { font-size: 13px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+.bv-card__metrics { font-size: 13px; }
+.bv-card__symptom { font-size: 13.5px; }
+
+/* Compare button: 8px radius per spec (was a 999px pill). */
+.bv-card__compare {
+  font-size: 13px; font-weight: 600; padding: 8px 14px;
+  border-radius: var(--radius-btn); border: 1px solid var(--cr-border);
+  background: #fff; color: var(--cr-text);
+}
+.bv-card__compare:hover { border-color: var(--cr-blue); color: var(--cr-blue); background: #fff; }
+
+/* Live-comparison strip inside the card: mist band, square media. */
+.bv-card__live { padding: 16px 20px 20px; background: var(--cr-surface); }
+main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 1px solid var(--cr-border); background: #fff; }
