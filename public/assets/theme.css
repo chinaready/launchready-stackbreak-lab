@@ -511,3 +511,41 @@ main.wrap .bv-card__shot img { border: none; border-radius: 0; }
 /* Live-comparison strip inside the card: mist band, square media. */
 .bv-card__live { padding: 16px 20px 20px; background: var(--cr-surface); }
 main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 1px solid var(--cr-border); background: #fff; }
+
+/* ===== v2.3.5 beijing-view — structural fixes (2026-10-01) =====
+   The snapshot IS the content: cards flip to full-width media on top with
+   the evidence column beneath (the old 1.2fr/1fr split cropped 1280px-wide
+   webpage screenshots to a sliver). Heartbeat gains breathing room and
+   bigger tabular counts; evidence density follows the 8px element gap. */
+
+/* Cards: media on top at natural ratio, evidence below. */
+.bv-card { display: grid; grid-template-columns: 1fr; }
+.bv-card__shot { min-height: 0; background: var(--cr-surface); }
+main.wrap .bv-card__shot img {
+  height: auto; object-fit: initial; object-position: initial;
+  border: none; border-radius: 0; display: block; width: 100%;
+}
+.bv-card__shot-missing { padding: 48px 20px; }
+
+/* Evidence column: title row, then a roomier metrics grid. */
+.bv-card__evidence { padding: 20px 24px 24px; gap: 12px; }
+.bv-card__head { gap: 12px; }
+.bv-card__metrics {
+  grid-template-columns: auto auto auto auto; gap: 10px 28px;
+  margin: 4px 0 0; font-size: 13.5px;
+}
+.bv-card__symptom { margin: 2px 0 0; line-height: 1.6; }
+.bv-card__compare { margin-top: 8px; }
+
+/* Heartbeat: one calm line — node identity left, counts right. */
+.bv-hb { margin-top: 40px; gap: 16px 32px; }
+.bv-hb__node { font-size: 13.5px; }
+.bv-hb__counts { gap: 28px; }
+.bv-hb__count { gap: 8px; }
+.bv-hb__num { font-size: 18px; }
+
+/* Section rhythm on the long gallery page. */
+.bv-cat { margin: 56px 0; }
+@media (max-width: 720px) {
+  .bv-card__metrics { grid-template-columns: auto auto; }
+}
