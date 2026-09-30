@@ -1,153 +1,17 @@
-<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
 <!doctype html>
+<!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
+<!-- Redirect stub: canonical new home is /stack/youtube-embed.html. Superseded by the
+     CDN 301 rule once configured (deploy/oss-cdn-checklist.md). -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YouTube embed — Stack Break Lab</title>
-  <meta name="description" content="Single-dependency demo: embed a YouTube iframe from mainland China and see whether the player and thumbnail load." />
-  <link rel="canonical" href="https://stackbreak.launchready.cn/demos/youtube-embed.html" />
-  <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://stackbreak.launchready.cn/demos/youtube-embed.html" />
-  <meta property="og:site_name" content="Stack Break Lab" />
-  <meta property="og:title" content="YouTube embed — Stack Break Lab" />
-  <meta property="og:description" content="Single-dependency demo: embed a YouTube iframe from mainland China and see whether the player and thumbnail load." />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="YouTube embed — Stack Break Lab" />
-  <meta name="twitter:description" content="Single-dependency demo: embed a YouTube iframe from mainland China and see whether the player and thumbnail load." />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "YouTube embed — Stack Break Lab",
-      "description": "Single-dependency demo: embed a YouTube iframe from mainland China and see whether the player and thumbnail load.",
-      "url": "https://stackbreak.launchready.cn/demos/youtube-embed.html",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Stack Break Lab",
-        "url": "https://stackbreak.launchready.cn/stack/"
-      }
-    }
-  </script>
-  <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
-  <link rel="apple-touch-icon" href="../public/assets/brand/apple-touch-icon.png" />
-  <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
-  <meta name="theme-color" content="#0C1E3E" />
-  <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="../public/assets/lab.css?v=20260930e" />
-  <link rel="stylesheet" href="../public/assets/theme.css?v=20261001d" />
-  <style>
-    .frame-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--cr-primary); border-radius: var(--cr-radius-card); overflow: hidden; }
-    .frame-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-  </style>
+  <title>Stack Break Lab — page moved</title>
+  <link rel="canonical" href="https://stackbreak.launchready.cn/stack/youtube-embed.html" />
+  <meta http-equiv="refresh" content="0; url=/stack/youtube-embed.html" />
+  <meta name="robots" content="noindex" />
 </head>
-<body data-service="YouTube embed" data-domain="www.youtube.com"
-      data-symptom="The video area stays blank — the player chrome and thumbnail never load because youtube.com and ytimg.com are unreachable.">
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/stack/">
-        <img class="brand__logo" src="../public/assets/brand/logo-horizontal.svg" alt="Chinaready" width="140" height="28" />
-        <span class="brand__sep" aria-hidden="true"></span>
-        <span class="brand__lab">Stack Break Lab</span>
-      </a>
-      <nav class="main-nav" aria-label="Primary">
-        <a href="/" class="main-nav__link">Home</a>
-        <a href="/stack/" class="main-nav__link aria-current="page"">Stack</a>
-        <a href="/product/" class="main-nav__link">Product</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <p class="eyebrow">Maps, media, embeds</p>
-    <h1>YouTube embed<span class="period">.</span></h1>
-    <p class="lede">A standard YouTube iframe embed — the most common way marketing sites show a product video.</p>
-
-    <p id="status" class="status" data-state="checking">Checking reachability...</p>
-
-    <div class="demo-stage">
-      <div class="frame-wrap">
-        <iframe id="dep"
-                src="https://www.youtube.com/embed/aqz-KE-bpKQ"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')"></iframe>
-      </div>
-      <p><small>If YouTube is blocked, the area above stays black/blank.</small></p>
-    </div>
-
-    <dl class="meta">
-      <dt>Dependency</dt><dd data-fill="service"></dd>
-      <dt>Loads from</dt><dd data-fill="domain"></dd>
-      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
-    </dl>
-
-    <p class="demo-cta">
-      <a class="demo-btn demo-btn--ghost" href="./beijing-view.html">See all dependencies from Beijing &rarr;</a>
-    </p>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="cr-footer-inner">
-      <div class="cr-footer-grid">
-        <section class="cr-footer-brand">
-          <a href="https://chinaready.co/" class="cr-footer-logo-link" aria-label="Chinaready home">
-            <img src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="150" height="28" />
-          </a>
-          <p class="cr-footer-description">
-            <strong>Stack Break Lab</strong> — measures which foreign web-stack dependencies break from mainland China.
-            Operated by <a href="https://chinaready.co/">Chinaready</a>.
-          </p>
-          <p class="cr-footer-meta">
-            Domain <span class="mono">stackbreak.launchready.cn</span><br>
-            Evidence from Alibaba Cloud mainland China
-          </p>
-        </section>
-        <nav class="cr-footer-column" aria-label="Learn">
-          <h2 class="cr-footer-heading">Learn</h2>
-          <ul class="cr-footer-list">
-                        <li><a href="https://landscape.chinaready.co/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Landscape</a></li>
-            <li><a href="https://chinaready.co/insights/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Insights</a></li>
-            <li><a href="https://chinaready.co/blog/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Blog</a></li>
-          </ul>
-        </nav>
-        <nav class="cr-footer-column" aria-label="Chinaready">
-          <h2 class="cr-footer-heading">Chinaready</h2>
-          <ul class="cr-footer-list">
-            <li><a href="https://chinaready.co/contact/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Contact</a></li>
-            <li><a href="https://chinaready.co/intake" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Start Assessment</a></li>
-            <li><a href="https://chinaready.co/book-call" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Book a Call</a></li>
-            <li><a href="https://chinaready.co/services/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">All Services</a></li>
-          </ul>
-        </nav>
-        <nav class="cr-footer-column" aria-label="Related utilities">
-          <h2 class="cr-footer-heading">Utilities</h2>
-          <ul class="cr-footer-list">
-            <li><a href="https://gfonts.launchready.cn/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Google Fonts</a></li>
-            <li><a href="https://fd-cdn.launchready.cn/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Frontend CDN</a></li>
-            <li><a href="https://wp-cdn.launchready.cn/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">WordPress CDN</a></li>
-            <li><a href="https://docker-hub.chinaready.co/?lang=en" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Docker Hub Mirror</a></li>
-            <li><a href="https://chinaready.co/diagnose/" class="cr-footer-link" target="_blank" rel="noopener noreferrer">Network Diagnostics</a></li>
-          </ul>
-        </nav>
-      </div>
-      <p class="cr-footer-filing" aria-label="Filing information">
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-          <img src="https://store.launchready.cn/static/upload/images/common/2025/10/26/1761464256574312.png" alt="" width="14" height="14" loading="lazy" decoding="async">
-          <span>京ICP备2026030642号-1</span>
-        </a>
-        <span>|</span>
-        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11011502040161" target="_blank" rel="noopener noreferrer">
-          <img src="https://store.launchready.cn/static/upload/images/common/2025/10/26/1761464256998298.png" alt="" width="14" height="14" loading="lazy" decoding="async">
-          <span>京公网安备11011502040161号</span>
-        </a>
-      </p>
-    </div>
-  </footer>
-  <script src="../public/assets/demo.js"></script>
+<body>
+  <p>Stack Break Lab has moved. <a href="/stack/youtube-embed.html">Continue to the new page</a>.</p>
+  <script>location.replace('/stack/youtube-embed.html');</script>
 </body>
 </html>

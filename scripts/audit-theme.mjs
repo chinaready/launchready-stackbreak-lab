@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 
 const PAGES = [
   '/', '/stack/', '/product/',
-  '/demos/beijing-view.html',
+  '/stack/beijing-view.html',
   '/public/results/index.html',
   '/public/results/firebase.html', '/public/results/netlify.html', '/public/results/vercel.html',
   ...JSON.parse(readFileSync('probe/targets.json', 'utf8')).services

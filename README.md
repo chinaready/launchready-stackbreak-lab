@@ -11,7 +11,7 @@ Maintained by [Chinaready](https://chinaready.co); evidence runs on
 
 - **Live site:** https://stackbreak.launchready.cn
 - **Latest results:** https://stackbreak.launchready.cn/results/
-- **Beijing view:** https://stackbreak.launchready.cn/demos/beijing-view.html
+- **Beijing view:** https://stackbreak.launchready.cn/stack/beijing-view.html
 - **Companion article:** https://chinaready.co/insights/which-parts-of-your-stack-break-first/
 
 [![license](https://img.shields.io/github/license/chinaready/launchready-stackbreak-lab)](LICENSE)
@@ -33,7 +33,7 @@ integration the way a normal product would, then reports whether that dependency
 | Analytics and tags | 2 | Google Tag Manager, Google Analytics 4 |
 | Maps, media, embeds | 3 | YouTube, Google Maps, Vimeo |
 
-The [Beijing view](demos/beijing-view.html) replays the latest mainland snapshot — same evidence for
+The [Beijing view](stack/beijing-view.html) replays the latest mainland snapshot — same evidence for
 every visitor, regardless of location or VPN.
 
 ## How evidence is collected
