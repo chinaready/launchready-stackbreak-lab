@@ -34,8 +34,8 @@
     .cover__meta .v { color: var(--onDark); }
     .cover__site { position: absolute; bottom: 20mm; left: 22mm; font-weight: 700; font-size: 10pt; color: var(--onDark); }
 
-    /* --- TOC --- */
-    .toc { page-break-before: always; }
+    /* --- TOC: alone on its page; body starts on the next one --- */
+    .toc { page-break-before: always; page-break-after: always; }
     .toc h2 { font-size: 23pt; color: var(--primary); margin: 0 0 8mm; }
     .toc ol { list-style: none; margin: 0; padding: 0; }
     .toc li { border-bottom: 1px solid var(--border); padding: 4mm 0; }
