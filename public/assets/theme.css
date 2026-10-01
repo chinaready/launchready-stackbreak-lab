@@ -168,7 +168,9 @@ body.home .btn--primary, .btn--primary {
 .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .block--cta .btn--primary { background: var(--cr-blue); border-color: var(--cr-blue); color: #fff; }
 .block--cta .btn--ghost { background: transparent; border-color: rgba(255,255,255,0.24); color: #fff; }
-.block--cta .btn--ghost:hover { border-color: #fff; color: #fff; }
+/* background must be declared here too — the base ghost:hover (lower
+   specificity) would otherwise paint #fff under the white CTA text. */
+.block--cta .btn--ghost:hover { border-color: #fff; color: #fff; background: rgba(255, 255, 255, 0.08); }
 
 /* Steps (method tiles) */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }

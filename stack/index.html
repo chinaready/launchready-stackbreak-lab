@@ -59,7 +59,7 @@
   <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
   <link rel="stylesheet" href="../public/assets/lab.css?v=20261001a" />
   <link rel="stylesheet" href="../public/assets/home.css?v=20261001a" />
-  <link rel="stylesheet" href="../public/assets/theme.css?v=20261001k" />
+  <link rel="stylesheet" href="../public/assets/theme.css?v=20261001l" />
 </head>
 <body class="home">
   <header class="site-header">
@@ -160,7 +160,17 @@
     </section>
 
     <!-- ===================== CLOSING CTA ===================== -->
-    <section class="block block--cta">
+    <section class="verdict-legend" aria-label="Verdict color code">
+    <div class="verdict-legend__wrap">
+      <span class="verdict-legend__title">Verdict color code</span>
+      <span class="verdict-legend__item"><i class="verdict-legend__dot is-reachable"></i>Reachable &lt; 1s</span>
+      <span class="verdict-legend__item"><i class="verdict-legend__dot is-degraded"></i>Degraded 1&ndash;3s</span>
+      <span class="verdict-legend__item"><i class="verdict-legend__dot is-blocked"></i>Blocked &gt; 3s or connection failed</span>
+      <span class="verdict-legend__note">Measured as total request time from the Beijing node; any HTTP status counts as connected.</span>
+    </div>
+  </section>
+
+  <section class="block block--cta">
       <div class="home-wrap">
         <p class="block__eyebrow reveal">Go deeper</p>
         <h2 class="block__title reveal" data-delay="1">See what whole platforms cost you<span class="period">.</span></h2>
@@ -178,16 +188,7 @@
     </section>
   </main>
 
-    <section class="verdict-legend" aria-label="Verdict color code">
-    <div class="verdict-legend__wrap">
-      <span class="verdict-legend__title">Verdict color code</span>
-      <span class="verdict-legend__item"><i class="verdict-legend__dot is-reachable"></i>Reachable &lt; 1s</span>
-      <span class="verdict-legend__item"><i class="verdict-legend__dot is-degraded"></i>Degraded 1&ndash;3s</span>
-      <span class="verdict-legend__item"><i class="verdict-legend__dot is-blocked"></i>Blocked &gt; 3s or connection failed</span>
-      <span class="verdict-legend__note">Measured as total request time from the Beijing node; any HTTP status counts as connected.</span>
-    </div>
-  </section>
-<footer class="site-footer" role="contentinfo">
+    <footer class="site-footer" role="contentinfo">
     <div class="cr-footer-inner">
       <div class="cr-footer-grid">
         <section class="cr-footer-brand">
