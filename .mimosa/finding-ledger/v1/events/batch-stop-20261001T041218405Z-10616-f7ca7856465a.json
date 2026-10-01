@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261001T041218405Z-10616-f7ca7856465a",
+  "runId": "20261001T041218405Z-10616-f7ca7856465a",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "bb8185ffd42f3ddb62495f79ba7941d513499a33",
+  "diffHash": "25dfa377c67afae2a490c1a515dd8c9ba64ea2656442c2f38a509b032428c45d",
+  "rulesVersion": "unavailable",
+  "sessionHash": "430b74ed666afcceec3258b9c78b31f467ab6b32720bae0198c8cbed3ecad176",
+  "reportRef": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656-20261001T041218405Z-10616-f7ca7856465a.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "probe/china-dependency-probe.sh",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-10-01T04:12:18.703Z"
+}

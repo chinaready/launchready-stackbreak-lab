@@ -9,7 +9,9 @@
 
 set -uo pipefail
 
-SLOW_THRESHOLD="${SLOW_THRESHOLD:-5}"
+# Three-tier time verdicts — keep in sync with scripts/reclassify.mjs.
+REACHABLE_MAX_S="${REACHABLE_MAX_S:-1}"
+BLOCKED_MIN_S="${BLOCKED_MIN_S:-3}"
 CONNECT_TIMEOUT="${CONNECT_TIMEOUT:-10}"
 MAX_TIME="${MAX_TIME:-30}"
 UA="vercel-china-probe/1.0 (+https://chinaready.co)"
@@ -20,7 +22,8 @@ SITE="${VERCEL_SITE_URL%/}"
 verdict_for() { # exit code total -> verdict
   local e="$1" c="$2" t="$3"
   if [ "$e" -ne 0 ] || [ "$c" = "000" ]; then echo "Blocked"
-  elif awk "BEGIN{exit !($t > $SLOW_THRESHOLD)}"; then echo "Degraded"
+  elif awk "BEGIN{exit !($t > $BLOCKED_MIN_S)}"; then echo "Blocked"
+  elif awk "BEGIN{exit !($t >= $REACHABLE_MAX_S)}"; then echo "Degraded"
   else echo "Reachable"; fi
 }
 

@@ -36,10 +36,26 @@ export function reclassifyDoc(doc) {
   return changed;
 }
 
-function reclassifyFile(path, apply) {
+// Kit probes (firebase/netlify/vercel) and page-resource measurements share
+// the same shape (curlExit/httpCode/totalSec or httpCode/totalSec).
+export function reclassifyProbesDoc(doc) {
+  let changed = 0;
+  for (const list of [doc && doc.probes, doc && doc.resources]) {
+    for (const p of list || []) {
+      if (typeof Number(p.totalSec) !== 'number' || Number.isNaN(Number(p.totalSec))) continue;
+      const v = classify(p);
+      if (p.verdict !== v) { p.verdict = v; changed++; }
+    }
+  }
+  return changed;
+}
+
+const KIT_STEMS = ['firebase', 'netlify', 'vercel', 'netlify-resources', 'vercel-resources'];
+
+function reclassifyFile(path, apply, mode = 'services') {
   let doc;
   try { doc = JSON.parse(readFileSync(path, 'utf8')); } catch { return null; }
-  const changed = reclassifyDoc(doc);
+  const changed = mode === 'services' ? reclassifyDoc(doc) : reclassifyProbesDoc(doc);
   if (changed && apply) writeFileSync(path, JSON.stringify(doc, null, 2) + '\n');
   return changed;
 }
@@ -48,16 +64,19 @@ const ranDirectly = process.argv[1] && fileURLToPath(import.meta.url) === proces
 if (ranDirectly) {
   const apply = process.argv.includes('--apply');
   let total = 0, files = 0;
+  const hit = (c) => { if (c) { total += c; files++; } };
   for (const name of readdirSync(RESULTS).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d))) {
     const p = join(RESULTS, name, 'probe.json');
-    if (!existsSync(p)) continue;
-    const c = reclassifyFile(p, apply);
-    if (c == null) continue;
-    total += c; if (c) files++;
+    if (existsSync(p)) hit(reclassifyFile(p, apply));
+    for (const stem of KIT_STEMS) {
+      const kp = join(RESULTS, name, stem + '.json');
+      if (existsSync(kp)) hit(reclassifyFile(kp, apply, 'probes'));
+    }
   }
-  const latest = join(RESULTS, 'latest.json');
-  const c = reclassifyFile(latest, apply);
-  if (c) { total += c; files++; }
+  for (const stem of [...KIT_STEMS, 'latest']) {
+    const lp = join(RESULTS, stem + '-latest.json');
+    if (existsSync(lp)) hit(reclassifyFile(lp, apply, stem === 'latest' ? 'services' : 'probes'));
+  }
   console.log(apply
     ? `applied: ${total} verdicts reclassified across ${files} files (thresholds <${REACHABLE_MAX_S}s / <=${BLOCKED_MIN_S}s)`
     : `dry-run: ${total} verdicts would change across ${files} files — rerun with --apply`);

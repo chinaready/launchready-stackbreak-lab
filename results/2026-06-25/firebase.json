@@ -123,7 +123,7 @@
       "path": "transport",
       "endpoint": "https://vision.googleapis.com/",
       "httpCode": "000",
-      "totalSec": 10.001270,
+      "totalSec": 10.00127,
       "curlExit": 28,
       "verdict": "Blocked"
     },
@@ -178,7 +178,7 @@
       "path": "transport",
       "endpoint": "https://firebaseremoteconfig.googleapis.com/",
       "httpCode": "000",
-      "totalSec": 10.000650,
+      "totalSec": 10.00065,
       "curlExit": 28,
       "verdict": "Blocked"
     },
@@ -246,7 +246,7 @@
       "httpCode": "404",
       "totalSec": 3.062072,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "rtdb",
@@ -257,7 +257,7 @@
       "httpCode": "401",
       "totalSec": 1.498749,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     }
   ]
 }

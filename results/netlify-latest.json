@@ -48,7 +48,7 @@
       "httpCode": "200",
       "totalSec": 1.143318,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "fn-hello",
@@ -70,7 +70,7 @@
       "httpCode": "200",
       "totalSec": 1.232077,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "edge-banner",
@@ -81,7 +81,7 @@
       "httpCode": "200",
       "totalSec": 2.225652,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "fn-background",
@@ -90,7 +90,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/report-background",
       "httpCode": "202",
-      "totalSec": 0.548310,
+      "totalSec": 0.54831,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -103,7 +103,7 @@
       "httpCode": "200",
       "totalSec": 1.113424,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "form",
@@ -136,7 +136,7 @@
       "httpCode": "200",
       "totalSec": 1.35195,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "api-site",
@@ -147,7 +147,7 @@
       "httpCode": "200",
       "totalSec": 2.167601,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "api-deploys",
@@ -158,7 +158,7 @@
       "httpCode": "200",
       "totalSec": 1.066742,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "api-forms",
@@ -202,7 +202,7 @@
       "httpCode": "401",
       "totalSec": 1.137152,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "www",
@@ -224,7 +224,7 @@
       "httpCode": "200",
       "totalSec": 1.711223,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "dns-netlify",

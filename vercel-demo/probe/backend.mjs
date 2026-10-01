@@ -10,7 +10,11 @@
 import { appendFileSync } from "node:fs";
 import { blobCredentials, kvCredentials } from "../lib/storage-env.mjs";
 
-const SLOW = Number(process.env.SLOW_THRESHOLD ?? 5);
+// Three-tier time verdicts — keep in sync with scripts/reclassify.mjs.
+const REACHABLE_MAX_S = Number(process.env.REACHABLE_MAX_S ?? 1);
+const BLOCKED_MIN_S = Number(process.env.BLOCKED_MIN_S ?? 3);
+const timeVerdict = (total) =>
+  total < REACHABLE_MAX_S ? "Reachable" : total <= BLOCKED_MIN_S ? "Degraded" : "Blocked";
 const MAX_MS = Number(process.env.MAX_TIME ?? 30) * 1000;
 const OUT = process.env.OUT_NDJSON || "";
 
@@ -44,7 +48,7 @@ async function probe(id, name, product, endpoint, init = {}) {
     });
     await res.text().catch(() => {});
     const total = (performance.now() - start) / 1000;
-    const verdict = total > SLOW ? "Degraded" : "Reachable";
+    const verdict = timeVerdict(total);
     emit({
       id,
       name,

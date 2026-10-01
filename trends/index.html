@@ -65,7 +65,16 @@
     <div id="tr-root"><noscript><p class="catalog-fallback">The trends view needs JavaScript — the <a href="../public/results/index.html">full verdict table</a> has the same data.</p></noscript></div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
+    <section class="verdict-legend" aria-label="Verdict color code">
+    <div class="verdict-legend__wrap">
+      <span class="verdict-legend__title">Verdict color code</span>
+      <span class="verdict-legend__item"><i class="verdict-legend__dot is-reachable"></i>Reachable &lt; 1s</span>
+      <span class="verdict-legend__item"><i class="verdict-legend__dot is-degraded"></i>Degraded 1&ndash;3s</span>
+      <span class="verdict-legend__item"><i class="verdict-legend__dot is-blocked"></i>Blocked &gt; 3s or connection failed</span>
+      <span class="verdict-legend__note">Measured as total request time from the Beijing node; any HTTP status counts as connected.</span>
+    </div>
+  </section>
+<footer class="site-footer" role="contentinfo">
     <div class="cr-footer-inner">
       <div class="cr-footer-grid">
         <section class="cr-footer-brand">

@@ -14,7 +14,11 @@ import { getMessaging } from "firebase-admin/messaging";
 import { getRemoteConfig } from "firebase-admin/remote-config";
 import { readFileSync, appendFileSync } from "node:fs";
 
-const SLOW = Number(process.env.SLOW_THRESHOLD ?? 5);
+// Three-tier time verdicts — keep in sync with scripts/reclassify.mjs.
+const REACHABLE_MAX_S = Number(process.env.REACHABLE_MAX_S ?? 1);
+const BLOCKED_MIN_S = Number(process.env.BLOCKED_MIN_S ?? 3);
+const timeVerdict = (total) =>
+  total < REACHABLE_MAX_S ? "Reachable" : total <= BLOCKED_MIN_S ? "Degraded" : "Blocked";
 const MAX_MS = Number(process.env.MAX_TIME ?? 30) * 1000;
 const OUT = process.env.OUT_NDJSON || "";
 
@@ -61,7 +65,7 @@ async function timed(id, name, product, endpoint, fn) {
       new Promise((_, rej) => setTimeout(() => rej(new Error("probe-timeout")), MAX_MS)),
     ]);
     const total = (performance.now() - start) / 1000;
-    verdict = total > SLOW ? "Degraded" : "Reachable";
+    verdict = timeVerdict(total);
     emit({ id, name, product, path: "backend", endpoint, httpCode, totalSec: Number(total.toFixed(6)), curlExit: 0, verdict });
     return;
   } catch (err) {
@@ -72,7 +76,7 @@ async function timed(id, name, product, endpoint, fn) {
       verdict = "Blocked"; httpCode = "auth-token-blocked";
     } else if (isServiceError(err)) {
       // Reached the API; it answered with an app-level error.
-      verdict = total > SLOW ? "Degraded" : "Reachable";
+      verdict = timeVerdict(total);
       httpCode = String(err.code ?? "error");
     } else {
       verdict = "Blocked"; httpCode = String(err.code ?? "neterr");

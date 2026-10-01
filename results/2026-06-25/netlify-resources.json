@@ -33,7 +33,7 @@
       "ttfbSec": 0.844906,
       "totalSec": 0.927029,
       "throughputMbps": 0.136,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "where",
@@ -45,7 +45,7 @@
       "ttfbSec": 0.276198,
       "totalSec": 0.276294,
       "throughputMbps": 0.011,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "fn-hello",
@@ -57,7 +57,7 @@
       "ttfbSec": 1.128172,
       "totalSec": 1.144241,
       "throughputMbps": 0.001,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "edge",
@@ -69,7 +69,7 @@
       "ttfbSec": 0.277277,
       "totalSec": 0.277382,
       "throughputMbps": 0.004,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "identity-js",
@@ -81,7 +81,7 @@
       "ttfbSec": 0.309075,
       "totalSec": 0.644991,
       "throughputMbps": 2.982,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "img-400",
@@ -92,8 +92,8 @@
       "bytes": 274021,
       "ttfbSec": 0.737283,
       "totalSec": 1.153672,
-      "throughputMbps": 1.900,
-      "verdict": "Reachable"
+      "throughputMbps": 1.9,
+      "verdict": "Blocked"
     },
     {
       "id": "img-800",
@@ -102,10 +102,10 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=800",
       "httpCode": "200",
       "bytes": 749717,
-      "ttfbSec": 0.638250,
-      "totalSec": 1.140250,
-      "throughputMbps": 5.260,
-      "verdict": "Reachable"
+      "ttfbSec": 0.63825,
+      "totalSec": 1.14025,
+      "throughputMbps": 5.26,
+      "verdict": "Blocked"
     },
     {
       "id": "img-1600webp",
@@ -117,7 +117,7 @@
       "ttfbSec": 0.750752,
       "totalSec": 0.914219,
       "throughputMbps": 0.426,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "img-2400avif",
@@ -129,7 +129,7 @@
       "ttfbSec": 0.941333,
       "totalSec": 1.108116,
       "throughputMbps": 0.276,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-1mb",
@@ -141,7 +141,7 @@
       "ttfbSec": 0.639401,
       "totalSec": 1.188915,
       "throughputMbps": 6.723,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-3mb",
@@ -153,7 +153,7 @@
       "ttfbSec": 0.629926,
       "totalSec": 2.619417,
       "throughputMbps": 9.386,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-6mb",
@@ -165,7 +165,7 @@
       "ttfbSec": 0.757255,
       "totalSec": 3.532847,
       "throughputMbps": 13.587,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-source",
@@ -177,7 +177,7 @@
       "ttfbSec": 0.566923,
       "totalSec": 2.450108,
       "throughputMbps": 8.698,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     }
   ]
 }

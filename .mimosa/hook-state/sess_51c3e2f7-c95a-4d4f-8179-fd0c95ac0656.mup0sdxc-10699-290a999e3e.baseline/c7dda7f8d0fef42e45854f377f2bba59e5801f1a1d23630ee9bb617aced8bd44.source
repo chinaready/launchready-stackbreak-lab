@@ -1,0 +1,35 @@
+name: validate-targets
+
+# Dependency-free validation (pure Node) — safe on GitHub-hosted runners.
+on:
+  push:
+    paths:
+      - 'probe/targets.json'
+      - 'probe/targets-community.json'
+      - 'probe/targets.schema.json'
+      - 'probe/targets.schema.md'
+      - 'scripts/*.mjs'
+      - 'tests/unit/**'
+      - '.github/workflows/validate-targets.yml'
+  pull_request:
+    paths:
+      - 'probe/targets.json'
+      - 'probe/targets-community.json'
+      - 'probe/targets.schema.json'
+      - 'probe/targets.schema.md'
+      - 'scripts/*.mjs'
+      - 'tests/unit/**'
+      - '.github/workflows/validate-targets.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate registries
+        run: npm run validate:targets
+      - name: Unit tests
+        run: npm run test:unit

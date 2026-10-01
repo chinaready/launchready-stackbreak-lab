@@ -20,7 +20,7 @@
       "httpCode": "200",
       "totalSec": 1.114291,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "redirect",
@@ -31,7 +31,7 @@
       "httpCode": "308",
       "totalSec": 1.110662,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "rewrite",
@@ -42,7 +42,7 @@
       "httpCode": "200",
       "totalSec": 1.759052,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "fn-hello",
@@ -64,7 +64,7 @@
       "httpCode": "200",
       "totalSec": 3.616721,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "fn-kv",
@@ -75,7 +75,7 @@
       "httpCode": "200",
       "totalSec": 2.083923,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "edge-banner",
@@ -86,7 +86,7 @@
       "httpCode": "200",
       "totalSec": 1.091415,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "cron",
@@ -97,7 +97,7 @@
       "httpCode": "200",
       "totalSec": 1.624123,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "headers",
@@ -130,7 +130,7 @@
       "httpCode": "200",
       "totalSec": 1.049076,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "api-deploys",
@@ -163,7 +163,7 @@
       "httpCode": "200",
       "totalSec": 1.746795,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "server-invoke",
@@ -185,7 +185,7 @@
       "httpCode": "200",
       "totalSec": 1.03886,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "api",
@@ -196,7 +196,7 @@
       "httpCode": "308",
       "totalSec": 1.020383,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "vitals",
@@ -207,7 +207,7 @@
       "httpCode": "302",
       "totalSec": 1.290029,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "dns-vercel",

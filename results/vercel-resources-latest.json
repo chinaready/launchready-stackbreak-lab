@@ -25,7 +25,7 @@
       "ttfbSec": 0.607726,
       "totalSec": 0.701119,
       "throughputMbps": 0.116,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "where",
@@ -37,7 +37,7 @@
       "ttfbSec": 0.521761,
       "totalSec": 0.521877,
       "throughputMbps": 0.003,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "fn-hello",
@@ -49,7 +49,7 @@
       "ttfbSec": 0.698281,
       "totalSec": 0.698412,
       "throughputMbps": 0.001,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "edge",
@@ -61,7 +61,7 @@
       "ttfbSec": 0.591703,
       "totalSec": 0.591772,
       "throughputMbps": 0.002,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "fn-kv",
@@ -73,7 +73,7 @@
       "ttfbSec": 1.201201,
       "totalSec": 1.20132,
       "throughputMbps": 0.001,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-1mb",
@@ -85,7 +85,7 @@
       "ttfbSec": 1.160785,
       "totalSec": 1.762145,
       "throughputMbps": 4.536,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-3mb",
@@ -97,7 +97,7 @@
       "ttfbSec": 1.133737,
       "totalSec": 1.964184,
       "throughputMbps": 12.517,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-6mb",
@@ -109,7 +109,7 @@
       "ttfbSec": 1.409698,
       "totalSec": 3.443117,
       "throughputMbps": 13.941,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "raw-source",
@@ -121,7 +121,7 @@
       "ttfbSec": 1.551542,
       "totalSec": 2.478279,
       "throughputMbps": 8.599,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     }
   ]
 }

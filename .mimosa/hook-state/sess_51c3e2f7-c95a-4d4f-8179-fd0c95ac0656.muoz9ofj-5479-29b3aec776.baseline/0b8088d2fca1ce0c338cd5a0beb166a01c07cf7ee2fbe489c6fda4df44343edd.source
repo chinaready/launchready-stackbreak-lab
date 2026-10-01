@@ -1,0 +1,30 @@
+name: quarterly-report
+
+# M4 stub: manual dispatch placeholder for the quarterly aggregated report.
+# The weekly artifacts (report.pdf/.docx per run) ship already; the quarterly
+# rollup over results/timeline.json gets implemented once enough history
+# accumulates (spec §7 M4). This workflow exists so the dispatch surface and
+# its intended inputs are settled in advance.
+
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: 'Quarter start (YYYY-MM-DD)'
+        required: false
+        type: string
+      to:
+        description: 'Quarter end (YYYY-MM-DD)'
+        required: false
+        type: string
+
+jobs:
+  stub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report intended invocation (stub)
+        run: |
+          echo "Quarterly report is a reserved stub (spec M4)."
+          echo "Intended: aggregate results/timeline.json from ${{ inputs.from || '<quarter start>' }} to ${{ inputs.to || '<quarter end>' }} through the vendored DS report toolchain (scripts/report-document.mjs)."
+          echo "Blocking on: enough accumulated history for a meaningful quarter."

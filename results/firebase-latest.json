@@ -246,7 +246,7 @@
       "httpCode": "404",
       "totalSec": 3.062072,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Blocked"
     },
     {
       "id": "rtdb",
@@ -257,7 +257,7 @@
       "httpCode": "401",
       "totalSec": 1.498749,
       "curlExit": 0,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     }
   ]
 }
