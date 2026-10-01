@@ -571,3 +571,17 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 }
 .bv-card__shot-missing { padding: 40px 20px; }
 .bv-card__evidence { padding: 20px 24px 24px; }
+
+/* ===== v2.3.7 beijing-view — plain H2 band titles, flat cards (2026-10-01) ===== */
+.bv-cat__label {
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 22px; font-weight: 700; color: var(--cr-navy);
+  margin: 0 auto 20px; letter-spacing: -0.015em;
+}
+.bv-cat__label small {
+  background: none; border-radius: 0; padding: 0;
+  font-size: 13px; font-weight: 400; color: var(--cr-text2);
+}
+.bv-card { border-radius: 0; box-shadow: none; }
+.bv-card__shot { padding: 20px; background: var(--cr-surface); }
+.bv-card__shot-missing { padding: 40px 20px; }
