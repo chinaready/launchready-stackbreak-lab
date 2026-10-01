@@ -88,11 +88,11 @@
     });
     var dl = document.getElementById('tr-summary');
     if (!dl) return;
-    [['Newly blocked · 90d', newlyBlocked], ['Recovered · 90d', recovered],
-     ['Targets watched', Object.keys(timeline.targets).length],
-     ['Runs recorded', countDates(timeline)]].forEach(function (pair) {
+    [['Newly blocked · 90d', newlyBlocked, 'is-blocked'], ['Recovered · 90d', recovered, 'is-recovered'],
+     ['Targets watched', Object.keys(timeline.targets).length, ''],
+     ['Runs recorded', countDates(timeline), '']].forEach(function (pair) {
       dl.appendChild(el('dt', pair[0]));
-      dl.appendChild(el('dd', String(pair[1])));
+      dl.appendChild(el('dd', String(pair[1]), pair[2] || undefined));
     });
   }
 

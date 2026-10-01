@@ -620,3 +620,18 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 .verdict-legend__dot.is-blocked { background: #B42318; }
 .verdict-legend__note { flex-basis: 100%; font-size: 12px; color: var(--cr-text2); }
 @media (max-width: 720px) { .verdict-legend__note { flex-basis: 100%; } }
+
+/* ===== v2.5.1 color-coded data displays (2026-10-01) ===== */
+/* Home reports table: tier-tinted count columns. */
+.reports td:nth-child(3) { color: var(--v-blocked); font-weight: 700; }
+.reports td:nth-child(4) { color: var(--v-degraded); font-weight: 700; }
+.reports td:nth-child(5) { color: var(--v-reachable); font-weight: 700; }
+/* Product hero: blocked-probe count reads red like the home board tile. */
+[data-count="plat-blocked"] { color: var(--v-blocked) !important; }
+/* Trends summary: newly blocked red, recovered green. */
+.verdict-summary dd.is-blocked { color: var(--v-blocked); }
+.verdict-summary dd.is-recovered { color: var(--v-reachable); }
+/* Beijing view card metrics: total-seconds value tier-tinted. */
+.bv-card__metrics dd.is-reachable { color: var(--v-reachable); }
+.bv-card__metrics dd.is-degraded { color: var(--v-degraded); }
+.bv-card__metrics dd.is-blocked { color: var(--v-blocked); }

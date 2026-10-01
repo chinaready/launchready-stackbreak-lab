@@ -76,9 +76,9 @@
     ev.appendChild(el('p', s.domain, 'bv-card__host'));
 
     var dl = el('dl', null, 'bv-card__metrics');
-    function row(k, v) { dl.appendChild(el('dt', k)); dl.appendChild(el('dd', v)); }
+    function row(k, v, cls) { const dd = el('dd', v); if (cls) dd.className = cls; dl.appendChild(el('dt', k)); dl.appendChild(dd); }
     row('HTTP', s.httpCode || '—');
-    row('Total', fmtSec(s.totalSec) + 's' + (Number(s.curlExit) === 28 ? ' (timeout)' : ''));
+    row('Total', fmtSec(s.totalSec) + 's' + (Number(s.curlExit) === 28 ? ' (timeout)' : ''), 'is-' + String(s.verdict).toLowerCase());
     row('Requests arrived', s.verdict === 'Blocked' ? '0' : 'ok');
     row('DNS', s.dnsResolved ? 'resolved' : 'no');
     ev.appendChild(dl);
