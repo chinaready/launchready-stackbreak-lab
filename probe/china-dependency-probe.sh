@@ -19,8 +19,12 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 TARGETS="$SCRIPT_DIR/targets.json"
 COMMUNITY_TARGETS="$SCRIPT_DIR/targets-community.json"
 
-# Slow threshold (seconds): connected but slower than this is "Degraded".
-SLOW_THRESHOLD="${SLOW_THRESHOLD:-5}"
+# Time-based verdict tiers (industry color code; overridable via .env / CI):
+#   Reachable  total < REACHABLE_MAX_S (default 1s)
+#   Degraded   REACHABLE_MAX_S .. BLOCKED_MIN_S (default 3s)
+#   Blocked    total > BLOCKED_MIN_S, or connection failed / HTTP 000
+REACHABLE_MAX_S="${REACHABLE_MAX_S:-1}"
+BLOCKED_MIN_S="${BLOCKED_MIN_S:-3}"
 CONNECT_TIMEOUT="${CONNECT_TIMEOUT:-10}"
 MAX_TIME="${MAX_TIME:-15}"
 DNS_SERVER="${DNS_SERVER:-223.5.5.5}" # AliDNS by default; meaningful from China.
@@ -44,7 +48,7 @@ mkdir -p "$OUT_DIR"
 
 echo "Stack Break Lab probe — $GENERATED_AT"
 echo "Environment: $CLOUD_PROVIDER / $CLOUD_REGION / $RUNNER_HOST"
-echo "DNS server: $DNS_SERVER, slow threshold: ${SLOW_THRESHOLD}s"
+echo "DNS server: $DNS_SERVER, tiers: ${REACHABLE_MAX_S}s reachable / ${REACHABLE_MAX_S}-${BLOCKED_MIN_S}s degraded / over ${BLOCKED_MIN_S}s blocked"
 echo
 
 services_json="[]"
@@ -88,11 +92,13 @@ while IFS= read -r row; do
     total_s="$(echo "$metrics" | awk '{print $4}')"
   fi
 
-  # Verdict.
+  # Verdict: time-based three-tier color code.
   if [ "$curl_exit" -ne 0 ] || [ "$http_code" = "000" ]; then
     verdict="Blocked"
-  elif awk "BEGIN{exit !($total_s > $SLOW_THRESHOLD)}"; then
+  elif awk "BEGIN{exit !($total_s >= $REACHABLE_MAX_S && $total_s <= $BLOCKED_MIN_S)}"; then
     verdict="Degraded"
+  elif awk "BEGIN{exit !($total_s > $BLOCKED_MIN_S)}"; then
+    verdict="Blocked"
   else
     verdict="Reachable"
   fi

@@ -71,11 +71,16 @@ Whole-stack kits (Firebase, Netlify, Vercel): `{ id, name, vendor, resultsPath, 
 
 ## Verdict definitions
 
-Verdicts are deliberately about **reachability and latency**, not HTTP semantics. A `404` or `403`
-still means the network path works, so it counts as `Reachable`.
+Time-based three-tier color code (industry practice), computed from the total
+request time; any HTTP status still counts as connected:
 
-| Verdict | Network condition |
+| Verdict | Condition |
 |---|---|
-| `Blocked` | Connection failed or timed out (curl error, or HTTP code `000`). |
-| `Degraded` | Connected, but total time exceeded the slow threshold (default 5s). |
-| `Reachable` | Connected within the threshold and returned any HTTP status. |
+| `Reachable` | Connected, total time **< 1s** (`REACHABLE_MAX_S`). |
+| `Degraded` | Connected, total time **1s–3s** (`BLOCKED_MIN_S`). |
+| `Blocked` | Connected but total time **> 3s**, or connection failed / timed out (curl error, HTTP `000`). |
+
+Archived runs before 2026-10-01 used the legacy code (failure-only Blocked, 5s
+degraded threshold); their verdict fields were reclassified from the stored raw
+metrics by `scripts/reclassify.mjs` — timings, HTTP codes, and curl exits are
+never rewritten.

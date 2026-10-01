@@ -36,7 +36,7 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "200",
-      "connectSec": 0.003420,
+      "connectSec": 0.00342,
       "sslSec": 0.099362,
       "totalSec": 0.194888,
       "curlExit": 0,
@@ -72,8 +72,8 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.002227,
       "curlExit": 28,
       "dnsResolved": true,
@@ -95,7 +95,7 @@
       "totalSec": 1.655964,
       "curlExit": 0,
       "dnsResolved": true,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "google-signin",
@@ -108,8 +108,8 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.002198,
       "curlExit": 28,
       "dnsResolved": true,
@@ -127,7 +127,7 @@
       "vendor": "google",
       "httpCode": "200",
       "connectSec": 0.063441,
-      "sslSec": 0.122980,
+      "sslSec": 0.12298,
       "totalSec": 0.226016,
       "curlExit": 0,
       "dnsResolved": true,
@@ -144,7 +144,7 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "200",
-      "connectSec": 0.002930,
+      "connectSec": 0.00293,
       "sslSec": 0.058282,
       "totalSec": 0.163418,
       "curlExit": 0,
@@ -162,8 +162,8 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.001954,
       "curlExit": 28,
       "dnsResolved": true,
@@ -180,9 +180,9 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
-      "totalSec": 10.002750,
+      "connectSec": 0,
+      "sslSec": 0,
+      "totalSec": 10.00275,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -198,8 +198,8 @@
       "tier": "curated",
       "vendor": "vimeo",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.001616,
       "curlExit": 28,
       "dnsResolved": true,
@@ -218,10 +218,10 @@
       "httpCode": "200",
       "connectSec": 0.216937,
       "sslSec": 0.315027,
-      "totalSec": 1.459490,
+      "totalSec": 1.45949,
       "curlExit": 0,
       "dnsResolved": true,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "sentry-browser",
@@ -239,7 +239,7 @@
       "totalSec": 1.386577,
       "curlExit": 0,
       "dnsResolved": true,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     }
   ]
 }

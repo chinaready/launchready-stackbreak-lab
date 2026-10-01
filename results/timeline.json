@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T02:44:34.089Z",
+  "generatedAt": "2026-10-01T04:08:38.867Z",
   "targets": {
     "google-fonts": [
       {
@@ -188,12 +188,12 @@
     "adobe-typekit": [
       {
         "d": "2026-06-24",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.146846
       },
       {
         "d": "2026-06-26",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.822764
       },
       {
@@ -218,7 +218,7 @@
       },
       {
         "d": "2026-07-20",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.055788
       },
       {
@@ -228,7 +228,7 @@
       },
       {
         "d": "2026-08-03",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.041055
       },
       {
@@ -238,12 +238,12 @@
       },
       {
         "d": "2026-08-17",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.028838
       },
       {
         "d": "2026-08-24",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.080309
       },
       {
@@ -372,92 +372,92 @@
     "auth0": [
       {
         "d": "2026-06-24",
-        "v": "Degraded",
+        "v": "Blocked",
         "t": 6.522586
       },
       {
         "d": "2026-06-26",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.076293
       },
       {
         "d": "2026-06-28",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.494377
       },
       {
         "d": "2026-06-29",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.02066
       },
       {
         "d": "2026-07-06",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.216131
       },
       {
         "d": "2026-07-13",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.097644
       },
       {
         "d": "2026-07-20",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.976928
       },
       {
         "d": "2026-07-27",
-        "v": "Reachable",
+        "v": "Blocked",
         "t": 4.453078
       },
       {
         "d": "2026-08-03",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.470295
       },
       {
         "d": "2026-08-10",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.400692
       },
       {
         "d": "2026-08-17",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.940206
       },
       {
         "d": "2026-08-24",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.279797
       },
       {
         "d": "2026-08-31",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.970778
       },
       {
         "d": "2026-09-07",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.366211
       },
       {
         "d": "2026-09-14",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.131467
       },
       {
         "d": "2026-09-21",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.171722
       },
       {
         "d": "2026-09-28",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 2.884855
       },
       {
         "d": "2026-09-30",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.655964
       }
     ],
@@ -673,12 +673,12 @@
       },
       {
         "d": "2026-07-13",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.328699
       },
       {
         "d": "2026-07-20",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.53373
       },
       {
@@ -1016,14 +1016,14 @@
     "stripe-js": [
       {
         "d": "2026-09-30",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.45949
       }
     ],
     "sentry-browser": [
       {
         "d": "2026-09-30",
-        "v": "Reachable",
+        "v": "Degraded",
         "t": 1.386577
       }
     ]

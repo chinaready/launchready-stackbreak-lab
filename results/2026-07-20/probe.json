@@ -53,7 +53,7 @@
       "totalSec": 1.055788,
       "curlExit": 0,
       "dnsResolved": true,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "recaptcha",
@@ -64,8 +64,8 @@
       "demoPath": "/demos/recaptcha.html",
       "symptom": "The CAPTCHA widget never renders, so forms and sign-up cannot be submitted.",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.001137,
       "curlExit": 28,
       "dnsResolved": true,
@@ -81,11 +81,11 @@
       "symptom": "The login widget stalls or loads slowly, delaying or blocking sign-in.",
       "httpCode": "200",
       "connectSec": 0.378209,
-      "sslSec": 0.508820,
+      "sslSec": 0.50882,
       "totalSec": 1.976928,
       "curlExit": 0,
       "dnsResolved": true,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "google-signin",
@@ -96,8 +96,8 @@
       "demoPath": "/demos/google-signin.html",
       "symptom": "The Google sign-in button never appears, locking out that login path.",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.002079,
       "curlExit": 28,
       "dnsResolved": true,
@@ -130,10 +130,10 @@
       "httpCode": "200",
       "connectSec": 0.003371,
       "sslSec": 0.143515,
-      "totalSec": 1.533730,
+      "totalSec": 1.53373,
       "curlExit": 0,
       "dnsResolved": true,
-      "verdict": "Reachable"
+      "verdict": "Degraded"
     },
     {
       "id": "youtube",
@@ -144,8 +144,8 @@
       "demoPath": "/demos/youtube-embed.html",
       "symptom": "The video area stays blank/black — player chrome and thumbnail never load.",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.002324,
       "curlExit": 28,
       "dnsResolved": true,
@@ -160,9 +160,9 @@
       "demoPath": "/demos/google-maps.html",
       "symptom": "The map collapses into an empty grey box with no tiles or controls.",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
-      "totalSec": 10.002550,
+      "connectSec": 0,
+      "sslSec": 0,
+      "totalSec": 10.00255,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -176,8 +176,8 @@
       "demoPath": "/demos/vimeo-embed.html",
       "symptom": "The Vimeo player stays blank — the embed iframe never finishes loading.",
       "httpCode": "000",
-      "connectSec": 0.000000,
-      "sslSec": 0.000000,
+      "connectSec": 0,
+      "sslSec": 0,
       "totalSec": 10.002753,
       "curlExit": 28,
       "dnsResolved": true,
