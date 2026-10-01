@@ -24,3 +24,10 @@ test('any HTTP status still counts as connected when fast', () => {
   assert.equal(classify(svc({ httpCode: '403', totalSec: 0.8 })), 'Reachable');
   assert.equal(classify(svc({ httpCode: '404', totalSec: 1.2 })), 'Degraded');
 });
+
+test('page-resource shape (no curlExit field) classifies by time alone', () => {
+  assert.equal(classify({ httpCode: '200', totalSec: 0.9 }), 'Reachable');
+  assert.equal(classify({ httpCode: '200', totalSec: 2.2 }), 'Degraded');
+  assert.equal(classify({ httpCode: '200', totalSec: 4.5 }), 'Blocked');
+  assert.equal(classify({ httpCode: '000', totalSec: 0.5 }), 'Blocked');
+});

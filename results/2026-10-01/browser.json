@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T04:20:18.807Z",
+  "generatedAt": "2026-10-01T04:37:46.616Z",
   "browser": [
     {
       "id": "google-fonts",
@@ -54,7 +54,7 @@
       "failedRequests": [],
       "okRequests": [
         "https://www.google.com/recaptcha/api.js",
-        "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LdmgjEtAAAAAFoNFViZ_oHm7IQxb1iDyTRdZESR&co=aHR0cDovL2xvY2FsaG9zdDo4MDgw&hl=en&v=kemdRjWFxNjgsGdhRslyEPwU&size=normal&anchor-ms=20000&execute-ms=30000&cb=syjzz0333st8"
+        "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LdmgjEtAAAAAFoNFViZ_oHm7IQxb1iDyTRdZESR&co=aHR0cDovL2xvY2FsaG9zdDo4MDgw&hl=en&v=kemdRjWFxNjgsGdhRslyEPwU&size=normal&anchor-ms=20000&execute-ms=30000&cb=nqtkx1ht3ecq"
       ],
       "slowestMs": 0,
       "verdict": "Reachable",
@@ -83,8 +83,8 @@
       "failedRequests": [],
       "okRequests": [
         "https://accounts.google.com/gsi/client",
-        "https://accounts.google.com/gsi/style",
-        "https://accounts.google.com/gsi/button?type=standard&shape=rectangular&text=continue_with&is_fedcm_supported=true&client_id=000000000000-placeholder.apps.googleusercontent.com&iframe_id=gsi_395804_641032&cas=GIciqqcsbjKNUJ6KHjO511iXox%2B9bRFSd8GmWxG3A%2BY"
+        "https://accounts.google.com/gsi/button?type=standard&shape=rectangular&text=continue_with&is_fedcm_supported=true&client_id=000000000000-placeholder.apps.googleusercontent.com&iframe_id=gsi_442534_356114&cas=5AbOShgj0MYL7bBWfnWDZTgOLA%2FDbzAGxKW5XXfkYlc",
+        "https://accounts.google.com/gsi/style"
       ],
       "slowestMs": 0,
       "verdict": "Reachable",
@@ -124,19 +124,22 @@
       "category": "embeds",
       "demoPath": "/stack/youtube-embed.html",
       "domain": "www.youtube.com",
-      "failedRequests": [],
+      "failedRequests": [
+        "https://www.youtube.com/embed/establish_zw"
+      ],
       "okRequests": [
         "https://www.youtube.com/embed/aqz-KE-bpKQ",
         "https://www.youtube.com/s/player/57bae81f/www-player.css",
-        "https://www.youtube.com/s/_/ytembeds/_/ss/k=ytembeds.base.9LvvwDcTyjo.L.W.O/am=AAAAQADG/d=1/br=1/rs=AGKMywEdkNP_Qi_pGIJ9zmYhRQrgOC5xzw/m=root,base",
-        "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.ex7Mqz4sfwM.2021.O/am=AAAAQADG/d=1/excm=base,root/br=1/rs=AGKMywEssY11Zr9_qPi6r_wQU-z7ztwL1Q/m=root,base",
+        "https://www.youtube.com/s/_/ytembeds/_/ss/k=ytembeds.base.9LvvwDcTyjo.L.W.O/am=AAAAQA/d=1/br=1/rs=AGKMywErObK3PXk_NGhLmj6zcZPh_bkR4g/m=root,base",
+        "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.ex7Mqz4sfwM.2021.O/am=AAAAQA/d=1/excm=base,root/br=1/rs=AGKMywH_pHfSKJsJLYdBPBG3MMagHAkz2Q/m=root,base",
         "https://www.youtube.com/s/player/57bae81f/player_embed_es6.vflset/en_US/base.js",
-        "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.ex7Mqz4sfwM.2021.O/ck=ytembeds.base.9LvvwDcTyjo.L.W.O/am=AAAAQADG/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywF6pIjPzKYfX2LxlfXVpMtv2wI9QA/m=r78Drb",
-        "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.ex7Mqz4sfwM.2021.O/ck=ytembeds.base.9LvvwDcTyjo.L.W.O/am=AAAAQADG/d=1/exm=base,r78Drb,root/excm=base,root/ed=1/br=1/rs=AGKMywF6pIjPzKYfX2LxlfXVpMtv2wI9QA/m=cwx9N",
-        "https://www.youtube.com/generate_204?_2lTFw"
+        "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.ex7Mqz4sfwM.2021.O/ck=ytembeds.base.9LvvwDcTyjo.L.W.O/am=AAAAQA/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywF80iwfNfL2mlfLTcsOsQH4KFEA1Q/m=r78Drb",
+        "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.ex7Mqz4sfwM.2021.O/ck=ytembeds.base.9LvvwDcTyjo.L.W.O/am=AAAAQA/d=1/exm=base,r78Drb,root/excm=base,root/ed=1/br=1/rs=AGKMywF80iwfNfL2mlfLTcsOsQH4KFEA1Q/m=cwx9N",
+        "https://www.youtube.com/generate_204?fRcZ8Q",
+        "https://www.youtube.com/embed/establish_zw"
       ],
       "slowestMs": 0,
-      "verdict": "Reachable",
+      "verdict": "Degraded",
       "screenshotPath": "/results/2026-10-01/screenshots/youtube.png"
     },
     {
@@ -149,9 +152,9 @@
       "okRequests": [
         "https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap",
         "https://maps.googleapis.com/maps-api-v3/api/js/66/6c/common.js",
-        "https://maps.googleapis.com/maps/api/mapsjs/gen_204?csp_test=true",
         "https://maps.googleapis.com/maps-api-v3/api/js/66/6c/map.js",
         "https://maps.googleapis.com/maps-api-v3/api/js/66/6c/util.js",
+        "https://maps.googleapis.com/maps/api/mapsjs/gen_204?csp_test=true",
         "https://maps.googleapis.com/maps-api-v3/api/js/66/6c/log.js",
         "https://maps.googleapis.com/maps-api-v3/api/js/66/6c/onion.js",
         "https://maps.googleapis.com/$rpc/google.internal.maps.mapsjs.v1.MapsJsInternalService/GetViewportInfo"
@@ -171,7 +174,7 @@
         "https://player.vimeo.com/video/76979871",
         "https://player.vimeo.com/cdn-cgi/challenge-platform/scripts/precursor/main.js",
         "https://player.vimeo.com/cdn-cgi/challenge-platform/h/b/scripts/precursor/d76008a69eab/main.js?",
-        "https://player.vimeo.com/cdn-cgi/challenge-platform/h/b/precursor/d76008a69eab/0.9781157681065625:1790827211:_hLsGkGkIS-cM1yCNSm1E3nbLpdrXnpzBIXm10-RALU/a438ac714e7dfe00"
+        "https://player.vimeo.com/cdn-cgi/challenge-platform/h/b/precursor/d76008a69eab/0.9781157681065625:1790827211:_hLsGkGkIS-cM1yCNSm1E3nbLpdrXnpzBIXm10-RALU/a438c605de09fdb4"
       ],
       "slowestMs": 0,
       "verdict": "Reachable",

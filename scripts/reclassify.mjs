@@ -20,7 +20,9 @@ export const REACHABLE_MAX_S = Number(process.env.REACHABLE_MAX_S || 1);
 export const BLOCKED_MIN_S = Number(process.env.BLOCKED_MIN_S || 3);
 
 export function classify(s) {
-  if (Number(s.curlExit) !== 0 || s.httpCode === '000' || s.httpCode === undefined) return 'Blocked';
+  // Page-resource measurements carry no curlExit — a missing field is not a failure.
+  const exit = s.curlExit === undefined ? 0 : Number(s.curlExit);
+  if (exit !== 0 || s.httpCode === '000' || s.httpCode === undefined) return 'Blocked';
   const t = Number(s.totalSec);
   if (t < REACHABLE_MAX_S) return 'Reachable';
   if (t <= BLOCKED_MIN_S) return 'Degraded';
