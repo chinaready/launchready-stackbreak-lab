@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 
 test('beijing-view shell renders hero, heartbeat and gallery containers', async ({ page }) => {
-  await page.goto('/demos/beijing-view.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('/stack/beijing-view.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.bv-hero')).toBeVisible();
   await expect(page.locator('#bv-heartbeat')).toBeAttached();
   await expect(page.locator('#bv-gallery')).toBeAttached();
@@ -47,7 +47,7 @@ async function mountWithFixture(page: import('@playwright/test').Page) {
     if (url.startsWith('http://localhost') || url.startsWith('http://127.0.0.1')) return route.fallback();
     return route.abort();
   });
-  await page.goto('/demos/beijing-view.html', { waitUntil: 'networkidle' });
+  await page.goto('/stack/beijing-view.html', { waitUntil: 'networkidle' });
 }
 
 test('renders one card per service, independent of the viewer network', async ({ page }) => {

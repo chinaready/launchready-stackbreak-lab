@@ -7,7 +7,7 @@ import { chromium } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
 const PAGES = [
-  '/', '/stack/', '/product/',
+  '/', '/stack/', '/product/', '/trends/',
   '/stack/beijing-view.html',
   '/public/results/index.html',
   '/public/results/firebase.html', '/public/results/netlify.html', '/public/results/vercel.html',

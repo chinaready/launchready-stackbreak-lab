@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260930T143329029Z-4659-e88e2515f950",
+  "runId": "20260930T143329029Z-4659-e88e2515f950",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "11bc64fe51db847a5c82bab6b6a2efec23923bba",
+  "diffHash": "b5ce121703eaadd44d7164cada7ca6505b7e56e0695e03cdfa105495ba753b3a",
+  "rulesVersion": "unavailable",
+  "sessionHash": "430b74ed666afcceec3258b9c78b31f467ab6b32720bae0198c8cbed3ecad176",
+  "reportRef": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656-20260930T143329029Z-4659-e88e2515f950.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "tests/playwright/beijing-view.spec.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-30T14:33:29.304Z"
+}

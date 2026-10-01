@@ -70,9 +70,17 @@
       tr.appendChild(el('td', String(r.degraded)));
       tr.appendChild(el('td', String(r.reachable)));
       var open = el('td');
-      var a = el('a', 'snapshot');
-      a.href = '/results/' + r.date + '/probe.md';
-      open.appendChild(a);
+      if (r.pdf) {
+        var pdf = el('a', 'PDF');
+        pdf.href = '/results/' + r.date + '/report.pdf';
+        pdf.setAttribute('download', 'stackbreak-weekly-' + r.date + '.pdf');
+        pdf.className = 'is-primary';
+        open.appendChild(pdf);
+        open.appendChild(document.createTextNode(' · '));
+      }
+      var snap = el('a', 'snapshot');
+      snap.href = '/results/' + r.date + '/probe.md';
+      open.appendChild(snap);
       tr.appendChild(open);
       tbody.appendChild(tr);
     });

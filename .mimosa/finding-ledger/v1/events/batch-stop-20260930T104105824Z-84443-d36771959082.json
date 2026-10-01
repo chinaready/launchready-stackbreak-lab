@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260930T104105824Z-84443-d36771959082",
+  "runId": "20260930T104105824Z-84443-d36771959082",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "9b2d4a1069e1b90f14c9102cf61cfe37751b7245",
+  "diffHash": "7516cebe38097618f2a6609e3a0e8ec2a7cd179e1c70feb602edaa6cd8914f27",
+  "rulesVersion": "unavailable",
+  "sessionHash": "430b74ed666afcceec3258b9c78b31f467ab6b32720bae0198c8cbed3ecad176",
+  "reportRef": ".mimosa/reports/task-review-sess_51c3e2f7-c95a-4d4f-8179-fd0c95ac0656-20260930T104105824Z-84443-d36771959082.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "tests/playwright/ia.spec.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-30T10:41:06.076Z"
+}
