@@ -1,46 +1,39 @@
 <!-- Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 -->
-<!-- Hero background variant B: "Routes" — packet traces, pass (green) and blocked (red) paths. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 700" preserveAspectRatio="xMidYMid slice">
+<!-- Hero illustration variant B "Routes" — light canvas edition. Blue hairline
+     traces with reachable (green) and blocked (red) endpoints. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" preserveAspectRatio="xMaxYMid meet">
   <defs>
-    <radialGradient id="glowG"><stop offset="0" stop-color="#17B26A" stop-opacity="0.5"/><stop offset="1" stop-color="#17B26A" stop-opacity="0"/></radialGradient>
-    <radialGradient id="glowR"><stop offset="0" stop-color="#F04438" stop-opacity="0.5"/><stop offset="1" stop-color="#F04438" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowGL2"><stop offset="0" stop-color="#17B26A" stop-opacity="0.35"/><stop offset="1" stop-color="#17B26A" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowRL2"><stop offset="0" stop-color="#F04438" stop-opacity="0.35"/><stop offset="1" stop-color="#F04438" stop-opacity="0"/></radialGradient>
   </defs>
-
-  <!-- traces: rounded orthogonal routes from the left edge toward endpoint nodes -->
-  <g fill="none" stroke="#4D9CE8" stroke-width="1.5">
-    <path stroke-opacity="0.20" d="M-20 130 H520 Q540 130 540 150 V250 Q540 270 560 270 H980"/>
-    <path stroke-opacity="0.14" d="M-20 130 H520 Q540 130 540 150 V420 Q540 440 560 440 H760 Q780 440 780 460 V600"/>
-    <path stroke-opacity="0.18" d="M-20 260 H300 Q320 260 320 280 V360 Q320 380 340 380 H1120"/>
-    <path stroke-opacity="0.12" d="M-20 260 H300 Q320 260 320 280 V120 Q320 100 340 100 H640 Q660 100 660 120 V520 Q660 540 680 540 H960"/>
-    <path stroke-opacity="0.16" d="M-20 480 H420 Q440 480 440 500 V560"/>
-    <path stroke-opacity="0.13" d="M-20 560 H260 Q280 560 280 540 V200 Q280 180 300 180 H1240"/>
-    <path stroke-opacity="0.10" d="M-20 620 H560 Q580 620 580 600 V340 Q580 320 600 320 H1300"/>
-    <path stroke-opacity="0.11" d="M-20 60 H900 Q920 60 920 80 V180 Q920 200 940 200 H1180"/>
-    <!-- dashed segment: the stalled link -->
-    <path stroke-opacity="0.28" stroke-dasharray="6 8" d="M980 270 H1080"/>
+  <g fill="none" stroke="#005BAC" stroke-width="1.5">
+    <path stroke-opacity="0.22" d="M20 130 H470 Q490 130 490 150 V250 Q490 270 510 270 H880"/>
+    <path stroke-opacity="0.14" d="M20 130 H470 Q490 130 490 150 V420 Q490 440 510 440 H700 Q720 440 720 460 V610"/>
+    <path stroke-opacity="0.20" d="M20 260 H260 Q280 260 280 280 V360 Q280 380 300 380 H840"/>
+    <path stroke-opacity="0.12" d="M20 260 H260 Q280 260 280 280 V120 Q280 100 300 100 H590 Q610 100 610 120 V520 Q610 540 630 540 H860"/>
+    <path stroke-opacity="0.16" d="M20 480 H370 Q390 480 390 500 V560"/>
+    <path stroke-opacity="0.13" d="M20 560 H220 Q240 560 240 540 V200 Q240 180 260 180 H870"/>
+    <path stroke-opacity="0.10" d="M20 620 H500 Q520 620 520 600 V340 Q520 320 540 320 H880"/>
+    <path stroke-opacity="0.11" d="M20 60 H800 Q820 60 820 80 V180 Q820 200 840 200 H880"/>
+    <path stroke-opacity="0.30" stroke-dasharray="6 8" d="M770 270 H850"/>
   </g>
-
-  <!-- via / node pads -->
-  <g fill="#0C1E3E" stroke="#4D9CE8" stroke-opacity="0.45" stroke-width="1.5">
-    <circle cx="540" cy="150" r="4"/><circle cx="320" cy="280" r="4"/><circle cx="660" cy="120" r="4"/>
-    <circle cx="280" cy="540" r="4"/><circle cx="580" cy="600" r="4"/><circle cx="920" cy="80" r="4"/>
-    <circle cx="780" cy="460" r="4"/><circle cx="440" cy="500" r="4"/>
+  <g fill="#ffffff" stroke="#005BAC" stroke-opacity="0.5" stroke-width="1.5">
+    <circle cx="490" cy="150" r="4.5"/><circle cx="280" cy="280" r="4.5"/><circle cx="610" cy="120" r="4.5"/>
+    <circle cx="240" cy="540" r="4.5"/><circle cx="520" cy="600" r="4.5"/><circle cx="820" cy="80" r="4.5"/>
+    <circle cx="720" cy="460" r="4.5"/><circle cx="390" cy="500" r="4.5"/>
   </g>
-
-  <!-- endpoints -->
   <g>
-    <!-- reachable -->
-    <circle cx="1120" cy="380" r="5" fill="#17B26A"/><circle cx="1120" cy="380" r="14" fill="url(#glowG)"/>
-    <circle cx="960" cy="540" r="4.5" fill="#17B26A" opacity="0.9"/>
-    <circle cx="640" cy="100" r="0" fill="none"/>
-    <circle cx="1240" cy="180" r="4.5" fill="#17B26A" opacity="0.8"/>
-    <!-- blocked: red node + small cross -->
+    <circle cx="840" cy="380" r="5" fill="#17B26A"/><circle cx="840" cy="380" r="14" fill="url(#glowGL2)"/>
+    <circle cx="860" cy="540" r="4.5" fill="#17B26A" fill-opacity="0.9"/>
+    <circle cx="880" cy="180" r="4.5" fill="#17B26A" fill-opacity="0.8"/>
     <g stroke="#F04438" stroke-width="2" stroke-linecap="round">
-      <line x1="1074" y1="264" x2="1086" y2="276"/><line x1="1086" y1="264" x2="1074" y2="276"/>
-      <line x1="1294" y1="314" x2="1306" y2="326"/><line x1="1306" y1="314" x2="1294" y2="326"/>
+      <line x1="842" y1="263" x2="856" y2="277"/><line x1="856" y1="263" x2="842" y2="277"/>
     </g>
-    <circle cx="1080" cy="270" r="12" fill="url(#glowR)"/>
-    <circle cx="1300" cy="320" r="12" fill="url(#glowR)"/>
-    <circle cx="440" cy="560" r="5" fill="#F04438" opacity="0.85"/>
+    <circle cx="849" cy="270" r="12" fill="url(#glowRL2)"/>
+    <circle cx="390" cy="560" r="5" fill="#F04438" fill-opacity="0.85"/>
+  </g>
+  <g fill="#005BAC" fill-opacity="0.12">
+    <circle cx="100" cy="330" r="2"/><circle cx="330" cy="640" r="2"/><circle cx="600" cy="660" r="2"/>
+    <circle cx="660" cy="40" r="2"/><circle cx="150" cy="60" r="2"/>
   </g>
 </svg>

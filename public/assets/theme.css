@@ -1,0 +1,587 @@
+/* Copyright (c) 2026 Chinaready. SPDX-License-Identifier: Apache-2.0 */
+/*
+ * Stack Break Lab — v2.3 design refresh.
+ *
+ * Layout, type scale, and component language follow the "Sequence" style
+ * reference (DESIGN.md): white canvas, 1200px column, Inter single-family
+ * type system, 20px cards with 24px diffuse shadow, 8px buttons, 4px tags,
+ * pill eyebrows, ghost links, sticky white nav, one dark brand band.
+ *
+ * Chromatics stay 100% Chinaready DS (the report-ooxml.mjs C tokens):
+ * navy #0C1E3E, brand blue #005BAC, text #0D1B2A, muted #5A6A80,
+ * border #DDE3EE, surface #F4F6FA. Verdict colors are data semantics and
+ * stay. Loaded LAST on every page; the previous stylesheets are untouched —
+ * reverting the single commit that links this file restores the old look.
+ */
+
+:root {
+  /* Chinaready DS chromatics */
+  --cr-navy: #0C1E3E;
+  --cr-blue: #005BAC;
+  --cr-text: #0D1B2A;
+  --cr-text2: #5A6A80;
+  --cr-border: #DDE3EE;
+  --cr-surface: #F4F6FA;
+  --cr-onDark2: #B7C2D6;
+  --cr-onDark3: #7F95B8;
+  /* Verdict data colors */
+  --v-blocked: #B42318;
+  --v-degraded: #B54708;
+  --v-reachable: #067647;
+  /* Sequence geometry */
+  --page-max: 1200px;
+  --radius-tag: 4px;
+  --radius-btn: 8px;
+  --radius-card: 20px;
+  --radius-container: 24px;
+  --shadow-card: 0 0 24px rgba(13, 27, 42, 0.10);
+  --section-gap: 64px;
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+}
+
+/* ============ Base ============ */
+html { background: #fff; }
+body { background: #fff; color: var(--cr-text); font-family: var(--font); font-size: 16px; line-height: 1.5; }
+.wrap, .home-wrap { max-width: var(--page-max); }
+main { background: #fff; }
+
+/* ============ Top navigation (sticky white) ============ */
+.site-header, body.home .site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--cr-border);
+  box-shadow: none;
+}
+.site-header .wrap { padding-top: 14px; padding-bottom: 14px; gap: 24px; }
+.site-header .brand__lab { color: var(--cr-navy); font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+.site-header .brand__sep { background: var(--cr-border); }
+.site-header .brand__logo { height: 26px; }
+.main-nav { gap: 4px; }
+.main-nav__link {
+  color: var(--cr-text); font-size: 14px; font-weight: 500;
+  padding: 8px 14px; border-radius: var(--radius-btn);
+}
+.main-nav__link:hover { color: var(--cr-blue); background: var(--cr-surface); }
+.main-nav__link[aria-current="page"] { color: var(--cr-blue); background: rgba(0, 91, 172, 0.08); }
+
+/* ============ Hero (light, centered stack) ============ */
+body.home .hero, .hero {
+  background: #fff; color: var(--cr-text);
+  min-height: 0; padding: 88px 0 0;
+}
+.hero__bg {
+  display: block !important; position: absolute; inset: 0; pointer-events: none;
+  background-repeat: no-repeat; background-position: right 4% center;
+  background-size: min(620px, 48vw);
+}
+.hero--bg-radar .hero__bg    { background-image: url("../assets/hero-bg-radar.svg"); }
+.hero--bg-circuits .hero__bg { background-image: url("../assets/hero-bg-circuits.svg"); }
+.hero--bg-pulse .hero__bg    { background-image: url("../assets/hero-bg-pulse.svg"); }
+.hero__grid, .hero__glow, .hero__scan { display: none !important; }
+@media (max-width: 980px) {
+  .hero__bg { opacity: 0.5; background-size: min(440px, 70vw); background-position: right 0 top 12%; }
+}
+.home-wrap { padding: 0 24px; }
+.hero__badge, .hero .hero__badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0, 91, 172, 0.10); color: var(--cr-blue);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: var(--radius-tag);
+  font-family: var(--font);
+}
+.hero__badge .live-dot { background: #17B26A; }
+.hero__title, .hero .hero__title {
+  font-size: clamp(40px, 5.4vw, 52px); line-height: 1.1; font-weight: 700;
+  color: var(--cr-navy); letter-spacing: -0.02em; margin: 20px 0 16px;
+}
+.hero__title .period, .block__title .period { color: var(--cr-blue); }
+.hero__lede {
+  font-size: 18px; line-height: 1.6; color: var(--cr-text2); max-width: 680px; margin: 0 0 28px;
+}
+.hero__lede strong { color: var(--cr-text); font-weight: 600; }
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* Buttons: 8px radius; primary = the single brand-blue fill */
+.btn {
+  font-family: var(--font); font-size: 15px; font-weight: 600; line-height: 1;
+  padding: 12px 18px; border-radius: var(--radius-btn);
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid transparent; cursor: pointer; text-decoration: none;
+}
+body.home .btn--primary, .btn--primary {
+  background: var(--cr-blue); color: #fff; border-color: var(--cr-blue);
+  box-shadow: none;
+}
+.btn--primary:hover { background: #004a8d; border-color: #004a8d; color: #fff; }
+.btn--ghost, body.home .btn--ghost, .block--light .btn--ghost, .block--surface .btn--ghost {
+  background: #fff; color: var(--cr-text); border: 1px solid var(--cr-border);
+}
+.btn--ghost:hover { border-color: var(--cr-blue); color: var(--cr-blue); background: #fff; }
+
+/* Hero stats as solution tiles */
+.hero__stats { display: flex; gap: 16px; margin: 40px 0 0; flex-wrap: wrap; }
+.hero__stats .stat {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px 24px; min-width: 160px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.stat__num { font-size: 36px; font-weight: 800; color: var(--cr-navy); line-height: 1.15; font-family: var(--font) !important; font-variant-numeric: tabular-nums; }
+.stat__num.is-accent { color: var(--v-blocked); }
+.stat__label { font-size: 13px; color: var(--cr-text2); }
+
+/* Ticker on a soft band */
+.ticker { background: var(--cr-surface); border-top: 1px solid var(--cr-border); border-bottom: 1px solid var(--cr-border); margin-top: 64px; }
+.ticker__item { color: var(--cr-text2); font-size: 13px; padding: 12px 0; }
+.ticker__dot.Blocked { background: var(--v-blocked); }
+.ticker__dot.Degraded { background: var(--v-degraded); }
+.ticker__dot.Reachable { background: var(--v-reachable); }
+
+/* ============ Sections: white / mist rhythm, 64px gaps ============ */
+.block { padding: var(--section-gap) 0; background: #fff; }
+.block--light { background: #fff; }
+.block--surface { background: var(--cr-surface); }
+.block__eyebrow, body.home .block__eyebrow {
+  display: inline-block;
+  background: rgba(0, 91, 172, 0.10); color: var(--cr-blue);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: var(--radius-tag); margin: 0 0 16px;
+  font-family: var(--font);
+}
+.block__title {
+  font-size: clamp(28px, 3.4vw, 32px); line-height: 1.25; font-weight: 700;
+  color: var(--cr-navy); letter-spacing: -0.015em; margin: 0 0 12px;
+}
+.block__intro { font-size: 16px; color: var(--cr-text2); max-width: 720px; margin: 0 0 32px; }
+.block__intro a { color: var(--cr-blue); font-weight: 500; text-decoration: none; }
+.block__intro a:hover { text-decoration: underline; }
+.block__intro code { background: var(--cr-surface); border: 1px solid var(--cr-border); border-radius: var(--radius-tag); padding: 1px 6px; font-size: 13px; }
+
+/* The one dark brand band (CTA / closing sections) */
+.block--cta, body.home .block--cta {
+  background: linear-gradient(to right bottom, #0C1E3E, #1D293D);
+  color: #fff; padding: 72px 0;
+}
+.block--cta .block__eyebrow { background: rgba(255,255,255,0.10); color: var(--cr-onDark2); }
+.block--cta .block__title { color: #fff; }
+.block--cta .block__title .period { color: #6FA8DC; }
+.block--cta .block__intro { color: var(--cr-onDark2); }
+.cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.block--cta .btn--primary { background: var(--cr-blue); border-color: var(--cr-blue); color: #fff; }
+.block--cta .btn--ghost { background: transparent; border-color: rgba(255,255,255,0.24); color: #fff; }
+.block--cta .btn--ghost:hover { border-color: #fff; color: #fff; }
+
+/* Steps (method tiles) */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.step {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 24px 20px; color: var(--cr-text);
+}
+.step__n { font-family: ui-monospace, 'SF Mono', Menlo, monospace; color: var(--cr-blue); font-weight: 700; font-size: 13px; }
+.step__rule { display: none; }
+.step h3 { font-size: 20px; font-weight: 600; color: var(--cr-navy); margin: 10px 0 8px; }
+.step p { font-size: 14px; color: var(--cr-text2); margin: 0; }
+.step code { background: var(--cr-surface); border: 1px solid var(--cr-border); border-radius: var(--radius-tag); padding: 1px 5px; font-size: 12px; }
+
+/* ============ Status board (home dashboard) ============ */
+#board-meta { color: var(--cr-text2); font-size: 14px; margin: 0 0 24px !important; }
+.board-tiles { gap: 16px; margin: 0 0 20px; }
+.board-tile {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px 24px; text-decoration: none; color: var(--cr-text);
+}
+.board-tile:hover { border-color: var(--cr-blue); }
+.board-tile__num { font-size: 34px; font-weight: 700; color: var(--cr-navy); line-height: 1.15; }
+.board-tile--blocked .board-tile__num { color: var(--v-blocked); }
+.board-tile--degraded .board-tile__num { color: var(--v-degraded); }
+.board-tile--reachable .board-tile__num { color: var(--v-reachable); }
+.board-tile__label { font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--cr-text2); }
+.board-tile__dot {
+  width: 10px; height: 10px; border-radius: 50%; margin-bottom: 10px;
+  box-shadow: 0 0 0 4px rgba(13, 27, 42, 0.05);
+}
+.board-tile--reachable .board-tile__dot { background: #17B26A; box-shadow: 0 0 0 4px rgba(23,178,106,.15); }
+.board-tile--degraded .board-tile__dot { background: #F79009; box-shadow: 0 0 0 4px rgba(247,144,9,.15); }
+.board-tile--blocked .board-tile__dot { background: #F04438; box-shadow: 0 0 0 4px rgba(240,68,56,.15); }
+.board-cats { gap: 12px; }
+.board-cats__item {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); border-left-width: 1px; padding: 14px 18px;
+}
+.board-cats__item.is-green { border-left: 4px solid #17B26A; }
+.board-cats__item.is-amber { border-left: 4px solid #F79009; }
+.board-cats__item.is-red { border-left: 4px solid #F04438; }
+.board-cats__dot { display: none; }
+.board-cats__name { font-weight: 600; font-size: 14px; color: var(--cr-navy); }
+.board-cats__ratio { font-size: 13px; color: var(--cr-text2); }
+.board-cats__blocked { font-size: 12px; color: var(--v-blocked); font-weight: 600; }
+
+/* ============ Reports table ============ */
+.reports-wrap { border-radius: var(--radius-card); overflow: hidden; }
+.reports {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); font-size: 14px; border-collapse: separate; border-spacing: 0;
+}
+.reports th {
+  background: var(--cr-surface); color: var(--cr-text2); font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.07em; padding: 12px 16px; border-bottom: 1px solid var(--cr-border);
+}
+.reports td { padding: 12px 16px; border-bottom: 1px solid var(--cr-border); color: var(--cr-text); }
+.reports tr:last-child td { border-bottom: none; }
+.reports td a { color: var(--cr-blue); font-weight: 500; text-decoration: none; }
+.reports td a:hover { text-decoration: underline; }
+.reports td a.is-primary { font-weight: 700; }
+.catalog-submit { margin-top: 32px; gap: 8px; }
+
+/* ============ Catalog cards (Stack / Product) ============ */
+.cat-block__label {
+  font-size: 18px; font-weight: 600; color: var(--cr-navy); margin: 28px 0 12px;
+}
+.cat-block__label small { color: var(--cr-text2); font-weight: 400; font-size: 13px; margin-left: 6px; }
+.dep-grid { gap: 16px; }
+.dep-card {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px;
+  display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--cr-text);
+  transition: border-color .15s ease, transform .15s ease;
+}
+.dep-card:hover { border-color: var(--cr-blue); transform: translateY(-2px); }
+.dep-card__name { font-size: 16px; font-weight: 600; color: var(--cr-navy); }
+.dep-card__host { font-size: 13px; color: var(--cr-text2); font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+.dep-card__foot { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+.verdict {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.03em;
+  border-radius: var(--radius-tag); padding: 4px 10px; color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+/* Explicit white text per variant at matching specificity — the legacy
+   sheets style .verdict.<X> as tinted-background + dark text, which would
+   otherwise win the cascade and vanish on these solid fills. */
+.verdict.Blocked { background: var(--v-blocked); color: #fff; }
+.verdict.Degraded { background: var(--v-degraded); color: #fff; }
+.verdict.Reachable { background: var(--v-reachable); color: #fff; }
+.verdict.is-pending { background: var(--cr-surface); color: var(--cr-text2) !important; }
+.dep-card--badge {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(0, 91, 172, 0.10); color: var(--cr-blue);
+  border-radius: var(--radius-tag); padding: 3px 8px; border: none;
+}
+.platform-logo { vertical-align: -4px; margin-right: 10px; }
+
+/* ============ Results viewer & Beijing view tables ============ */
+.results, table.results {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); border-collapse: separate; border-spacing: 0; font-size: 14px;
+  overflow: hidden;
+}
+.results th { background: var(--cr-surface); color: var(--cr-text2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; padding: 12px 14px; border-bottom: 1px solid var(--cr-border); }
+.results td { padding: 11px 14px; border-bottom: 1px solid var(--cr-border); }
+.results tr:last-child td { border-bottom: none; }
+.lat__track { background: var(--cr-surface); border-radius: var(--radius-tag); }
+.lat__fill.Blocked { background: var(--v-blocked); }
+.lat__fill.Degraded { background: var(--v-degraded); }
+.lat__fill.Reachable { background: var(--v-reachable); }
+.bv-card {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+#bv-heartbeat { background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+
+/* ============ Demo pages ============ */
+.demo-stage, .demo-panel {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+#status[data-state] { border-radius: var(--radius-tag); }
+.demo-btn--ghost { border: 1px solid var(--cr-border); color: var(--cr-text); border-radius: var(--radius-btn); }
+.demo-btn--ghost:hover { border-color: var(--cr-blue); color: var(--cr-blue); }
+
+/* ============ Reveal animations (unchanged behavior) ============ */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ============ Footer: keep the DS navy band ============ */
+.site-footer { margin-top: 0; }
+
+/* ============ Responsive ============ */
+@media (max-width: 720px) {
+  .hero__stats { flex-direction: column; }
+  .board-tiles { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr; }
+}
+
+/* ===== v2.3.2 stack paragraph blocks + number legibility (2026-10-01) ===== */
+
+/* Stack page: each category is a self-contained rounded container on the white
+   canvas — clear paragraph rhythm with no divider lines. White dependency
+   cards float inside the soft-gray block. */
+#catalog { background: #fff; padding-top: 72px; padding-bottom: 88px; }
+#catalog .cat-block {
+  background: var(--cr-surface);
+  border-radius: var(--radius-container);
+  padding: 28px;
+  margin: 0 0 24px;
+}
+#catalog .cat-block:last-of-type { margin-bottom: 0; }
+#catalog .cat-block__label {
+  display: flex; align-items: center; gap: 10px;
+  margin: 0 0 18px; padding: 0; border: none;
+  font-size: 18px; font-weight: 600; color: var(--cr-navy);
+}
+#catalog .cat-block__label small {
+  margin-left: 0; font-size: 12px; font-weight: 600; color: var(--cr-text2);
+  background: #fff; border-radius: var(--radius-tag); padding: 3px 8px;
+}
+#catalog .catalog-submit { margin-top: 48px; }
+
+/* Numbers everywhere: bigger, bolder, tabular. */
+.board-tile__num { font-size: 36px; font-weight: 800; }
+.board-cats__ratio { font-variant-numeric: tabular-nums; }
+
+/* Ghost link pairing per spec: inside a hero CTA row, the ghost becomes a
+   borderless text link with a trailing arrow — action + alternative. */
+.hero__cta .btn--ghost {
+  background: transparent; border-color: transparent; color: var(--cr-text); padding-left: 8px; padding-right: 8px;
+}
+.hero__cta .btn--ghost::after { content: '\2192'; margin-left: 6px; color: var(--cr-blue); transition: transform .15s ease; }
+.hero__cta .btn--ghost:hover { color: var(--cr-blue); background: transparent; border-color: transparent; transform: none; }
+.hero__cta .btn--ghost:hover::after { transform: translateX(3px); }
+
+/* Focus + selection states (keyboard-visible, brand-tinted) */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--cr-blue); outline-offset: 2px; border-radius: var(--radius-btn);
+}
+::selection { background: rgba(0, 91, 172, 0.16); }
+
+/* Table rhythm: row hover tint, tabular numerals */
+.reports tbody tr, .results tbody tr { transition: background .12s ease; }
+.reports tbody tr:hover, .results tbody tr:hover { background: var(--cr-surface); }
+.reports td, .results td { font-variant-numeric: tabular-nums; }
+
+/* Card micro-interactions stay subtle; typography rhythm tightens */
+.dep-card, .board-tile, .board-cats__item, .step { transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+.board-tile:hover { transform: translateY(-2px); }
+.block__title { max-width: 760px; }
+.block__eyebrow { margin-bottom: 14px; }
+
+/* Demo pages: stage panel breathing */
+.demo-stage, .demo-panel { padding: 24px; }
+
+/* Beijing view: gallery cards spacing */
+.bv-card { padding: 16px; }
+
+/* ===== v2.3.3 secondary pages rebuild: beijing-view, results, platform kits, demos (2026-10-01) ===== */
+
+/* --- Unified page-header pattern (eyebrow pill + h1 + lede) on every
+       non-dashboard page --- */
+main.wrap { max-width: var(--page-max); margin: 0 auto; padding: 56px 24px 96px; }
+main.wrap > .eyebrow, .bv-hero .eyebrow {
+  display: inline-block;
+  background: rgba(0, 91, 172, 0.10); color: var(--cr-blue);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: var(--radius-tag); margin: 0 0 16px;
+}
+main.wrap > h1 {
+  font-size: clamp(28px, 3.4vw, 32px); line-height: 1.25; font-weight: 700;
+  color: var(--cr-navy); letter-spacing: -0.015em; margin: 0 0 12px;
+}
+main.wrap > h1 .period, main.wrap .period { color: var(--cr-blue); }
+main.wrap > .lede { font-size: 17px; line-height: 1.6; color: var(--cr-text2); max-width: 720px; margin: 0 0 40px; }
+main.wrap h2 {
+  font-size: 20px; font-weight: 600; color: var(--cr-navy);
+  margin: 56px 0 16px; letter-spacing: -0.01em;
+}
+/* Sticky-header offset for anchored sections (#frontend, #backend, ...) */
+main [id] { scroll-margin-top: 96px; }
+
+/* --- Beijing view: light hero band, card heartbeat, gallery rhythm --- */
+.bv-hero {
+  background: #fff; color: var(--cr-text); padding: 0 0 8px;
+}
+.bv-hero .lede { margin-bottom: 24px; }
+.bv-hb {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px 24px; margin: 24px 0 8px;
+  color: var(--cr-text); display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center;
+}
+.bv-cat { margin: 32px 0; }
+.bv-cat h2 { margin: 24px 0 12px; }
+.bv-grid { gap: 16px; }
+.bv-card {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); overflow: hidden; margin: 0;
+}
+.bv-card img { display: block; width: 100%; }
+.bv-card .mono, .bv-card code { font-size: 12.5px; color: var(--cr-text2); }
+.bv-live-ok { color: var(--v-reachable) !important; }
+.bv-live-fail { color: var(--v-blocked) !important; }
+
+/* --- Results viewer: summary band as stat tiles, section rhythm --- */
+.verdict-summary {
+  background: var(--cr-surface); border-radius: var(--radius-container);
+  padding: 24px; margin: 24px 0 40px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;
+}
+.verdict-summary dt { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--cr-text2); margin: 0 0 4px; }
+.verdict-summary dd { margin: 0; font-size: 28px; font-weight: 800; color: var(--cr-navy); font-variant-numeric: tabular-nums; }
+main.wrap .results { margin-top: 8px; }
+main.wrap code, main.wrap .mono {
+  background: var(--cr-surface); border: 1px solid var(--cr-border);
+  border-radius: var(--radius-tag); padding: 1px 6px; font-size: 13px; color: var(--cr-text);
+}
+#browser-root .results { margin-top: 16px; }
+#browser-root img, main.wrap img[alt] {
+  border: 1px solid var(--cr-border); border-radius: var(--radius-btn);
+}
+
+/* --- Platform kit pages (firebase / netlify / vercel) --- */
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 16px 0 32px; }
+.cat-grid > * {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 20px;
+}
+
+/* --- Demo detail pages --- */
+.demo-stage, .demo-panel {
+  background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); padding: 28px; margin: 24px 0;
+}
+.demo-cta { margin: 32px 0 0; display: flex; gap: 12px; flex-wrap: wrap; }
+.status { display: inline-flex; align-items: center; gap: 8px; border-radius: var(--radius-tag); padding: 6px 12px; font-size: 13px; font-weight: 600; }
+.meta { color: var(--cr-text2); font-size: 13.5px; }
+.sample { background: var(--cr-surface); border: 1px solid var(--cr-border); border-radius: var(--radius-btn); padding: 16px 20px; }
+
+/* Beijing view: its own sheet paints the hero dark with white text —
+   neutralize the inherited white headings/lede explicitly. */
+.bv-hero h1, .bv-hero h2 { color: var(--cr-navy); }
+.bv-hero .lede, .bv-hero p { color: var(--cr-text2); }
+.bv-hero .mono, .bv-hero code { color: var(--cr-text2); }
+
+/* ===== v2.3.4 beijing-view — strict spec application against its real DOM (2026-10-01) =====
+   Fixes the generic-pass violations: nested radii on card screenshots
+   (inner media stays square inside the 20px overflow-hidden card), white-on-
+   white heartbeat text inherited from the old dark hero, 999px pill button
+   (spec buttons are 8px), and 16px card padding (spec is 20px). */
+
+/* Hero flattens onto the canvas; unified page-header rhythm. */
+.bv-hero { background: #fff; padding: 0; }
+.bv-hero .wrap { padding-top: 56px; }
+.bv-hero .lede { margin-bottom: 0; }
+
+/* Heartbeat strip: white card, dark text (was white-on-white). */
+.bv-hb__node { color: var(--cr-text2); }
+.bv-hb__node .live-dot { background: #17B26A; }
+.bv-hb__count { color: var(--cr-text2); }
+.bv-hb__num { color: var(--cr-navy); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Category sections: same pill-badge + heading rhythm as the Stack catalog. */
+.bv-cat { margin: 40px 0; }
+.bv-cat__label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 20px; font-weight: 600; color: var(--cr-navy);
+  margin: 32px 0 14px; letter-spacing: -0.01em;
+}
+.bv-cat__label small {
+  font-size: 12px; font-weight: 600; color: var(--cr-text2);
+  background: var(--cr-surface); border-radius: var(--radius-tag); padding: 3px 8px;
+}
+.bv-grid { gap: 20px; }
+
+/* Cards: 20px radius once, media square inside (no nested radius/border),
+   20px evidence padding, verdict accent on the left edge instead of a full
+   border tint. */
+.bv-card { border-radius: var(--radius-card); box-shadow: var(--shadow-card); border: 1px solid var(--cr-border); }
+.bv-card.Blocked  { border-left: 4px solid var(--v-blocked); }
+.bv-card.Degraded { border-left: 4px solid var(--v-degraded); }
+.bv-card__shot { background: var(--cr-surface); }
+.bv-card__evidence { padding: 20px; gap: 8px; }
+.bv-card__head h3 { font-size: 18px; font-weight: 600; color: var(--cr-navy); }
+.bv-card__host { font-size: 13px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+.bv-card__metrics { font-size: 13px; }
+.bv-card__symptom { font-size: 13.5px; }
+
+/* Compare button: 8px radius per spec (was a 999px pill). */
+.bv-card__compare {
+  font-size: 13px; font-weight: 600; padding: 8px 14px;
+  border-radius: var(--radius-btn); border: 1px solid var(--cr-border);
+  background: #fff; color: var(--cr-text);
+}
+.bv-card__compare:hover { border-color: var(--cr-blue); color: var(--cr-blue); background: #fff; }
+
+/* Live-comparison strip inside the card: mist band, square media. */
+.bv-card__live { padding: 16px 20px 20px; background: var(--cr-surface); }
+main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 1px solid var(--cr-border); background: #fff; }
+/* ===== v2.3.5 beijing-view — structural fixes (2026-10-01) =====
+   The snapshot IS the content: cards flip to full-width media on top with
+   the evidence column beneath (the old 1.2fr/1fr split cropped 1280px-wide
+   webpage screenshots to a sliver). Heartbeat gains breathing room and
+   bigger tabular counts; evidence density follows the 8px element gap. */
+
+/* Cards: media on top at natural ratio, evidence below. */
+.bv-card { display: grid; grid-template-columns: 1fr; }
+.bv-card__shot { min-height: 0; }
+.bv-card__shot-missing { padding: 48px 20px; }
+
+/* Evidence column: title row, then a roomier metrics grid. */
+.bv-card__evidence { padding: 20px 24px 24px; gap: 12px; }
+.bv-card__head { gap: 12px; }
+.bv-card__metrics {
+  grid-template-columns: auto auto auto auto; gap: 10px 28px;
+  margin: 4px 0 0; font-size: 13.5px;
+}
+.bv-card__symptom { margin: 2px 0 0; line-height: 1.6; }
+.bv-card__compare { margin-top: 8px; }
+
+/* Heartbeat: one calm line — node identity left, counts right. */
+.bv-hb { margin-top: 40px; gap: 16px 32px; }
+.bv-hb__node { font-size: 13.5px; }
+.bv-hb__counts { gap: 28px; }
+.bv-hb__count { gap: 8px; }
+.bv-hb__num { font-size: 18px; }
+
+/* Section rhythm on the long gallery page. */
+.bv-cat { margin: 56px 0; }
+@media (max-width: 720px) {
+  .bv-card__metrics { grid-template-columns: auto auto; }
+}
+
+/* ===== v2.3.6 beijing-view — solid color bands per section, inset square media (2026-10-01) =====
+   Each category is a full-bleed solid band (alternating white / soft mist,
+   per the spec's section rhythm) with generous vertical breathing; the
+   label and cards re-center inside the 1200px column. Snapshots are inset
+   with padding, square-cornered, hairline-framed — never full-width. */
+
+.bv-cat {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 56px 24px 64px;
+}
+.bv-cat:nth-of-type(odd)  { background: var(--cr-surface); }
+.bv-cat:nth-of-type(even) { background: #ffffff; }
+.bv-cat > * { max-width: var(--page-max); margin-left: auto; margin-right: auto; }
+.bv-cat__label { margin: 0 auto 20px; }
+
+/* Snapshots: inset, square, framed — not full-width, no radius.
+   Single consolidated rule (higher specificity; the legacy duplicates it
+   replaced kept fighting each other in the cascade). */
+.bv-card__shot { padding: 20px 20px 0; background: #fff; }
+.bv-card .bv-card__shot img {
+  width: 100%; max-width: 920px; margin: 0 auto; height: auto;
+  object-fit: initial; object-position: initial;
+  border-radius: 0; border: 1px solid var(--cr-border); display: block;
+}
+.bv-card__shot-missing { padding: 40px 20px; }
+.bv-card__evidence { padding: 20px 24px 24px; }
+
+/* ===== v2.3.7 beijing-view — plain H2 band titles, flat cards (2026-10-01) ===== */
+.bv-cat__label {
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 22px; font-weight: 700; color: var(--cr-navy);
+  margin: 0 auto 20px; letter-spacing: -0.015em;
+}
+.bv-cat__label small {
+  background: none; border-radius: 0; padding: 0;
+  font-size: 13px; font-weight: 400; color: var(--cr-text2);
+}
+.bv-card { border-radius: 0; box-shadow: none; }
+.bv-card__shot { padding: 20px; background: var(--cr-surface); }
+.bv-card__shot-missing { padding: 40px 20px; }

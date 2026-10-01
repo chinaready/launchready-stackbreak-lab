@@ -4,122 +4,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Netlify results — Stack Break Lab</title>
-  <meta name="description" content="Mainland China reachability verdicts for the Netlify stack, across frontend, backend, and transport paths." />
-  <link rel="canonical" href="https://stackbreak.launchready.cn/public/results/netlify.html" />
+  <title>Auth0 — Stack Break Lab</title>
+  <meta name="description" content="Single-dependency demo: load the Auth0 Lock widget from cdn.auth0.com on a mainland China node and report reachability." />
+  <link rel="canonical" href="https://stackbreak.launchready.cn/stack/auth0-lock.html" />
   <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://stackbreak.launchready.cn/public/results/netlify.html" />
+  <meta property="og:url" content="https://stackbreak.launchready.cn/stack/auth0-lock.html" />
   <meta property="og:site_name" content="Stack Break Lab" />
-  <meta property="og:title" content="Netlify results — Stack Break Lab" />
-  <meta property="og:description" content="Mainland China reachability verdicts for the Netlify stack, across frontend, backend, and transport paths." />
+  <meta property="og:title" content="Auth0 — Stack Break Lab" />
+  <meta property="og:description" content="Single-dependency demo: load the Auth0 Lock widget from cdn.auth0.com on a mainland China node and report reachability." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Netlify results — Stack Break Lab" />
-  <meta name="twitter:description" content="Mainland China reachability verdicts for the Netlify stack, across frontend, backend, and transport paths." />
+  <meta name="twitter:title" content="Auth0 — Stack Break Lab" />
+  <meta name="twitter:description" content="Single-dependency demo: load the Auth0 Lock widget from cdn.auth0.com on a mainland China node and report reachability." />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Netlify results — Stack Break Lab",
-      "description": "Mainland China reachability verdicts for the Netlify stack, across frontend, backend, and transport paths.",
-      "url": "https://stackbreak.launchready.cn/public/results/netlify.html",
+      "name": "Auth0 — Stack Break Lab",
+      "description": "Single-dependency demo: load the Auth0 Lock widget from cdn.auth0.com on a mainland China node and report reachability.",
+      "url": "https://stackbreak.launchready.cn/stack/auth0-lock.html",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Stack Break Lab",
-        "url": "https://stackbreak.launchready.cn/demos/"
+        "url": "https://stackbreak.launchready.cn/stack/"
       }
     }
   </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://stackbreak.launchready.cn/demos/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Latest results",
-          "item": "https://stackbreak.launchready.cn/public/results/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Netlify",
-          "item": "https://stackbreak.launchready.cn/public/results/netlify.html"
-        }
-      ]
-    }
-  </script>
-  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="../assets/brand/mark.svg" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/brand/favicon-16x16.png" />
-  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" />
-  <link rel="manifest" href="../assets/brand/site.webmanifest" />
+  <link rel="icon" href="../public/assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="../public/assets/brand/mark.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/brand/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../public/assets/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="../public/assets/brand/site.webmanifest" />
   <meta name="theme-color" content="#0C1E3E" />
-  <link rel="stylesheet" href="../assets/chinaready.css?v=20260624a" />
-  <link rel="stylesheet" href="../assets/lab.css?v=20260930e" />
-  <link rel="stylesheet" href="../assets/theme.css?v=20261001h" />
+  <link rel="stylesheet" href="../public/assets/chinaready.css?v=20260624a" />
+  <link rel="stylesheet" href="../public/assets/lab.css?v=20260930e" />
+  <link rel="stylesheet" href="../public/assets/theme.css?v=20261001h" />
+  <!-- The single dependency under test: Auth0 Lock widget from cdn.auth0.com.
+       No tenant is required to measure reachability of the hosted script. -->
+  <script id="dep" src="https://cdn.auth0.com/js/lock/11.34/lock.min.js"
+          onload="LabStatus.set('loaded')" onerror="LabStatus.set('failed')"></script>
 </head>
-<body>
+<body data-service="Auth0" data-domain="cdn.auth0.com"
+      data-symptom="The hosted login widget never appears or the OAuth popup hangs on a white screen because the Auth0 script/CDN is slow or blocked.">
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="/stack/">
-        <img class="brand__logo" src="../assets/brand/logo-horizontal.svg" alt="Chinaready" width="140" height="28" />
+        <img class="brand__logo" src="../public/assets/brand/logo-horizontal.svg" alt="Chinaready" width="140" height="28" />
         <span class="brand__sep" aria-hidden="true"></span>
         <span class="brand__lab">Stack Break Lab</span>
       </a>
       <nav class="main-nav" aria-label="Primary">
         <a href="/" class="main-nav__link">Home</a>
-        <a href="/stack/" class="main-nav__link">Stack</a>
+        <a href="/stack/" class="main-nav__link aria-current="page"">Stack</a>
         <a href="/product/" class="main-nav__link">Product</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <p class="eyebrow">Netlify results</p>
-    <h1>Netlify from mainland China<span class="period">.</span></h1>
-    <p class="lede">
-      A dedicated probe kit deploys a real Netlify site that turns on as many products as possible,
-      then measures it from a mainland China node across the two connection origins a real product
-      has — the user's browser on the deployed site (<strong>frontend</strong>) and the app's server
-      calling the Netlify API (<strong>backend</strong>) — plus raw host reachability
-      (<strong>transport</strong>).
-      Verdicts: <strong class="verdict Reachable">Reachable</strong>,
-      <strong class="verdict Degraded">Degraded</strong>, <strong class="verdict Blocked">Blocked</strong>.
-    </p>
+    <p class="eyebrow">Auth and identity</p>
+    <h1>Auth0<span class="period">.</span></h1>
+    <p class="lede">Loads the Auth0 Lock widget script from <code>cdn.auth0.com</code> — the foundation of an Auth0 hosted login.</p>
 
-    <dl class="meta" id="netlify-env"></dl>
+    <p id="status" class="status" data-state="checking">Checking reachability...</p>
 
-    <nav class="cat-grid" aria-label="Jump to a connection path">
-      <a href="#frontend">Frontend<span>Browser on the site</span></a>
-      <a href="#backend">Backend<span>Server &rarr; Netlify API</span></a>
-      <a href="#transport">Transport<span>Raw host reachability</span></a>
-    </nav>
+    <div class="demo-stage">
+      <div id="auth0-probe"><small>If the Auth0 CDN is reachable, the Lock library is available on this page.</small></div>
+      <script>
+        window.addEventListener('load', function () {
+          var el = document.getElementById('auth0-probe');
+          if (window.Auth0Lock) { el.textContent = 'Auth0 Lock library loaded.'; }
+        });
+      </script>
+    </div>
 
-    <div id="netlify-root" data-required="true"></div>
+    <dl class="meta">
+      <dt>Dependency</dt><dd data-fill="service"></dd>
+      <dt>Loads from</dt><dd data-fill="domain"></dd>
+      <dt>Expected in China</dt><dd data-fill="symptom"></dd>
+    </dl>
 
-    <section id="netlify-latency" style="margin-top:40px">
-      <p class="eyebrow">Latency</p>
-      <h2 style="margin-top:4px">Page-resource latency &amp; edge region<span class="period">.</span></h2>
-      <p class="lede">
-        Weight and load latency of the demo site's static assets, Image CDN transforms, and key
-        endpoints, as a mainland-China browser would experience them &mdash; plus the Netlify
-        <strong>edge region</strong> (<code>serverRegion</code>) that actually served the request.
-      </p>
-      <dl class="meta" id="netlify-edge"></dl>
-      <div id="netlify-latency-root" data-required="true"></div>
-    </section>
-
-    <p style="margin-top:24px">
-      <a href="/stack/">All dependency results</a> &middot;
-      <a href="/stack/">Browse the demo pages</a>
+    <p class="demo-cta">
+      <a class="demo-btn demo-btn--ghost" href="./beijing-view.html">See all dependencies from Beijing &rarr;</a>
     </p>
   </main>
 
@@ -128,7 +94,7 @@
       <div class="cr-footer-grid">
         <section class="cr-footer-brand">
           <a href="https://chinaready.co/" class="cr-footer-logo-link" aria-label="Chinaready home">
-            <img src="../assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="150" height="28" />
+            <img src="../public/assets/brand/logo-horizontal-white.svg" alt="Chinaready" class="cr-footer-logo" width="150" height="28" />
           </a>
           <p class="cr-footer-description">
             <strong>Stack Break Lab</strong> — measures which foreign web-stack dependencies break from mainland China.
@@ -180,8 +146,6 @@
       </p>
     </div>
   </footer>
-
-  <script src="../assets/netlify-results.js?v=20260625b"></script>
-  <script src="../assets/netlify-latency.js?v=20260625b"></script>
+  <script src="../public/assets/demo.js"></script>
 </body>
 </html>
