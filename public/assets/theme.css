@@ -585,3 +585,22 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 .bv-card { border-radius: 0; box-shadow: none; }
 .bv-card__shot { padding: 20px; background: var(--cr-surface); }
 .bv-card__shot-missing { padding: 40px 20px; }
+
+/* ===== v2.4 trends page (2026-10-01) ===== */
+#tr-summary { margin: 0 0 48px; }
+.tr-cat {
+  margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+  padding: 48px 24px 56px; background: #fff;
+}
+.tr-cat--alt { background: var(--cr-surface); }
+.tr-cat > * { max-width: var(--page-max); margin-left: auto; margin-right: auto; }
+.tr-cat__label { font-size: 22px; font-weight: 700; color: var(--cr-navy); margin: 0 auto 16px; letter-spacing: -0.015em; }
+.tr-rows { display: flex; flex-direction: column; gap: 12px; }
+.tr-row {
+  display: grid; grid-template-columns: 230px 1fr 130px; gap: 20px; align-items: center;
+  padding: 10px 16px; border: 1px solid var(--cr-border); border-radius: var(--radius-btn); background: #fff;
+}
+.tr-row__name { font-size: 14px; font-weight: 600; color: var(--cr-navy); display: flex; align-items: center; gap: 8px; }
+.tr-stripe { width: 100%; height: 18px; display: block; }
+.tr-spark { width: 100%; height: 28px; display: block; }
+@media (max-width: 860px) { .tr-row { grid-template-columns: 1fr; gap: 8px; } }

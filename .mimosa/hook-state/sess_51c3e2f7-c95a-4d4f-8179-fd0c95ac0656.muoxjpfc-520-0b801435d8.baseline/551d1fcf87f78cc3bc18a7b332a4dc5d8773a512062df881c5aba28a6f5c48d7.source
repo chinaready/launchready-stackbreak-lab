@@ -12,7 +12,6 @@ on:
       - 'index.html'
       - 'stack/**'
       - 'product/**'
-      - 'trends/**'
       - 'demos/**'
       - 'public/**'
       - 'probe/**'
