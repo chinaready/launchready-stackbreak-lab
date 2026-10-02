@@ -224,5 +224,5 @@ jobs:
           PATH="$HOME/bin:$PATH"
           cd "$DEPLOY_PATH"
           ossutil -i "$OSS_ACCESS_KEY_ID" -k "$OSS_ACCESS_KEY_SECRET" -e "$OSS_ENDPOINT" \
-            cp -rf --update results/ "oss://$OSS_BUCKET/results/"
+            cp -rf --update --meta "Cache-Control:no-cache" results/ "oss://$OSS_BUCKET/results/"
           echo "results published to oss://$OSS_BUCKET/results/"
