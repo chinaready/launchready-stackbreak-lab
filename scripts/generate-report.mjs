@@ -45,13 +45,20 @@ function serviceRows(model) {
     </tr>`).join('\n');
 }
 
-function summaryLines(model, copy) {
-  const c = model.changes;
+// Color-code legend mirroring the site's verdict-legend component.
+function colorCodeLine(copy) {
+  const sw = (cls) => `<span class="swatch ${cls}"></span>`;
+  return `${sw('swatch--reachable')}Reachable &lt; 1s &nbsp;&nbsp; ${sw('swatch--degraded')}Degraded 1&ndash;3s &nbsp;&nbsp; ${sw('swatch--blocked')}Blocked &gt; 3s or connection failed` +
+    `<br/><span class="colorcode__note">${escapeHtml('Measured as total request time from the Beijing node; any HTTP status counts as connected.')}</span>`;
+}
+
+function summaryLines(model, copy) {  const c = model.changes;
   const lines = [];
   if (c.newlyBlocked.length) lines.push(`<p><span class="list-blocked">Newly blocked:</span> ${c.newlyBlocked.map(s => escapeHtml(s.name)).join(', ')}</p>`);
   if (c.recovered.length) lines.push(`<p><span class="list-recovered">Recovered:</span> ${c.recovered.map(s => escapeHtml(s.name)).join(', ')}</p>`);
   if (!lines.length) lines.push(`<p>${escapeHtml(copy.labels.noChanges)}</p>`);
   lines.push(`<p style="margin-top:6mm;color:var(--muted);font-size:9.5pt">${escapeHtml(copy.disclaimer)}</p>`);
+  lines.push(`<p class="colorcode">__COLOR_CODE__</p>`);
   return lines.join('\n');
 }
 
@@ -129,6 +136,7 @@ export function renderHtml(date) {
     .replace('__TOC_ENTRIES__', tocEntries)
     .replace('__SUMMARY_HEADING__', escapeHtml(COPY.sections.summaryHeading))
     .replace('__SUMMARY_LINES__', summaryLines(model, COPY))
+    .replace('__COLOR_CODE__', colorCodeLine(COPY))
     .replace('__DISCLAIMER__', escapeHtml(COPY.disclaimer))
     .replace('__SERVICES_HEADING__', escapeHtml(COPY.sections.servicesHeading))
     .replace('__SERVICE_HEAD__', ['service', 'category', 'vendor', 'domain', 'http', 'total', 'dnsCol'].map(k => `<th${k === 'total' || k === 'http' ? ' class="num"' : ''}>${escapeHtml(COPY.labels[k])}</th>`).join('') + '<th></th>')

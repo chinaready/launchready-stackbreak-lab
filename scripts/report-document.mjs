@@ -103,6 +103,16 @@ function summary(model, copy) {
     parts.push(body(copy.labels.noChanges));
   }
   parts.push(body(copy.disclaimer, { color: C.text2, size: 18, italic: true }));
+  // Color-code legend mirroring the site's verdict-legend component.
+  parts.push(p({ spaceBefore: 120, runs: [
+    { text: '\u25CF ', bold: true, color: VERDICT_COLOR.Reachable, size: 18 },
+    { text: 'Reachable < 1s      ', bold: true, color: C.text, size: 18 },
+    { text: '\u25CF ', bold: true, color: VERDICT_COLOR.Degraded, size: 18 },
+    { text: 'Degraded 1\u20133s      ', bold: true, color: C.text, size: 18 },
+    { text: '\u25CF ', bold: true, color: VERDICT_COLOR.Blocked, size: 18 },
+    { text: 'Blocked > 3s or connection failed', bold: true, color: C.text, size: 18 },
+  ] }));
+  parts.push(body('Measured as total request time from the Beijing node; any HTTP status counts as connected.', { color: C.text2, size: 17, italic: true }));
   parts.push(section({ nextPage: true }));
   return parts.join('');
 }

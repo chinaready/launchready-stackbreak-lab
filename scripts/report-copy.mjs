@@ -28,6 +28,7 @@ export const COPY = {
     newlyBlocked: 'Newly blocked this week',
     recovered: 'Recovered this week',
     noChanges: 'No verdict changes against the previous archived run.',
+    colorCode: 'Verdict color code — Reachable < 1s · Degraded 1–3s · Blocked > 3s or connection failed. Measured as total request time from the Beijing node; any HTTP status counts as connected.',
     service: 'Dependency',
     tier: 'Tier',
     category: 'Category',
