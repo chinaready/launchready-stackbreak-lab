@@ -406,7 +406,7 @@ main [id] { scroll-margin-top: 96px; }
   color: var(--cr-text); display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center;
 }
 .bv-cat { margin: 32px 0; }
-.bv-cat h2 { margin: 24px 0 12px; }
+.bv-cat h2 { margin: 0 auto 12px; max-width: var(--page-max); }
 .bv-grid { gap: 16px; }
 .bv-card {
   background: #fff; border: 1px solid var(--cr-border); border-radius: var(--radius-card);
@@ -477,11 +477,6 @@ main.wrap code, main.wrap .mono {
 
 /* Category sections: same pill-badge + heading rhythm as the Stack catalog. */
 .bv-cat { margin: 40px 0; }
-.bv-cat__label {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 20px; font-weight: 600; color: var(--cr-navy);
-  margin: 32px 0 14px; letter-spacing: -0.01em;
-}
 .bv-cat__label small {
   font-size: 12px; font-weight: 600; color: var(--cr-text2);
   background: var(--cr-surface); border-radius: var(--radius-tag); padding: 3px 8px;
@@ -560,7 +555,6 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 .bv-cat:nth-of-type(odd)  { background: var(--cr-surface); }
 .bv-cat:nth-of-type(even) { background: #ffffff; }
 .bv-cat > * { max-width: var(--page-max); margin-left: auto; margin-right: auto; }
-.bv-cat__label { margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 20px; }
 
 /* Snapshots: inset, square, framed — not full-width, no radius.
    Single consolidated rule (higher specificity; the legacy duplicates it
