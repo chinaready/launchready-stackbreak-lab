@@ -30,7 +30,7 @@ concurrency:
 env:
   DEPLOY_PATH: /opt/launchready-stackbreak-lab
   GIT_REMOTE: git@github.com:chinaready/launchready-stackbreak-lab.git
-  OSSUTIL_URL: https://gosspublic.alicdn.com/ossutil/1.7.19/ossutil64
+  OSSUTIL_URL: https://gosspublic.alicdn.com/ossutil/1.7.18/ossutil64
 
 jobs:
   publish:
