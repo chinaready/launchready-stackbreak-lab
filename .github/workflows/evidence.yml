@@ -218,7 +218,7 @@ jobs:
           fi
           if ! command -v ossutil >/dev/null 2>&1 && [ ! -x "$HOME/bin/ossutil" ]; then
             mkdir -p "$HOME/bin"
-            curl -sfL "https://gosspublic.alicdn.com/ossutil/1.7.19/ossutil64" -o "$HOME/bin/ossutil"
+            curl -sfL "https://gosspublic.alicdn.com/ossutil/1.7.18/ossutil64" -o "$HOME/bin/ossutil"
             chmod +x "$HOME/bin/ossutil"
           fi
           PATH="$HOME/bin:$PATH"
