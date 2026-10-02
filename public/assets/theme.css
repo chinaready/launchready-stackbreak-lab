@@ -560,7 +560,7 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 .bv-cat:nth-of-type(odd)  { background: var(--cr-surface); }
 .bv-cat:nth-of-type(even) { background: #ffffff; }
 .bv-cat > * { max-width: var(--page-max); margin-left: auto; margin-right: auto; }
-.bv-cat__label { margin: 0 0 20px; }
+.bv-cat__label { margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 20px; }
 
 /* Snapshots: inset, square, framed — not full-width, no radius.
    Single consolidated rule (higher specificity; the legacy duplicates it
@@ -575,13 +575,15 @@ main.wrap .bv-card__live-box iframe { border-radius: var(--radius-btn); border: 
 .bv-card__evidence { padding: 20px 24px 24px; }
 
 /* ===== v2.3.7 beijing-view — plain H2 band titles, flat cards (2026-10-01) ===== */
-/* Explicitly left-anchored: no auto margins, no fit-content — the title row
-   always starts at the column's left edge in every viewport. */
+/* The title box shares the cards' centered 1200px column (auto margins inside
+   the full-bleed band); the text itself starts at the column's left edge —
+   left-aligned within the content area, never at the page edge. */
 .bv-cat__label {
   display: flex; align-items: baseline; gap: 10px;
   justify-content: flex-start; text-align: left;
   width: 100%; max-width: var(--page-max);
-  margin: 0 0 20px; letter-spacing: -0.015em;
+  margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 20px;
+  letter-spacing: -0.015em;
   font-size: 22px; font-weight: 700; color: var(--cr-navy);
 }
 .bv-cat__label small {
