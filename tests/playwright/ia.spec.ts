@@ -42,7 +42,7 @@ test('product (/product/) hero mirrors the stack hero structure with its own cop
   await expect(page.locator('.hero__stats .stat')).toHaveCount(3);
   // Kit aggregate counters fill when kit evidence exists (data reset on
   // 2026-10-02 emptied them until the next full kit run).
-  await expect(page.locator('.hero__stats .stat')).toBeAttached();
+  await expect(page.locator('.hero__stats .stat').first()).toBeAttached();
   await expect(page.locator('.platform-logo')).toHaveCount(3);
   for (const id of ['#firebase', '#netlify', '#vercel']) {
     await expect(page.locator(id)).toBeVisible();
