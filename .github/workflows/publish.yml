@@ -85,7 +85,7 @@ jobs:
           fi
           cd "$DEPLOY_PATH"
           OSS="ossutil -i $OSS_ACCESS_KEY_ID -k $OSS_ACCESS_KEY_SECRET -e $OSS_ENDPOINT"
-          for dir in stack product demos public probe results; do
+          for dir in stack product trends demos public probe results; do
             $OSS sync "$dir/" "oss://$OSS_BUCKET/$dir/" --delete -f
           done
           # JSON must not sit on the CDN edge: serve it effectively fresh.
