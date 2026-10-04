@@ -1,0 +1,20 @@
+name: runner-info
+
+# Prints the toolchain versions on the self-hosted mainland runner. Dependency
+# floors must be checked here before taking bumps that the weekly evidence
+# pipeline installs via `npm ci` in the demo dirs — e.g. google-auth-library 11
+# requires Node >= 22 while firebase-demo only declares >= 18, so the runner's
+# actual Node decides whether such a bump is safe.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  info:
+    runs-on: [self-hosted, linux, mainland-china]
+    steps:
+      - name: Report runner toolchain
+        run: |
+          echo "node $(node --version)"
+          echo "npm  $(npm --version)"
+          uname -a
