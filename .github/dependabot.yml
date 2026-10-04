@@ -1,20 +1,15 @@
 version: 2
 updates:
+  # Root manifest + actions only. The demo dirs (firebase-demo, netlify-demo,
+  # vercel-demo) are intentionally unwatched: their deps are only exercised by
+  # the weekly evidence pipeline's `npm ci` on the self-hosted runner, and
+  # bumps there must be taken deliberately after checking the runner toolchain
+  # (see runner-info.yml), not via weekly bot PRs.
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
-  - package-ecosystem: npm
-    directory: /firebase-demo
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 3
-  - package-ecosystem: npm
-    directory: /netlify-demo
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 3
   - package-ecosystem: github-actions
     directory: /
     schedule:
