@@ -1,0 +1,183 @@
+{
+  "generatedAt": "2026-10-05T00:34:59Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-beijing-h",
+    "runnerHost": "launchready.cn"
+  },
+  "edge": {
+    "serverRegion": "aws-ap-southeast-1",
+    "geo": {
+      "city": "Beijing",
+      "country": {
+        "code": "CN",
+        "name": "China"
+      },
+      "subdivision": {
+        "code": "BJ",
+        "name": "Beijing"
+      },
+      "timezone": "Asia/Shanghai",
+      "latitude": 39.911,
+      "longitude": 116.395
+    }
+  },
+  "resources": [
+    {
+      "id": "doc",
+      "name": "HTML document",
+      "kind": "endpoint",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/",
+      "httpCode": "200",
+      "bytes": 16091,
+      "ttfbSec": 0.256139,
+      "totalSec": 0.339787,
+      "throughputMbps": 0.379,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "where",
+      "name": "Edge region (/__where)",
+      "kind": "endpoint",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/__where?t=1791160500",
+      "httpCode": "200",
+      "bytes": 384,
+      "ttfbSec": 0.263562,
+      "totalSec": 0.263661,
+      "throughputMbps": 0.012,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-hello",
+      "name": "Function (hello)",
+      "kind": "endpoint",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/hello",
+      "httpCode": "200",
+      "bytes": 97,
+      "ttfbSec": 0.914068,
+      "totalSec": 0.914237,
+      "throughputMbps": 0.001,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "edge",
+      "name": "Edge Function (banner)",
+      "kind": "endpoint",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/banner",
+      "httpCode": "200",
+      "bytes": 129,
+      "ttfbSec": 0.521225,
+      "totalSec": 0.521317,
+      "throughputMbps": 0.002,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "identity-js",
+      "name": "Identity widget JS",
+      "kind": "endpoint",
+      "url": "https://identity.netlify.com/v1/netlify-identity-widget.js",
+      "httpCode": "200",
+      "bytes": 240416,
+      "ttfbSec": 0.465819,
+      "totalSec": 0.870221,
+      "throughputMbps": 2.210,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "img-400",
+      "name": "Image CDN w=400",
+      "kind": "image-cdn",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=400",
+      "httpCode": "200",
+      "bytes": 274021,
+      "ttfbSec": 1.193620,
+      "totalSec": 1.595626,
+      "throughputMbps": 1.374,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "img-800",
+      "name": "Image CDN w=800",
+      "kind": "image-cdn",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=800",
+      "httpCode": "200",
+      "bytes": 749717,
+      "ttfbSec": 0.799722,
+      "totalSec": 1.405987,
+      "throughputMbps": 4.266,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "img-1600webp",
+      "name": "Image CDN w=1600 webp",
+      "kind": "image-cdn",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=1600&fm=webp",
+      "httpCode": "200",
+      "bytes": 48636,
+      "ttfbSec": 1.264998,
+      "totalSec": 1.441317,
+      "throughputMbps": 0.270,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "img-2400avif",
+      "name": "Image CDN w=2400 avif",
+      "kind": "image-cdn",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=2400&fm=avif",
+      "httpCode": "200",
+      "bytes": 77225,
+      "ttfbSec": 1.244847,
+      "totalSec": 1.409496,
+      "throughputMbps": 0.438,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "raw-1mb",
+      "name": "Raw asset ~1 MB",
+      "kind": "raw",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/assets/weight-1mb.png",
+      "httpCode": "200",
+      "bytes": 999063,
+      "ttfbSec": 0.714060,
+      "totalSec": 1.378944,
+      "throughputMbps": 5.796,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "raw-3mb",
+      "name": "Raw asset ~3 MB",
+      "kind": "raw",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/assets/weight-3mb.png",
+      "httpCode": "200",
+      "bytes": 3073303,
+      "ttfbSec": 0.600167,
+      "totalSec": 1.462477,
+      "throughputMbps": 16.811,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "raw-6mb",
+      "name": "Raw asset ~6 MB",
+      "kind": "raw",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/assets/weight-6mb.png",
+      "httpCode": "200",
+      "bytes": 6000130,
+      "ttfbSec": 0.630492,
+      "totalSec": 3.037724,
+      "throughputMbps": 15.802,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "raw-source",
+      "name": "Raw source 2400",
+      "kind": "raw",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/assets/scene-2400.png",
+      "httpCode": "200",
+      "bytes": 2663877,
+      "ttfbSec": 0.937888,
+      "totalSec": 3.103481,
+      "throughputMbps": 6.867,
+      "verdict": "Blocked"
+    }
+  ]
+}
