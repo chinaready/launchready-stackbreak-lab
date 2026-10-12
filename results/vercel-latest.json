@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T00:35:20Z",
+  "generatedAt": "2026-10-12T01:07:48Z",
   "environment": {
     "cloudProvider": "Alibaba Cloud",
     "cloudRegion": "cn-beijing-h",
@@ -18,8 +18,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/",
       "httpCode": "000",
-      "totalSec": 0.035218,
-      "curlExit": 7,
+      "totalSec": 10.001095,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -29,8 +29,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/old-report",
       "httpCode": "000",
-      "totalSec": 0.007594,
-      "curlExit": 7,
+      "totalSec": 10.001184,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -40,8 +40,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/probe-hello",
       "httpCode": "000",
-      "totalSec": 0.009412,
-      "curlExit": 7,
+      "totalSec": 10.002718,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -51,8 +51,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/api/hello",
       "httpCode": "000",
-      "totalSec": 0.006241,
-      "curlExit": 7,
+      "totalSec": 10.002923,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -62,8 +62,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/api/stamp-report",
       "httpCode": "000",
-      "totalSec": 0.008209,
-      "curlExit": 7,
+      "totalSec": 10.001303,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -73,8 +73,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/api/kv-ping",
       "httpCode": "000",
-      "totalSec": 0.006477,
-      "curlExit": 7,
+      "totalSec": 10.002617,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -84,8 +84,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/banner",
       "httpCode": "000",
-      "totalSec": 0.004381,
-      "curlExit": 7,
+      "totalSec": 10.002259,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -95,8 +95,8 @@
       "path": "frontend",
       "endpoint": "https://project-silk-eta-17.vercel.app/api/cron-ping",
       "httpCode": "000",
-      "totalSec": 0.011719,
-      "curlExit": 7,
+      "totalSec": 10.001498,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -107,7 +107,7 @@
       "endpoint": "https://project-silk-eta-17.vercel.app/",
       "httpCode": "000",
       "totalSec": 0,
-      "curlExit": 7,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -117,7 +117,7 @@
       "path": "backend",
       "endpoint": "https://api.vercel.com/v2/user",
       "httpCode": "200",
-      "totalSec": 0.879231,
+      "totalSec": 0.810841,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -128,7 +128,7 @@
       "path": "backend",
       "endpoint": "https://usable-dogfish-69708.upstash.io/get/china-probe",
       "httpCode": "neterr",
-      "totalSec": 0.339089,
+      "totalSec": 0.291802,
       "curlExit": 1,
       "verdict": "Blocked"
     },
@@ -139,7 +139,7 @@
       "path": "backend",
       "endpoint": "https://blob.vercel-storage.com?prefix=field-reports%2F&limit=1",
       "httpCode": "200",
-      "totalSec": 1.444658,
+      "totalSec": 2.106157,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -150,7 +150,7 @@
       "path": "backend",
       "endpoint": "https://project-silk-eta-17.vercel.app/api/hello",
       "httpCode": "neterr",
-      "totalSec": 0.00709,
+      "totalSec": 0.287426,
       "curlExit": 1,
       "verdict": "Blocked"
     },
@@ -161,7 +161,7 @@
       "path": "transport",
       "endpoint": "https://vercel.com/",
       "httpCode": "200",
-      "totalSec": 0.845887,
+      "totalSec": 0.683884,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -172,7 +172,7 @@
       "path": "transport",
       "endpoint": "https://api.vercel.com/",
       "httpCode": "308",
-      "totalSec": 0.741493,
+      "totalSec": 0.748618,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -183,7 +183,7 @@
       "path": "transport",
       "endpoint": "https://vitals.vercel-insights.com/",
       "httpCode": "302",
-      "totalSec": 0.808098,
+      "totalSec": 0.774634,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -194,7 +194,7 @@
       "path": "transport",
       "endpoint": "dns:vercel.app",
       "httpCode": "dns",
-      "totalSec": 0.034719,
+      "totalSec": 0.032736,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -205,8 +205,8 @@
       "path": "transport",
       "endpoint": "https://project-silk-eta-17.vercel.app/",
       "httpCode": "000",
-      "totalSec": 0.004298,
-      "curlExit": 7,
+      "totalSec": 10.000831,
+      "curlExit": 28,
       "verdict": "Blocked"
     },
     {
@@ -216,7 +216,7 @@
       "path": "transport",
       "endpoint": "dns:project-silk-eta-17.vercel.app",
       "httpCode": "dns",
-      "totalSec": 0.007638,
+      "totalSec": 0.043635,
       "curlExit": 0,
       "verdict": "Reachable"
     }

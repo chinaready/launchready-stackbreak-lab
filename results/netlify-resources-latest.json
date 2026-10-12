@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T00:34:59Z",
+  "generatedAt": "2026-10-12T01:07:27Z",
   "environment": {
     "cloudProvider": "Alibaba Cloud",
     "cloudRegion": "cn-beijing-h",
@@ -30,21 +30,21 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/",
       "httpCode": "200",
       "bytes": 16091,
-      "ttfbSec": 0.256139,
-      "totalSec": 0.339787,
-      "throughputMbps": 0.379,
+      "ttfbSec": 0.251131,
+      "totalSec": 0.332726,
+      "throughputMbps": 0.387,
       "verdict": "Reachable"
     },
     {
       "id": "where",
       "name": "Edge region (/__where)",
       "kind": "endpoint",
-      "url": "https://steady-marshmallow-cb991f.netlify.app/__where?t=1791160500",
+      "url": "https://steady-marshmallow-cb991f.netlify.app/__where?t=1791767248",
       "httpCode": "200",
       "bytes": 384,
-      "ttfbSec": 0.263562,
-      "totalSec": 0.263661,
-      "throughputMbps": 0.012,
+      "ttfbSec": 0.273193,
+      "totalSec": 0.273266,
+      "throughputMbps": 0.011,
       "verdict": "Reachable"
     },
     {
@@ -54,8 +54,8 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/hello",
       "httpCode": "200",
       "bytes": 97,
-      "ttfbSec": 0.914068,
-      "totalSec": 0.914237,
+      "ttfbSec": 0.933710,
+      "totalSec": 0.933754,
       "throughputMbps": 0.001,
       "verdict": "Reachable"
     },
@@ -66,9 +66,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/banner",
       "httpCode": "200",
       "bytes": 129,
-      "ttfbSec": 0.521225,
-      "totalSec": 0.521317,
-      "throughputMbps": 0.002,
+      "ttfbSec": 0.276852,
+      "totalSec": 0.276931,
+      "throughputMbps": 0.004,
       "verdict": "Reachable"
     },
     {
@@ -78,9 +78,9 @@
       "url": "https://identity.netlify.com/v1/netlify-identity-widget.js",
       "httpCode": "200",
       "bytes": 240416,
-      "ttfbSec": 0.465819,
-      "totalSec": 0.870221,
-      "throughputMbps": 2.210,
+      "ttfbSec": 0.494270,
+      "totalSec": 0.837612,
+      "throughputMbps": 2.296,
       "verdict": "Reachable"
     },
     {
@@ -90,9 +90,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=400",
       "httpCode": "200",
       "bytes": 274021,
-      "ttfbSec": 1.193620,
-      "totalSec": 1.595626,
-      "throughputMbps": 1.374,
+      "ttfbSec": 1.204097,
+      "totalSec": 1.620251,
+      "throughputMbps": 1.353,
       "verdict": "Degraded"
     },
     {
@@ -102,9 +102,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=800",
       "httpCode": "200",
       "bytes": 749717,
-      "ttfbSec": 0.799722,
-      "totalSec": 1.405987,
-      "throughputMbps": 4.266,
+      "ttfbSec": 1.182041,
+      "totalSec": 1.880764,
+      "throughputMbps": 3.189,
       "verdict": "Degraded"
     },
     {
@@ -114,9 +114,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=1600&fm=webp",
       "httpCode": "200",
       "bytes": 48636,
-      "ttfbSec": 1.264998,
-      "totalSec": 1.441317,
-      "throughputMbps": 0.270,
+      "ttfbSec": 1.263670,
+      "totalSec": 1.428094,
+      "throughputMbps": 0.272,
       "verdict": "Degraded"
     },
     {
@@ -126,9 +126,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fassets%2Fscene-2400.png&w=2400&fm=avif",
       "httpCode": "200",
       "bytes": 77225,
-      "ttfbSec": 1.244847,
-      "totalSec": 1.409496,
-      "throughputMbps": 0.438,
+      "ttfbSec": 1.206857,
+      "totalSec": 1.377324,
+      "throughputMbps": 0.449,
       "verdict": "Degraded"
     },
     {
@@ -138,9 +138,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/assets/weight-1mb.png",
       "httpCode": "200",
       "bytes": 999063,
-      "ttfbSec": 0.714060,
-      "totalSec": 1.378944,
-      "throughputMbps": 5.796,
+      "ttfbSec": 0.696293,
+      "totalSec": 1.611250,
+      "throughputMbps": 4.960,
       "verdict": "Degraded"
     },
     {
@@ -150,9 +150,9 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/assets/weight-3mb.png",
       "httpCode": "200",
       "bytes": 3073303,
-      "ttfbSec": 0.600167,
-      "totalSec": 1.462477,
-      "throughputMbps": 16.811,
+      "ttfbSec": 0.566420,
+      "totalSec": 1.960588,
+      "throughputMbps": 12.540,
       "verdict": "Degraded"
     },
     {
@@ -162,10 +162,10 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/assets/weight-6mb.png",
       "httpCode": "200",
       "bytes": 6000130,
-      "ttfbSec": 0.630492,
-      "totalSec": 3.037724,
-      "throughputMbps": 15.802,
-      "verdict": "Blocked"
+      "ttfbSec": 0.600436,
+      "totalSec": 2.549053,
+      "throughputMbps": 18.831,
+      "verdict": "Degraded"
     },
     {
       "id": "raw-source",
@@ -174,10 +174,10 @@
       "url": "https://steady-marshmallow-cb991f.netlify.app/assets/scene-2400.png",
       "httpCode": "200",
       "bytes": 2663877,
-      "ttfbSec": 0.937888,
-      "totalSec": 3.103481,
-      "throughputMbps": 6.867,
-      "verdict": "Blocked"
+      "ttfbSec": 0.561575,
+      "totalSec": 2.504262,
+      "throughputMbps": 8.510,
+      "verdict": "Degraded"
     }
   ]
 }

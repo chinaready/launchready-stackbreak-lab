@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T00:34:41Z",
+  "generatedAt": "2026-10-12T01:07:10Z",
   "environment": {
     "cloudProvider": "Alibaba Cloud",
     "cloudRegion": "cn-beijing-h",
@@ -13,7 +13,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/",
       "httpCode": "200",
-      "totalSec": 1.329135,
+      "totalSec": 1.212954,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -24,7 +24,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fphoto.png&w=160",
       "httpCode": "200",
-      "totalSec": 1.145878,
+      "totalSec": 1.118190,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -35,7 +35,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/old-report",
       "httpCode": "301",
-      "totalSec": 0.635691,
+      "totalSec": 0.603904,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -46,7 +46,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/api/hello",
       "httpCode": "200",
-      "totalSec": 1.555801,
+      "totalSec": 1.567150,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -57,9 +57,9 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/hello",
       "httpCode": "200",
-      "totalSec": 1.049670,
+      "totalSec": 0.934405,
       "curlExit": 0,
-      "verdict": "Degraded"
+      "verdict": "Reachable"
     },
     {
       "id": "fn-blobs",
@@ -68,7 +68,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/stamp-report",
       "httpCode": "200",
-      "totalSec": 1.742513,
+      "totalSec": 1.679868,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -79,7 +79,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/banner",
       "httpCode": "200",
-      "totalSec": 1.591189,
+      "totalSec": 1.625210,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -90,7 +90,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/report-background",
       "httpCode": "202",
-      "totalSec": 0.929637,
+      "totalSec": 0.578840,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -101,7 +101,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/scheduled-ping",
       "httpCode": "403",
-      "totalSec": 0.557217,
+      "totalSec": 0.848484,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -112,7 +112,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/",
       "httpCode": "200",
-      "totalSec": 0.742420,
+      "totalSec": 0.741926,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -123,7 +123,7 @@
       "path": "frontend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/identity/settings",
       "httpCode": "200",
-      "totalSec": 0.868002,
+      "totalSec": 0.499356,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -134,7 +134,7 @@
       "path": "backend",
       "endpoint": "https://api.netlify.com/api/v1/user",
       "httpCode": "401",
-      "totalSec": 1.133342,
+      "totalSec": 1.177686,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -145,7 +145,7 @@
       "path": "backend",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/hello",
       "httpCode": "200",
-      "totalSec": 0.957938,
+      "totalSec": 0.717465,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -156,7 +156,7 @@
       "path": "transport",
       "endpoint": "https://app.netlify.com/",
       "httpCode": "200",
-      "totalSec": 0.386700,
+      "totalSec": 0.406945,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -167,7 +167,7 @@
       "path": "transport",
       "endpoint": "https://api.netlify.com/api/v1/",
       "httpCode": "401",
-      "totalSec": 0.982056,
+      "totalSec": 0.916208,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -178,7 +178,7 @@
       "path": "transport",
       "endpoint": "https://www.netlify.com/",
       "httpCode": "200",
-      "totalSec": 0.652616,
+      "totalSec": 0.868216,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -189,7 +189,7 @@
       "path": "transport",
       "endpoint": "https://identity.netlify.com/v1/netlify-identity-widget.js",
       "httpCode": "200",
-      "totalSec": 1.082501,
+      "totalSec": 1.014580,
       "curlExit": 0,
       "verdict": "Degraded"
     },
@@ -200,7 +200,7 @@
       "path": "transport",
       "endpoint": "dns:netlify.app",
       "httpCode": "dns",
-      "totalSec": 0.065601,
+      "totalSec": 0.066057,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -211,7 +211,7 @@
       "path": "transport",
       "endpoint": "https://steady-marshmallow-cb991f.netlify.app/",
       "httpCode": "200",
-      "totalSec": 0.602152,
+      "totalSec": 0.741619,
       "curlExit": 0,
       "verdict": "Reachable"
     },
@@ -222,7 +222,7 @@
       "path": "transport",
       "endpoint": "dns:steady-marshmallow-cb991f.netlify.app",
       "httpCode": "dns",
-      "totalSec": 0.018416,
+      "totalSec": 0.018090,
       "curlExit": 0,
       "verdict": "Reachable"
     }
