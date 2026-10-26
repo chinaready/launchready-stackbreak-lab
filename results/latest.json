@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T01:04:21Z",
+  "generatedAt": "2026-10-25T23:55:35Z",
   "environment": {
     "cloudProvider": "Alibaba Cloud",
     "cloudRegion": "cn-beijing-h",
@@ -18,9 +18,9 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "200",
-      "connectSec": 0.063975,
-      "sslSec": 0.152329,
-      "totalSec": 0.245333,
+      "connectSec": 0.063473,
+      "sslSec": 0.161995,
+      "totalSec": 0.256493,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -36,9 +36,9 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "200",
-      "connectSec": 0.063715,
-      "sslSec": 0.153175,
-      "totalSec": 0.244286,
+      "connectSec": 0.064676,
+      "sslSec": 0.163333,
+      "totalSec": 0.257779,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -54,9 +54,9 @@
       "tier": "curated",
       "vendor": "adobe",
       "httpCode": "404",
-      "connectSec": 0.227287,
-      "sslSec": 0.400389,
-      "totalSec": 0.684923,
+      "connectSec": 0.23838,
+      "sslSec": 0.296042,
+      "totalSec": 0.587692,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -74,7 +74,7 @@
       "httpCode": "000",
       "connectSec": 0,
       "sslSec": 0,
-      "totalSec": 10.002533,
+      "totalSec": 10.00242,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -90,9 +90,9 @@
       "tier": "curated",
       "vendor": "auth0",
       "httpCode": "200",
-      "connectSec": 0.474755,
-      "sslSec": 0.617003,
-      "totalSec": 2.226036,
+      "connectSec": 0.261075,
+      "sslSec": 0.40524,
+      "totalSec": 2.062699,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Degraded"
@@ -110,7 +110,7 @@
       "httpCode": "000",
       "connectSec": 0,
       "sslSec": 0,
-      "totalSec": 10.002125,
+      "totalSec": 10.002562,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -126,9 +126,9 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "200",
-      "connectSec": 0.063652,
-      "sslSec": 0.120473,
-      "totalSec": 0.238515,
+      "connectSec": 0.003486,
+      "sslSec": 0.126878,
+      "totalSec": 0.317017,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -144,9 +144,9 @@
       "tier": "curated",
       "vendor": "google",
       "httpCode": "200",
-      "connectSec": 0.002885,
-      "sslSec": 0.061593,
-      "totalSec": 0.175293,
+      "connectSec": 0.002869,
+      "sslSec": 0.123571,
+      "totalSec": 0.333072,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Reachable"
@@ -164,7 +164,7 @@
       "httpCode": "000",
       "connectSec": 0,
       "sslSec": 0,
-      "totalSec": 10.001958,
+      "totalSec": 10.000548,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -182,7 +182,7 @@
       "httpCode": "000",
       "connectSec": 0,
       "sslSec": 0,
-      "totalSec": 10.002782,
+      "totalSec": 10.001471,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -200,7 +200,7 @@
       "httpCode": "000",
       "connectSec": 0,
       "sslSec": 0,
-      "totalSec": 10.002509,
+      "totalSec": 10.002275,
       "curlExit": 28,
       "dnsResolved": true,
       "verdict": "Blocked"
@@ -216,9 +216,9 @@
       "tier": "community",
       "vendor": "stripe",
       "httpCode": "200",
-      "connectSec": 0.365735,
-      "sslSec": 0.614211,
-      "totalSec": 2.120963,
+      "connectSec": 0.894338,
+      "sslSec": 1.132693,
+      "totalSec": 2.560569,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Degraded"
@@ -234,9 +234,9 @@
       "tier": "community",
       "vendor": "sentry",
       "httpCode": "403",
-      "connectSec": 0.420561,
-      "sslSec": 0.861517,
-      "totalSec": 1.379586,
+      "connectSec": 0.208557,
+      "sslSec": 0.627976,
+      "totalSec": 1.083867,
       "curlExit": 0,
       "dnsResolved": true,
       "verdict": "Degraded"
@@ -248,14 +248,14 @@
       "demoPath": "/stack/fonts-google.html",
       "failedRequests": [],
       "verdict": "Reachable",
-      "screenshotPath": "/results/2026-10-12/screenshots/google-fonts.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/google-fonts.png"
     },
     {
       "id": "material-symbols",
       "demoPath": "/stack/icons-material.html",
       "failedRequests": [],
       "verdict": "Reachable",
-      "screenshotPath": "/results/2026-10-12/screenshots/material-symbols.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/material-symbols.png"
     },
     {
       "id": "adobe-typekit",
@@ -264,63 +264,63 @@
         "https://use.typekit.net/abcdefg.css"
       ],
       "verdict": "Degraded",
-      "screenshotPath": "/results/2026-10-12/screenshots/adobe-typekit.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/adobe-typekit.png"
     },
     {
       "id": "recaptcha",
       "demoPath": "/stack/recaptcha.html",
       "failedRequests": [],
       "verdict": "Blocked",
-      "screenshotPath": "/results/2026-10-12/screenshots/recaptcha.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/recaptcha.png"
     },
     {
       "id": "auth0",
       "demoPath": "/stack/auth0-lock.html",
       "failedRequests": [],
       "verdict": "Reachable",
-      "screenshotPath": "/results/2026-10-12/screenshots/auth0.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/auth0.png"
     },
     {
       "id": "google-signin",
       "demoPath": "/stack/google-signin.html",
       "failedRequests": [],
       "verdict": "Blocked",
-      "screenshotPath": "/results/2026-10-12/screenshots/google-signin.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/google-signin.png"
     },
     {
       "id": "gtm",
       "demoPath": "/stack/gtm.html",
       "failedRequests": [],
-      "verdict": "Reachable",
-      "screenshotPath": "/results/2026-10-12/screenshots/gtm.png"
+      "verdict": "Blocked",
+      "screenshotPath": "/results/2026-10-25/screenshots/gtm.png"
     },
     {
       "id": "ga4",
       "demoPath": "/stack/ga4.html",
       "failedRequests": [],
       "verdict": "Reachable",
-      "screenshotPath": "/results/2026-10-12/screenshots/ga4.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/ga4.png"
     },
     {
       "id": "youtube",
       "demoPath": "/stack/youtube-embed.html",
       "failedRequests": [],
       "verdict": "Blocked",
-      "screenshotPath": "/results/2026-10-12/screenshots/youtube.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/youtube.png"
     },
     {
       "id": "google-maps",
       "demoPath": "/stack/google-maps.html",
       "failedRequests": [],
       "verdict": "Blocked",
-      "screenshotPath": "/results/2026-10-12/screenshots/google-maps.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/google-maps.png"
     },
     {
       "id": "vimeo",
       "demoPath": "/stack/vimeo-embed.html",
       "failedRequests": [],
       "verdict": "Blocked",
-      "screenshotPath": "/results/2026-10-12/screenshots/vimeo.png"
+      "screenshotPath": "/results/2026-10-25/screenshots/vimeo.png"
     }
   ]
 }

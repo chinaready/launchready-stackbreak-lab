@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T01:09:34Z",
+  "generatedAt": "2026-10-26T00:00:42Z",
   "environment": {
     "cloudProvider": "Alibaba Cloud",
     "cloudRegion": "cn-beijing-h",
@@ -23,7 +23,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.001297,
+      "totalSec": 0.028396,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -31,11 +31,11 @@
       "id": "where",
       "name": "Edge region (/__where)",
       "kind": "endpoint",
-      "url": "https://project-silk-eta-17.vercel.app/__where?t=1791767394",
+      "url": "https://project-silk-eta-17.vercel.app/__where?t=1792972842",
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.000809,
+      "totalSec": 0.033634,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -47,7 +47,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.002661,
+      "totalSec": 0.030142,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -59,7 +59,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.001304,
+      "totalSec": 0.027033,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -71,7 +71,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.002449,
+      "totalSec": 0.032292,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -83,7 +83,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.001442,
+      "totalSec": 0.030026,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -95,7 +95,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.002044,
+      "totalSec": 0.029577,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -107,7 +107,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.002059,
+      "totalSec": 0.030002,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     },
@@ -119,7 +119,7 @@
       "httpCode": "000",
       "bytes": 0,
       "ttfbSec": 0.000000,
-      "totalSec": 10.001506,
+      "totalSec": 0.029779,
       "throughputMbps": 0.000,
       "verdict": "Blocked"
     }

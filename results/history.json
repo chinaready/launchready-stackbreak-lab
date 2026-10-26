@@ -1,6 +1,14 @@
 {
-  "generatedAt": "2026-10-12T01:07:07.734Z",
+  "generatedAt": "2026-10-25T23:58:36.455Z",
   "runs": [
+    {
+      "date": "2026-10-26",
+      "total": 13,
+      "blocked": 5,
+      "degraded": 3,
+      "reachable": 5,
+      "pdf": true
+    },
     {
       "date": "2026-10-12",
       "total": 13,

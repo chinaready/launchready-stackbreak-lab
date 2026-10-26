@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-10-26T00:00:42Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-beijing-h",
+    "runnerHost": "launchready.cn"
+  },
+  "demoSiteUrl": "https://project-silk-eta-17.vercel.app",
+  "storage": {
+    "blobRegion": "unknown",
+    "redisRegion": "unknown"
+  },
+  "edge": {
+    "serverRegion": "unknown",
+    "geo": {}
+  },
+  "resources": [
+    {
+      "id": "doc",
+      "name": "HTML document",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.028396,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "where",
+      "name": "Edge region (/__where)",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/__where?t=1792972842",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.033634,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "fn-hello",
+      "name": "Function (hello)",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/api/hello",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.030142,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "edge",
+      "name": "Edge Middleware (banner)",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/banner",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.027033,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "fn-kv",
+      "name": "Function + KV",
+      "kind": "endpoint",
+      "url": "https://project-silk-eta-17.vercel.app/api/kv-ping",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.032292,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "raw-1mb",
+      "name": "Raw asset ~1 MB",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/weight-1mb.png",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.030026,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "raw-3mb",
+      "name": "Raw asset ~3 MB",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/weight-3mb.png",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.029577,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "raw-6mb",
+      "name": "Raw asset ~6 MB",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/weight-6mb.png",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.030002,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "raw-source",
+      "name": "Raw source 2400",
+      "kind": "raw",
+      "url": "https://project-silk-eta-17.vercel.app/assets/scene-2400.png",
+      "httpCode": "000",
+      "bytes": 0,
+      "ttfbSec": 0.000000,
+      "totalSec": 0.029779,
+      "throughputMbps": 0.000,
+      "verdict": "Blocked"
+    }
+  ]
+}
