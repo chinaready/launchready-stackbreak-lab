@@ -1,0 +1,230 @@
+{
+  "generatedAt": "2026-11-02T01:22:51Z",
+  "environment": {
+    "cloudProvider": "Alibaba Cloud",
+    "cloudRegion": "cn-beijing-h",
+    "runnerHost": "launchready.cn"
+  },
+  "probes": [
+    {
+      "id": "cdn",
+      "name": "Static hosting (CDN)",
+      "product": "Hosting / CDN",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/",
+      "httpCode": "200",
+      "totalSec": 1.299640,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "image-cdn",
+      "name": "Image CDN transform",
+      "product": "Image CDN",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/images?url=%2Fphoto.png&w=160",
+      "httpCode": "200",
+      "totalSec": 1.202420,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "redirect",
+      "name": "Redirect rule (301)",
+      "product": "Redirects & rewrites",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/old-report",
+      "httpCode": "301",
+      "totalSec": 0.599817,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "rewrite",
+      "name": "Rewrite to function (200)",
+      "product": "Redirects & rewrites",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/api/hello",
+      "httpCode": "200",
+      "totalSec": 1.795707,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "fn-hello",
+      "name": "Function helloProbe",
+      "product": "Functions",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/hello",
+      "httpCode": "200",
+      "totalSec": 1.369312,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "fn-blobs",
+      "name": "Function + Blobs stamp",
+      "product": "Blobs",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/stamp-report",
+      "httpCode": "200",
+      "totalSec": 1.330913,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "edge-banner",
+      "name": "Edge Function banner",
+      "product": "Edge Functions",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/banner",
+      "httpCode": "200",
+      "totalSec": 1.771060,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "fn-background",
+      "name": "Background Function",
+      "product": "Background Functions",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/report-background",
+      "httpCode": "202",
+      "totalSec": 0.522963,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "fn-scheduled",
+      "name": "Scheduled Function",
+      "product": "Scheduled Functions",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/scheduled-ping",
+      "httpCode": "403",
+      "totalSec": 0.485279,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "form",
+      "name": "Form submission",
+      "product": "Forms",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/",
+      "httpCode": "200",
+      "totalSec": 0.771815,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "identity",
+      "name": "Identity settings",
+      "product": "Identity",
+      "path": "frontend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/identity/settings",
+      "httpCode": "200",
+      "totalSec": 0.517165,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "api-user",
+      "name": "API current user",
+      "product": "Netlify API",
+      "path": "backend",
+      "endpoint": "https://api.netlify.com/api/v1/user",
+      "httpCode": "401",
+      "totalSec": 2.668353,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "server-invoke",
+      "name": "Server -> Function invoke",
+      "product": "Functions",
+      "path": "backend",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/.netlify/functions/hello",
+      "httpCode": "200",
+      "totalSec": 6.206336,
+      "curlExit": 0,
+      "verdict": "Blocked"
+    },
+    {
+      "id": "app",
+      "name": "Dashboard (app)",
+      "product": "Dashboard",
+      "path": "transport",
+      "endpoint": "https://app.netlify.com/",
+      "httpCode": "200",
+      "totalSec": 2.033291,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "api",
+      "name": "REST API",
+      "product": "Netlify API",
+      "path": "transport",
+      "endpoint": "https://api.netlify.com/api/v1/",
+      "httpCode": "401",
+      "totalSec": 0.891059,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "www",
+      "name": "Marketing / CDN",
+      "product": "Hosting / CDN",
+      "path": "transport",
+      "endpoint": "https://www.netlify.com/",
+      "httpCode": "200",
+      "totalSec": 1.590043,
+      "curlExit": 0,
+      "verdict": "Degraded"
+    },
+    {
+      "id": "identity",
+      "name": "Identity widget CDN",
+      "product": "Identity",
+      "path": "transport",
+      "endpoint": "https://identity.netlify.com/v1/netlify-identity-widget.js",
+      "httpCode": "200",
+      "totalSec": 0.766174,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "dns-netlify",
+      "name": "DNS netlify.app",
+      "product": "DNS",
+      "path": "transport",
+      "endpoint": "dns:netlify.app",
+      "httpCode": "dns",
+      "totalSec": 0.071977,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "site-edge",
+      "name": "Deployed site edge",
+      "product": "Hosting / CDN",
+      "path": "transport",
+      "endpoint": "https://steady-marshmallow-cb991f.netlify.app/",
+      "httpCode": "200",
+      "totalSec": 0.770765,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    },
+    {
+      "id": "dns-site",
+      "name": "DNS site host",
+      "product": "DNS",
+      "path": "transport",
+      "endpoint": "dns:steady-marshmallow-cb991f.netlify.app",
+      "httpCode": "dns",
+      "totalSec": 0.019069,
+      "curlExit": 0,
+      "verdict": "Reachable"
+    }
+  ]
+}
